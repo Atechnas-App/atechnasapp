@@ -29,7 +29,7 @@ export const Presentation = () => {
            </div>
 
            <div className='imgPresentation'>
-               <img src={freelancer} alt='not found'></img>
+               <img src={freelancer} alt='not found' className='imgP'></img>
            </div>
         </div>
     )

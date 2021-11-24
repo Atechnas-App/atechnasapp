@@ -7,18 +7,22 @@ import {OutStandingPeople} from "./OutStandingPeople/OutStandingPeople";
 import {PageInfo} from "./PageInfo/PageInfo";
 import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
+import './Home.css';
+
 
 export default function Home(){
     return(
-        <div>            
-            <Nav/>
-            <Carrucel/>
-            <PageInfo/>
-            <Presentation/>
-            <Testimonial/>
-            <OutStandingPeople/>
-            <MobileApp/>
-            <Footer/>
+        <div className='containerHome'> 
+            <div className='ajustarHome'>          
+                <Nav/>
+                <Carrucel/>
+                <PageInfo/>
+                <Presentation/>
+                <Testimonial/>
+                <OutStandingPeople/>
+                <MobileApp/>
+                <Footer/>
+            </div> 
         </div>
     )
 }
