@@ -11,7 +11,7 @@ export const Footer = () => {
         </div>
         <div>
             <h1>Sobre nosotros</h1>
-            <p>Nosotros somos una empresa de servicios de software</p>
+            
         </div>
         </div>
     )

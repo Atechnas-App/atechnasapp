@@ -1,6 +1,14 @@
 .containerPresentation  {
     display:flex;
     margin: 1em 0em;
+    background: rgba(255, 255, 255, 0.096);
+    padding: 1em 0em;
+    border: ridge 3px #56be84;
+    border-style: ;
+    backdrop-filter: blur(5px);
+    color: white;
+    border-radius: 1em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.849);
 }
 
 .margincontainer{
@@ -14,8 +22,12 @@
   
 }
 
+.imgP{
+    border-radius: 1em;
+}
+
 .h4Presentation{
-    color: grey;
+    color: rgb(163, 163, 163);
     margin: 0.5em;
 }
 
@@ -34,7 +46,8 @@
 
 .divP{
     margin: 1em;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.267);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.849);
+    
     padding: 1em;
     border-radius: 1em;
 }

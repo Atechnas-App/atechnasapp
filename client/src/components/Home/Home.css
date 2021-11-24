@@ -1,0 +1,12 @@
+.containerHome{
+    background-image: url('../../assets/img/backgroundApp.jpg');
+    background-attachment: fixed;
+    justify-content:center;
+    color: white;
+}
+
+.ajustarHome{
+    max-width: 1350px;
+    margin: 0em auto;
+    padding: 1em;
+}
