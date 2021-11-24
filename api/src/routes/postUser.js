@@ -12,7 +12,7 @@ router.post('/usercreate', async (req, res, next) => {
             category,
             profilePicture,
             portfolio,
-        } = req.body
+        } = req.body;
         const newUser = await User.create({
             name,
             lastName,
@@ -25,6 +25,7 @@ router.post('/usercreate', async (req, res, next) => {
         res.status(200).send('usuario creado')
     }
     catch (error) {
+        console.log(error)
         next(error)
     }
 
