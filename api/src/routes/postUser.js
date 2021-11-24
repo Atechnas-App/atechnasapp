@@ -1,54 +1,35 @@
 const { Router } = require("express");
-const {User}= require('../db');
+const { User } = require('../db');
 
 const router = Router();
 
-router.post('/usercreate',async (req,res)=>{
-    try{
-
-        const{name,
+router.post('/usercreate', async (req, res, next) => {
+    try {
+        const { name,
             lastName,
             email,
             password,
-            company,
-            phone,
             category,
-            desciption,
             profilePicture,
-            keyWords,
-            qualification,
             portfolio,
-            location,
-            languages,
-            team,
-            review,
-            message,
-            post 
-        } = req.body 
+        } = req.body
         const newUser = await User.create({
             name,
             lastName,
             email,
             password,
-            company,
-            phone,
             category,
-            desciption,
             profilePicture,
-            keyWords,
-            qualification,
             portfolio,
-            location,
-            premium            
         })
         res.status(200).send('usuario creado')
     }
-    catch(error){
-
+    catch (error) {
+        next(error)
     }
-    
+
 });
 
 
-module.exports=router;
+module.exports = router;
 
