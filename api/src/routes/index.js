@@ -3,6 +3,8 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const {usersDB} = require('../controllers')
 const userCreate = require('./postUser')
+const bulkCreate = require('./bulkCreate')
+const getUsers = require('./getUsers')
  
 const router = Router();
 
@@ -10,6 +12,8 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.use('/api', userCreate)
+router.use('/api', bulkCreate)
+router.use('/api', getUsers)
 
 
 module.exports = router;
