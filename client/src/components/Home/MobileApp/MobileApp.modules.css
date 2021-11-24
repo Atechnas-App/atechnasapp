@@ -1,0 +1,18 @@
+
+.app-description{
+    width: 50vw;
+}
+.app-phone-animation{
+    width: 50vw;
+}
+
+.second-app-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.logo{
+    
+    width: 90%;
+    height: 90%;
+}

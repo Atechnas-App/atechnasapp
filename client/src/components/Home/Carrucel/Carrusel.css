@@ -1,0 +1,65 @@
+*{
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+
+}
+
+#conteItemsCarrusel{
+	border: 2px solid #1010;
+	border-radius: 1em;
+	height: 250px;
+	overflow: hidden;
+}
+
+.itemCarrusel{
+	/* border: solid 1px #ccc; */
+	height: 100%;
+	position: relative;
+}
+
+tarjetaCarrusel{
+	background-color:rgba(112,112,223,0.3);
+	height: 100%;
+}
+.flechasCarrusel{
+/* 	background-color: aquamarine; */
+height: 100%;
+position: absolute;
+top:0;
+height: 100%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px;
+}
+
+#tarjetaCarrusel-1{
+position: relative;
+display: flex;
+justify-content: center;
+}
+#tarjetaCarrusel-2{
+position: relative;
+display: flex;
+justify-content: center;
+}
+#tarjetaCarrusel-3{
+position: relative;
+display: flex;
+justify-content: center;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+#contePuntos{
+	display: flex;
+	justify-content: space-evenly;
+}
+·contePuntos>a{
+font-size: 1.5em;
+}
