@@ -1,6 +1,8 @@
 import React from 'react'
 import "../Home/Carrucel/Carrusel.css"
-import carrucel1 from '../../assets/img/Carrucel.jpg'
+import der from "../../assets/img/der.png"
+import izq from "../../assets/img/izq.png"
+
 function CardsCarrusel() {
   return (
     <div id="conteItemsCarrusel">
@@ -14,10 +16,10 @@ function CardsCarrusel() {
         </div>
         <div className="flechasCarrusel">
           <a href="#itemCarrusel-3">
-            <i>I</i>
+            <img src={izq} alt="I"/>
           </a>
           <a href="#itemCarrusel-2">
-            <i>D</i>
+            <img src={der} alt="D"  />
           </a>
         </div>
       </div>
@@ -31,10 +33,10 @@ function CardsCarrusel() {
         </div>
         <div className="flechasCarrusel">
           <a href="#itemCarrusel-1">
-            <i>I</i>
+            <img src={izq} alt="I"  />
           </a>
           <a href="#itemCarrusel-3">
-            <i>D</i>
+            <img src={der} alt="D"  />
           </a>
         </div>
       </div>
@@ -48,10 +50,10 @@ function CardsCarrusel() {
         </div>
         <div className="flechasCarrusel">
           <a href="#itemCarrusel-2">
-            <i>I</i>
+            <img src={izq} alt="I"/>
           </a>
           <a href="#itemCarrusel-1">
-            <i>D</i>
+           <img src={der} alt="D"  />
           </a>
         </div>
       </div>
