@@ -19,9 +19,23 @@ router.post('/bulkcreate', async (req, res, next) => {
 router.post('/bulkcreateTechnology', async (req, res, next) => {
     try {
        
-        const newTechnology = await Technology.bulkCreate(req.body)
+        const newTechnology = await User.bulkCreate(req.body)
         console.log(newTechnology)
         res.status(200).send('tecnologias en db')
+    }
+    catch (error) {
+        console.log(error)
+        next(error)
+    }
+
+});
+
+router.post('/bulkcreateCategory', async (req, res, next) => {
+    try {
+       
+        const newCategory = await User.bulkCreate(req.body)
+        console.log(newCategory)
+        res.status(200).send('categorias en db')
     }
     catch (error) {
         console.log(error)
