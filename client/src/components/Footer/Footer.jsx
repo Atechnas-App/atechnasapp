@@ -1,18 +1,26 @@
 import React from 'react'
 
-export const Footer = () => {
+export default function Footer(){
     return (
         <div>
-        <div>
-            <h1>Contactanos</h1>
-            <p>Twitter: @twitter</p>
-            <p>Facebook: @facebook</p>
-            <p>Instagram: @instagram</p>
-        </div>
-        <div>
-            <h1>Sobre nosotros</h1>
-            
-        </div>
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div>
+                    <h1>ATECHNA</h1>
+                </div>
+                <div>
+                    <h5>© 2021, All Rights Reserved - ID90 Travel, Inc.</h5>
+                </div>
+                <div>
+                    <i>Instagram</i>
+                    <i>Facebook</i>
+                    <i>Linkedin</i>
+                </div>
+            </div>
         </div>
     )
 }

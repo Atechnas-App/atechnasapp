@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
     },
 
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("developer", "desing", "marketing", "recruiter"),
       allowNull: true,
     },
 
@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
 
     profilePicture: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
 
     // languages: {
