@@ -5,7 +5,7 @@ import "./form.css"
 
 export const LoginadnRegister = () => {
     return (
-      <div>
+      <div className='container-login'>
         <div className="login">
           <Login />
         </div>
