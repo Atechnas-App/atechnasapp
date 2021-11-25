@@ -61,11 +61,6 @@ module.exports = (sequelize) => {
     //   allowNull: true,
     // },
 
-    keyWords: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
     qualification: {
       type: DataTypes.INTEGER,
       allowNull: true,
