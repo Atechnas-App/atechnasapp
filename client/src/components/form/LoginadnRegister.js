@@ -9,8 +9,8 @@ export const LoginadnRegister = () => {
         <div className="login">
           <Login />
         </div>
-        <div className="formulario">
-          <Register />
+        <div>
+          <Register className="formulario" />
         </div>
       </div>
     );
