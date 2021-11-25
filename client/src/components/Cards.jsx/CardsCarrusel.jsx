@@ -1,6 +1,6 @@
 import React from 'react'
 import "../Home/Carrucel/Carrusel.css"
-
+import carrucel1 from '../../assets/img/Carrucel.jpg'
 function CardsCarrusel() {
   return (
     <div id="conteItemsCarrusel">

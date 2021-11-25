@@ -1,0 +1,31 @@
+.container-pageinfo{
+    display: flex;
+    /* align-items: center; */
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    max-width: 70%;
+    justify-content: space-around;
+    padding:1em;
+    margin: 0em auto;
+    margin-top: 1em;
+}
+
+.div-pageinfo{
+    display: flex;
+}
+
+.img-pageinfo{
+    margin: 1em;
+}
+
+.info-pageinfo{
+    margin: auto;
+}
+
+.border{
+    border-left: solid 1px white;
+    border-right: solid 1px white;
+    padding-right: 1em;
+    
+
+}
