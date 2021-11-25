@@ -25,6 +25,7 @@
     animation-name: atechnas;
     animation-iteration-count: infinite;
     animation-duration: 2s;
+    color: white;
 }
 
 @keyframes atechnas{
