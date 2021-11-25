@@ -63,3 +63,8 @@ a{
 ·contePuntos>a{
 font-size: 1.5em;
 }
+
+#tarjetaCarrusel-1,#tarjetaCarrusel-2,#tarjetaCarrusel-3 > img{
+	width: 100%;
+	height: 100%;
+}
