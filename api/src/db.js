@@ -59,7 +59,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Message, Review, Team, Testimonial, Language, Post, UserAdmin } = sequelize.models;
+const { User, Message, Review, Team, Testimonial, Language, Post, UserAdmin, Technology } = sequelize.models;
 
 // Aca vendrian las relaciones
 User.belongsToMany(Team, {through: 'Users-Teams'})
@@ -68,6 +68,8 @@ User.belongsToMany(Message, {through: 'User-Message'})
 Message.belongsToMany(User, {through: 'User-Message'})
 User.belongsToMany(Language, {through: 'User-Language'})
 Language.belongsToMany(User, {through:'User-Language'})
+Technology.belongsToMany(User, {through:'User-Technology'})
+User.belongsToMany(Technology, {through:'User-Technology'})
 UserAdmin.hasMany(Testimonial);
 Testimonial.belongsTo(UserAdmin);
 User.hasMany(Post);
