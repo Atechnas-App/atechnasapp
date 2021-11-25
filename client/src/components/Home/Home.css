@@ -3,6 +3,8 @@
     background-attachment: fixed;
     justify-content:center;
     color: white;
+    
+    min-width: 100%;
 }
 
 .ajustarHome{
