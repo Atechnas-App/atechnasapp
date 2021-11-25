@@ -6,6 +6,8 @@ const userCreate = require('./postUser')
 const bulkCreate = require('./bulkCreate')
 const getUsers = require('./getUsers')
 const search = require('./search')
+const filterByCategory = require('./categoryFilter')
+const filterByTechnology = require('./TechnologyFilter')
  
 const router = Router();
 
@@ -17,6 +19,8 @@ router.use('/api', userCreate)
 router.use('/api', bulkCreate)
 router.use('/api', getUsers)
 router.use('/api', search)
+router.use('/api', filterByCategory)
+router.use('/api', filterByTechnology)
 
 
 
