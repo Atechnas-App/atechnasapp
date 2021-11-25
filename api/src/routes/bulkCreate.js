@@ -24,7 +24,7 @@ router.post('/bulkcreate', async (req, res, next) => {
         //     portfolio,
         // })
         const newUser = await User.bulkCreate(req.body)
-        console.log(newUser)
+        // console.log(newUser)
         res.status(200).send('usuario creado')
     }
     catch (error) {

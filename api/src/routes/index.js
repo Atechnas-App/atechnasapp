@@ -5,6 +5,7 @@ const {usersDB} = require('../controllers')
 const userCreate = require('./postUser')
 const bulkCreate = require('./bulkCreate')
 const getUsers = require('./getUsers')
+const searchbar = require('./getSearchBar')
  
 const router = Router();
 
@@ -15,6 +16,7 @@ const router = Router();
 router.use('/api', userCreate)
 router.use('/api', bulkCreate)
 router.use('/api', getUsers)
+router.use('/api', searchbar)
 
 
 
