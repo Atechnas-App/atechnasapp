@@ -2,6 +2,11 @@
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    
+}
+
+.nav{
+  margin-bottom: 1em;
 }
 
 /* .imglognav{
@@ -12,25 +17,40 @@
 
 .linkNavReg{
     color:white;
+    margin-top: 0.5em;
 }
 
 .nombreLogo{
+    font-size: 2.5em;
     animation-name: atechnas;
     animation-iteration-count: infinite;
     animation-duration: 2s;
 }
 
 @keyframes atechnas{
-    to{
+    
+
+    0% {
         text-shadow: 0.05em 0 0 #9225d7,
-    -0.025em -0.05em 0 #3bfd92,
-    0.025em 0.05em 0 #a412ff;
-
-    }
-    from{
-        text-shadow: 0.10em 0 0 #9325d7,
-    -0.05em -0.08em 0 #3bfd92,
-    0.05em 0.08em 0 #a412ff;
-
-    }
+          -0.05em -0.025em 0 #3bfd92,
+          -0.025em 0.05em 0 #a412ff;
+      }
+      
+      15% {
+        text-shadow: -0.05em -0.025em 0 #9225d7,
+          0.025em 0.025em 0 #3bfd92,
+          -0.05em -0.05em 0 #a412ff;
+      }
+      
+      50% {
+        text-shadow: 0.025em 0.05em 0 #9225d7,
+          0.05em 0 0 #3bfd92, 
+          0 -0.05em 0 #a412ff;
+      }
+      
+      100% {
+        text-shadow: -0.025em 0 0 #9225d7,
+          -0.025em -0.025em 0 #3bfd92,
+          -0.025em -0.05em 0 #a412ff;
+      }
 }

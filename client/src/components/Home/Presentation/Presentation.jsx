@@ -16,7 +16,7 @@ export const Presentation = () => {
                 </div>
                 
                 <div className='divP'>
-                    <h4>Calificaciones</h4>
+                    <h4>Obtené calificaciones</h4>
                     <p> Conseguí calificaciones altas para entrar en el ranking de recomendados y obtené mas propuestas de trabajos
                     </p>
                 </div>
