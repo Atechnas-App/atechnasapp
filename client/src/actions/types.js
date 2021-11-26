@@ -7,5 +7,12 @@ export const types = {
     login:'login',
     logout:'logout',
     register:'register',
+
     
+    setError:'setError',
+    removeError:'removeError',
+
+    startLoding:'startLoding',
+    finishLoding:'finishLoding',
+
 }
