@@ -13,7 +13,8 @@ import './Home.css';
 export default function Home(){
     return(
         <div className='containerHome'> 
-            <div className='ajustarHome'>          
+            <div className='ajustarHome'> 
+                         
                 <Nav/>
                 <Carrucel/>
                 <PageInfo/>

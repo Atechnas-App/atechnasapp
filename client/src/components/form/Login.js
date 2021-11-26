@@ -1,6 +1,43 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {useForm} from '../hooks/useForm'
+import {removeError, setError, startGoogleLogin} from '../../actions/actions'
+import validator from 'validator'
+
+
+
+
 
 export const Login = () => {
+
+  const dispatch = useDispatch()
+  
+const {ui} = useSelector(state => state)
+
+const [formValues, handleInputChange] = useForm({
+  email:"",
+  password:"",
+})
+
+const {email, password} = formValues
+
+const handleGoogleLogin = () => {
+  dispatch(startGoogleLogin())
+}
+
+
+const ifFormIsValid = () => {
+  if (!validator.isEmail(email)) {
+    dispatch(setError("Email is invalid"));
+    return false;
+  } else if (password.trim().length === 0) {
+    dispatch(setError("Password is required"));
+    return false;
+  }
+  dispatch(removeError());
+  return true;
+};
+
     return (
       <div>
         <h1>Entrar</h1>
@@ -12,14 +49,14 @@ export const Login = () => {
           name="Password"
           placeholder="atechnas@atechnas.com"
         />
-        <a href="/">¿Olvidaste tu contraseña?</a>
+        <a href="/Register">¿Aun no tienes cuenta?</a>
         <p />
         <button>Entrar</button>
 
         <div
           className="google-btn"
-          /* onClick={handleGoogleLogin}
-          disabled={loading} */
+          onClick={handleGoogleLogin}
+          /* disabled={loading} */
         >
           <div className="google-icon-wrapper">
             <img

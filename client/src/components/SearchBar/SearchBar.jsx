@@ -1,25 +1,34 @@
 import React from 'react';
 import './SearchBar.css';
-import {useState} from 'react';
-// import {useDispatch} from 'react-redux';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Search} from '../../actions/actions.js';
+import {useNavigate} from 'react-router-dom';
 
 export default function SearchBar(){
     const [search, setSearch] = useState('');
+    const dispatch = useDispatch();
+    const searching = useSelector((state)=> state.search)
+    const history = useNavigate();
     
-
-
+    useEffect(()=>{
+        dispatch(Search(search))
+    }, [dispatch, search])
 
     function handdleInput(e){
         e.preventDefault();
         setSearch(e.target.value)
     }
 
+    function onSubmit(e){
+        e.preventDefault();
+        history('/')
+    }
+
     return(
 
-        <form className='fromSearch'>
-
-            <input type='text' placeholder='Buscar...' value={search} name='buscador' onChange={(e)=>{handdleInput(e)}} className='inputSearch'></input>
-            
+        <form className='fromSearch' onSubmit={(e)=>{onSubmit(e)}}>
+            <input type='text' placeholder='Buscar...' value={search} name='buscador' onChange={(e)=>{handdleInput(e)}} className='inputSearch'></input>   
         </form>
 
     )
