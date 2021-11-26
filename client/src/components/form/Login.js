@@ -23,9 +23,7 @@ const [formValues, handleInputChange] = useForm({
 
 const {email, password} = formValues
 
-const [formValues] = useForm({
-  
-})
+
 
 
 
@@ -52,7 +50,7 @@ const ifFormIsValid = () => {
 };
 
 }; */
-
+}
 
 
     return (
@@ -88,4 +86,4 @@ const ifFormIsValid = () => {
         </div>
       </div>
     );
-}}
+}
