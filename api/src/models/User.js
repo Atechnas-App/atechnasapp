@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
     },
 
     category: {
-      type: DataTypes.ENUM("developer", "desing", "marketing", "recruiter"),
+      type: DataTypes.ENUM("developer", "design", "marketing", "recruiter"),
       allowNull: true,
     },
 
