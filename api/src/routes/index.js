@@ -8,6 +8,7 @@ const getUsers = require('./getUsers')
 const search = require('./search')
 const filterByCategory = require('./categoryFilter')
 const filterByTechnology = require('./TechnologyFilter')
+const filterByQualification = require('./qualificationFilter')
 
  
 const router = Router();
@@ -23,6 +24,7 @@ router.use('/api', getUsers)
 router.use('/api', search)
 router.use('/api', filterByCategory)
 router.use('/api', filterByTechnology)
+router.use('/api', filterByQualification)
 
 
 
