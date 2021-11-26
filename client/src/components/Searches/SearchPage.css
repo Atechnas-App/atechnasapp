@@ -1,0 +1,19 @@
+.container-searchpage{
+    background-image: url('../../assets/img/backgroundApp.jpg');
+    background-attachment: fixed;
+    justify-content:center;
+    color: white;
+    
+    min-width: 100%;
+}
+
+.components-searchpage{
+    max-width: 1350px;
+    min-width: 1250px;
+    margin: 0em auto;
+    padding: 1em;
+}
+
+.container-all{
+    display: flex;
+}
