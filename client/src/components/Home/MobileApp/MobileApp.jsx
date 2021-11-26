@@ -1,6 +1,6 @@
 import phones from "../../../assets/img/phones.png"
 import premium from "../../../assets/img/premium.png"
-import touchscreen from "../../../assets/img/touchscreen.png"
+import touchscreen from "../../../assets/img/telefono.png"
 import appstore from "../../../assets/img/appstore.png"
 import playstore from "../../../assets/img/playstore.png"
 import './MobileApp.modules.css'
