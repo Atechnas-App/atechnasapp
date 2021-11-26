@@ -1,6 +1,35 @@
 import React from 'react'
 
 export const Login = () => {
+
+
+  const dispatch = useDispatch()
+  
+const {ui} = useSelector(state => state)
+
+const [formValues] = useForm({
+  
+})
+
+
+const handleGoogleLogin = () => {
+  dispatch(startGoogleLogin())
+}
+
+
+/* const ifFormIsValid = () => {
+  if (!validator.isEmail(email)) {
+    dispatch(setError("Email is invalid"));
+    return false;
+  } else if (password.trim().length === 0) {
+    dispatch(setError("Password is required"));
+    return false;
+  }
+  dispatch(removeError());
+  return true;
+}; */
+
+
     return (
       <div>
         <h1>Entrar</h1>
