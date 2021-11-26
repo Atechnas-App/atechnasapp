@@ -8,9 +8,7 @@ function CardsCarrusel() {
     <div id="conteItemsCarrusel">
       <div className="itemCarrusel" id="itemCarrusel-1">
         <div className="tarjetaCarrusel" id="tarjetaCarrusel-1">
-          <img
-            src="https://images.unsplash.com/photo-1510519138101-570d1dca3d66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=847&q=80"
-            alt="imagen"
+          <div
             className="image"
           />
         </div>
@@ -25,10 +23,8 @@ function CardsCarrusel() {
       </div>
       <div className="itemCarrusel" id="itemCarrusel-2">
         <div className="tarjetaCarrusel" id="tarjetaCarrusel-2">
-          <img
-            src="https://tse4.mm.bing.net/th?id=OIP.2uENtVzunaEfelM6j-eP-wHaD_&pid=Api"
-            alt="imagen"
-            className="image"
+          <div
+            className="image2"
           />
         </div>
         <div className="flechasCarrusel">
@@ -40,12 +36,11 @@ function CardsCarrusel() {
           </a>
         </div>
       </div>
+      
       <div className="itemCarrusel" id="itemCarrusel-3">
         <div className="tarjetaCarrusel" id="tarjetaCarrusel-3">
-          <img
-            src="https://tse4.mm.bing.net/th?id=OIP.UVBoB7hPko6P1qWMi0chVAHaH6&pid=Api"
-            alt="imagen"
-            className="image"
+          <div
+            className="image3"
           />
         </div>
         <div className="flechasCarrusel">
