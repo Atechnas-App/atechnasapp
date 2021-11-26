@@ -1,8 +1,8 @@
 import { GET_USER, SEARCH, CATEGORY_FILTER } from "../actions/types";
 
 const initialState = {
-    users=[],
-    search=[],
+    users:[],
+    search:[],
 
 };
 
