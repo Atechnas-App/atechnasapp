@@ -10,9 +10,11 @@ import validator from 'validator'
 
 export const Login = () => {
 
+
   const dispatch = useDispatch()
   
 const {ui} = useSelector(state => state)
+
 
 const [formValues, handleInputChange] = useForm({
   email:"",
@@ -21,12 +23,22 @@ const [formValues, handleInputChange] = useForm({
 
 const {email, password} = formValues
 
+const [formValues] = useForm({
+  
+})
+
+
+
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin())
 }
 
 
+
 const ifFormIsValid = () => {
+
+/* const ifFormIsValid = () => {
+
   if (!validator.isEmail(email)) {
     dispatch(setError("Email is invalid"));
     return false;
@@ -36,7 +48,12 @@ const ifFormIsValid = () => {
   }
   dispatch(removeError());
   return true;
+
 };
+
+}; */
+
+
 
     return (
       <div>
@@ -71,4 +88,4 @@ const ifFormIsValid = () => {
         </div>
       </div>
     );
-}
+}}
