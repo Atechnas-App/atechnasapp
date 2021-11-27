@@ -16,7 +16,7 @@ export function getUser() {
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search', payload)
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
         dispatch({
             type: SEARCH,
             payload: searching.data
