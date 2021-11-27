@@ -4,10 +4,10 @@ export const Register = () => {
     return (
       <div >
         <form>
-          <h1>Bienvenido a Atechnas</h1>
+          <h1 className='tituloRegister'>BIENVENIDO A ATECHNAS</h1>
           <div>
             <p>Nombre</p>
-            <input type="text" name="Name" placeholder="Nombre" />
+            <input type="text" name="Name" placeholder="Nombre" className='fields'/>
           </div>
           <div>
             <p>Apellido</p>
@@ -36,6 +36,7 @@ export const Register = () => {
           <div>
             <p>Imagen de perfil</p>
             <input type="file" name="Image" />
+            <br/>
             <button>subir</button>
           </div>
           <div>

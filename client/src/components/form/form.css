@@ -1,3 +1,18 @@
 .container-login{
     display: flex;
 }
+
+.tituloRegister{
+    font-size: 2.5em;
+}
+
+.fields{
+    border-style: none;
+    font-size: 1em;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    background-color: rgba(255, 255, 255, 0.212);
+    backdrop-filter: blur(2px);
+    color: white;
+
+}

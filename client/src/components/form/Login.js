@@ -55,7 +55,7 @@ const ifFormIsValid = () => {
 
     return (
       <div>
-        <h1>Entrar</h1>
+        <h1 className='tituloRegister'>Entrar</h1>
         <div>
         <label>E-mail</label>
         <input type="text" name="Email" placeholder="Email" placeholder="atechnas@atechnas.com"/>
