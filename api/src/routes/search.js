@@ -7,24 +7,24 @@ router.get("/search", async (req, res) => {
   try {
     const { query } = req.query;
     const categorias = ["developer", "design", "marketing", "recruiter"];
-    const toLowerQuery = query.toLowerCase();
-    const dbSearch = categorias.includes(toLowerQuery)
+    // const toLowerQuery = query.toLowerCase();
+    const dbSearch = categorias.includes(query.toLowerCase())
       ? {
           where: {
-            category: { [Op.iLike]: toLowerQuery },
+            category: query.toLowerCase(),
           },
         }
       : {
           where: {
             [Op.or]: [
               {
-                name: { [Op.iLike]: toLowerQuery },
+                name: { [Op.substring]: query.toLowerCase() },
               },
               {
-                lastName: { [Op.iLike]: toLowerQuery },
+                lastName: { [Op.substring]: query.toLowerCase() },
               },
               {
-                email: { [Op.iLike]: toLowerQuery },
+                email: { [Op.substring]: query.toLowerCase() },
               },
             ],
           },
@@ -34,7 +34,9 @@ router.get("/search", async (req, res) => {
 
     res.status(200).send(filtro);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    console.log(error.parameters);
+    // console.log(Model.rawAttributes.category);
   }
 });
 
