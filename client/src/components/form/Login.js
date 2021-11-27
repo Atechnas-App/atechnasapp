@@ -56,15 +56,19 @@ const ifFormIsValid = () => {
     return (
       <div>
         <h1>Entrar</h1>
-        <span>E-mail</span>
-        <input type="text" name="Email" placeholder="Email" />
-        <span>Contraseña</span>
+        <div>
+        <label>E-mail</label>
+        <input type="text" name="Email" placeholder="Email" placeholder="atechnas@atechnas.com"/>
+        </div>
+        <div>
+        <label>Contraseña</label>
         <input
-          type="text"
+          type="password"
           name="Password"
-          placeholder="atechnas@atechnas.com"
+          
         />
-        <a href="/Register">¿Aun no tienes cuenta?</a>
+        </div>
+        <a href="/">¿Te ovlidaste la contraseña?</a>
         <p />
         <button>Entrar</button>
 
