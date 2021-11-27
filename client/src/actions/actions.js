@@ -43,15 +43,31 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(startLoding())
         dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
+        dispatch(startLoding())
         dispatch(finishLoding())
+        (dispatch(loginStore()))
       }).catch((error) => {
         console.log(error);
         dispatch(finishLoding())
-  } );
-      
+      } );
+    
 }
+}
+
+
+function loginStore() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      var displayName = user.displayName;
+      var email = user.email;
+      var photoURL = user.photoURL;
+      
+      localStorage.setItem("displayName",displayName)
+      localStorage.setItem("email",email)
+      localStorage.setItem("photoURL",photoURL)
+    }
+  })
 }
 
 export const login = (uid, displayName, email, photoURL) => ({
@@ -63,6 +79,29 @@ export const login = (uid, displayName, email, photoURL) => ({
     photoURL,
   },
 });
+
+export const logoutAll = () => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .signOut()  
+      .then(() => {
+        dispatch(logout());
+        dispatch(logoutStore());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+};
+
+function logoutStore() {
+  localStorage.removeItem("displayName")
+  localStorage.removeItem("email")
+  localStorage.removeItem("photoURL")
+}
+
+
 
 export const logout = () => ({
   type: types.logout,

@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from '../hooks/useForm'
 import {removeError, setError, startGoogleLogin} from '../../actions/actions'
 import validator from 'validator'
+import {useNavigate } from 'react-router'
 
 
 
@@ -10,9 +11,11 @@ import validator from 'validator'
 
 export const Login = () => {
 
+const navigate =useNavigate()
+
   const dispatch = useDispatch()
-  
-const {ui} = useSelector(state => state)
+const {log} = useSelector(state => state)
+  console.log(log)
 
 const [formValues, handleInputChange] = useForm({
   email:"",
@@ -22,7 +25,12 @@ const [formValues, handleInputChange] = useForm({
 const {email, password} = formValues
 
 const handleGoogleLogin = () => {
+if(log.login===false){
   dispatch(startGoogleLogin())
+}else{
+  (log.login===true)&&
+  navigate('/')
+}
 }
 
 
