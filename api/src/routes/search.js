@@ -11,20 +11,20 @@ router.get("/search", async (req, res) => {
     const dbSearch = categorias.includes(toLowerQuery)
       ? {
           where: {
-            category: { [Op.substring]: toLowerQuery },
+            category: { [Op.iLike]: toLowerQuery },
           },
         }
       : {
           where: {
             [Op.or]: [
               {
-                name: { [Op.substring]: toLowerQuery },
+                name: { [Op.iLike]: toLowerQuery },
               },
               {
-                lastName: { [Op.substring]: toLowerQuery },
+                lastName: { [Op.iLike]: toLowerQuery },
               },
               {
-                email: { [Op.substring]: toLowerQuery },
+                email: { [Op.iLike]: toLowerQuery },
               },
             ],
           },
