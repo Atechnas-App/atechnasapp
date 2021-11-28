@@ -15,9 +15,17 @@ export function getUser() {
     }
 }
 
+export function postUser(payload) {
+  return async function(){
+    const newUser = await axios.post('http://localhost:3001/api/register', payload);
+    return newUser;
+  }
+}
+
+
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search', payload)
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
         dispatch({
             type: SEARCH,
             payload: searching.data

@@ -1,4 +1,11 @@
+if (process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+};
+
 const express = require('express');
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session')
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
@@ -11,6 +18,14 @@ server.name = 'API';
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
+server.use(flash());
+server.use(session({
+  secret: process.env.SESSION_SECRET, // si estoy en produccion que cambiar 
+  resave: false,
+  saveUninitialized: false
+}));
+server.use(passport.initialize());
+server.use(passport.session());
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {

@@ -8,20 +8,20 @@ import {
   startLoginEmailPassword,
 } from "../../actions/actions";
 import validator from 'validator'
+import "./form.css"
 import {useNavigate } from 'react-router'
 
 
 
 
+
 export const Login = () => {
-
 const navigate =useNavigate()
-
-  const dispatch = useDispatch()
-
+const dispatch = useDispatch()
 const {log} = useSelector(state => state)
 
   
+
 
 const [formValues,handleInputChange] = useForm({
   email:"",
@@ -30,12 +30,14 @@ const [formValues,handleInputChange] = useForm({
 
 const {email, password} = formValues
 
+
 const handleLogin= (e) => {
   e.preventDefault()
   if(ifFormIsValid()){
     dispatch(startLoginEmailPassword(email, password));
   }
 }
+
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin())
@@ -46,7 +48,10 @@ const handleGoogleLogin = () => {
 
 
 
+
+
 const ifFormIsValid = () => {
+
   if (!validator.isEmail(email)) {
     dispatch(setError("Email is invalid"));
     return false;
@@ -56,46 +61,52 @@ const ifFormIsValid = () => {
   }
   dispatch(removeError());
   return true;
-};
+
+  };
+
+
+
+
 
     return (
-      <div>
-        <h1>Entrar</h1>
-        <form onSubmit={handleLogin}>
-          <span>E-mail</span>
-          <input
-           type="text" 
-           name="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleInputChange} 
-          />
-          <span>Contraseña</span>
-          <input
-            type="password"
-            name="password"
-            placeholder="atechnas@atechnas.com"
-            value={password}
-            onChange={handleInputChange}
-          />
-          <a href="/login">¿Aun no tienes cuenta?</a>
-          <p />
-          <button onClick={handleLogin}>Entrar</button>
 
-          <div
-            className="google-btn"
-            onClick={handleGoogleLogin}
-            /* disabled={loading} */
-          >
-            <div className="google-icon-wrapper">
-              <img
-                className="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                alt="google button"
-              />
+      <div className='entrarContainer'>
+        <h1 className='tituloRegister'>ENTRAR</h1>
+        <form onSubmit={handleLogin}>
+        <div>
+        <p className='labels'>E-mail</p>
+        <input value={email} onChange={handleInputChange}  
+        type="text" name="email" placeholder="atechnas@atechnas.com" 
+        className='fields'/>
+        </div>
+        <div>
+        <p className='labels'>Contraseña</p>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
+          className='fields'
+        />
+        </div>
+        <a href="/" className='olvido-contraseña'>¿Te olvidaste la contraseña?</a>
+        <p />
+        <button onClick={handleLogin} className='botonImg'>Entrar</button>
+
+        <div
+          className="google-btn"
+          onClick={handleGoogleLogin}
+          /* disabled={loading} */
+        >
+          <div className="google-icon-wrapper">
+            <img
+              className="google-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              alt="google button"
+            />
             </div>
             <p className="btn-text">
-              <b>Sign in with google</b>
+              <b>Entrar con Google</b>
             </p>
           </div>
         </form>

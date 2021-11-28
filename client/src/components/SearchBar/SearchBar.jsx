@@ -11,9 +11,7 @@ export default function SearchBar(){
     const searching = useSelector((state)=> state.search)
     const history = useNavigate();
     
-    useEffect(()=>{
-        dispatch(Search(search))
-    }, [dispatch, search])
+   
 
     function handdleInput(e){
         e.preventDefault();
@@ -22,7 +20,8 @@ export default function SearchBar(){
 
     function onSubmit(e){
         e.preventDefault();
-        history('/')
+        dispatch(Search(search))
+        history('/results')
     }
 
     return(
