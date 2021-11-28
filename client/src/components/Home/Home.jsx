@@ -1,5 +1,5 @@
 import React from "react";
-import {Carrucel} from "./Carrucel/Carrucel";
+import Carrucel from "./Carrucel/Carrucel";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import MobileApp from "./MobileApp/MobileApp";

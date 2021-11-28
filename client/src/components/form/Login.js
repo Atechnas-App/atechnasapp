@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from '../hooks/useForm'
 import {removeError, setError, startGoogleLogin} from '../../actions/actions'
 import validator from 'validator'
-
+import "./form.css"
 
 
 
@@ -54,23 +54,23 @@ const ifFormIsValid = () => {
 
 
     return (
-      <div>
-        <h1 className='tituloRegister'>Entrar</h1>
+      <div className='entrarContainer'>
+        <h1 className='tituloRegister'>ENTRAR</h1>
         <div>
-        <label>E-mail</label>
-        <input type="text" name="Email" placeholder="Email" placeholder="atechnas@atechnas.com"/>
+        <p className='labels'>E-mail</p>
+        <input type="text" name="Email" placeholder="Email" placeholder="atechnas@atechnas.com" className='fields'/>
         </div>
         <div>
-        <label>Contraseña</label>
+        <p className='labels'>Contraseña</p>
         <input
           type="password"
           name="Password"
-          
+          className='fields'
         />
         </div>
-        <a href="/">¿Te ovlidaste la contraseña?</a>
+        <a href="/" className='olvido-contraseña'>¿Te ovlidaste la contraseña?</a>
         <p />
-        <button>Entrar</button>
+        <button className='botonImg'>Entrar</button>
 
         <div
           className="google-btn"

@@ -1,13 +1,6 @@
-import Persona1 from "../../../../assets/img/Persona1.png"
 import { Link } from "react-router-dom";
-
-
-
-
-
-
-
-export default function UsersCard({profilePicture,lastName, name, technology,qualification, id}){
+//Card de cada uno 
+export default function CardPeople({profilePicture,lastName, name, technology,qualification, id}){
     return(
         <div>
             <div>
