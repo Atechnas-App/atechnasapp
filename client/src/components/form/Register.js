@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
-import { useDispatch} from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector} from 'react-redux';
 // import { useNavigate } from 'react-router';
-import { postUser } from '../../actions/actions';
+import { getCategories, postUser } from '../../actions/actions';
 import { startUploading } from '../../actions/actions';
 import "./form.css"
 
 export const Register = () => {
   const dispatch = useDispatch()
   // const navigate = useNavigate()
+  const categories = useSelector((state) => state.rootReducer.categories)
+  console.log(categories)
+  useEffect(() => {
+    dispatch(getCategories())
+  },[dispatch])
 
   const [user, setUser] = useState({
     name: '',
@@ -16,7 +21,7 @@ export const Register = () => {
     password: '',
     profilePicture: '',
     portfolio: '',
-    category: '' // ver como pasarlo a array
+    category: []
   })
 
 
@@ -39,14 +44,14 @@ export const Register = () => {
     if(e.target.checked){
       setUser({
         ...user,
-        category: e.target.value
-      })}
-    // } else {
-    //   setUser({
-    //     ...user,
-    //     category: user.category?.filter(category => category !== e.target.value)
-    //   })
-    // }
+        category: user.category.concat(e.target.value)
+      })
+    } else {
+      setUser({
+        ...user,
+        category: user.category?.filter(category => category !== e.target.value)
+      })
+    }
   }
 
   function onInputChange(e){
@@ -69,7 +74,7 @@ export const Register = () => {
       password: '',
       profilePicture: '',
       portfolio: '',
-      category: ''
+      category: []
     })
    // navigate('/profile')
   }
@@ -82,7 +87,7 @@ export const Register = () => {
           <div className='flex'>
             <div className='grupoRegister'>
               <p className='labels'>Nombre</p>
-              <input onChange={(e) => onInputChange(e)} type="text" name="name" placeholder="Nombre" className='fields'/>
+              <input onChange={(e) => onInputChange(e)} type="text" name="name" value={user.name} placeholder="Nombre" className='fields'/>
             </div>
             <div className='grupoRegister'>
               <p className='labels'>Apellido</p>
@@ -132,7 +137,7 @@ export const Register = () => {
             </div >
             <div className='grupoRegister'>
               <p className='labels'>Categoría</p>
-              <div>
+              {/* <div>
                 <input type="checkbox" name="category" value="developer" onChange={(e) => handleCheck(e)} className='checkbox'/>
                 <label>Desarrollador</label>
               </div>
@@ -143,7 +148,16 @@ export const Register = () => {
               <div>
                 <input type="checkbox" name="category" value="developer" onChange={(e) => handleCheck(e)} className='checkbox'/>
                 <label>Marketing</label>
-              </div>
+              </div> */}
+              {
+                categories && categories.map(c => {
+                  return <div>
+                    <input key={c.id} type='checkbox' name='category' value={c.category} onChange={(e) => handleCheck(e)} className='checkbox'/>
+                    <label>{c.category}</label>
+                  </div>
+                  
+                })
+              }
             </div>
           </div>
           <button type='submit' className='botonRegistrar' onSubmit={(e) => onSubmit(e)}>Registrarse</button>

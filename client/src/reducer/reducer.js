@@ -1,9 +1,9 @@
-import { GET_USER, SEARCH, CATEGORY_FILTER } from "../actions/types";
+import { GET_USER, POST_USER, SEARCH, CATEGORY_FILTER, GET_CATEGORIES } from "../actions/types";
 
 const initialState = {
     users:[],
     search:[],
-
+    categories:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -16,6 +16,12 @@ export default function rootReducer(state = initialState, action) {
                         search: action.payload
                        
                     }
+
+                case POST_USER:
+                    return {
+                        ...state,
+                    }
+
                 case SEARCH:
 
                     return {
@@ -28,6 +34,12 @@ export default function rootReducer(state = initialState, action) {
                         ...state,
                         search: action.payload,
                         users: action.payload
+                    }
+
+                case GET_CATEGORIES:
+                    return {
+                        ...state,
+                        categories: action.payload,
                     }
                 default:
                     return state;

@@ -29,6 +29,8 @@ router.get("/getusers", async (req, res, next) => {
     // Pagination : this will give an object with properties :
     //  count{total of rows}  and rows{{data users},{data users},{data users}}
     const users = await User.findAndCountAll({
+      include: [{ model: Category}, 
+        {model: Technology}],
       limit: size,
       offset: page * size,
     });

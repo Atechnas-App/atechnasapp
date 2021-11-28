@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User } = require('../db');
+const { User, Category } = require('../db');
 const bcrypt = require('bcrypt')
 const passport = require('passport');
 
@@ -33,10 +33,14 @@ const register = router.post('/register', checkNotAuthenticated, async (req, res
             lastName,
             email,
             password: hashedPassword,
-            category,
             profilePicture,
             portfolio,
         })
+        let categories = await Category.findAll({
+            where: { category: category },
+            include: [User]
+        })
+        newUser.addCategory(categories)
         // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
         res.status(200).send('usuario creado')
     }
