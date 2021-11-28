@@ -1,10 +1,14 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from '../hooks/useForm'
-import {removeError, setError, startGoogleLogin} from '../../actions/actions'
+import {
+  removeError,
+  setError,
+  startGoogleLogin,
+  startLoginEmailPassword,
+} from "../../actions/actions";
 import validator from 'validator'
 import {useNavigate } from 'react-router'
-
 
 
 
@@ -14,24 +18,32 @@ export const Login = () => {
 const navigate =useNavigate()
 
   const dispatch = useDispatch()
-const {log} = useSelector(state => state)
-  console.log(log)
 
-const [formValues, handleInputChange] = useForm({
+const {log} = useSelector(state => state)
+
+  
+
+const [formValues,handleInputChange] = useForm({
   email:"",
   password:"",
 })
 
 const {email, password} = formValues
 
+const handleLogin= (e) => {
+  e.preventDefault()
+  if(ifFormIsValid()){
+    dispatch(startLoginEmailPassword(email, password));
+  }
+}
+
 const handleGoogleLogin = () => {
-if(log.login===false){
   dispatch(startGoogleLogin())
-}else{
-  (log.login===true)&&
-  navigate('/')
+  if(log.login===true){
+    navigate('/')
+  }
 }
-}
+
 
 
 const ifFormIsValid = () => {
@@ -49,34 +61,44 @@ const ifFormIsValid = () => {
     return (
       <div>
         <h1>Entrar</h1>
-        <span>E-mail</span>
-        <input type="text" name="Email" placeholder="Email" />
-        <span>Contraseña</span>
-        <input
-          type="text"
-          name="Password"
-          placeholder="atechnas@atechnas.com"
-        />
-        <a href="/Register">¿Aun no tienes cuenta?</a>
-        <p />
-        <button>Entrar</button>
+        <form onSubmit={handleLogin}>
+          <span>E-mail</span>
+          <input
+           type="text" 
+           name="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleInputChange} 
+          />
+          <span>Contraseña</span>
+          <input
+            type="password"
+            name="password"
+            placeholder="atechnas@atechnas.com"
+            value={password}
+            onChange={handleInputChange}
+          />
+          <a href="/login">¿Aun no tienes cuenta?</a>
+          <p />
+          <button onClick={handleLogin}>Entrar</button>
 
-        <div
-          className="google-btn"
-          onClick={handleGoogleLogin}
-          /* disabled={loading} */
-        >
-          <div className="google-icon-wrapper">
-            <img
-              className="google-icon"
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-              alt="google button"
-            />
+          <div
+            className="google-btn"
+            onClick={handleGoogleLogin}
+            /* disabled={loading} */
+          >
+            <div className="google-icon-wrapper">
+              <img
+                className="google-icon"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                alt="google button"
+              />
+            </div>
+            <p className="btn-text">
+              <b>Sign in with google</b>
+            </p>
           </div>
-          <p className="btn-text">
-            <b>Sign in with google</b>
-          </p>
-        </div>
+        </form>
       </div>
     );
 }

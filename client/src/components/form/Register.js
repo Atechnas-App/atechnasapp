@@ -1,39 +1,74 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { startUploading } from '../../actions/actions';
 
 export const Register = () => {
+
+
+  
+  const dispatch = useDispatch();
+  
+  const handleImageClick = (e)=>{
+    e.preventDefault();
+   document.querySelector("#fotoPerfil").click();
+   console.log("click")
+  }
+
+const handleFileChange = (e)=>{
+  e.preventDefault();
+  const file = e.target.files[0];
+  if(file){
+    dispatch(startUploading(file));
+  }
+}
+
+const handleOnClick = (e)=>{
+  e.preventDefault();
+  console.log(e)
+}
+
     return (
-      <div >
+      <div>
         <form>
           <h1>Bienvenido a Atechnas</h1>
 
           <span>Nombre</span>
-          <input type="text" name="Name" placeholder="Nombre" />
+          <input type="text" name="name" placeholder="Nombre" />
           <span>Apellido</span>
-          <input type="text" name="LastName" placeholder="Apellido" />
+          <input type="text" name="lastName" placeholder="Apellido" />
           <span>E-mail</span>
-          <input type="text" name="Email" placeholder="Email" />
+          <input type="text" name="email" placeholder="Email" />
           <span>Contraseña</span>
-          <input type="password" name="Password" placeholder="Contraseña" />
+          <input
+           type="password" 
+          name="password"
+           placeholder="Contraseña" />
           <span>Confirmar contraseña</span>
           <input
             type="password"
-            name="ConfirmPassword"
+            name="confirmpassword"
             placeholder="Confirmar contraseña"
           />
           <span>Link al Portfolio</span>
-          <input type="text" name="Portfolio" placeholder="Link al Portfolio" />
+          <input type="text" name="portfolio" placeholder="Link al Portfolio" />
           <span>Imagen de perfil</span>
-          <input type="file" name="Image" />
-          <button>subir</button>
+          <input
+            id="fotoPerfil"
+            type="file"
+            name="file"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <button onClick={handleImageClick}>subir</button>
           <h2>Categoría</h2>
-          <input type="checkbox" name="Category" value="Developer" />
+          <input type="checkbox" name="category" value="Developer" />
           <label>Desarrollador</label>
-          <input type="checkbox" name="Category" value="Designer" />
+          <input type="checkbox" name="category" value="Designer" />
           <label>Diseñador</label>
-          <input type="checkbox" name="Category" value="Marketing" />
+          <input type="checkbox" name="category" value="Marketing" />
           <label>Marketing</label>
 
-          <button>Registrarse</button>
+          <button onClick={handleOnClick}>Registrarse</button>
         </form>
       </div>
     );

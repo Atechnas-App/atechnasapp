@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER } from "../actions/types";
+import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
 
@@ -34,40 +35,59 @@ export function categoryFilter(payload) {
     }
 }
 
-
+export const startLoginEmailPassword = (email,password) => {
+    return (dispatch) => {
+        firebase.auth()
+        .signInWithEmailAndPassword(email,password)
+        .then(({user}) => {
+          dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
+          dispatch(startLoding())
+        dispatch(finishLoding())
+        })
+        .catch(error => {
+          console.log(error)
+          dispatch(finishLoding())
+        }  
+          )
+      }
+}
 
 export const startGoogleLogin = () => {
+
   return (dispatch) => {
 
-    firebase
+    try{firebase
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
         dispatch(startLoding())
-        dispatch(finishLoding())
         (dispatch(loginStore()))
+        dispatch(finishLoding())  
       }).catch((error) => {
-        console.log(error);
-        dispatch(finishLoding())
-      } );
-    
-}
+       console.log(error);
+        /* dispatch(finishLoding()) */
+      } );}catch(error){
+        console.log(error)
+      }
+} 
 }
 
 
-function loginStore() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
+ function loginStore() {
+  try{  firebase.auth().onAuthStateChanged(function(user) {
+     if (user) {
       var displayName = user.displayName;
       var email = user.email;
       var photoURL = user.photoURL;
       
       localStorage.setItem("displayName",displayName)
       localStorage.setItem("email",email)
-      localStorage.setItem("photoURL",photoURL)
-    }
-  })
+      localStorage.setItem("photoURL",photoURL)}
+    })
+  }catch(error){
+      console.log(error)
+}
 }
 
 export const login = (uid, displayName, email, photoURL) => ({
@@ -124,3 +144,11 @@ export const finishLoding = () => ({
   type: types.finishLoding,
 });
 
+
+export const startUploading = (file)=>{
+  return  async (dispatch, getState)=>{
+    const imagProfile = getState().photoURL
+   const fileUrl = await fileUpload(file)
+   console.log(fileUrl)
+  }
+}
