@@ -1,13 +1,12 @@
 import CardPeople from "../../Cards/CardPeople"
-import { useDispatch, useSelector } from "react-redux";
-import {useEffect, useState} from 'react';
-import {Search} from '../../../actions/actions';
+import { useSelector } from "react-redux";
+
+
 
 
 export default function Cards(){
-    const [search, setSearch] = useState('');
     const cards = useSelector((state) => state.search)
-    const dispatch = useDispatch();
+   
 
 
 
@@ -17,6 +16,7 @@ export default function Cards(){
             return <CardPeople
             profilePicture={e.profilePicture}
             name={e.name}
+            lastName={e.lastName}
             technology = {e.technology}
             qualification = {e.qualification}
             id={e.id}
