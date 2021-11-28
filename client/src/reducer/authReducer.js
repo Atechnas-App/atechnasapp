@@ -5,16 +5,15 @@ export const authReducer =(state={},action)=>{
     switch(action.types){
     case types.login:
             return{
-                uid: action.payload.type,
-                name: action.payload.displayName,
-                email: action.payload.email,
-                photo: action.payload.photoURL,
-
+                ...action.payload,
+                login: true
             }
             case types.logout:
-                return {}
+                return {
+                    login: false
+                }
 
                 default:
                     return state;
         }
-}
+} 

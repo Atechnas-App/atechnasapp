@@ -1,22 +1,29 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from '../hooks/useForm'
-import {removeError, setError, startGoogleLogin} from '../../actions/actions'
+import {
+  removeError,
+  setError,
+  startGoogleLogin,
+  startLoginEmailPassword,
+} from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
+import {useNavigate } from 'react-router'
+
 
 
 
 
 export const Login = () => {
+const navigate =useNavigate()
+const dispatch = useDispatch()
+const {log} = useSelector(state => state)
 
-
-  const dispatch = useDispatch()
   
-const {ui} = useSelector(state => state)
 
 
-const [formValues, handleInputChange] = useForm({
+const [formValues,handleInputChange] = useForm({
   email:"",
   password:"",
 })
@@ -24,18 +31,26 @@ const [formValues, handleInputChange] = useForm({
 const {email, password} = formValues
 
 
-
+const handleLogin= (e) => {
+  e.preventDefault()
+  if(ifFormIsValid()){
+    dispatch(startLoginEmailPassword(email, password));
+  }
+}
 
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin())
+  if(log.login===true){
+    navigate('/')
+  }
 }
 
 
 
-const ifFormIsValid = () => {
 
-/* const ifFormIsValid = () => {
+
+const ifFormIsValid = () => {
 
   if (!validator.isEmail(email)) {
     dispatch(setError("Email is invalid"));
@@ -47,30 +62,36 @@ const ifFormIsValid = () => {
   dispatch(removeError());
   return true;
 
-};
+  };
 
-}; */
-}
+
+
 
 
     return (
+
       <div className='entrarContainer'>
         <h1 className='tituloRegister'>ENTRAR</h1>
+        <form onSubmit={handleLogin}>
         <div>
         <p className='labels'>E-mail</p>
-        <input type="text" name="Email" placeholder="Email" placeholder="atechnas@atechnas.com" className='fields'/>
+        <input value={email} onChange={handleInputChange}  
+        type="text" name="email" placeholder="atechnas@atechnas.com" 
+        className='fields'/>
         </div>
         <div>
         <p className='labels'>Contraseña</p>
         <input
           type="password"
-          name="Password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
           className='fields'
         />
         </div>
-        <a href="/" className='olvido-contraseña'>¿Te ovlidaste la contraseña?</a>
+        <a href="/" className='olvido-contraseña'>¿Te olvidaste la contraseña?</a>
         <p />
-        <button className='botonImg'>Entrar</button>
+        <button onClick={handleLogin} className='botonImg'>Entrar</button>
 
         <div
           className="google-btn"
@@ -83,11 +104,12 @@ const ifFormIsValid = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="google button"
             />
+            </div>
+            <p className="btn-text">
+              <b>Entrar con Google</b>
+            </p>
           </div>
-          <p className="btn-text">
-            <b>Sign in with google</b>
-          </p>
-        </div>
+        </form>
       </div>
     );
 }

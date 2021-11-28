@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducer/reducer.js";
 import thunk from "redux-thunk";
 import {authReducer} from "../reducer/authReducer"
+import { logReducer } from "../reducer/logReducer.js";
 
 
 const composeEnhancers =
@@ -11,6 +12,7 @@ const composeEnhancers =
 
 const reducers = combineReducers({
   auth: authReducer,
+  log : logReducer,
   rootReducer
 });
 

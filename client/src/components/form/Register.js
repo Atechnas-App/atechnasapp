@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useDispatch} from 'react-redux';
 // import { useNavigate } from 'react-router';
 import { postUser } from '../../actions/actions';
+import { startUploading } from '../../actions/actions';
 import "./form.css"
 
 export const Register = () => {
   const dispatch = useDispatch()
   // const navigate = useNavigate()
+
   const [user, setUser] = useState({
     name: '',
     lastName: '',
@@ -16,6 +18,21 @@ export const Register = () => {
     portfolio: '',
     category: '' // ver como pasarlo a array
   })
+
+
+  const handleImageClick = (e)=>{
+    e.preventDefault();
+   document.querySelector("#fotoPerfil").click();
+   console.log("click")
+  }
+
+  const handleFileChange = (e)=>{
+    e.preventDefault();
+    const file = e.target.files[0];
+    if(file){
+      dispatch(startUploading(file));
+    }
+  }
 
   function handleCheck(e){
     e.preventDefault()
@@ -106,9 +123,12 @@ export const Register = () => {
           <div className='flex'>
             <div className='grupoRegister'>
               <p className='labels'>Imagen de perfil</p>
-              <input type="file" name="profilePicture" value={user.profilePicture} onChange={(e) => onInputChange(e)} />
+              <input type="file" name="profilePicture" 
+              id="fotoPerfil"
+              value={user.profilePicture} style={{ display: "none" }}
+              onChange={handleFileChange} />
               <br/>
-              <button  className='botonImg'>subir</button>
+              <button  className='botonImg' onClick={(e) => {handleImageClick(e)}}>subir</button>
             </div >
             <div className='grupoRegister'>
               <p className='labels'>Categoría</p>
@@ -126,10 +146,7 @@ export const Register = () => {
               </div>
             </div>
           </div>
-
-
-          <button type='submit' className='botonRegistrar'>Registrarse</button>
-
+          <button type='submit' className='botonRegistrar' onSubmit={(e) => onSubmit(e)}>Registrarse</button>
         </form>
       </div>
     );

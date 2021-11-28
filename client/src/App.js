@@ -3,13 +3,14 @@ import './App.css';
 import { AppRoutes } from './routes/AppRoutes';
 import store from './store/store';
 
-function App() {
+
+
+function App() { 
+
   return (   
-    <div>
-      <Provider store={store}>
+    <Provider store={store}>
       <AppRoutes/>
-      </Provider>
-    </div> 
+    </Provider>
   );
 }
 

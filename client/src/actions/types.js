@@ -4,15 +4,13 @@ export const CATEGORY_FILTER= 'CATEGORY_FILTER'
 
 
 export const types = {
-    login:'login',
-    logout:'logout',
-    register:'register',
-
-    
+    login:'[auth] login',
+    logout:'[auth] logout',
+       
     setError:'setError',
     removeError:'removeError',
 
-    startLoding:'startLoding',
-    finishLoding:'finishLoding',
+    startLoding:'[log] startLoding',
+    finishLoding:'[log] finishLoding',
 
 }
