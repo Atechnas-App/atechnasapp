@@ -59,7 +59,7 @@ const handleOnClick = (e)=>{
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
-          <button onClick={handleImageClick}>subir</button>
+          <button type="submit" onClick={handleImageClick}>subir</button>
           <h2>Categoría</h2>
           <input type="checkbox" name="category" value="Developer" />
           <label>Desarrollador</label>
@@ -68,7 +68,7 @@ const handleOnClick = (e)=>{
           <input type="checkbox" name="category" value="Marketing" />
           <label>Marketing</label>
 
-          <button onClick={handleOnClick}>Registrarse</button>
+          <button type="submit" onClick={handleOnClick}>Registrarse</button>
         </form>
       </div>
     );
