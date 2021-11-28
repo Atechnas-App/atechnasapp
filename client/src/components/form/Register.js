@@ -16,7 +16,7 @@ export const Register = () => {
     password: '',
     profilePicture: '',
     portfolio: '',
-    category: '' // ver como pasarlo a array
+    category: [] // ver como pasarlo a array
   })
 
 
@@ -39,7 +39,7 @@ export const Register = () => {
     if(e.target.checked){
       setUser({
         ...user,
-        category: e.target.value
+        category: e.target.value    //que pushee al array de user
       })}
     // } else {
     //   setUser({
