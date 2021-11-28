@@ -5,15 +5,18 @@ import { postUser } from '../../actions/actions';
 import { startUploading } from '../../actions/actions';
 import "./form.css"
 
+
+
 export const Register = () => {
   const dispatch = useDispatch()
   // const navigate = useNavigate()
-
+  
   const [user, setUser] = useState({
     name: '',
     lastName: '',
     email: '',
     password: '',
+    confirmPassword:'', //agregue el confirmado 
     profilePicture: '',
     portfolio: '',
     category: [] // ver como pasarlo a array
@@ -110,7 +113,7 @@ export const Register = () => {
               <p className='labels'>Confirmar contraseña</p>
               <input
                type="password"
-               name="ConfirmPassword"
+               name="confirmPassword"
                placeholder="Confirmar contraseña"
                // value={user.password}
                // onChange={(e) => onInputChange(e)}

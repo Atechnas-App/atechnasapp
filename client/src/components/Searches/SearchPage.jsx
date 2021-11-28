@@ -10,11 +10,11 @@ import {Search} from "../../actions/actions"
 export default function SearchPage(){
     const searching = useSelector((state)=> state.rootReducer.search)
     const dispatch = useDispatch();
-    console.log("SEARCH",searching)
+    console.log("BUSCADOS",searching)
     
-     useEffect(() => {           
-        dispatch(Search()); 
-    }, [dispatch]);
+    //  useEffect(() => {           
+    //     dispatch(Search()); 
+    // }, [dispatch]);
     
     return(
         <div className='container-searchpage'>

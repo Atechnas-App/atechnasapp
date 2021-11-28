@@ -14,7 +14,7 @@ export default function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         users: action.payload.content,
-                        search: action.payload.content, 
+                        
                         
                     }
                     
