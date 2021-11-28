@@ -20,7 +20,7 @@ server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(flash());
 server.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET, // si estoy en produccion que cambiar 
   resave: false,
   saveUninitialized: false
 }));
