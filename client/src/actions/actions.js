@@ -12,6 +12,7 @@ export function getUser() {
             type: GET_USER,
             payload: users.data
         })
+       
     }
 }
 

@@ -2,14 +2,19 @@ import React from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-import {useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import CardPeople from '../Cards/CardPeople'
-
+import {useDispatch, useSelector} from 'react-redux';
+import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
-    const searching = useSelector((state)=> state.search)
-
+    const searching = useSelector((state)=> state.rootReducer.search)
+    const dispatch = useDispatch();
+    console.log("SEARCH",searching)
+    
+     useEffect(() => {           
+        dispatch(Search()); 
+    }, [dispatch]);
     
     return(
         <div className='container-searchpage'>

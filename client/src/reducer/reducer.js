@@ -10,17 +10,19 @@ export default function rootReducer(state = initialState, action) {
     switch(action.type){
         
                 case GET_USER:
+                    
                     return {
                         ...state,
-                        users: action.payload,
-                        search: action.payload
-                       
+                        users: action.payload.content,
+                        search: action.payload.content, 
+                        
                     }
+                    
                 case SEARCH:
 
                     return {
                         ...state,
-                        search: action.payload
+                        search: action.payload.content,
                     }
 
                 case CATEGORY_FILTER:
