@@ -21,7 +21,11 @@ export const Register = () => {
     password: '',
     profilePicture: '',
     portfolio: '',
+<<<<<<< HEAD
     category: []
+=======
+    category: [] // ver como pasarlo a array
+>>>>>>> 9a60b3ee3d48ebd59373321948b582c715c56f05
   })
 
 
@@ -52,6 +56,7 @@ export const Register = () => {
         category: user.category?.filter(category => category !== e.target.value)
       })
     }
+
   }
 
   function onInputChange(e){
