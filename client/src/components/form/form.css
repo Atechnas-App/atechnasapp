@@ -1,31 +1,91 @@
-.formulario{
-        background-image: url("../../assets/img/AtenasGlich.png");
-    position: relative;
- 
-    
-    max-width: 100vw;
-    max-height: 100vh;
-    margin-left: 21rem;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: baseline;
-    align-content: center;
-    flex-wrap: wrap;
-}
-.login{
-    background: color #000; 
-    
-    /* float: right; */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    margin-right: 21rem;
-}
-
 .container-login{
     display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.Antechna{
+    background-image: url('../../assets/img/recorteAtenas.png');
+    background-attachment: fixed;
+    
+}
+
+.entrarContainer{
+    padding: 0.5em;
+}
+.grupoRegister{
+    min-width: 300px;
+    padding-bottom: 1em;
+}
+.tituloRegister{
+    font-size: 2.5em;
+}
+
+
+.fields{
+    border-style: none;
+    font-size: 1em;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    background-color: rgba(255, 255, 255, 0.212);
+    backdrop-filter: blur(5px);
+    color: white;
+    outline-color: #54be84;
+
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.checkbox[type="checkbox"] + label {
+	color: #ffffff;
+    margin: 0.5em;
+}
+
+.checkbox[type="checkbox"]:checked + label {
+	color: #54be84;
+    font-weight: bold;
+    margin: 0.5em;
+
+}
+
+
+.labels{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.botonRegistrar{
+    border-style: none;
+    background-color: #9225d7;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    margin-top: 1.5em;
+}
+
+.botonImg{
+    border-style: none;
+    background: #54be84;
+    color: #ffffff;
+    padding: 0.5em;
+    font-weight: bold;
+    border-radius: 0.5em;
+    font-size: 1em;
+    margin-top: 0.6em;
+}
+
+.form-register{
+    border-left: solid 2px white;
+    padding: 0.5em;
+    padding-left: 8em;
+}
+
+.olvido-contraseña{
+    color:white;
 }

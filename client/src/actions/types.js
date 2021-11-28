@@ -1,9 +1,16 @@
+export const SEARCH = 'SEARCH';
+export const GET_USER = 'GET_USER'
+export const CATEGORY_FILTER= 'CATEGORY_FILTER'
 
 
+export const types = {
+    login:'[auth] login',
+    logout:'[auth] logout',
+       
+    setError:'setError',
+    removeError:'removeError',
 
-export const types ={
-    login='login',
-    logout='logout',
-    register='register',
-    
+    startLoding:'[log] startLoding',
+    finishLoding:'[log] finishLoding',
+
 }

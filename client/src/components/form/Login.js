@@ -1,23 +1,57 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {useForm} from '../hooks/useForm'
+import {
+  removeError,
+  setError,
+  startGoogleLogin,
+  startLoginEmailPassword,
+} from "../../actions/actions";
+import validator from 'validator'
+import "./form.css"
+import {useNavigate } from 'react-router'
+
+
+
+
 
 export const Login = () => {
+const navigate =useNavigate()
+const dispatch = useDispatch()
+const {log} = useSelector(state => state)
 
-
-  const dispatch = useDispatch()
   
-const {ui} = useSelector(state => state)
 
-const [formValues] = useForm({
-  
+
+const [formValues,handleInputChange] = useForm({
+  email:"",
+  password:"",
 })
+
+const {email, password} = formValues
+
+
+const handleLogin= (e) => {
+  e.preventDefault()
+  if(ifFormIsValid()){
+    dispatch(startLoginEmailPassword(email, password));
+  }
+}
 
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin())
+  if(log.login===true){
+    navigate('/')
+  }
 }
 
 
-/* const ifFormIsValid = () => {
+
+
+
+const ifFormIsValid = () => {
+
   if (!validator.isEmail(email)) {
     dispatch(setError("Email is invalid"));
     return false;
@@ -27,28 +61,42 @@ const handleGoogleLogin = () => {
   }
   dispatch(removeError());
   return true;
-}; */
+
+  };
+
+
+
 
 
     return (
-      <div>
-        <h1>Entrar</h1>
-        <span>E-mail</span>
-        <input type="text" name="Email" placeholder="Email" />
-        <span>Contraseña</span>
+
+      <div className='entrarContainer'>
+        <h1 className='tituloRegister'>ENTRAR</h1>
+        <form onSubmit={handleLogin}>
+        <div>
+        <p className='labels'>E-mail</p>
+        <input value={email} onChange={handleInputChange}  
+        type="text" name="email" placeholder="atechnas@atechnas.com" 
+        className='fields'/>
+        </div>
+        <div>
+        <p className='labels'>Contraseña</p>
         <input
-          type="text"
-          name="Password"
-          placeholder="atechnas@atechnas.com"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
+          className='fields'
         />
-        <a href="/">¿Olvidaste tu contraseña?</a>
+        </div>
+        <a href="/" className='olvido-contraseña'>¿Te olvidaste la contraseña?</a>
         <p />
-        <button>Entrar</button>
+        <button onClick={handleLogin} className='botonImg'>Entrar</button>
 
         <div
           className="google-btn"
-          /* onClick={handleGoogleLogin}
-          disabled={loading} */
+          onClick={handleGoogleLogin}
+          /* disabled={loading} */
         >
           <div className="google-icon-wrapper">
             <img
@@ -56,11 +104,12 @@ const handleGoogleLogin = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="google button"
             />
+            </div>
+            <p className="btn-text">
+              <b>Entrar con Google</b>
+            </p>
           </div>
-          <p className="btn-text">
-            <b>Sign in with google</b>
-          </p>
-        </div>
+        </form>
       </div>
     );
 }
