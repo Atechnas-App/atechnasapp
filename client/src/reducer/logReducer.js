@@ -10,12 +10,12 @@ export const logReducer = (state = initialState, action) => {
       case types.startLoding:
         return {
           ...state,
-          login: true,
+          auth: true,
         };
       case types.finishLoding:
         return {
           ...state,
-          login: false,
+          auth: false,
         };
       case types.setError:
         return {
@@ -26,6 +26,11 @@ export const logReducer = (state = initialState, action) => {
         return {
           ...state,
           msgError: null,
+        };
+      case types.loginPost:
+        return {
+          ...state,
+          payload: action.payload,
         };
       default:
         return state;

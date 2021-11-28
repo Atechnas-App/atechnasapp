@@ -13,4 +13,5 @@ export const types = {
     startLoding:'[log] startLoding',
     finishLoding:'[log] finishLoding',
 
+    loginPost:'[log] logoutPost',   
 }
