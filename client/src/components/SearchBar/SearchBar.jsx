@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Search} from '../../actions/actions.js';
 import {useNavigate} from 'react-router-dom';
@@ -11,8 +11,9 @@ export default function SearchBar(){
     const dispatch = useDispatch();
     const searching = useSelector((state)=> state.rootReducer.search)
     const history = useNavigate();
-    console.log("DESDE EL NAV",searching)
-    console.log("DESDE EL NAV",search)
+    console.log("DESDE EL NAV ESTADO GLOBAL",searching)
+    console.log("DESDE EL NAV ESTADOLOCAL",search)
+
 
     function onSubmit(e){
         e.preventDefault();

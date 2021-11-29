@@ -22,9 +22,9 @@ export default function rootReducer(state = initialState, action) {
 
                     return {
                         ...state,
-                        search: action.payload.content,
+                        search: action.payload,
                     }
-
+                    
                 case CATEGORY_FILTER:
                     return {
                         ...state,
@@ -34,7 +34,7 @@ export default function rootReducer(state = initialState, action) {
                 case GET_TECHNOLOGIES:
                     return {
                         ...state,
-                        technologies: action.payload.content,
+                        technologie: action.payload.content,
                         
                     }
 

@@ -27,6 +27,8 @@ export function postUser(payload) {
 export function Search(payload) {
     return async function(dispatch){
         const searching = await axios('http://localhost:3001/api/search?query='+ payload)
+        console.log("ACTION", searching.data)
+        console.log("ACTION payload", payload)
         dispatch({
             type: SEARCH,
             payload: searching.data
