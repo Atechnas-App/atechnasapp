@@ -6,7 +6,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
             <div>
                 <img src={profilePicture} alt="img not found"/>
                 <p>{name} {lastName}</p>
-                <p>{technology}</p>
+                <p>{technology?.map((e) => e)}</p>
                 <p>{qualification}</p>
                 <Link to={"/" + id}><button >Mas Detalles</button></Link>
             </div>

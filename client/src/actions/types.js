@@ -1,6 +1,8 @@
 export const SEARCH = 'SEARCH';
 export const GET_USER = 'GET_USER'
 export const CATEGORY_FILTER= 'CATEGORY_FILTER'
+export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const POST_USER = 'POST_USER'
 
 
 export const types = {

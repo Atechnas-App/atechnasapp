@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER } from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, GET_CATEGORIES } from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -12,6 +12,7 @@ export function getUser() {
             type: GET_USER,
             payload: users.data
         })
+       
     }
 }
 
@@ -22,6 +23,16 @@ export function postUser(payload) {
   }
 }
 
+export function getCategories() {
+  return async function(dispatch){
+    const categories = await axios('http://localhost:3001/api/categories');
+    dispatch({
+      type: GET_CATEGORIES,
+      payload: categories.data
+    })
+    
+  }
+}
 
 export function Search(payload) {
     return async function(dispatch){

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User,Technology } = require('../db');
+const { User,Technology,Category } = require('../db');
 
 const router = Router();
 
@@ -32,8 +32,8 @@ router.post('/bulkcreateTechnology', async (req, res, next) => {
 
 router.post('/bulkcreateCategory', async (req, res, next) => {
     try {
-       
-        const newCategory = await User.bulkCreate(req.body)
+       const {category} = await req.body
+        const newCategory = await Category.create({category})
         console.log(newCategory)
         res.status(200).send('categorias en db')
     }

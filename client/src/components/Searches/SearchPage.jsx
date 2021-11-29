@@ -4,8 +4,10 @@ import Cards from "./Cards/Cards";
 import CardPeople from "../Cards/CardPeople"
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
+import CardPeople from '../Cards/CardPeople'
+import {useDispatch, useSelector} from 'react-redux';
+import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
     const searching = useSelector((state)=> state.search)

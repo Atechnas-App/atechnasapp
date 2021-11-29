@@ -22,6 +22,7 @@ export default function SearchBar(){
         e.preventDefault();
         dispatch(Search(search))
         history('/results')
+        
     }
 
     return(
