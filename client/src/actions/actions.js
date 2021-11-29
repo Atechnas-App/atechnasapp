@@ -35,6 +35,12 @@ export function getCategories() {
 }
 
 
+export function postLogin(payload){
+  return async function(){
+    const user = await axios.post('http://localhost:3001/api/login', payload)
+    return user
+  }
+}
 
 export function Search(payload) {
     return async function(dispatch){
@@ -83,13 +89,13 @@ export const startLoginEmailPassword = (email,password) => {
         .then(({user}) => {
           dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
           dispatch(startLoding())
-        dispatch(finishLoding())
         })
         .catch(error => {
           console.log(error)
           dispatch(finishLoding())
         }  
-          )
+        )
+        dispatch(finishLoding())
       }
 }
 
@@ -107,7 +113,7 @@ export const startGoogleLogin = () => {
         dispatch(finishLoding())  
       }).catch((error) => {
        console.log(error);
-        /* dispatch(finishLoding()) */
+        
       } );}catch(error){
         console.log(error)
       }
