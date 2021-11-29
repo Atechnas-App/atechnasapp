@@ -1,23 +1,23 @@
 import { useState } from "react"
 import { postLogin } from "../../actions/actions";
 
-export const useForm = (initialState= {}) => {
-   
-    const [values, setValues] = useState(initialState)
+export const useForm = (initialState = {}) => {
 
-const reset = (newFormState= initialState)=>{
-  setValues(newFormState);
-}
+  const [values, setValues] = useState(initialState)
+
+  // const reset = (newFormState = initialState) => {
+  //   setValues(newFormState);
+  // }
 
 
 
-     const handleInputChange = ({ target }) => {
-             postLogin({
-               ...values,
-               [target.name]: target.value,
-             });
-     };
+  const handleInputChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-     return [values, handleInputChange, reset];
+  return [values, handleInputChange, ];
 
 }

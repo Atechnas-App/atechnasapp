@@ -6,7 +6,6 @@ const { User } = require('../db');
 function initialize(passport, getUserByEmail, getUserById){
     const authenticateUser = async (email, password, done) => {
         const user = await getUserByEmail(email)
-        console.log(user)
         if (user == null){
             return done(null, false, {message: 'No existe usuario con ese email'}) // 1er parametro: un error, por ej error de servidor; 2do parametro: retorna el usuario encontrado; 3er p: un mensaje
         }

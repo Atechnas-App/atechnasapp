@@ -13,8 +13,8 @@ initializePassport(
 const router = Router();
 
 const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/api/home',
-    failureRedirect: '/login',
+    successRedirect: '/', // esto te redirecciona a localhost:3001/ --> osea donde esta levantado el back
+    failureRedirect: '/acaPuedeser',
     failureFlash: true
 }))
 

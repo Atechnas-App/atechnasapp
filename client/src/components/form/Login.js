@@ -20,7 +20,7 @@ export const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { log } = useSelector(state => state)
-
+  console.log(log)
 
 
 
@@ -31,15 +31,14 @@ export const Login = () => {
 
   const { email, password } = formValues
 
-
   const handleLogin = (e) => {
     e.preventDefault()
     if (ifFormIsValid()) {
-      dispatch(startLoginEmailPassword(email, password));
+      dispatch(postLogin(formValues));
     }
   }
 
-
+  // coordinar con ruta login backend
   const handleGoogleLogin = () => {
     dispatch(startGoogleLogin())
     if (log.login === true) {
