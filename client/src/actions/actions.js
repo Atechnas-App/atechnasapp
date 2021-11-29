@@ -34,6 +34,8 @@ export function getCategories() {
   }
 }
 
+
+
 export function Search(payload) {
     return async function(dispatch){
         const searching = await axios('http://localhost:3001/api/search?query='+ payload)
@@ -121,7 +123,7 @@ export const login = (uid, displayName, email, photoURL) => ({
 
 export const logoutAll = () => {
   return (dispatch) => {
-    firebase
+   try{ firebase
       .auth()
       .signOut()  
       .then(() => {
@@ -130,7 +132,10 @@ export const logoutAll = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      });}
+      catch(error){
+        console.log(error)
+      }
   }
 };
 
