@@ -3,7 +3,7 @@ import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, TECHNOLOGY_FILTER 
 const initialState = {
     users:[],
     search:[],
-    technologies=[]
+    technologie:[]
 };
 
 export default function rootReducer(state = initialState, action) {
