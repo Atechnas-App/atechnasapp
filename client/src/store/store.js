@@ -13,7 +13,7 @@ const composeEnhancers =
 const reducers = combineReducers({
   auth: authReducer,
   log : logReducer,
-  rootReducer
+  rootReducer,
 });
 
 const store = createStore(reducers,
