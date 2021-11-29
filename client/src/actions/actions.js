@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES } from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES } from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -23,6 +23,24 @@ export function postUser(payload) {
   }
 }
 
+export function getCategories() {
+  return async function(dispatch){
+    const categories = await axios('http://localhost:3001/api/categories');
+    dispatch({
+      type: GET_CATEGORIES,
+      payload: categories.data
+    })
+    
+  }
+}
+
+
+export function postLogin(payload){
+  return async function(){
+    const user = await axios.post('http://localhost:3001/api/login', payload)
+    return user
+  }
+}
 
 export function Search(payload) {
     return async function(dispatch){
@@ -38,7 +56,7 @@ export function Search(payload) {
 
 export function categoryFilter(payload) {
     return async function(dispatch){
-        const category = await axios('http://localhost:3001/api/filterByCategory', payload)
+        const category = await axios('http://localhost:3001/api/filterByCategory')
         dispatch({
             type: CATEGORY_FILTER,
             payload: category.data
@@ -73,13 +91,13 @@ export const startLoginEmailPassword = (email,password) => {
         .then(({user}) => {
           dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
           dispatch(startLoding())
-        dispatch(finishLoding())
         })
         .catch(error => {
           console.log(error)
           dispatch(finishLoding())
         }  
-          )
+        )
+        dispatch(finishLoding())
       }
 }
 
@@ -97,7 +115,7 @@ export const startGoogleLogin = () => {
         dispatch(finishLoding())  
       }).catch((error) => {
        console.log(error);
-        /* dispatch(finishLoding()) */
+        
       } );}catch(error){
         console.log(error)
       }
@@ -133,7 +151,7 @@ export const login = (uid, displayName, email, photoURL) => ({
 
 export const logoutAll = () => {
   return (dispatch) => {
-    firebase
+   try{ firebase
       .auth()
       .signOut()  
       .then(() => {
@@ -142,7 +160,10 @@ export const logoutAll = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      });}
+      catch(error){
+        console.log(error)
+      }
   }
 };
 

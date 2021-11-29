@@ -1,0 +1,73 @@
+.main-footer-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-footer-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+.down-footer-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    border-top: solid rgba(255, 255, 255, 0.5) 1px;
+}
+
+.footer-title{
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: x-large;
+}
+
+.h-text{
+    font-weight: normal;
+}
+
+.hrPresentationFooter{
+    height: 0.2em;
+    background: #52be84;
+    border-style: none;
+    width: 8%;
+    margin: 1em 0em 1em 0em;
+}
+
+.upper-footer-container-left{
+    width: 33.3%;
+}
+
+.upper-footer-container-center{
+    width: 33.3%;
+}
+.upper-footer-container-right{
+    width: 33.3%;
+}
+
+.footer-logo{
+    margin: 0.5em;
+}
+
+.footer-legal{
+    margin: 2em
+}
+
+.footer-socialmedia{
+    display: flex;
+    margin: 1.5em
+}
+
+.socialmedia-logo{
+    margin: 0em 1em 0em 1em;
+}
+
+.logo-henry{
+    width: 40%;
+    margin: 1em;
+}
+
+.logo-ycombinator{
+    width: 15%;
+    margin: 1em;
+}
