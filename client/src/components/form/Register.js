@@ -4,7 +4,7 @@ import { useDispatch} from 'react-redux';
 import { postUser } from '../../actions/actions';
 import { startUploading } from '../../actions/actions';
 import "./form.css"
-
+import validator from 'validator'
 
 
 export const Register = () => {
@@ -60,6 +60,21 @@ export const Register = () => {
       [e.target.name]: e.target.value
     })
   }
+
+  // const ifFormIsValid = () => {
+
+  //   if (!validator.isEmail(email)) {
+  //     dispatch(setError("Email is invalid"));
+  //     return false;
+  //   } else if (password.trim().length === 0) {
+  //     dispatch(setError("Password is required"));
+  //     return false;
+  //   }
+  //   dispatch(removeError());
+  //   return true;
+  
+  //   };
+  
 
   function onSubmit(e){
     e.preventDefault()

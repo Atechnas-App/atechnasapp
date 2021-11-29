@@ -46,6 +46,7 @@ export const OutStandingPeople = () => {
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    
                     />
                     )}
                     })
