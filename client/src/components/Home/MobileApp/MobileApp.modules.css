@@ -1,9 +1,12 @@
 
 .app-description{
     width: 50vw;
+    margin-top: 5em;
 }
 .app-phone-animation{
     width: 50vw;
+    margin-top: 12em;
+
 }
 
 .second-app-container{
@@ -12,7 +15,64 @@
 }
 
 .logo{
+    width: 80%;
+    height: 80%;
+    margin-left: 5em;
+    animation-name: updown;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: initial;
+    animation-iteration-count: infinite;
+    animation-direction: initial;
+    animation-fill-mode: initial;
+}
+
+@keyframes updown{
+    0%{ transform: translateY(0);}
+    65%{transform: translateY(30px);}
+    0%{ transform: translateY(0);}
+}
+
+.app-description-container{
+    display: flex;
+    padding-top: 4em;
+}
+
+.img-app{
+    margin: 2em;
+    height: 8em;
+}
+
+.app-description-text{
+    padding-top: 1em;
+    padding-right: 1em;
     
-    width: 90%;
-    height: 90%;
+}
+
+.container-stores{
+    margin: 0em 0em 2em 4em;
+}
+
+.prox-stores{
+    margin: 1em 0em 1em 0em ;
+    
+}
+
+.hrPresentationGreen {
+    height: 0.2em;
+    background: #52be84;
+    border-style: none;
+    width: 10%;
+    margin-top: 0.5em;
+}
+
+.app-description-title{
+    font-weight:400;
+    font-size:26px;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+
+.app-description-description{
+    font-weight:normal;
 }

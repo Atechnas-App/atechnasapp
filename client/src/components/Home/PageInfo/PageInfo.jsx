@@ -1,6 +1,8 @@
 import React from 'react';
 import "./PageInfo.modules.css";
-import foto from '../../../assets/img/best-buy.png';
+import freelancer from '../../../assets/img/freelancer.png';
+import recruiter from '../../../assets/img/recruiter.png';
+import usuarios from '../../../assets/img/usuarios.png';
 
 export const PageInfo = () => {
     return (
@@ -8,10 +10,10 @@ export const PageInfo = () => {
 
             <div className='div-pageinfo'>
                 <div className='img-pageinfo'>
-                    <img src={foto} alt='not found' width='100px' height='100px' />
+                    <img src={freelancer} alt='not found' width='100px' height='100px' />
                 </div>
                 <div className='info-pageinfo'>
-                    <h2>+5000</h2>
+                    <h2>+50000</h2>
                     <h4>Freelancers</h4>
                     <h4>de Latino America</h4>
                 </div>
@@ -19,10 +21,10 @@ export const PageInfo = () => {
 
             <div className='div-pageinfo border'>
                 <div className='img-pageinfo'>
-                    <img src={foto} alt='not found' width='100px' height='100px'/>
+                    <img src={recruiter} alt='not found' width='100px' height='100px'/>
                 </div>
                 <div className='info-pageinfo'>
-                    <h2>+2000</h2>
+                    <h2>+20000</h2>
                     <h4>Reclutadores</h4>
                     <h4>de todo el mundo</h4>
                 </div>
@@ -30,7 +32,7 @@ export const PageInfo = () => {
 
             <div className='div-pageinfo'>
                 <div className='img-pageinfo'>
-                    <img src={foto} alt='not found' width='100px' height='100px'/>
+                    <img src={usuarios} alt='not found' width='100px' height='100px'/>
                 </div>
                 <div className='info-pageinfo'>
                     <h2>+50000</h2>
