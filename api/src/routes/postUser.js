@@ -1,20 +1,20 @@
 const { Router } = require("express");
-const { User } = require('../db');
+const { User, Category } = require('../db');
 const bcrypt = require('bcrypt')
 const passport = require('passport');
 
 const initializePassport = require('./passport-config-local')
 initializePassport(
     passport, 
-    email => User.findOne({where: {email: email}, raw: true}), // esto cambiar
-    id => User.findOne({where: {id: id}, raw: true})             // esto tambien
+    email => User.findOne({where: {email: email}, raw: true}), 
+    id => User.findOne({where: {id: id}, raw: true})
 )
 
 const router = Router();
 
 const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
+    successRedirect: '/', // esto te redirecciona a localhost:3001/ --> osea donde esta levantado el back
+    failureRedirect: '/acaPuedeser',
     failureFlash: true
 }))
 
@@ -33,10 +33,14 @@ const register = router.post('/register', checkNotAuthenticated, async (req, res
             lastName,
             email,
             password: hashedPassword,
-            category,
             profilePicture,
             portfolio,
         })
+        let categories = await Category.findAll({
+            where: { category: category },
+            include: [User]
+        })
+        newUser.addCategory(categories)
         // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
         res.status(200).send('usuario creado')
     }
