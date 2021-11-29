@@ -19,7 +19,7 @@ router.post('/bulkcreate', async (req, res, next) => {
 router.post('/bulkcreateTechnology', async (req, res, next) => {
     try {
        
-        const newTechnology = await User.bulkCreate(req.body)
+        const newTechnology = await Technology.create(req.body)
         console.log(newTechnology)
         res.status(200).send('tecnologias en db')
     }
