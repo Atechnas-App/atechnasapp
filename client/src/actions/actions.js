@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER } from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES } from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -42,6 +42,26 @@ export function categoryFilter(payload) {
             payload: category.data
         })
     }
+}
+
+export function technologyFilter(payload) {
+  return async function(dispatch){
+      const tech = await axios('http://localhost:3001/api/filterByTechnology', payload)
+      dispatch({
+          type: TECHNOLOGY_FILTER,
+          payload: tech.data
+      })
+  }
+}
+
+export function getTechnologies(payload) {
+  return async function(dispatch){
+      const tech = await axios('http://localhost:3001/api/getTechnologies', payload)
+      dispatch({
+          type: GET_TECHNOLOGIES,
+          payload: tech.data
+      })
+  }
 }
 
 export const startLoginEmailPassword = (email,password) => {
