@@ -28,10 +28,10 @@ export default function rootReducer(state = initialState, action) {
 
                     return {
                         ...state,
-                        search: action.payload.content,
-                        // users: action.payload.content
-                    }
+                        search: action.payload,
 
+                    }
+                    
                 case CATEGORY_FILTER:
                     return {
                         ...state,
@@ -42,13 +42,12 @@ export default function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         categories: action.payload,
-                        search: action.payload.content,
                         users: action.payload.content
                     }
                 case GET_TECHNOLOGIES:
                     return {
                         ...state,
-                        technologies: action.payload.content,
+                        technologie: action.payload.content,
                         
                     }
 
