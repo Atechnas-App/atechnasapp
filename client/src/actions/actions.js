@@ -56,13 +56,13 @@ export const startLoginEmailPassword = (email,password) => {
         .then(({user}) => {
           dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
           dispatch(startLoding())
-        dispatch(finishLoding())
         })
         .catch(error => {
           console.log(error)
           dispatch(finishLoding())
         }  
-          )
+        )
+        dispatch(finishLoding())
       }
 }
 
@@ -80,7 +80,7 @@ export const startGoogleLogin = () => {
         dispatch(finishLoding())  
       }).catch((error) => {
        console.log(error);
-        /* dispatch(finishLoding()) */
+        
       } );}catch(error){
         console.log(error)
       }

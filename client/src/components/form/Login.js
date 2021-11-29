@@ -19,9 +19,8 @@ import {useNavigate } from 'react-router'
 export const Login = () => {
 const navigate =useNavigate()
 const dispatch = useDispatch()
-const {log} = useSelector(state => state)
 
-  
+const { log } = useSelector((state) => state);  
 
 
 const [formValues, handleInputChange] = useForm({
@@ -41,10 +40,12 @@ const handleLogin= (e) => {
 
 
 const handleGoogleLogin = () => {
-  dispatch(startGoogleLogin())
-  if(log.auth===true){
+  dispatch(startGoogleLogin());
+  if(log.auth){
     navigate('/')
   }
+  
+    
 }
 
 
@@ -97,7 +98,7 @@ const ifFormIsValid = () => {
             ¿Te olvidaste la contraseña?
           </a>
           {log.msgError && (
-          <div className="auth__alert-error">{log.msgError}</div>
+          <div >{log.msgError}</div>
         )}
           <p />
           <button type="submit" onClick={(e)=>handleLogin(e)} className="botonImg">
