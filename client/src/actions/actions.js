@@ -22,6 +22,12 @@ export function postUser(payload) {
   }
 }
 
+export function postLogin(payload){
+  return async function(){
+    const user = await axios.post('http://localhost:3001/api/login', payload)
+    return user
+  }
+}
 
 export function Search(payload) {
     return async function(dispatch){

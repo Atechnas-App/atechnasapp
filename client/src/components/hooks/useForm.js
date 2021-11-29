@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { postLogin } from "../../actions/actions";
 
 export const useForm = (initialState= {}) => {
    
@@ -11,10 +12,10 @@ const reset = (newFormState= initialState)=>{
 
 
      const handleInputChange = ({ target }) => {
-            setValues({
-         ...values,
-         [target.name]: target.value,
-       });
+             postLogin({
+               ...values,
+               [target.name]: target.value,
+             });
      };
 
      return [values, handleInputChange, reset];

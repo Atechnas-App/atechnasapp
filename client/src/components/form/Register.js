@@ -117,9 +117,7 @@ export const Register = () => {
                 className='fields'
               />
             </div>
-
           </div>
-
           <div className='flex'>
             <div className='grupoRegister'>
               <p className='labels'>Imagen de perfil</p>
