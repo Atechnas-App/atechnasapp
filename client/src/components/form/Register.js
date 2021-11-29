@@ -16,7 +16,7 @@ export const Register = () => {
     password: '',
     profilePicture: '',
     portfolio: '',
-    category: '' // ver como pasarlo a array
+    category: [] // ver como pasarlo a array
   })
 
 

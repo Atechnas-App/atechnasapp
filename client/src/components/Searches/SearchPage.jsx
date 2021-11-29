@@ -1,6 +1,7 @@
 import React from "react";
 import Filtros from "./Filtros/Filtros";
 import Cards from "./Cards/Cards";
+import CardPeople from "../Cards/CardPeople"
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
 import {useDispatch, useSelector} from 'react-redux';
@@ -8,6 +9,7 @@ import {useEffect} from 'react';
 
 export default function SearchPage(){
     const searching = useSelector((state)=> state.search)
+    const cards = useSelector((state) => state.search)
 
     return(
         <div className='container-searchpage'>
@@ -17,9 +19,20 @@ export default function SearchPage(){
                 </div>
                 <div className="container-all">
                     <Filtros/>
-                    
-                    <Cards/>
                 </div>
+                <div>
+            {cards?.map((e) => {
+            return <CardPeople
+            profilePicture={e.profilePicture}
+            name={e.name}
+            lastName={e.lastName}
+            technology = {e.technology}
+            qualification = {e.qualification}
+            id={e.id}
+            key={e.id}
+            />
+            })}
+        </div>
             </div>     
         </div>
     )
