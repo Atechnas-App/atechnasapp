@@ -1,17 +1,18 @@
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { categoryFilter } from "../../../../actions/actions"
+import { categoryFilter, getCategories } from "../../../../actions/actions"
 import "./CategoryFilter.css"
 
 export default function CatFilter(){
     const dispatch = useDispatch()
     const categories = useSelector((state)=> state.rootReducer.categories)
-    // useEffect(() => {
-    //     dispatch(getCategories())
-    // },[dispatch])
+    useEffect(() => {
+        dispatch(getCategories())
+    },[dispatch])
 
     function handleCheck(e){
         e.preventDefault()
-        dispatch(categoryFilter(e.value.target))
+        dispatch(categoryFilter(e.target.value))
         }
     
       
@@ -24,7 +25,7 @@ export default function CatFilter(){
                 <form>
                     <div className="container-checkbox">
               {
-                categories && categories.map(c => {
+                  categories && categories.map(c => {
                   return <div>
                     <input key={c.id} type='checkbox' name='category' value={c.category} onChange={(e) => handleCheck(e)} className='checkbox'/>
                     <label>{c.category}</label>

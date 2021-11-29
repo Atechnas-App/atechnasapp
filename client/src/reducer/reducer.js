@@ -35,7 +35,7 @@ export default function rootReducer(state = initialState, action) {
                 case CATEGORY_FILTER:
                     return {
                         ...state,
-                        search: action.payload.content,
+                        users: action.payload.content,
                     }
 
                 case GET_CATEGORIES:

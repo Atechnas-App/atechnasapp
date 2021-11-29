@@ -17,16 +17,17 @@ router.get('/categories', async (req, res, next) => {
 router.get("/filterByCategory", async (req, res, next) => {
   try {
     const {categories} = req.body;
-    const users = await User.findAll({
-      include: [{ model: Category}, 
+    const filteredUsers = await User.findAll({
+      include: [{ model: Category,
+      as: 'categories'}, 
         {model: Technology}],
       through: {where: {
-        Category: {
+        categories: {
           [Op.any]: categories,
         },
       }},
     })
-      res.status(200).send(users);
+      res.status(200).send(filteredUsers);
   } catch (err) {
     next(err);
   }
