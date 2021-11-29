@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTechnologies} from '../../actions/actions.js';
+import {getTechnologies} from '../../../../actions/actions';
 
 
 //falta conectar el listado (la tabla del back) para que cuando busques te aparezcan las opciones
