@@ -1,7 +1,5 @@
 import React from "react";
 import Filtros from "./Filtros/Filtros";
-import Cards from "./Cards/Cards";
-import CardPeople from "../Cards/CardPeople"
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
 import {useEffect} from 'react';
