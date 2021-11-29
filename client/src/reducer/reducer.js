@@ -42,7 +42,6 @@ export default function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         categories: action.payload,
-                        search: action.payload.content,
                         users: action.payload.content
                     }
                 case GET_TECHNOLOGIES:

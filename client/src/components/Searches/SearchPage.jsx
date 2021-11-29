@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
-    const searching = useSelector((state)=> state.rootReducer.users)
+    const searching = useSelector((state)=> state.rootReducer.search)
     const dispatch = useDispatch();
     console.log("BUSCADOS",searching)
     
