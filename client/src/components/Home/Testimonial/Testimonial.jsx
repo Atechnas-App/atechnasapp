@@ -8,8 +8,8 @@ export default function Testimonial(){
     return(
         <div className='testimonial-container'>
             <div className='testimonial-head'>
-                <h3>TESTIMONIALS</h3>
-                <h1>Our Happy Customers</h1>
+                <h3>TESTIMONIOS</h3>
+                <h1>Nuestros usuarios dijeron:</h1>
             </div>
             <div className='testimonial-container-people'>
                 <div className='testimonial-people'>
