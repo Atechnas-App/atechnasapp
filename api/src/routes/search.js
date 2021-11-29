@@ -8,7 +8,7 @@ router.get("/search", async (req, res) => {
     const { query } = req.query;
     const categorias = ["developer", "design", "marketing", "recruiter"];
     // const toLowerQuery = query.toLowerCase();
-    const dbSearch = categorias.includes(query.toLowerCase())
+    const dbSearch = categorias.includes(query)
       ? {
           where: {
             category: query.toLowerCase(),
@@ -18,7 +18,7 @@ router.get("/search", async (req, res) => {
           where: {
             [Op.or]: [
               {
-                name: { [Op.substring]: query.toLowerCase() },
+                name: { [Op.iLike]: "%"+query+"%"},
               },
               {
                 lastName: { [Op.substring]: query.toLowerCase() },

@@ -1,5 +1,6 @@
 .best{
     display: flex;
+    justify-content: space-around;
 }
 
 .imgOut{
