@@ -40,9 +40,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-<<<<<<< HEAD
     
-=======
     category: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -51,7 +49,6 @@ module.exports = (sequelize) => {
     //   type: DataTypes.ENUM("developer", "desing", "marketing", "recruiter"),
     //   allowNull: true,
     // },
->>>>>>> 16873b4791735322708d5110033f8b1babd87713
     description: {
       type: DataTypes.STRING,
       allowNull: true,
