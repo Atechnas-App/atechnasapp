@@ -3,7 +3,6 @@ import { useDispatch, useSelector} from 'react-redux';
 // import { useNavigate } from 'react-router';
 import { getCategories, postUser } from '../../actions/actions';
 import { startUploading } from '../../actions/actions';
-import "./form.css"
 
 export const Register = () => {
   const dispatch = useDispatch()
@@ -31,13 +30,7 @@ export const Register = () => {
    console.log("click")
   }
 
-  const handleFileChange = (e)=>{
-    e.preventDefault();
-    const file = e.target.files[0];
-    if(file){
-      dispatch(startUploading(file));
-    }
-  }
+const dispatch = useDispatch();
 
   function handleCheck(e){
     e.preventDefault()
@@ -54,15 +47,12 @@ export const Register = () => {
     }
 
   }
+}
 
-  function onInputChange(e){
-    console.log(e.target.value)
-    e.preventDefault()
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    })
-  }
+const handleOnClick = (e)=>{
+  e.preventDefault();
+  console.log(e)
+}
 
   function onSubmit(e){
     e.preventDefault()
@@ -96,16 +86,41 @@ export const Register = () => {
             </div>
           </div>
 
-          <div className='flex'>
-            <div className='grupoRegister'>
-              <p className='labels'>E-mail</p>
-              <input type="text" name="email" placeholder="Email" value={user.email} onChange={(e) => onInputChange(e)}  className='fields'/>
-            </div>
-            <div className='grupoRegister'>
-              <p className='labels'>Contraseña</p>
-              <input type="password" name="password" placeholder="Contraseña" value={user.password} onChange={(e) => onInputChange(e)}  className='fields'/>
-            </div>
-          </div>
+          <span>Nombre</span>
+          <input type="text" name="Name" placeholder="Nombre" />
+          <span>Apellido</span>
+          <input type="text" name="LastName" placeholder="Apellido" />
+          <span>E-mail</span>
+          <input type="text" name="Email" placeholder="email" />
+          <span>Contraseña</span>
+          <input
+           type="password" 
+          name="Password"
+           placeholder="Contraseña" />
+          <span>Confirmar contraseña</span>
+          <input
+            type="password"
+            name="ConfirmPassword"
+            placeholder="Confirmar contraseña"
+          />
+          <span>Link al Portfolio</span>
+          <input type="text" name="Portfolio" placeholder="Link al Portfolio" />
+          <span>Imagen de perfil</span>
+          <input
+            id="fotoPerfil"
+            type="file"
+            name="file"
+            /* style={{ display: "none" }} */
+            onChange={handleFileChange}
+          />
+          <button onClick={handleImageClick}>subir</button>
+          <h2>Categoría</h2>
+          <input type="checkbox" name="Category" value="Developer" />
+          <label>Desarrollador</label>
+          <input type="checkbox" name="Category" value="Designer" />
+          <label>Diseñador</label>
+          <input type="checkbox" name="Category" value="Marketing" />
+          <label>Marketing</label>
 
           <div className='flex'>
             <div className='grupoRegister'>
@@ -165,4 +180,4 @@ export const Register = () => {
         </form>
       </div>
     );
-}
+
