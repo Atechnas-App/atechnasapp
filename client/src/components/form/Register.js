@@ -3,6 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 // import { useNavigate } from 'react-router';
 import { getCategories, postUser } from '../../actions/actions';
 import { startUploading } from '../../actions/actions';
+import "./form.css"
+import validator from 'validator'
+
 
 export const Register = () => {
   const dispatch = useDispatch()
@@ -18,6 +21,7 @@ export const Register = () => {
     lastName: '',
     email: '',
     password: '',
+    confirmPassword:'', //agregue el confirmado 
     profilePicture: '',
     portfolio: '',
     category: [] // ver como pasarlo a array
@@ -65,6 +69,21 @@ export const Register = () => {
       dispatch(startUploading(file));
     }
   }
+  // const ifFormIsValid = () => {
+
+  //   if (!validator.isEmail(email)) {
+  //     dispatch(setError("Email is invalid"));
+  //     return false;
+  //   } else if (password.trim().length === 0) {
+  //     dispatch(setError("Password is required"));
+  //     return false;
+  //   }
+  //   dispatch(removeError());
+  //   return true;
+  
+  //   };
+  
+
   function onSubmit(e){
     e.preventDefault()
     dispatch(postUser(user))
@@ -116,7 +135,7 @@ export const Register = () => {
               <p className='labels'>Confirmar contraseña</p>
               <input
                type="password"
-               name="ConfirmPassword"
+               name="confirmPassword"
                placeholder="Confirmar contraseña"
                // value={user.password}
                // onChange={(e) => onInputChange(e)}

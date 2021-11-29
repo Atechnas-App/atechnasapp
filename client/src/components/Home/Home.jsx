@@ -8,9 +8,11 @@ import {PageInfo} from "./PageInfo/PageInfo";
 import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
 import './Home.css';
-
+import {useSelector} from 'react-redux';
 
 export default function Home(){
+    const search = useSelector((state)=> state.rootReducer.search)
+
     return(
         <div className='containerHome'> 
             <div className='ajustarHome'> 
