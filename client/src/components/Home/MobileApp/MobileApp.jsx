@@ -1,6 +1,6 @@
 import phones from "../../../assets/img/phones.png"
-import premium from "../../../assets/img/premium.png"
-import touchscreen from "../../../assets/img/telefono.png"
+import mundoubi from "../../../assets/img/mundoubi.png"
+import telefono from "../../../assets/img/telefono.png"
 import appstore from "../../../assets/img/appstore.png"
 import playstore from "../../../assets/img/playstore.png"
 import './MobileApp.modules.css'
@@ -11,35 +11,37 @@ export default function MobileApp(){
             <div className='second-app-container'>
                 <div className='app-description'>
                     <div className='app-description-tittle'>
-                        <h3>Get the Atechna App</h3>
-                        <h1>Download Our App</h1>
+                        <h3>Obtén AtechnasApp</h3>
+                        <h1>Descarga la App</h1>
+                        <hr className="hrPresentationGreen"></hr>
                     </div>
                     <div className='app-description-container'>
                         <div className='app-description-img'>
-                            <img className='img-app' src={touchscreen} alt="img not found"/>
+                            <img className='img-app' src={telefono} alt="img not found"/>
                         </div>
                         <div className='app-description-text'>
-                            <h1>Aca va un titulo</h1>
-                            <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero ipsa quibusdam sint repudiandae similique veritatis eum error magnam. Exercitationem cumque quo iusto culpa consequatur deserunt expedita rem esse perferendis laudantium.</h3>
+                            <h1 className="app-description-title">Tu nuevo trabajo, en tus manos</h1>
+                            <h3 className="app-description-description">Postea tus trabajos y simplemente espera que te contacten para empezar un nuevo proyecto. La manera mas facil de contactarte con reclutadores y empresas de todo el mundo.</h3>
                         </div>
                     </div>
                     <div className='app-description-container'>
                         <div className='app-description-img'>
-                            <img className='img-app' src={premium} alt="img not found"/>
+                            <img className='img-app' src={mundoubi} alt="img not found"/>
                         </div>
                         <div className='app-description-text'>
-                            <h1>Aca va otro titulo</h1>
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ducimus voluptates ad nesciunt voluptatem qui ratione quae. Asperiores, incidunt nobis cumque, quos, necessitatibus unde sed dignissimos ad itaque suscipit non!</h3>
+                            <h1 className="app-description-title">Contrata a los mejores freelancers</h1>
+                            <h3 className="app-description-description">Nuestra plataforma te permite conectar con freelancers de todo el mundo. Profesionales de primer nivel en DESARROLLO, MARKETING y DISEÑO </h3>
                         </div>
                     </div>
-                </div>
+                        <div className="container-stores">
+                            <h2 className="prox-stores">Proximamente disponible en:</h2>
+                            <img className='logo-appstore' src={appstore} alt="img not found"/>
+                            <img className='logo-playstore' src={playstore} alt="img not found"/>
+                        </div>
+                    </div>
                 <div className='app-phone-animation'>
                     <img className='logo' src={phones} alt="img not found"/>
                 </div>
-            </div>
-            <div>
-                <img className='logo-appstore' src={appstore} alt="img not found"/>
-                <img className='logo-playstore' src={playstore} alt="img not found"/>
             </div>
         </div>
     )

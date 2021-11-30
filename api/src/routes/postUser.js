@@ -6,15 +6,15 @@ const passport = require('passport');
 const initializePassport = require('./passport-config-local')
 initializePassport(
     passport, 
-    email => User.findOne({where: {email: email}, raw: true}), // esto cambiar
-    id => User.findOne({where: {id: id}, raw: true})             // esto tambien
+    email => User.findOne({where: {email: email}, raw: true}), 
+    id => User.findOne({where: {id: id}, raw: true})
 )
 
 const router = Router();
 
 const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
+    successRedirect: '/', // esto te redirecciona a localhost:3001/ --> osea donde esta levantado el back
+    failureRedirect: '/acaPuedeser',
     failureFlash: true
 }))
 

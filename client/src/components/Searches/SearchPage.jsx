@@ -8,9 +8,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
-    const searching = useSelector((state)=> state.search)
-    const cards = useSelector((state) => state.search)
 
+    const searching = useSelector((state)=> state.rootReducer.search)
+    const dispatch = useDispatch();
+    console.log("BUSCADOS",searching)
+    
+    //  useEffect(() => {           
+    //     dispatch(Search()); 
+    // }, [dispatch]);
+    
     return(
         <div className='container-searchpage'>
             <div className='components-searchpage'>
@@ -21,7 +27,7 @@ export default function SearchPage(){
                     <Filtros/>
                 </div>
                 <div>
-            {cards?.map((e) => {
+            {searching?.map((e) => {
             return <CardPeople
             profilePicture={e.profilePicture}
             name={e.name}

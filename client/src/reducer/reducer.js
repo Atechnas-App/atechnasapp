@@ -1,9 +1,12 @@
-import { GET_USER, POST_USER, SEARCH, CATEGORY_FILTER, GET_CATEGORIES } from "../actions/types";
+import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER } from "../actions/types";
+
 
 const initialState = {
     users:[],
     search:[],
     categories:[],
+    // filteredUsers:[],
+    technologie:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -14,8 +17,6 @@ export default function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         users: action.payload.content,
-                        // search: action.payload.content, 
-                        
                     }
 
                 case POST_USER:
@@ -27,22 +28,36 @@ export default function rootReducer(state = initialState, action) {
 
                     return {
                         ...state,
-                        search: action.payload.content,
-                        // users: action.payload.content
-                    }
+                        search: action.payload,
 
+                    }
+                    
                 case CATEGORY_FILTER:
                     return {
                         ...state,
-                        search: action.payload,
-                        users: action.payload
+                        users: action.payload.content,
                     }
 
                 case GET_CATEGORIES:
                     return {
                         ...state,
                         categories: action.payload,
+                        users: action.payload.content
                     }
+                case GET_TECHNOLOGIES:
+                    return {
+                        ...state,
+                        technologie: action.payload.content,
+                        
+                    }
+
+                case TECHNOLOGY_FILTER:
+                    return {
+                        ...state,
+                        users: action.payload.content,
+                        
+                    }
+                
                 default:
                     return state;
 
