@@ -37,8 +37,6 @@ console.log(auth);
     }
   }
 
-
-
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
   if(state === true){
@@ -46,8 +44,6 @@ const handleGoogleLogin = () => {
   } 
     
 }
-
-
 
   const ifFormIsValid = () => {
 
@@ -62,10 +58,6 @@ const handleGoogleLogin = () => {
     return true;
 
   };
-
-
-
-
 
   return (
 

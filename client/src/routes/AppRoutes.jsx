@@ -20,8 +20,6 @@ export const AppRoutes = () => {
                 InvitedRoute
               }
               />
-              
-
             <Route
              path="/"
              component={HomeRoute}

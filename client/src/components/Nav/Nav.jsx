@@ -2,10 +2,13 @@ import React from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 // import foto from "../../assets/img/Persona1.png";
 import './Nav.css';
-import {Link} from 'react-router-dom';
+import {Link , useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutAll } from '../../actions/actions';
+<<<<<<< HEAD
 import {  useHistory } from 'react-router-dom';
+=======
+>>>>>>> 08a2010acb817a9b5217aa32bed220317fe618ac
 
 
 export default function Nav(){

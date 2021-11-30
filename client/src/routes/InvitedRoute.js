@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
-
 import { CompleteRegister } from '../components/form/CompleteRegister';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
