@@ -12,6 +12,7 @@ export default function CatFilter(){
 
     function handleCheck(e){
         e.preventDefault()
+        console.log('FILTRADO POR CAT', e.target.value)
         dispatch(categoryFilter(e.target.value))
         }
     

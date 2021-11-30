@@ -8,13 +8,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
+
     const searching = useSelector((state)=> state.rootReducer.search)
     const dispatch = useDispatch();
-    console.log("BUSCADOS",searching)
+   
     
-    //  useEffect(() => {           
-    //     dispatch(Search()); 
-    // }, [dispatch]);
+  
     
     return(
         <div className='container-searchpage'>
@@ -35,10 +34,13 @@ export default function SearchPage(){
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    categories={e.categories}
                     />
                     })}
                 </div>
+
                 </div>
+                
             </div>     
         </div>
     )
