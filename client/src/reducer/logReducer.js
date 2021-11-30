@@ -3,6 +3,7 @@ import { types } from "../actions/types";
 const initialState = {
     login: false,
     msgError: null,
+    auth:false
 }
 
 export const logReducer = (state = initialState, action) => {

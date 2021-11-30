@@ -103,9 +103,9 @@ export const startLoginEmailPassword = (email,password) => {
 
 export const startGoogleLogin = () => {
 
-  return (dispatch) => {
+  return async (dispatch) => {
 
-    try{firebase
+    try{await firebase
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {

@@ -5,19 +5,19 @@ import './Nav.css';
 import {Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutAll } from '../../actions/actions';
-import {  useNavigate } from 'react-router';
+import {  useHistory } from 'react-router-dom';
 
 
 export default function Nav(){
 
-   const navigate = useNavigate()
+   const history = useHistory()
  const dispatch = useDispatch()
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
       
    const handleLogout = () => {
        dispatch(logoutAll());
-       navigate("/login");     
+       history.push("/login");     
    }
     
     return (
