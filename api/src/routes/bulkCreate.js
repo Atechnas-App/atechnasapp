@@ -1,30 +1,68 @@
 const { Router } = require("express");
-const { User,Technology,Category } = require('../db');
+const { User,Technology,Category,Language } = require('../db');
+const bcrypt = require('bcrypt')
+// const passport = require('passport');
+// const initializePassport = require('./passport-config-local')
+// initializePassport(
+//     passport, 
+//     email => User.findOne({where: {email: email}, raw: true}), 
+//     id => User.findOne({where: {id: id}, raw: true})
+// )
+
+
 
 const router = Router();
 
 // ESTO SOLO SIRVE MOMENTANEAMENTE PARA QUE CADA UNO SE CREE SU BDD LOCAL !!
-router.post('/bulkcreate', async (req, res, next) => {
+router.post('/bulkcreateUsers', async (req, res, next) => {
     try {
+        // const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        // const { name,
+        //     lastName,
+        //     email,
+        //     password,
+        //     category,
+        //     profilePicture,
+        //     languages,
+        //     technology,
+        // } = req.body;
+        console.log(req.body)
         const newUser = await User.bulkCreate(req.body)
-        // console.log(newUser)
+        let categoriesDb = await Category.findAll({
+            where: { category : req.body.category},
+            // include: [User]
+        })
+        let languagesDb = await Language.findAll({
+            where: { languages :req.body.languages },
+            // include: [User]
+        })
+        let technologyDb = await Technology.findAll({
+            where: { technology : req.body.technology },
+            // include: [User]
+        })
+        newUser.addCategory(categoriesDb);
+        newUser.addLanguage(languagesDb);
+        newUser.addTechnology(technologyDb);
+        // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
+        console.log(newUser.map(c => c.toJSON()))
+
         res.status(200).send('usuario creado')
     }
     catch (error) {
-        console.log(error)
-        next(error)
+        console.log(error.message)
+        // next(error)
     }
 
 });
 router.post('/bulkcreateTechnology', async (req, res, next) => {
     try {
        
-        const newTechnology = await Technology.create(req.body)
-        console.log(newTechnology)
-        res.status(200).send('tecnologias en db')
+        const newTechnology = await Technology.bulkCreate(req.body)
+        console.log(newTechnology.map(c => c.toJSON()))
+        res.status(200).send('technologies en db')
     }
     catch (error) {
-        console.log(error)
+        console.log(error.message)
         next(error)
     }
 
@@ -32,13 +70,13 @@ router.post('/bulkcreateTechnology', async (req, res, next) => {
 
 router.post('/bulkcreateCategory', async (req, res, next) => {
     try {
-       const {category} = await req.body
-        const newCategory = await Category.create({category})
-        console.log(newCategory)
+    //    const {category} = await req.body
+        const newCategory = await Category.bulkCreate(req.body)
+        console.log(newCategory.map(c => c.toJSON()))
         res.status(200).send('categorias en db')
     }
     catch (error) {
-        console.log(error)
+        console.log(error.message)
         next(error)
     }
 
