@@ -8,6 +8,7 @@ const filterByCategory = require('./categoryFilter')
 const filterByTechnology = require('./TechnologyFilter')
 
 const filterByQualification = require('./qualificationFilter')
+const deletePost = require('./deletePost')
 
 
 const { login, register, home } = require('./postUser')
@@ -21,15 +22,14 @@ const router = Router();
 
 router.use('/api', bulkCreate)
 router.use('/api', getUsers)
-
 router.use('/api', search)
 router.use('/api', filterByCategory)
 router.use('/api', filterByTechnology)
-
 router.use('/api', filterByQualification)
 router.use('/api', login)
 router.use('/api', register)
 router.use('/api', home)
+router.use('/api', deletePost)
 
 
 

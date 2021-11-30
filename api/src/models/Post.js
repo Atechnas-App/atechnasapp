@@ -10,25 +10,25 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-
+    // el id user deberia ser mediante tabla intermedia, cambié todo a true ara probar la db
     idUser: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     keywords: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
   });
