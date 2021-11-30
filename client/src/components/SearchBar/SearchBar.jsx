@@ -3,14 +3,14 @@ import './SearchBar.css';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Search} from '../../actions/actions.js';
-import {useNavigate} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 
 export default function SearchBar(){
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
     const searching = useSelector((state)=> state.rootReducer.search)
-    const history = useNavigate();
+    const history = useHistory();
     console.log("DESDE EL NAV ESTADO GLOBAL",searching)
     console.log("DESDE EL NAV ESTADOLOCAL",search)
 
@@ -19,7 +19,7 @@ export default function SearchBar(){
         e.preventDefault();
         dispatch(Search(search))
         
-        history('/results')
+        history.push('/results')
         
         
     }

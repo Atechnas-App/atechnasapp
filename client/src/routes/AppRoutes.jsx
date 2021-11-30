@@ -1,6 +1,6 @@
 import React from 'react'
-import { Route, Routes } from 'react-router'
-import {BrowserRouter} from 'react-router-dom'
+// import { Route } from 'react-router'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import { PrivateRouter } from './PrivateRouter'
 import { PublicRouter } from './PublicRouter'
 import { InvitedRoute } from "./InvitedRoute";
@@ -10,26 +10,19 @@ import { HomeRoute } from './HomeRoute'
 export const AppRoutes = () => {
     return (
       <div>
-        <BrowserRouter>
-          
-          <Routes>
+        <BrowserRouter>          
+          <Switch>
             <Route
-              path="/*"
-              element={
-                <InvitedRoute />
-              }
+              path="/"
+              component={InvitedRoute}
               />
-              
-
             <Route
-              path="/*"
-              element={
-                <HomeRoute />
-              }
+              path="/"
+              component={HomeRoute}
               />
               {/* <PrivateRouter> */}
               {/* </PrivateRouter> */}
-          </Routes>
+          </Switch>
         </BrowserRouter>
       </div>
     );

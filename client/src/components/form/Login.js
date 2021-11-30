@@ -9,17 +9,14 @@ import {
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
-import { useNavigate } from 'react-router'
-
-
-
+import { useHistory } from 'react-router-dom'
 
 
 export const Login = () => {
-const navigate =useNavigate()
+const history = useHistory()
 const dispatch = useDispatch()
 
-const { log } = useSelector((state) => state);  
+const { log } = useSelector((state) => state);
 
 
   const [formValues, handleInputChange] = useForm({
@@ -36,18 +33,13 @@ const { log } = useSelector((state) => state);
     }
   }
 
-
-
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
-  if(log.auth){
-    navigate('/')
+  if(log.auth === true){
+    console.log(log.auth)
+    history.push('/')   // ESTO ANDA, PERO HAY UN PROBLEMA CON EL RENDER, QUE ESTÁ UNA ACCION ATRASADO. ES UN PROBLEMA MAS GENERAL
   }
-  
-    
 }
-
-
 
   const ifFormIsValid = () => {
 
@@ -62,10 +54,6 @@ const handleGoogleLogin = () => {
     return true;
 
   };
-
-
-
-
 
   return (
 
@@ -94,7 +82,7 @@ const handleGoogleLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-        <div
+        <button
           className="google-btn"
           onClick={handleGoogleLogin}
         /* disabled={loading} */
@@ -114,7 +102,7 @@ const handleGoogleLogin = () => {
             </p>
           <p />
 
-          </div>
+          </button>
         </form>
       </div>
     );

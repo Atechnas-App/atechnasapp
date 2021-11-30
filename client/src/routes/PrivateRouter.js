@@ -1,13 +1,13 @@
 import React from 'react'
-import {  Route, Routes} from 'react-router'
+import {  Route, Switch} from 'react-router-dom'
 import { HomeRoute } from './HomeRoute'
 
 export const PrivateRouter = () => {
     return (
-        <Routes>
-            <Route path="/" element={<HomeRoute />} />
+        <Switch>
+            <Route exact path="/" component={HomeRoute} />
             {/* <HomeRoute/> */}
-        </Routes>
+        </Switch>
             
         
     )
