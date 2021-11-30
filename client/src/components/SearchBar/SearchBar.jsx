@@ -9,10 +9,9 @@ import {useNavigate} from 'react-router-dom';
 export default function SearchBar(){
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
-    const searching = useSelector((state)=> state.rootReducer.search)
+    // const searching = useSelector((state)=> state.rootReducer.search)
     const history = useNavigate();
-    console.log("DESDE EL NAV ESTADO GLOBAL",searching)
-    console.log("DESDE EL NAV ESTADOLOCAL",search)
+    
 
 
     function onSubmit(e){
@@ -33,7 +32,7 @@ export default function SearchBar(){
 
         <div>
             <form className='fromSearch' onSubmit={(e)=>{onSubmit(e)}}>
-                <input type='text' placeholder='Buscar...' value={search} name='buscador' onChange={(e)=>{handdleInput(e)}} className='inputSearch'></input>   
+                <input type='text' placeholder='Buscar por nombre, categoria, tecnologias...' value={search} name='buscador' onChange={(e)=>{handdleInput(e)}} className='inputSearch'></input>   
             </form>
             
         </div>

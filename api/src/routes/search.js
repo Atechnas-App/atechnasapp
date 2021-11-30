@@ -21,10 +21,10 @@ router.get("/search", async (req, res) => {
                 name: { [Op.iLike]: "%"+query+"%"},
               },
               {
-                lastName: { [Op.substring]: query.toLowerCase() },
+                lastName: { [Op.iLike]: "%"+query+"%" },
               },
               {
-                email: { [Op.substring]: query.toLowerCase() },
+                email: { [Op.iLike]: query.toLowerCase() },
               },
             ],
           },

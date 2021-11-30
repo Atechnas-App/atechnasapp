@@ -11,11 +11,9 @@ export default function SearchPage(){
 
     const searching = useSelector((state)=> state.rootReducer.search)
     const dispatch = useDispatch();
-    console.log("BUSCADOS",searching)
+   
     
-    //  useEffect(() => {           
-    //     dispatch(Search()); 
-    // }, [dispatch]);
+  
     
     return(
         <div className='container-searchpage'>
@@ -25,20 +23,24 @@ export default function SearchPage(){
                 </div>
                 <div className="container-all">
                     <Filtros/>
-                </div>
+                    
                 <div>
-            {searching?.map((e) => {
-            return <CardPeople
-            profilePicture={e.profilePicture}
-            name={e.name}
-            lastName={e.lastName}
-            technology = {e.technology}
-            qualification = {e.qualification}
-            id={e.id}
-            key={e.id}
-            />
-            })}
-        </div>
+                    {searching?.map((e) => {
+                    return <CardPeople
+                    profilePicture={e.profilePicture}
+                    name={e.name}
+                    lastName={e.lastName}
+                    technology = {e.technology}
+                    qualification = {e.qualification}
+                    id={e.id}
+                    key={e.id}
+                    categories={e.categories}
+                    />
+                    })}
+                </div>
+
+                </div>
+                
             </div>     
         </div>
     )
