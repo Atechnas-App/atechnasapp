@@ -35,6 +35,7 @@ export const OutStandingPeople = () => {
                 
                 {
                     users?.map((e, i) => {
+                        console.log('map pasar info', e.categories)
                     if(i < 3){
                        
                     return (
@@ -46,6 +47,7 @@ export const OutStandingPeople = () => {
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     
                     />
                     )}
@@ -71,6 +73,7 @@ export const OutStandingPeople = () => {
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
                     )}
                     })
@@ -94,6 +97,7 @@ export const OutStandingPeople = () => {
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
                     )}
                     })

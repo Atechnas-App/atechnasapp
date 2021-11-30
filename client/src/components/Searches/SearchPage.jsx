@@ -35,6 +35,7 @@ export default function SearchPage(){
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
+                    categories={e.categories}
                     />
                     })}
                 </div>

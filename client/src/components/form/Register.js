@@ -12,7 +12,7 @@ export const Register = () => {
   // const navigate = useNavigate()
   const categories = useSelector((state) => state.rootReducer.categories)
   const {log} = useSelector((state) => state)
-  console.log(categories)
+
   useEffect(() => {
     dispatch(getCategories())
   },[dispatch])
@@ -25,15 +25,15 @@ export const Register = () => {
     confirmPassword:'', //agregue el confirmado 
     profilePicture: '',
     portfolio: '',
-    category: [] // ver como pasarlo a array
+    categories: [] // ver como pasarlo a array
   })
 
+ 
 
 
   const handleImageClick = (e) => {
     e.preventDefault();
     document.querySelector("#fotoPerfil").click();
-    console.log("click");
   };
 
    function handleCheck(e) {
@@ -41,12 +41,12 @@ export const Register = () => {
     if (e.target.checked) {
       setUser({
         ...user,
-        category: user.category.concat(e.target.value)
+        categories: user.categories.concat(e.target.value) 
       })
     } else {
       setUser({
         ...user,
-        category: user.category?.filter(category => category !== e.target.value)
+        categories: user.categories?.filter(category => category !== e.target.value)
       })
     }
   }
