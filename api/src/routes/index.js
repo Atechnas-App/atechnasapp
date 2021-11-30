@@ -8,7 +8,7 @@ const filterByCategory = require('./categoryFilter')
 const filterByTechnology = require('./TechnologyFilter')
 
 const filterByQualification = require('./qualificationFilter')
-
+const putUsers = require('./putUsers')
 
 const { login, register, home } = require('./postUser')
 
@@ -30,6 +30,7 @@ router.use('/api', filterByQualification)
 router.use('/api', login)
 router.use('/api', register)
 router.use('/api', home)
+router.use('/api', putUsers)
 
 
 
