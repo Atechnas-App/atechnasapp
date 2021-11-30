@@ -9,10 +9,9 @@ import {useNavigate} from 'react-router-dom';
 export default function SearchBar(){
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
-    const searching = useSelector((state)=> state.rootReducer.search)
+    // const searching = useSelector((state)=> state.rootReducer.search)
     const history = useNavigate();
-    console.log("DESDE EL NAV ESTADO GLOBAL",searching)
-    console.log("DESDE EL NAV ESTADOLOCAL",search)
+    
 
 
     function onSubmit(e){

@@ -25,7 +25,7 @@ export const Register = () => {
     confirmPassword:'', //agregue el confirmado 
     profilePicture: '',
     portfolio: '',
-    categories: [] // ver como pasarlo a array
+    category: [] // ver como pasarlo a array
   })
 
  
@@ -41,12 +41,13 @@ export const Register = () => {
     if (e.target.checked) {
       setUser({
         ...user,
-        categories: user.categories.concat(e.target.value) 
+        category: user.category.concat(e.target.value) 
       })
     } else {
+      console.log('filtra las categorias')
       setUser({
         ...user,
-        categories: user.categories?.filter(category => category !== e.target.value)
+        category: user.category?.filter(category => category !== e.target.value)
       })
     }
   }

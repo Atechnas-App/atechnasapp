@@ -45,8 +45,7 @@ export function postLogin(payload){
 export function Search(payload) {
     return async function(dispatch){
         const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        console.log("ACTION", searching.data)
-        console.log("ACTION payload", payload)
+        
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -56,7 +55,8 @@ export function Search(payload) {
 
 export function categoryFilter(payload) {
     return async function(dispatch){
-        const category = await axios('http://localhost:3001/api/filterByCategory?category='+payload)
+        const category = await axios('http://localhost:3001/api/filterByCategory?categories='+payload)
+        console.log('ACTION CATEGORIA', category.data)
         dispatch({
             type: CATEGORY_FILTER,
             payload: category.data
