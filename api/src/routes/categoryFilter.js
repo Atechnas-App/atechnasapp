@@ -20,6 +20,7 @@ router.get("/filterByCategory", async (req, res, next) => {
     // ordenar por calificacion
     //
     const { categories } = req.query;
+    console.log('CATFILTER BACK', categories)
     const filteredByCategory = await Category.findAll({
       where: { category: categories },
       include: [{ model: User }],

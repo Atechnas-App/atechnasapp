@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { categoryFilter, getCategories } from "../../../../actions/actions"
@@ -10,27 +11,30 @@ export default function CatFilter(){
 
     useEffect(() => {
         dispatch(getCategories())
+
     },[dispatch])
     
     //poner un estado local donde se guarden las categorias en un array y mandarselo al back asi 
     //para que se concatenen y hay que filtrarlo para sacar los que no se checkean
 
     function handleCheck(e){
-        e.preventDefault()
-        dispatch(categoryFilter(category))
+        e.preventDefault();
         if (e.target.checked) {
+           
             setCategory(
                 [...category, e.target.value] 
                 
                 )
-                console.log('FILTRADO POR CAT', category)
-          }else {
-            console.log('filtra las categorias', category)
+               
+        }else {
+           
             setCategory(  
                 category?.filter(c => c !== e.target.value)
-            )
-          }
-          
+                )
+        };
+        
+        console.log("array cat",category);
+        dispatch(categoryFilter(category.join('-')))
         }
     
       
@@ -39,22 +43,22 @@ export default function CatFilter(){
             <div>
                 <h3>Categoria</h3>
             </div>
-            <div>
-                <form>
+            
+              
                     <div className="container-checkbox">
 
               {
-                  categories && categories.map(c => {
+                  categories && categories.map( c => {
                   return <div>
-                    <input key={c.id} type='checkbox' name='category' value={c.category} onChange={(e) => handleCheck(e)} className='checkbox'/>
+                    <input key={c.id} type='checkbox' name='category' value={c.category}  onChange={(e) => {handleCheck(e)}} className='checkbox'/>
                     <label>{c.category}</label>
                   </div>
                   
                 })
               }     
                     </div>
-                </form>
-            </div>
+              
+            
         </div>
     )
 }

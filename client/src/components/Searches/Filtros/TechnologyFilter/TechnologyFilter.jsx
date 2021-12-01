@@ -29,7 +29,8 @@ export default function TechFilter(){
         setKeywords(
             [...keywords, e.target.value]
             )
-        dispatch(technologyFilter(keywords))
+            console.log("array tech", keywords)
+        dispatch(technologyFilter(keywords.join('-')))
     }
 
 
@@ -40,7 +41,7 @@ export default function TechFilter(){
             </div>
             <div>
                 <select  onChange={(e)=>{handleChange(e)}}>
-                    
+                        
                         {
                             tech?.map(e => {
                                 return (<option key={e.id} value={e.technology}> {e.technology} </option>)
@@ -51,7 +52,7 @@ export default function TechFilter(){
             </div>
             <div>
                 {keywords?.map((e, i)=>(
-                    <button className='botonesTemps' key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
+                    <button key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
                 ))} 
             </div>
         </div>

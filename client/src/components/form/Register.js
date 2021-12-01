@@ -29,6 +29,7 @@ export const Register = () => {
   })
 
  
+  console.log("register cat", user.category)
 
 
   const handleImageClick = (e) => {
@@ -122,7 +123,6 @@ export const Register = () => {
     });
   }// navigate('/profile')
   }
-  
 const ifFormIsValid = () => {
   if (!validator.isEmail(user.email)) {
     dispatch(setError( "El email no es válido"));

@@ -33,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
                     }
                     
                 case CATEGORY_FILTER:
-                    
+                    console.log("REDUCER category", action.payload)
                     return {
                         ...state,
                         search: action.payload,
