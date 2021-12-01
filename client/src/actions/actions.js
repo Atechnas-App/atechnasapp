@@ -37,16 +37,16 @@ export function getCategories() {
 
 export function postLogin(payload){
   return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload)
-    console.log(user.data)
+    const user = await axios.post('http://localhost:3001/api/login', payload) 
+    localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
+    loglocal()
     return user
   }
 }
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)    
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -85,22 +85,6 @@ export function getTechnologies(payload) {
   }
 }
 
-export const startLoginEmailPassword = (email,password) => {
-    return (dispatch) => {
-        firebase.auth()
-        .signInWithEmailAndPassword(email,password)
-        .then(({user}) => {
-          dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
-          dispatch(startLoding())
-        })
-        .catch(error => {
-          console.log(error)
-          dispatch(finishLoding())
-        }  
-        )
-        dispatch(finishLoding())
-      }
-}
 
 export const startGoogleLogin = () => {
 
@@ -138,6 +122,11 @@ export const startGoogleLogin = () => {
   }catch(error){
       console.log(error)
 }
+}
+
+function loglocal(){
+  var local = JSON.parse(localStorage.getItem("user"));   
+  return local
 }
 
 export const login = (uid, displayName, email, photoURL) => ({
@@ -199,9 +188,8 @@ export const finishLoding = () => ({
 
 
 export const startUploading = (file)=>{
-  return  async (dispatch, getState)=>{
-    const imagProfile = getState().photoURL
+  return  async (dispatch)=>{
    const fileUrl = await fileUpload(file)
-   console.log(fileUrl)
+  localStorage.setItem("profileImage", fileUrl)
   }
 }

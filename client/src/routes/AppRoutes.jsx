@@ -3,8 +3,7 @@ import React from 'react'
 import { InvitedRoute } from "./InvitedRoute";
 import { HomeRoute } from "./HomeRoute"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { AuthContext } from "./AuthContext";
-import { useContext } from "react";
+
 
 
 export const AppRoutes = () => {

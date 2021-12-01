@@ -7,7 +7,11 @@ import validator from 'validator'
 import { getCategories, postUser, removeError, setError, startUploading } from "../../actions/actions";
 
 
-export const Register = () => {
+export const Register = (cloudResp) => {
+  console.log(cloudResp)
+  const photo = localStorage.getItem("profileImage")
+ console.log(photo)
+
   const dispatch = useDispatch();
   // const navigate = useNavigate()
   const categories = useSelector((state) => state.rootReducer.categories)
@@ -71,7 +75,7 @@ export const Register = () => {
   } */
 
   function onInputChange(e) {
-    console.log(e.target.value);
+    
     e.preventDefault();
     setUser({
       ...user,
@@ -89,20 +93,8 @@ export const Register = () => {
     if(file){
       dispatch(startUploading(file));
     }
-  }
-  // const ifFormIsValid = () => {
-
-  //   if (!validator.isEmail(email)) {
-  //     dispatch(setError("Email is invalid"));
-  //     return false;
-  //   } else if (password.trim().length === 0) {
-  //     dispatch(setError("Password is required"));
-  //     return false;
-  //   }
-  //   dispatch(removeError());
-  //   return true;
   
-  //   };
+  }
   
 
   function onSubmit(e) {
@@ -115,11 +107,12 @@ export const Register = () => {
       lastName: "",
       email: "",
       password: "",
-      profilePicture: "",
+      profilePicture: '',
       portfolio: "",
       confirmpassword: "",
       category: [],
     });
+  
   }// navigate('/profile')
   }
   
@@ -237,29 +230,58 @@ const ifFormIsValid = () => {
               type="file"
               name="profilePicture"
               id="fotoPerfil"
-              value={user.profilePicture} style={{ display: "none" }}
-              onChange={handleFileChange} />
-              <br/>
-              <button  className='botonImg' onClick={(e) => {handleImageClick(e)}}>subir</button>
-            </div >
-            <div className='grupoRegister'>
-              <p className='labels'>Categoría</p>
-              {
-                categories && categories.map(c => {
-                  return <div>
-                    <input key={c.id} type='checkbox' name='category' value={c.category} onChange={(e) => handleCheck(e)} className='checkbox'/>
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+            <input
+            type="text"
+            onChenge={(e)=>onInputChange(e)}
+            value={user.profilePicture} 
+            />
+            
+
+            <img src={photo} alt="foto perfil"  width="250vw" height="250vh"/>
+            <br />
+            <button
+              className="botonImg"
+              onClick={(e) => {
+                handleImageClick(e);
+              }}
+            >
+              subir
+            </button>
+          </div>
+          <div className="grupoRegister">
+            <p className="labels">Categoría</p>
+            {categories &&
+              categories.map((c) => {
+                return (
+                  <div>
+                    <input
+                      key={c.id}
+                      type="checkbox"
+                      name="category"
+                      value={c.category}
+                      onChange={(e) => handleCheck(e)}
+                      className="checkbox"
+                    />
                     <label>{c.category}</label>
                   </div>
-                  
-                })
-              }
-            </div>
+                );
+              })}
           </div>
-          <button type='submit' className='botonRegistrar' onSubmit={(e) => onSubmit(e)}>Registrarse</button>
-            {log.msgError && <div>{log.msgError}</div>}
-        </form>
-      </div>
-    );
+        </div>
+        <button
+          type="submit"
+          className="botonRegistrar"
+          onSubmit={(e) => onSubmit(e)}
+        >
+          Registrarse
+        </button>
+        {log.msgError && <div>{log.msgError}</div>}
+      </form>
+    </div>
+  );
 
 }
 

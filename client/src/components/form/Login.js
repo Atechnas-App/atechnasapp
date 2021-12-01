@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
@@ -20,8 +20,6 @@ const history =useHistory()
 const dispatch = useDispatch()
 
 const state = useSelector((state) => state);  
-const auth  = useContext(state);
-console.log(auth);
 
   const [formValues, handleInputChange] = useForm({
     email: "",
@@ -35,6 +33,7 @@ console.log(auth);
     if (ifFormIsValid()) {
       dispatch(postLogin(formValues));
     }
+    
   }
 
 const handleGoogleLogin = () => {

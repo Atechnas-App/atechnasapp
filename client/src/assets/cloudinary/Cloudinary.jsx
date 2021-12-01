@@ -1,4 +1,4 @@
-
+import {Register} from "../../components/form/Register"
 
 
 export const fileUpload = async (file) => {
@@ -17,6 +17,8 @@ export const fileUpload = async (file) => {
     if (resp.ok) {
       const cloudResp = await resp.json();
 
+const cloud = cloudResp.secure_url
+
       return cloudResp.secure_url;
     } else {
       throw new Error("No se pudo subir la imagen");
@@ -24,22 +26,9 @@ export const fileUpload = async (file) => {
   } catch (error) {
     throw new Error(error);
   }
+
+
+  
 };
 
 
-
-/* import { db } from "../firebase/firebase-config";
-
-export const loadNotes = async (uid) => {
-  const notesSnap = await db.collection(`${uid}/usuarios/photoURL`).get();
-  const notes = [];
-  notesSnap.forEach((snapHijo) => {
-    notes.push({
-      id: snapHijo.id,
-      ...snapHijo.data(),
-    });
-  });
-
-  return notes;
-};
- */
