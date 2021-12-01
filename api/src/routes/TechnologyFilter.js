@@ -17,13 +17,15 @@ router.get("/getTechnologies", async (req, res, next) => {
 router.get("/filterByTechnology", async (req, res, next) => {
   try { 
     const {technologies} = req.query;
+    const tech = technologies.split('-')
+
     const filteredByTechnology = await Technology.findAll({
       
-        where: {technology: technologies},
+        where: {technology: tech},
         include: [
         {model: User}],
     })
-      res.status(200).send(filteredByTechnology[0].users);
+      res.status(200).send(filteredByTechnology);
   } catch (err) {
     next(err);
   }
