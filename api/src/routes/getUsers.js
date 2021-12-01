@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User, Category, Technology } = require("../db");
+const { User, Category, Technology, Language } = require("../db");
 
 const router = Router();
 
@@ -29,8 +29,11 @@ router.get("/getusers", async (req, res, next) => {
     // Pagination : this will give an object with properties :
     //  count{total of rows}  and rows{{data users},{data users},{data users}}
     const users = await User.findAndCountAll({
-      include: [{ model: Category}, 
-        {model: Technology}],
+      include: [
+        { model: Category}, 
+        {model: Technology},
+        {model: Language}
+      ],
       limit: size,
       offset: page * size,
     });

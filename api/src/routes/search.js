@@ -4,27 +4,36 @@ const { User } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
+  // Recibo un array de strings las cuales van ser las palabras filtro
   try {
     const { query } = req.query;
-    const categorias = ["developer", "design", "marketing", "recruiter"];
+    // const categorias = ["developer", "design", "marketing", "recruiter"];
     // const toLowerQuery = query.toLowerCase();
+
+    // Categories filter
+    const filteredByCategory = await Category.findAll({
+      where: { category: { [Op.iLike]: "%" + query + "%" } },
+      include: [{ model: User }],
+    });
+
     const dbSearch = categorias.includes(query)
       ? {
           where: {
-            category: query.toLowerCase(),
+            category: query,
+            [Op.iLike]: "%" + query + "%",
           },
         }
       : {
           where: {
             [Op.or]: [
               {
-                name: { [Op.iLike]: "%"+query+"%"},
+                name: { [Op.iLike]: "%" + query + "%" },
               },
               {
-                lastName: { [Op.iLike]: "%"+query+"%" },
+                lastName: { [Op.iLike]: "%" + query + "%" },
               },
               {
-                email: { [Op.iLike]: query.toLowerCase() },
+                email: { [Op.iLike]: "%" + query + "%" },
               },
             ],
           },
