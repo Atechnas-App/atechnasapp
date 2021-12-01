@@ -42,7 +42,7 @@ export function postLogin(payload){
     loglocal()
     return user
   }
-}
+} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
     return async function(dispatch){
