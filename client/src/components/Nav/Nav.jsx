@@ -12,6 +12,7 @@ export default function Nav(){
 
    const history = useHistory()
  const dispatch = useDispatch()
+ localStorage.setItem("user", "{}")
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
    const user = JSON.parse(localStorage.getItem("user")); 
