@@ -34,7 +34,6 @@ module.exports = (sequelize) => {
     qualification: {
       type: DataTypes.STRING,
       allowNull: true,
-
     },
 
   });

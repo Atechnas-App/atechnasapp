@@ -12,7 +12,9 @@ export const POST_USER = 'POST_USER'
 export const types = {
     login:'[auth] login',
     logout:'[auth] logout',
-       
+    
+    setError1:'setError1',
+    removeError1:'removeError1',
     setError:'setError',
     removeError:'removeError',
 

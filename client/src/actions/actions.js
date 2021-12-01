@@ -37,15 +37,16 @@ export function getCategories() {
 
 export function postLogin(payload){
   return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload)
+    const user = await axios.post('http://localhost:3001/api/login', payload) 
+    localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
+    loglocal()
     return user
   }
 }
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)    
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -66,7 +67,8 @@ export function categoryFilter(payload) {
 
 export function technologyFilter(payload) {
   return async function(dispatch){
-      const tech = await axios('http://localhost:3001/api/filterByTechnology', payload)
+      const tech = await axios('http://localhost:3001/api/filterByTechnology?technologies=' + payload)
+      
       dispatch({
           type: TECHNOLOGY_FILTER,
           payload: tech.data
@@ -77,6 +79,7 @@ export function technologyFilter(payload) {
 export function getTechnologies(payload) {
   return async function(dispatch){
       const tech = await axios('http://localhost:3001/api/getTechnologies', payload)
+      console.log('ACTION TECH', tech.data)
       dispatch({
           type: GET_TECHNOLOGIES,
           payload: tech.data
@@ -84,28 +87,12 @@ export function getTechnologies(payload) {
   }
 }
 
-export const startLoginEmailPassword = (email,password) => {
-    return (dispatch) => {
-        firebase.auth()
-        .signInWithEmailAndPassword(email,password)
-        .then(({user}) => {
-          dispatch(login(user.uid,user.displayName,user.email,user.photoURL))
-          dispatch(startLoding())
-        })
-        .catch(error => {
-          console.log(error)
-          dispatch(finishLoding())
-        }  
-        )
-        dispatch(finishLoding())
-      }
-}
 
 export const startGoogleLogin = () => {
 
-  return (dispatch) => {
+  return async (dispatch) => {
 
-    try{firebase
+    try{await firebase
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
@@ -137,6 +124,11 @@ export const startGoogleLogin = () => {
   }catch(error){
       console.log(error)
 }
+}
+
+function loglocal(){
+  var local = JSON.parse(localStorage.getItem("user"));   
+  return local
 }
 
 export const login = (uid, displayName, email, photoURL) => ({
@@ -187,6 +179,14 @@ export const setError = (err) => ({
 export const removeError = () => ({
   type: types.removeError,
 });
+export const setError1 = (err1) => ({
+  type: types.setError1,
+  payload: err1,
+});
+
+export const removeError1 = () => ({
+  type: types.removeError1,
+});
 
 export const startLoding = () => ({
   type: types.startLoding,
@@ -198,9 +198,10 @@ export const finishLoding = () => ({
 
 
 export const startUploading = (file)=>{
-  return  async (dispatch, getState)=>{
-    const imagProfile = getState().photoURL
+  return  async (dispatch)=>{
    const fileUrl = await fileUpload(file)
-   console.log(fileUrl)
-  }
+   dispatch(fileUrl)
+  localStorage.setItem("profileImage", fileUrl)
+  console.log(dispatch(fileUrl))
+ }
 }

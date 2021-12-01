@@ -1,9 +1,11 @@
 import { types } from "../actions/types";
 
 const initialState = {
-    login: false,
-    msgError: null,
-}
+  login: false,
+  msgError: null,
+  msgError1: null,
+  auth: false,
+};
 
 export const logReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -31,6 +33,16 @@ export const logReducer = (state = initialState, action) => {
         return {
           ...state,
           payload: action.payload,
+        };
+      case types.setError1:
+        return {
+          ...state,
+          msgError: action.payload,
+        };
+      case types.removeError1:
+        return {
+          ...state,
+          msgError: null,
         };
       default:
         return state;
