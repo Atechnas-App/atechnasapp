@@ -48,7 +48,7 @@ export const Register = () => {
         category: user.category.concat(e.target.value) 
       })
     } else {
-      console.log('filtra las categorias')
+     
       setUser({
         ...user,
         category: user.category?.filter(category => category !== e.target.value)
