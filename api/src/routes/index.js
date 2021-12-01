@@ -25,11 +25,10 @@ const router = Router();
 router.use('/api', bulkCreate)
 router.use('/api', getUsers)
 router.use('/api', getUserId)
-
-router.use('/api', search)
 router.use('/api', filterByCategory)
 router.use('/api', filterByTechnology)
 router.use('/api', filterByQualification)
+router.use('/api', search)
 router.use('/api', login)
 router.use('/api', register)
 router.use('/api', home)

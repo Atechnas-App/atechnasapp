@@ -81,5 +81,18 @@ router.post('/bulkcreateCategory', async (req, res, next) => {
     }
 
 });
+router.post('/bulkcreateLanguages', async (req, res, next) => {
+    try {
+    //    const {category} = await req.body
+        const newLanguage = await Language.bulkCreate(req.body)
+        console.log(newLanguage.map(c => c.toJSON()))
+        res.status(200).send('Languages en db')
+    }
+    catch (error) {
+        console.log(error.message)
+        next(error)
+    }
+
+});
 
 module.exports = router;

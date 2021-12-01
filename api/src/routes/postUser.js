@@ -53,16 +53,16 @@ const register = router.post(
       });
       let languagesDb = await Language.findAll({
         where: { languages },
-        // include: [User]
+        include: [User],
       });
       let technologyDb = await Technology.findAll({
         where: { technology },
-        // include: [User]
+        include: [User],
       });
       newUser.addCategory(categories);
       newUser.addLanguage(languagesDb);
       newUser.addTechnology(technologyDb);
-      console.log("creado",newUser.toJSON());
+      console.log("creado", newUser.toJSON());
       // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
       res.status(200).send("usuario creado");
     } catch (error) {
