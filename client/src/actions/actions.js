@@ -207,7 +207,7 @@ export const startUploading = (file)=>{
 
 export function getDetails(id) {
   return async function(dispatch){
-    const users = await axios.get("http://localhost:3001/api/" + id)
+    const users = await axios.get("http://localhost:3001/api/details/" + id)
     return dispatch({
       type: GET_DETAILS,
       payload: users.data
