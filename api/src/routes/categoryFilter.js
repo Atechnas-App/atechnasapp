@@ -12,7 +12,7 @@ router.get("/categories", async (req, res, next) => {
     next(err);
   }
 });
-
+// va a recibir un string de variables, cambiar a array?
 router.get("/filterByCategory", async (req, res, next) => {
   try {
     // queremos todos los usuarios que tengan determinadas categoria
@@ -20,12 +20,12 @@ router.get("/filterByCategory", async (req, res, next) => {
     // ordenar por calificacion
     //
     const { categories } = req.query;
-    console.log('CATFILTER BACK', categories)
+    const cat = categories.split('-')
     const filteredByCategory = await Category.findAll({
-      where: { category: categories },
+      where: { category: cat },
       include: [{ model: User }],
     });
-    res.status(200).send(filteredByCategory[0].users);
+    res.status(200).send(filteredByCategory);
   } catch (err) {
     next(err);
   }

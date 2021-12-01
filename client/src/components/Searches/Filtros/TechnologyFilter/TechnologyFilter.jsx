@@ -6,7 +6,6 @@ import {getTechnologies, technologyFilter} from '../../../../actions/actions.js'
 
 //Select con listado de posibles keywords para buscar
 export default function TechFilter(){
-    const [keywords, setKeywords]= useState([])
     const dispatch = useDispatch();
     const tech = useSelector((state)=> state.rootReducer.technologies)
     
@@ -14,7 +13,8 @@ export default function TechFilter(){
         dispatch(getTechnologies())
     }, [dispatch]);
     
-    console.log("TECNOLOGIAS", tech);
+    const [keywords, setKeywords]= useState([]);
+    console.log("keywords", keywords);
 
     function deleteKey(e){
         e.preventDefault();
@@ -28,7 +28,7 @@ export default function TechFilter(){
         e.preventDefault();
         setKeywords(
             [...keywords, e.target.value]
-            )
+        )
             console.log("array tech", keywords)
         dispatch(technologyFilter(keywords.join('-')))
     }

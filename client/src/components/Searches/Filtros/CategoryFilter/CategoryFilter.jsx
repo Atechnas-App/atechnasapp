@@ -7,13 +7,14 @@ import "./CategoryFilter.css"
 export default function CatFilter(){
     const dispatch = useDispatch()
     const categories = useSelector((state)=> state.rootReducer.categories);
-    const [category, setCategory] = useState([]);
-
+    
     useEffect(() => {
         dispatch(getCategories())
-
+        
     },[dispatch])
     
+    const [category, setCategory] = useState([]);
+    console.log('category', category)
     //poner un estado local donde se guarden las categorias en un array y mandarselo al back asi 
     //para que se concatenen y hay que filtrarlo para sacar los que no se checkean
 
@@ -45,7 +46,7 @@ export default function CatFilter(){
             </div>
             
               
-                    <div className="container-checkbox">
+            <div className="container-checkbox">
 
               {
                   categories && categories.map( c => {
@@ -56,7 +57,7 @@ export default function CatFilter(){
                   
                 })
               }     
-                    </div>
+            </div>
               
             
         </div>

@@ -1,12 +1,12 @@
 import React from 'react'
-import {  Route, Routes } from 'react-router'
+import { Route, Switch } from "react-router-dom";
 import { InvitedRoute } from './InvitedRoute'
 
 export const PublicRouter = () => {
     return (
-        <Routes>
-            <Route path="/" element={<InvitedRoute />} />
+        <Switch>
+            <Route path="/" element={InvitedRoute} />
            {/*  <InvitedRoute/> */}
-        </Routes>
+        </Switch>
     )
 }
