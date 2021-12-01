@@ -11,7 +11,7 @@ router.get("/search", async (req, res) => {
     const dbSearch = categorias.includes(query)
       ? {
           where: {
-            category: query.toLowerCase(),
+            category: query,
           },
         }
       : {
@@ -24,7 +24,7 @@ router.get("/search", async (req, res) => {
                 lastName: { [Op.iLike]: "%"+query+"%" },
               },
               {
-                email: { [Op.iLike]: query.toLowerCase() },
+                email: { [Op.iLike]: "%"+query+"%" },
               },
             ],
           },

@@ -5,7 +5,7 @@ const router = Router();
 
 
 
-router.get("/:id", async (req, res) => {
+router.get("/details/:id", async (req, res) => {
     try {
       const { id } = req.params;
       const dbSearchById = await User.findOne({
