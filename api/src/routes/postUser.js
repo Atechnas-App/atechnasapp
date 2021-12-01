@@ -15,9 +15,13 @@ const router = Router();
 const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureFlash: true
 }), (req, res) => {
-    console.log(req.user)
     if(req.user){
+        console.log(req.user)
         res.send(req.user)
+    }
+    if(!req.user){
+        // mandame de vuelta al login o mostra un msj de error o una alerta
+        res.send('error generico')
     }
 })
 

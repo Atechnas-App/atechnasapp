@@ -42,7 +42,7 @@ export function postLogin(payload){
     loglocal()
     return user
   }
-}
+} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
     return async function(dispatch){
@@ -200,8 +200,6 @@ export const finishLoding = () => ({
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
    const fileUrl = await fileUpload(file)
-   dispatch(fileUrl)
   localStorage.setItem("profileImage", fileUrl)
-  console.log(dispatch(fileUrl))
  }
 }
