@@ -10,7 +10,7 @@ const getUserId = require('./getUsersDetails')
 
 const filterByQualification = require('./qualificationFilter')
 const putUsers = require('./putUsers')
-
+const postTeams = require('./createTeam')
 const { login, register, home } = require('./postUser')
 
  
@@ -33,6 +33,7 @@ router.use('/api', login)
 router.use('/api', register)
 router.use('/api', home)
 router.use('/api', putUsers)
+router.use('/api', postTeams)
 
 
 
