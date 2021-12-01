@@ -1,4 +1,4 @@
-import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER } from "../actions/types";
+import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS } from "../actions/types";
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     search:[],
     categories:[],
     filteredUsers:[],
-    technologie:[]
+    technologie:[],
+    details:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -59,6 +60,12 @@ export default function rootReducer(state = initialState, action) {
                         
                     }
                 
+                case GET_DETAILS:
+                    return{
+                        ...state,
+                        details: action.payload.content
+                    }
+
                 default:
                     return state;
 
