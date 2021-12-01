@@ -36,12 +36,11 @@ export function getCategories() {
 
 
 export function postLogin(payload){
-  return async function(){
+  return async function(dispatch){
     const user = await axios.post('http://localhost:3001/api/login', payload)
-    console.log(user.data)
-    return user
+    console.log(user.data) // LA RESPUESTA (POSITIVA O NEGATIVA, LLEGA AQUI)
   }
-}
+} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
     return async function(dispatch){

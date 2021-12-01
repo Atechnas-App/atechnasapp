@@ -30,6 +30,7 @@ const { log } = useSelector((state) => state);
     e.preventDefault()
     if (ifFormIsValid()) {
       dispatch(postLogin(formValues));
+      history.push('/')
     }
   }
 
