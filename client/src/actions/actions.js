@@ -177,6 +177,14 @@ export const setError = (err) => ({
 export const removeError = () => ({
   type: types.removeError,
 });
+export const setError1 = (err1) => ({
+  type: types.setError1,
+  payload: err1,
+});
+
+export const removeError1 = () => ({
+  type: types.removeError1,
+});
 
 export const startLoding = () => ({
   type: types.startLoding,

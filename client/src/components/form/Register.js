@@ -4,18 +4,18 @@ import { useDispatch, useSelector} from 'react-redux';
 // import { useNavigate } from 'react-router';
 import "./form.css"
 import validator from 'validator'
-import { getCategories, postUser, removeError, setError, startUploading } from "../../actions/actions";
+import { getCategories, postUser, removeError1, setError1, startUploading } from "../../actions/actions";
 
 
-export const Register = (cloudResp) => {
-  console.log(cloudResp)
+export const Register = () => {
+ 
   const photo = localStorage.getItem("profileImage")
  console.log(photo)
 
   const dispatch = useDispatch();
   // const navigate = useNavigate()
   const categories = useSelector((state) => state.rootReducer.categories)
-  const {log} = useSelector((state) => state)
+  const {auth} = useSelector((state) => state)
 
   useEffect(() => {
     dispatch(getCategories())
@@ -56,23 +56,7 @@ export const Register = (cloudResp) => {
     }
   }
 
- /* function onInputChange(e) {
-    e.preventDefault()
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    })
-        category: user.category.concat(e.target.value),
-      });
-    } else {
-      setUser({
-        ...user,
-        category: user.category?.filter(
-          (category) => category !== e.target.value
-        ),
-      });
-    }
-  } */
+
 
   function onInputChange(e) {
     
@@ -99,7 +83,7 @@ export const Register = (cloudResp) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    if(ifFormIsValid()){
+    if(ifFormIsValid1()){
     dispatch(postUser(user));
     alert("¡Usuario creado con éxito!");
     setUser({
@@ -109,24 +93,24 @@ export const Register = (cloudResp) => {
       password: "",
       profilePicture: '',
       portfolio: "",
-      confirmpassword: "",
+      confirmPassword: "",
       category: [],
     });
   
   }// navigate('/profile')
   }
   
-const ifFormIsValid = () => {
+const ifFormIsValid1 = () => {
   if (!validator.isEmail(user.email)) {
-    dispatch(setError( "El email no es válido"));
+    dispatch(setError1( "El email no es válido"));
     return false;
   }
-  if (user.password !== user.confirmpassword) {
-    dispatch(setError("Las contraseñas no coinciden"));
+  if (user.password !== user.confirmPassword) {
+    dispatch(setError1("Las contraseñas no coinciden"));
     return false;
   }
   if (user.password.trim().length === 0) {
-    dispatch(setError("Falta la contraseña"));
+    dispatch(setError1("Falta la contraseña"));
     return false;
   }
   if (  user.name.length === 0 ||
@@ -134,7 +118,7 @@ const ifFormIsValid = () => {
         alert("Por favor, complete todos los campos");
         return false;
         }
-  dispatch(removeError());
+  dispatch(removeError1());
   return true;
 };
 
@@ -234,9 +218,9 @@ const ifFormIsValid = () => {
               onChange={handleFileChange}
             />
             <input
-            type="text"
-            onChenge={(e)=>onInputChange(e)}
-            value={user.profilePicture} 
+            type="hiden"
+            onChange={(e)=>onInputChange(e)}
+            value={photo} 
             />
             
 
@@ -278,7 +262,7 @@ const ifFormIsValid = () => {
         >
           Registrarse
         </button>
-        {log.msgError && <div>{log.msgError}</div>}
+        {auth.msgError1 && <div>{auth.msgError1}</div>}
       </form>
     </div>
   );
