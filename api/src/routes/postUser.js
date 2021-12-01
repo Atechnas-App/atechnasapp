@@ -12,15 +12,14 @@ initializePassport(
 
 const router = Router();
 
-const login = router.post(
-  "/login",
-  checkNotAuthenticated,
-  passport.authenticate("local", {
-    successRedirect: "/", // esto te redirecciona a localhost:3001/ --> osea donde esta levantado el back
-    failureRedirect: "/acaPuedeser",
-    failureFlash: true,
-  })
-);
+const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+    failureFlash: true
+}), (req, res) => {
+    console.log(req.user)
+    if(req.user){
+        res.send(req.user)
+    }
+})
 
 const register = router.post(
   "/register",
@@ -74,6 +73,7 @@ const register = router.post(
 const home = router.get("/home", (req, res) => {
   res.send("logueado !!");
 });
+
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
