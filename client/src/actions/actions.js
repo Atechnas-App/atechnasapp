@@ -200,8 +200,6 @@ export const finishLoding = () => ({
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
    const fileUrl = await fileUpload(file)
-   dispatch(fileUrl)
   localStorage.setItem("profileImage", fileUrl)
-  console.log(dispatch(fileUrl))
  }
 }

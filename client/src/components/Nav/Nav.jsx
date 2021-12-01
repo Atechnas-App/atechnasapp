@@ -15,7 +15,7 @@ export default function Nav(){
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
    const user = JSON.parse(localStorage.getItem("user")); 
-   localStorage.setItem("profileImage", " ");
+  
    let name1 = user.name?user.name:"";
    let photo1  = user.profilePicture?user.profilePicture:"";
 
