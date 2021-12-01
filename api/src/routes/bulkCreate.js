@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User,Technology,Category } = require('../db');
+const { User,Technology,Category,Language } = require('../db');
 
 const router = Router();
 
@@ -44,4 +44,15 @@ router.post('/bulkcreateCategory', async (req, res, next) => {
 
 });
 
+router.post('/bulkcreateLanguage', async (req, res, next) => {
+    try {
+        const newLanguage = await Language.create(req.body)
+        res.status(200).send('idioma en db')
+    }
+    catch (error) {
+        console.log(error)
+        next(error)
+    }
+
+});
 module.exports = router;
