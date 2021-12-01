@@ -50,21 +50,21 @@ router.put("/profile/:id", async (req, res, next) => {
         where: { category: categories },
         include: [User],
       });
-      user.addCategory(categoriesDb);
+      user.setCategories(categoriesDb);
     }
     if (technologies) {
       let technologiesDb = await Technology.findAll({
         where: { technology: technologies },
         include: [User],
       });
-      user.addTechnology(technologiesDb);
+      user.setTechnologies(technologiesDb);
     }
     if (languages) {
       let languagesDb = await Language.findAll({
         where: { languages: languages },
         include: [User],
       });
-      user.addLanguage(languagesDb);
+      user.setLanguages(languagesDb);
     }
     await user.save();
     // let newUser = await User.update(
