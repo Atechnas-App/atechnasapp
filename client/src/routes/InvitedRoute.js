@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { CompleteRegister } from '../components/form/CompleteRegister';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
@@ -8,12 +8,11 @@ import Perfil from "../components/Perfil/Perfil"
 
 export const InvitedRoute = () => {
     return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<LoginadnRegister />} />
-        <Route path="/results" element={<SearchPage />} />
-        <Route path="/completeregister" element={<CompleteRegister />} />
-        {/* <Route exact path="/id" component={<Perfil />} /> */}
-      </Routes>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={LoginadnRegister} />
+        <Route exact path="/results" component={SearchPage } />
+        <Route exact path="/completeregister" component={CompleteRegister} />
+      </Switch>
     );
 }

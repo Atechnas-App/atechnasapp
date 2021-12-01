@@ -9,18 +9,17 @@ import {
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
-import { useNavigate } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 
 
 
 
 export const Login = () => {
-const navigate =useNavigate()
+const history =useHistory()
 const dispatch = useDispatch()
 
-const { log } = useSelector((state) => state);  
-
+const state = useSelector((state) => state);  
 
   const [formValues, handleInputChange] = useForm({
     email: "",
@@ -33,21 +32,18 @@ const { log } = useSelector((state) => state);
     e.preventDefault()
     if (ifFormIsValid()) {
       dispatch(postLogin(formValues));
+      history.push('/')
     }
+    
   }
-
-
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
-  if(log.auth){
-    navigate('/')
-  }
-  
+  if(state === true){
+    history.push('/')
+  } 
     
 }
-
-
 
   const ifFormIsValid = () => {
 
@@ -62,10 +58,6 @@ const handleGoogleLogin = () => {
     return true;
 
   };
-
-
-
-
 
   return (
 
@@ -94,7 +86,12 @@ const handleGoogleLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-        <div
+       {/*  {log.msgError && (
+        <div >{log.msgError}</div>
+      )} */}
+
+      <p/>
+        <button
           className="google-btn"
           onClick={handleGoogleLogin}
         /* disabled={loading} */
@@ -106,15 +103,12 @@ const handleGoogleLogin = () => {
               alt="google button"
             />
           </div>
-          {log.msgError && (
-          <div >{log.msgError}</div>
-        )}
         <p className="btn-text">
               <b>Entrar con Google</b>
             </p>
           <p />
 
-          </div>
+          </button>
         </form>
       </div>
     );

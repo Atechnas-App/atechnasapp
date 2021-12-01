@@ -11,24 +11,29 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
 
-    idUser: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-
-    description: {
+    title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
-    keywords: {
+    company: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    qualification: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
 
   });

@@ -2,22 +2,29 @@ import React from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 // import foto from "../../assets/img/Persona1.png";
 import './Nav.css';
-import {Link} from 'react-router-dom';
+import {Link , useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutAll } from '../../actions/actions';
-import {  useNavigate } from 'react-router';
+
 
 
 export default function Nav(){
 
-   const navigate = useNavigate()
+   const history = useHistory()
  const dispatch = useDispatch()
+ localStorage.setItem("user", "{}");
+ localStorage.setItem("profileImage", " ");
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
-      
+   const user = JSON.parse(localStorage.getItem("user")); 
+  
+   let name1 = user.name?user.name:"";
+   let photo1  = user.profilePicture?user.profilePicture:"";
+
    const handleLogout = () => {
        dispatch(logoutAll());
-       navigate("/login");     
+       localStorage.setItem("user", "{}")
+       history.push("/login");     
    }
     
     return (
@@ -27,15 +34,15 @@ export default function Nav(){
         </Link>
         <SearchBar></SearchBar>
 
-        {!name ? (
+        {!name && !name1 ? (
           <Link className="linkNavReg" to="/login">
             <h3>Ingresar / Registrarse</h3>
           </Link>
         ) : (
           <div className="containerUser">
             <div className="containerUserImg">
-              <img className="imgUser" src={photo} alt="" />
-              <h3 className="nameUser">{name}</h3>
+              <img className="imgUser" src={photo ? photo : photo1} alt="imagen usuario" width="100vw" heigth="100vh"/>
+              <h3 className="nameUser">{name ? name : name1}</h3>
             </div>
             <button onClick={handleLogout}>cerrar sesion</button>
           </div>

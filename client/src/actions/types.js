@@ -13,7 +13,9 @@ export const GET_DETAILS = 'GET_DETAILS'
 export const types = {
     login:'[auth] login',
     logout:'[auth] logout',
-       
+    
+    setError1:'setError1',
+    removeError1:'removeError1',
     setError:'setError',
     removeError:'removeError',
 

@@ -1,29 +1,37 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTechnologies} from '../../../../actions/actions.js';
+import {getTechnologies, technologyFilter} from '../../../../actions/actions.js';
 
 
-//falta conectar el listado (la tabla del back) para que cuando busques te aparezcan las opciones
+//Select con listado de posibles keywords para buscar
 export default function TechFilter(){
     const [keywords, setKeywords]= useState([])
     const dispatch = useDispatch();
     const tech = useSelector((state)=> state.rootReducer.technologies)
-
+    
     useEffect(()=> {
         dispatch(getTechnologies())
     }, [dispatch]);
+    
+    console.log("TECNOLOGIAS", tech);
 
+    function deleteKey(e){
+        e.preventDefault();
+        setKeywords(
+           
+            keywords.filter(t => t !== e.target.value)
+        )
+    }
 
     function handleChange(e){
         e.preventDefault();
-        setKeywords([...keywords, e.target.value])
+        setKeywords(
+            [...keywords, e.target.value]
+            )
+        dispatch(technologyFilter(keywords))
     }
 
-    function submitForm(e){
-        e.preventDefault();
-        
-    }
 
     return(
         <div>
@@ -31,9 +39,20 @@ export default function TechFilter(){
                 <h3>Tecnologias</h3>
             </div>
             <div>
-                <form onSubmit={(e)=>{submitForm(e)}}>
-                    <input type="text" name='keywords' value={keywords} onChange={(e)=>{handleChange(e)}}/>
-                </form>
+                <select  onChange={(e)=>{handleChange(e)}}>
+                    
+                        {
+                            tech?.map(e => {
+                                return (<option key={e.id} value={e.technology}> {e.technology} </option>)
+                            })
+
+                        }
+                </select>    
+            </div>
+            <div>
+                {keywords?.map((e, i)=>(
+                    <button className='botonesTemps' key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
+                ))} 
             </div>
         </div>
     )
