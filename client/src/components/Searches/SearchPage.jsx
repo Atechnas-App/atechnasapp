@@ -24,18 +24,20 @@ export default function SearchPage(){
                     <Filtros/>
                     
                 <div>
-                    {searching?.map((e) => {
-                    return <CardPeople
-                    profilePicture={e.profilePicture}
-                    name={e.name}
-                    lastName={e.lastName}
-                    technology = {e.technology}
-                    qualification = {e.qualification}
-                    id={e.id}
-                    key={e.id}
-                    categories={e.categories}
-                    />
-                    })}
+                    {
+                        searching?.map((e) => {
+                        return <CardPeople
+                        profilePicture={e.profilePicture}
+                        name={e.name}
+                        lastName={e.lastName}
+                        technology = {e.technology}
+                        qualification = {e.qualification}
+                        id={e.id}
+                        key={e.id}
+                        categories={e.categories}
+                        />
+                        })
+                    }
                 </div>
                 </div>
             </div>     

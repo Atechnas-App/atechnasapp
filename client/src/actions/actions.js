@@ -66,7 +66,8 @@ export function categoryFilter(payload) {
 
 export function technologyFilter(payload) {
   return async function(dispatch){
-      const tech = await axios('http://localhost:3001/api/filterByTechnology', payload)
+      const tech = await axios('http://localhost:3001/api/filterByTechnology?technologies=' + payload)
+      
       dispatch({
           type: TECHNOLOGY_FILTER,
           payload: tech.data
@@ -77,6 +78,7 @@ export function technologyFilter(payload) {
 export function getTechnologies(payload) {
   return async function(dispatch){
       const tech = await axios('http://localhost:3001/api/getTechnologies', payload)
+      console.log('ACTION TECH', tech.data)
       dispatch({
           type: GET_TECHNOLOGIES,
           payload: tech.data
