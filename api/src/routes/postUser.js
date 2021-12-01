@@ -73,10 +73,7 @@ const register = router.post(
 const home = router.get("/home", (req, res) => {
   res.send("logueado !!");
 });
-const home = router.get('/home', (req, res) =>{
-    console.log(req.user)
-    res.send('logueado!')
-})
+
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

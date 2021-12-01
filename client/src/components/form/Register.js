@@ -7,6 +7,7 @@ import validator from 'validator'
 import { getCategories, postUser, removeError1, setError1, startUploading } from "../../actions/actions";
 
 
+
 export const Register = () => {
  
   const photo = localStorage.getItem("profileImage")
@@ -76,6 +77,7 @@ export const Register = () => {
     const file = e.target.files[0];
     if(file){
       dispatch(startUploading(file));
+      
     }
   
   }
