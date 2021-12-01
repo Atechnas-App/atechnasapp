@@ -1,36 +1,32 @@
 import React from 'react'
-import { Route, Routes } from 'react-router'
-import {BrowserRouter} from 'react-router-dom'
-import { PrivateRouter } from './PrivateRouter'
-import { PublicRouter } from './PublicRouter'
+/* import { Route } from 'react-router' */
 import { InvitedRoute } from "./InvitedRoute";
-import { HomeRoute } from './HomeRoute'
+import { HomeRoute } from "./HomeRoute"
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 
 
 export const AppRoutes = () => {
-    return (
-      <div>
-        <BrowserRouter>
-          
-          <Routes>
-            <Route
-              path="/*"
-              element={
-                <InvitedRoute />
-              }
-              />
-              
 
+
+  return (
+    <div>
+        <BrowserRouter>          
+          <Switch>
             <Route
-              path="/*"
-              element={
-                <HomeRoute />
+              path="/"
+              component={
+                InvitedRoute
               }
               />
-              {/* <PrivateRouter> */}
-              {/* </PrivateRouter> */}
-          </Routes>
+            <Route
+             path="/"
+             component={HomeRoute}
+             />
+              
+          </Switch>
         </BrowserRouter>
       </div>
     );
-}
+  }
+  
