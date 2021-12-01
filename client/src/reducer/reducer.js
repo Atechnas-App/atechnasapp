@@ -6,7 +6,7 @@ const initialState = {
     search:[],
     categories:[],
     filteredUsers:[],
-    technologie:[]
+    technologies:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -48,7 +48,7 @@ export default function rootReducer(state = initialState, action) {
                 case GET_TECHNOLOGIES:
                     return {
                         ...state,
-                        technologie: action.payload.content,
+                        technologies: action.payload,
                         
                     }
 
