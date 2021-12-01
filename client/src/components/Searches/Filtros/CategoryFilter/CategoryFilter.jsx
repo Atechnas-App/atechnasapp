@@ -1,7 +1,23 @@
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { categoryFilter, getCategories } from "../../../../actions/actions"
 import "./CategoryFilter.css"
 
 export default function CatFilter(){
-    return(
+    const dispatch = useDispatch()
+    const categories = useSelector((state)=> state.rootReducer.categories)
+    useEffect(() => {
+        dispatch(getCategories())
+    },[dispatch])
+
+    function handleCheck(e){
+        e.preventDefault()
+        console.log('FILTRADO POR CAT', e.target.value)
+        dispatch(categoryFilter(e.target.value))
+        }
+    
+      
+    return (
         <div>
             <div>
                 <h3>Categoria</h3>
@@ -9,18 +25,15 @@ export default function CatFilter(){
             <div>
                 <form>
                     <div className="container-checkbox">
-                        <div className="container-checkbox-input">
-                            <input type='checkbox' value='recruiter' id='recruiter' className="checkbox-input"></input>
-                            <input type='checkbox' value='developer' id='developer' className="checkbox-input"></input>
-                            <input type='checkbox' value='marketing' id='marketing' className="checkbox-input"></input>
-                            <input type='checkbox' value='designer' id='designer' className="checkbox-input"></input>
-                        </div>
-                        <div className="container-checkbox-label">
-                            <label>Recruiter</label>
-                            <label>Developer</label>
-                            <label>Marketing</label>
-                            <label>Designer</label>
-                        </div>
+              {
+                  categories && categories.map(c => {
+                  return <div>
+                    <input key={c.id} type='checkbox' name='category' value={c.category} onChange={(e) => handleCheck(e)} className='checkbox'/>
+                    <label>{c.category}</label>
+                  </div>
+                  
+                })
+              }     
                     </div>
                 </form>
             </div>
