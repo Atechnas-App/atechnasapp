@@ -3,6 +3,7 @@ const { User, Technology } = require("../db");
 const router = Router();
 
 router.get("/getTechnologies", async (req, res, next) => {
+  // no anda
   try {
     const allTechnologies = await Technology.findAll({ 
       include: User, 
@@ -14,7 +15,7 @@ router.get("/getTechnologies", async (req, res, next) => {
 });
 
 router.get("/filterByTechnology", async (req, res, next) => {
-  try {
+  try { 
     const {technologies} = req.query;
     const filteredByTechnology = await Technology.findAll({
       
