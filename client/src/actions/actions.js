@@ -60,7 +60,6 @@ export function Search(payload) {
 export function categoryFilter(payload) {
     return async function(dispatch){
         const category = await axios('http://localhost:3001/api/filterByCategory?categories='+payload)
-        console.log('INFO CAT', category.data[0]?.users[0].lastName)
         dispatch({
             type: CATEGORY_FILTER,
             payload: category.data

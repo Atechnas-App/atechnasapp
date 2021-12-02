@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { User, Category } = require("../db");
+const { User, Category, Technology } = require("../db");
 
 const router = Router();
 
@@ -23,7 +23,8 @@ router.get("/filterByCategory", async (req, res, next) => {
     const cat = categories.split('-')
     const filteredByCategory = await Category.findAll({
       where: { category: cat },
-      include: [{ model: User }],
+      include: [{ model: User },
+      {model: Technology}],
     });
     res.status(200).send(filteredByCategory);
   } catch (err) {
