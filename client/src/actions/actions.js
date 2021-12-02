@@ -48,7 +48,7 @@ export function Search(payload) {
   
     return async function(dispatch){
         const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
-        
+        console.log('INFO SEARCH', searching.data)
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -59,7 +59,7 @@ export function Search(payload) {
 export function categoryFilter(payload) {
     return async function(dispatch){
         const category = await axios('http://localhost:3001/api/filterByCategory?categories='+payload)
-        console.log('INFO CAT', category.data[0]?.users[0].lastName)
+        console.log('INFO CAT', category.data)
         dispatch({
             type: CATEGORY_FILTER,
             payload: category.data

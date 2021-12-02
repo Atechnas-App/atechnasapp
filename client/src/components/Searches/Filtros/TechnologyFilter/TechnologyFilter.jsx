@@ -14,23 +14,23 @@ export default function TechFilter(){
     }, [dispatch]);
     
     const [keywords, setKeywords]= useState([]);
-    // console.log("keywords", keywords);
+    console.log("keywords LOCAL", keywords);
 
     function deleteKey(e){
         e.preventDefault();
+        dispatch(technologyFilter(keywords.filter(t => t !== e.target.value).join('-')))
         setKeywords(
-           
             keywords.filter(t => t !== e.target.value)
         )
     }
 
     function handleChange(e){
         e.preventDefault();
+        console.log("array tech ONCHANGE", keywords)
+        dispatch(technologyFilter([...keywords, e.target.value].join('-')))
         setKeywords(
             [...keywords, e.target.value]
         )
-            // console.log("array tech", keywords)
-        dispatch(technologyFilter(keywords.join('-')))
     }
 
 

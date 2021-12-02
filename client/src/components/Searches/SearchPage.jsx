@@ -30,7 +30,8 @@ export default function SearchPage(){
                     {   searching[0]?.users?
 
                         searching?.map((e) => {
-                        e.users?.map((u)=> {
+                            var categorie = e.category;
+                         return e.users?.map((u)=> {
 
                             return (<CardPeople
                             profilePicture={u.profilePicture}
@@ -40,7 +41,7 @@ export default function SearchPage(){
                             qualification = {u.qualification}
                             id={u.id}
                             key={u.id}
-                            categories={e.categories}
+                            categories={categorie}
                             />)
                         }) 
                         
