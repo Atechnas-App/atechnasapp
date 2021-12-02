@@ -13,7 +13,9 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
                 }
                 <p>{technology? technology?.map((e) => e) : 'Javascript | React | Readux | Node.js'}</p>
                 <p>{qualification}</p>
-                <Link to={"/" + id}><button className='botonDetalleCard'>Mas Detalles</button></Link>
+                <Link to={`/${id}`}>
+                    <button className='botonDetalleCard'>Mas Detalles</button>
+                </Link>
             </div>
         </div>
     )
