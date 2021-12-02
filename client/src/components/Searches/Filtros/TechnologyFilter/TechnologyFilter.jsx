@@ -6,7 +6,6 @@ import {getTechnologies, technologyFilter} from '../../../../actions/actions.js'
 
 //Select con listado de posibles keywords para buscar
 export default function TechFilter(){
-    const [keywords, setKeywords]= useState([])
     const dispatch = useDispatch();
     const tech = useSelector((state)=> state.rootReducer.technologies)
     
@@ -14,7 +13,8 @@ export default function TechFilter(){
         dispatch(getTechnologies())
     }, [dispatch]);
     
-    console.log("TECNOLOGIAS", tech);
+    const [keywords, setKeywords]= useState([]);
+    console.log("keywords", keywords);
 
     function deleteKey(e){
         e.preventDefault();
@@ -28,8 +28,9 @@ export default function TechFilter(){
         e.preventDefault();
         setKeywords(
             [...keywords, e.target.value]
-            )
-        dispatch(technologyFilter(keywords))
+        )
+            console.log("array tech", keywords)
+        dispatch(technologyFilter(keywords.join('-')))
     }
 
 
@@ -40,7 +41,7 @@ export default function TechFilter(){
             </div>
             <div>
                 <select  onChange={(e)=>{handleChange(e)}}>
-                    
+                        
                         {
                             tech?.map(e => {
                                 return (<option key={e.id} value={e.technology}> {e.technology} </option>)
@@ -51,7 +52,7 @@ export default function TechFilter(){
             </div>
             <div>
                 {keywords?.map((e, i)=>(
-                    <button className='botonesTemps' key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
+                    <button key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
                 ))} 
             </div>
         </div>

@@ -9,7 +9,7 @@ import CardPeople from '../../Cards/CardPeople'
 export const OutStandingPeople = () => {
     const dispatch = useDispatch();
     const users = useSelector((state)=> state.rootReducer.users)
-    console.log("COMPONENTE", users)
+    
     
     useEffect(() => {           
         dispatch(getUser()); 
