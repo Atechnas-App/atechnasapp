@@ -63,7 +63,7 @@ export default function rootReducer(state = initialState, action) {
                 case GET_DETAILS:
                     return{
                         ...state,
-                        details: action.payload.content
+                        details: action.payload
                     }
 
                 default:

@@ -13,6 +13,7 @@ export const InvitedRoute = () => {
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />
         <Route exact path="/completeregister" component={CompleteRegister} />
+        <Route exact path="/:id" component={Perfil} />
       </Switch>
     );
 }
