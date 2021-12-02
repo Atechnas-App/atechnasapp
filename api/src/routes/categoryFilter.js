@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { User, Category } = require("../db");
+const { User, Category, Language, Technology } = require("../db");
 
 const router = Router();
 
@@ -20,10 +20,13 @@ router.get("/filterByCategory", async (req, res, next) => {
     // ordenar por calificacion
     //
     const { categories } = req.query;
-    const cat = categories.split('-')
-    const filteredByCategory = await Category.findAll({
-      where: { category: cat },
-      include: [{ model: User }],
+    const cat = categories.split("-");
+    console.log("soy un array", cat);
+    const filteredByCategory = await User.findAll({
+      where: {
+        "$categories.category$": cat,
+      },
+      include: [ Category, Language, Technology],
     });
     res.status(200).send(filteredByCategory);
   } catch (err) {

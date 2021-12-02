@@ -47,7 +47,7 @@ export function postLogin(payload){
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
         console.log('ACTION SEARCH', searching.data)    
         dispatch({
             type: SEARCH,
