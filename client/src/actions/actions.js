@@ -1,4 +1,5 @@
 
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
@@ -46,7 +47,8 @@ export function postLogin(payload){
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)    
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
+        console.log('ACTION SEARCH', searching.data)    
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -196,14 +198,6 @@ export const finishLoding = () => ({
   type: types.finishLoding,
 });
 
-
-export const startUploading = (file)=>{
-  return  async (dispatch)=>{
-   const fileUrl = await fileUpload(file)
-   console.log(fileUrl)
-   localStorage.setItem("profileImage", fileUrl)
-  }
-}
 
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
