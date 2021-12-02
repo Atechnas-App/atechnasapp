@@ -34,7 +34,7 @@ export default function CatFilter(){
         };
         e.preventDefault();
         
-        console.log("array cat",category);
+        console.log("CAT onChange",category);
         dispatch(categoryFilter(category.join('-')))
         }
     

@@ -29,7 +29,7 @@ export default function SearchPage(){
                 <div>
                     {   
                         searching?.map((e) => {
-                        return (<CardPeople
+                        return <CardPeople
                         profilePicture={e.profilePicture}
                         name={e.name}
                         lastName={e.lastName}
@@ -38,7 +38,7 @@ export default function SearchPage(){
                         id={e.id}
                         key={e.id}
                         categories={e.categories}
-                        />)
+                        />
                         })
                         
                     }
