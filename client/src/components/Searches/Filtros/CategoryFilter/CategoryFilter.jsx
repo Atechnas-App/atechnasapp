@@ -19,7 +19,6 @@ export default function CatFilter(){
     //para que se concatenen y hay que filtrarlo para sacar los que no se checkean
 
     function handleCheck(e){
-        e.preventDefault();
         if (e.target.checked) {
            
             setCategory(
@@ -33,6 +32,7 @@ export default function CatFilter(){
                 category?.filter(c => c !== e.target.value)
                 )
         };
+        e.preventDefault();
         
         console.log("array cat",category);
         dispatch(categoryFilter(category.join('-')))

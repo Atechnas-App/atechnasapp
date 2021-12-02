@@ -1,26 +1,26 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { User } = require("../db");
+const { User, Category } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
   // Recibo un array de strings las cuales van ser las palabras filtro
   try {
     const { query } = req.query;
-    // const categorias = ["developer", "design", "marketing", "recruiter"];
+    const categorias = ["developer", "design", "marketing", "recruiter"];
     // const toLowerQuery = query.toLowerCase();
 
     // Categories filter
-    const filteredByCategory = await Category.findAll({
-      where: { category: { [Op.iLike]: "%" + query + "%" } },
-      include: [{ model: User }],
-    });
+    // const filteredByCategory = await Category.findAll({
+    //   where: { category: { [Op.iLike]: "%" + query + "%" } },
+    //   include: [{ model: User }],
+    // });
 
     const dbSearch = categorias.includes(query)
       ? {
           where: {
-            category:
-            {[Op.iLike]: "%" + query + "%"},
+            category: query,
+            // {[Op.iLike]: "%" + query + "%"},
           },
         }
       : {
@@ -39,7 +39,7 @@ router.get("/search", async (req, res) => {
           },
         };
 
-    const filtro = await User.findAll(dbSearch);
+    const filtro = await User.findAll({dbSearch, include:[Category]});
 
     res.status(200).send(filtro);
   } catch (error) {

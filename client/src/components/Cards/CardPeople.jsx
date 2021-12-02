@@ -7,7 +7,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
         <div>
             <div className='contenedorCard'>
                 <img src={profilePicture} alt="img not found" className='imgCard' />
-                <p className='nombreCard'>{name.toUpperCase()} {lastName.toUpperCase()}</p>
+                <p className='nombreCard'> {name} {lastName}</p>
                 {categories?.map((e) =>{ 
                     return(<p>{e.category}</p>)}) 
                 }
