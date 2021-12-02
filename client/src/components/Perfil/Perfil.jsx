@@ -3,7 +3,8 @@ import React from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import { getDetails } from "../../actions/actions";
-import Persona1 from "../../assets/img/Persona1.png"
+import Nav from "../Nav/Nav"
+import { Link } from "react-router-dom";
 
 export default function Perfil(props){
 const dispatch = useDispatch()
@@ -14,17 +15,22 @@ useEffect(() => {
     dispatch(getDetails(fullId))
 }, [dispatch]);
 
+console.log(detail)
 
     return(
         <div className="perfil-container">
+            <Nav/>
             <div className="datos-perfil">
                 <div className="foto-perfil">
                     <div>
                         <img src={detail.profilePicture}></img>
-                        <div>{detail.categories} {detail.qualification}</div>
+                        <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div>
                     </div>
                     <div>
                         <form>
+                            <Link>
+                                <button>Editar Perfil</button>
+                            </Link>
                             <button>Mensaje</button> 
                             <button>Contratar</button>
                         </form>
@@ -33,15 +39,11 @@ useEffect(() => {
                 <div className="descripcion-perfil">
                     <h1>{detail.name} {detail.lastName}</h1>
                     <h4></h4>
-                    <p></p>
-                    <a></a>
-                    <div>
-                        <h4></h4>
-                        <h4></h4>
-                        <h4></h4>
-                        <h4></h4>
-
-                    </div>
+                    <p>{detail.description}</p>
+                    <a href={detail.portfolio}>Portfolio</a>
+                    <div>{detail.technologies?detail.technologies.map((e)=>{
+                        return <h3>{e.technology}</h3>
+                    }):"Sin keywords"}</div>
                 </div>
             </div>
             <div className="trabajos-perfil">
