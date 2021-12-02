@@ -1,4 +1,4 @@
-
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES } from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
@@ -199,7 +199,22 @@ export const finishLoding = () => ({
 
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
+
+/* Swal.fire({
+  title: 'Subiendo imagen',
+  text: 'Espere un momento',
+  allowOutsideClick: false,
+  onOpen: () => {
+    Swal.showLoading()
+  }
+}) */
+
+    try{    
    const fileUrl = await fileUpload(file)
   localStorage.setItem("profileImage", fileUrl)
- }
+    }catch(error){
+      console.log(error)
+    }
+/* Swal.close() */
+}
 }
