@@ -200,14 +200,15 @@ export const finishLoding = () => ({
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
 
-/* Swal.fire({
+Swal.fire({
   title: 'Subiendo imagen',
   text: 'Espere un momento',
   allowOutsideClick: false,
+  showConfirmButton: false,
   onOpen: () => {
     Swal.showLoading()
   }
-}) */
+})
 
     try{    
    const fileUrl = await fileUpload(file)
@@ -215,6 +216,6 @@ export const startUploading = (file)=>{
     }catch(error){
       console.log(error)
     }
-/* Swal.close() */
+Swal.close()
 }
 }
