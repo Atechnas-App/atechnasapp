@@ -33,7 +33,7 @@ router.get("/search", async (req, res) => {
           { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
         ],
       },
-      include: [Category, Language, Technology],
+       include: [Category, Language, Technology], 
 
       limit: size,
       offset: page * size,

@@ -46,9 +46,10 @@ export function postLogin(payload){
 } // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
+  
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        console.log('ACTION SEARCH', searching.data)    
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
+        
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -59,7 +60,6 @@ export function Search(payload) {
 export function categoryFilter(payload) {
     return async function(dispatch){
         const category = await axios('http://localhost:3001/api/filterByCategory?categories='+payload)
-        console.log('ACTION CATEGORIA', category.data)
         dispatch({
             type: CATEGORY_FILTER,
             payload: category.data
@@ -81,7 +81,7 @@ export function technologyFilter(payload) {
 export function getTechnologies(payload) {
   return async function(dispatch){
       const tech = await axios('http://localhost:3001/api/getTechnologies', payload)
-      console.log('ACTION TECH', tech.data)
+      
       dispatch({
           type: GET_TECHNOLOGIES,
           payload: tech.data
