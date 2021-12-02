@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
@@ -46,8 +46,7 @@ export function postLogin(payload){
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        console.log('ACTION SEARCH', searching.data)    
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)    
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -200,23 +199,20 @@ export const finishLoding = () => ({
 
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
-
-Swal.fire({
-  title: 'Subiendo imagen',
-  text: 'Espere un momento',
-  allowOutsideClick: false,
-  showConfirmButton: false,
-  onOpen: () => {
-    Swal.showLoading()
-  }
-})
-
-    try{    
    const fileUrl = await fileUpload(file)
-  localStorage.setItem("profileImage", fileUrl)
-    }catch(error){
-      console.log(error)
-    }
-Swal.close()
+   console.log(fileUrl)
+   localStorage.setItem("profileImage", fileUrl)
+  }
 }
-}
+
+
+export function getDetails(id) {
+  return async function(dispatch){
+    const users = await axios.get("http://localhost:3001/api/details/" + id)
+    return dispatch({
+      type: GET_DETAILS,
+      payload: users.data
+    })
+  }
+ }
+ 
