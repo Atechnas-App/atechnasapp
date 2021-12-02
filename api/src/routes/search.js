@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const { Op, where } = require("sequelize");
+<<<<<<< HEAD
 const { User, Category, Technology, Language } = require("../db");
+=======
+const { User, Category, Language, Technology } = require("../db");
+>>>>>>> 29a16bb0cc06096895f154edbc4c49bd1a03b30f
 const router = Router();
 
 router.get("/search", async (req, res) => {
@@ -33,7 +37,11 @@ router.get("/search", async (req, res) => {
           { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
         ],
       },
+<<<<<<< HEAD
       include: [Category, Language, Technology],
+=======
+       include: [Category, Language, Technology], 
+>>>>>>> 29a16bb0cc06096895f154edbc4c49bd1a03b30f
 
       limit: size,
       offset: page * size,

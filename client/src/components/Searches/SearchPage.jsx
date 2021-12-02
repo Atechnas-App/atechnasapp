@@ -12,8 +12,8 @@ export default function SearchPage(){
     const searching = useSelector((state)=> state.rootReducer.search);
     
 
-    const dispatch = useDispatch();
-   console.log("Cards de search", searching)
+
+   
     
   
     
@@ -27,8 +27,25 @@ export default function SearchPage(){
                     <Filtros/>
                     
                 <div>
-                    {   
+                    {   searching[0]?.users?
+
                         searching?.map((e) => {
+                        e.users?.map((u)=> {
+
+                            return (<CardPeople
+                            profilePicture={u.profilePicture}
+                            name={u.name}
+                            lastName={u.lastName}
+                            technology = {u.technology}
+                            qualification = {u.qualification}
+                            id={u.id}
+                            key={u.id}
+                            categories={e.categories}
+                            />)
+                        }) 
+                        
+                        })
+                        : searching?.map((e) => {
                         return <CardPeople
                         profilePicture={e.profilePicture}
                         name={e.name}
