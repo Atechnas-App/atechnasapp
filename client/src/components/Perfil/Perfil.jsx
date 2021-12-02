@@ -28,7 +28,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <div>
                         <form>
-                            <Link>
+                            <Link to={`/editPerfil/${fullId}`}>
                                 <button>Editar Perfil</button>
                             </Link>
                             <button>Mensaje</button> 
