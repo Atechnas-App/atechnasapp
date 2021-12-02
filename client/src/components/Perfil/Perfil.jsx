@@ -15,7 +15,7 @@ useEffect(() => {
     dispatch(getDetails(fullId))
 }, [dispatch]);
 
-console.log(detail)
+console.log(detail.categories, "Hay categorias?")
 
     return(
         <div className="perfil-container">
