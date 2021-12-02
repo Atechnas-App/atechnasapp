@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const { Op } = require("sequelize");
-const { User } = require("../db");
+const { Op, } = require("sequelize");
+const { User, Technology, Category } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
@@ -18,26 +18,26 @@ router.get("/search", async (req, res) => {
 
     const dbSearch = categorias.includes(query)
       ? {
-          where: {
-            category:
-            {[Op.iLike]: "%" + query + "%"},
-          },
-        }
+        where: {
+          category:
+            { [Op.iLike]: "%" + query + "%" },
+        },
+      }
       : {
-          where: {
-            [Op.or]: [
-              {
-                name: { [Op.iLike]: "%" + query + "%" },
-              },
-              {
-                lastName: { [Op.iLike]: "%" + query + "%" },
-              },
-              {
-                email: { [Op.iLike]: "%" + query + "%" },
-              },
-            ],
-          },
-        };
+        where: {
+          [Op.or]: [
+            {
+              name: { [Op.iLike]: "%" + query + "%" },
+            },
+            {
+              lastName: { [Op.iLike]: "%" + query + "%" },
+            },
+            {
+              email: { [Op.iLike]: "%" + query + "%" },
+            },
+          ],
+        },
+      };
 
     const filtro = await User.findAll(dbSearch);
 
@@ -48,5 +48,33 @@ router.get("/search", async (req, res) => {
     // console.log(Model.rawAttributes.category);
   }
 });
+
+
+router.get('/prueba', async (req, res) => {
+  try {
+    const { buscar } = req.query
+
+    const resultadoUser = await User.findAll(
+      {
+        where: {
+          [Op.or]: [
+            { name: { [Op.iLike]: `%${buscar}%` } },
+            { lastName: { [Op.iLike]: `%${buscar}%` } },
+            { '$technologies.technology$': { [Op.iLike]: `%${buscar}%` } },
+            { '$categories.category$': { [Op.iLike]: `%${buscar}%` } },
+            { '$languages.languages$': { [Op.iLike]: `%${buscar}%` } },
+          ]
+        },
+        include: {
+          all: true,
+        }
+
+      })
+
+    res.status(200).send(resultadoUser)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;
