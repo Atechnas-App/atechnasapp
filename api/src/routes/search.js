@@ -4,48 +4,44 @@ const { User, Technology, Category } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
-  // Recibo un array de strings las cuales van ser las palabras filtro
   try {
-    const { query } = req.query;
-    // const categorias = ["developer", "design", "marketing", "recruiter"];
-    // const toLowerQuery = query.toLowerCase();
+    const pageAsNumber = Number.parseInt(req.query.page);
+    const sizeAsNumber = Number.parseInt(req.query.size);
 
-    // Categories filter
-    const filteredByCategory = await Category.findAll({
-      where: { category: { [Op.iLike]: "%" + query + "%" } },
-      include: [{ model: User }],
-    });
-
-    const dbSearch = categorias.includes(query)
-      ? {
-        where: {
-          category:
-            { [Op.iLike]: "%" + query + "%" },
-        },
+    let page = 0;
+    if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+      page = pageAsNumber;
+    }
+    let size = 15;
+    if (!Number.isNaN(sizeAsNumber)) {
+      if (sizeAsNumber > 0 && sizeAsNumber < 15) {
+        size = sizeAsNumber;
       }
-      : {
-        where: {
-          [Op.or]: [
-            {
-              name: { [Op.iLike]: "%" + query + "%" },
-            },
-            {
-              lastName: { [Op.iLike]: "%" + query + "%" },
-            },
-            {
-              email: { [Op.iLike]: "%" + query + "%" },
-            },
-          ],
-        },
-      };
+    }
+    const { searcher } = req.query;
 
-    const filtro = await User.findAll(dbSearch);
+    // Pagination : this will give an object with properties :
+    //  count{total of rows}  and rows{{data users},{data users},{data users}}
+    const users = await User.findAll({
+      where: {
+        [Op.or]: [
+          { name: { [Op.iLike]: `%${searcher}%` } },
+          { lastName: { [Op.iLike]: `%${searcher}%` } },
+          { description: { [Op.iLike]: `%${searcher}%` } },
+          { "$categories.category$": { [Op.iLike]: `%${searcher}%` } },
+          { "$languages.languages$": { [Op.iLike]: `%${searcher}%` } },
+          { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
+        ],
+      },
+      include: { all: true },
 
-    res.status(200).send(filtro);
+      limit: size,
+      offset: page * size,
+      subQuery: false,
+    });
+    res.send(users);
   } catch (error) {
     console.log(error.message);
-    console.log(error.parameters);
-    // console.log(Model.rawAttributes.category);
   }
 });
 

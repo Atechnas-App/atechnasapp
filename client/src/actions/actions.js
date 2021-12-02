@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES } from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -42,11 +42,12 @@ export function postLogin(payload){
     loglocal()
     return user
   }
-}
+} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)    
+        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
+        console.log('ACTION SEARCH', searching.data)    
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -200,8 +201,18 @@ export const finishLoding = () => ({
 export const startUploading = (file)=>{
   return  async (dispatch)=>{
    const fileUrl = await fileUpload(file)
-   dispatch(fileUrl)
-  localStorage.setItem("profileImage", fileUrl)
-  console.log(dispatch(fileUrl))
- }
+   console.log(fileUrl)
+   localStorage.setItem("profileImage", fileUrl)
+  }
 }
+
+
+export function getDetails(id) {
+  return async function(dispatch){
+    const users = await axios.get("http://localhost:3001/api/details/" + id)
+    return dispatch({
+      type: GET_DETAILS,
+      payload: users.data
+    })
+  }
+ }

@@ -5,9 +5,11 @@ import CatFilter from "./CategoryFilter/CategoryFilter"
 export default function Filtros(){
     return(
         <div>
+            
             <CatFilter/>
             <QualFilter/>
             <TechFilter/>
+            
         </div>
     )
 }

@@ -9,9 +9,11 @@ import {Search} from "../../actions/actions"
 
 export default function SearchPage(){
 
-    const searching = useSelector((state)=> state.rootReducer.search)
+    const searching = useSelector((state)=> state.rootReducer.search);
+    
+
     const dispatch = useDispatch();
-   
+   console.log("Cards de search", searching)
     
   
     
@@ -25,7 +27,7 @@ export default function SearchPage(){
                     <Filtros/>
                     
                 <div>
-                    {
+                    {   
                         searching?.map((e) => {
                         return <CardPeople
                         profilePicture={e.profilePicture}
@@ -38,8 +40,10 @@ export default function SearchPage(){
                         categories={e.categories}
                         />
                         })
+                        
                     }
                 </div>
+                
 
                 </div>
                 
