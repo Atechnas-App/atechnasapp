@@ -16,7 +16,7 @@ export const Register = () => {
   const dispatch = useDispatch();
   // const navigate = useNavigate()
   const categories = useSelector((state) => state.rootReducer.categories)
-  const {auth} = useSelector((state) => state)
+  const {log} = useSelector((state) => state)
 
   useEffect(() => {
     dispatch(getCategories())
@@ -33,12 +33,28 @@ export const Register = () => {
     category: [] // ver como pasarlo a array
   })
 
+  const [input, setInput] = useState({
+    profilePicture1:" ",
+    photo:" ",
+  });
  
+
+  console.log("register cat", user.category)
+
+  const onInpudPhoto = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
+    document.querySelector("#inputPhoto").click();
+  }
+
 
 
   const handleImageClick = (e) => {
     e.preventDefault();
     document.querySelector("#fotoPerfil").click();
+    
   };
 
    function handleCheck(e) {
@@ -219,14 +235,9 @@ const ifFormIsValid1 = () => {
               style={{ display: "none" }}
               onChange={handleFileChange}
             />
-            <input
-            type="hiden"
-            onChange={(e)=>onInputChange(e)}
-            value={photo} 
-            />
             
 
-            <img src={photo} alt="foto perfil"  width="250vw" height="250vh"/>
+            <img src={photo} alt="foto perfil" name="photo" onChange={onInpudPhoto} width="250vw" height="250vh"/>
             <br />
             <button
               className="botonImg"
@@ -236,6 +247,13 @@ const ifFormIsValid1 = () => {
             >
               subir
             </button>
+              <input
+              type="hiden"
+              id="inputPhoto"
+              name="profilePicture1"
+              onChange={(e)=>onInpudPhoto(e)}
+              value={photo} 
+              />
           </div>
           <div className="grupoRegister">
             <p className="labels">Categoría</p>
@@ -264,7 +282,7 @@ const ifFormIsValid1 = () => {
         >
           Registrarse
         </button>
-        {auth.msgError1 && <div>{auth.msgError1}</div>}
+        {log.msgError1 && <div>{log.msgError1}</div>}
       </form>
     </div>
   );

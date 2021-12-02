@@ -7,7 +7,8 @@
     "category": "Front End Developer",
     "profilePicture": "https://robohash.org/inciduntconsequunturoccaecati.png?size=50x50&set=set1",
     "languages": "Español",
-    "technology": "React js"
+    "technology": "React js",
+    "description": "Soy re bacan"
   },
   {
     "name": "Gonza",
@@ -17,7 +18,8 @@
     "category": "Front End Developer",
     "profilePicture": "https://robohash.org/inciduntconsequunturoccaecati.png?size=50x50&set=set1",
     "languages": "Inglés",
-    "technology": "JavaScript"
+    "technology": "JavaScript",
+    "description": "asdfasdfsad"
   },
   {
     "name": "Tomas",
