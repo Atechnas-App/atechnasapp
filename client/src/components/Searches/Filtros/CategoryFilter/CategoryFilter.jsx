@@ -44,7 +44,7 @@ export default function CatFilter(){
     return (
         <div>
             <div>
-                <h3>Categoria</h3>
+                <h3 className='h3-categories h3-all'>Categoria</h3>
             </div>
             
               

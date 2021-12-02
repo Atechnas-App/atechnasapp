@@ -2,7 +2,7 @@ export default function QualFilter(){
     return(
         <div>
             <div>
-                <h3>Calificación</h3>
+                <h3 className='h3-all'>Calificación</h3>
             </div>
             <div>
                 <form>

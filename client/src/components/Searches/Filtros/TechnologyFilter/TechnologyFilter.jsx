@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTechnologies, technologyFilter} from '../../../../actions/actions.js';
-
+import './TechnologyFilter.css'
 
 //Select con listado de posibles keywords para buscar
 export default function TechFilter(){
@@ -37,7 +37,7 @@ export default function TechFilter(){
     return(
         <div>
             <div>
-                <h3>Tecnologias</h3>
+                <h3 className='h3-all'>Tecnologias</h3>
             </div>
             <div>
                 <select  onChange={(e)=>{handleChange(e)}}>
