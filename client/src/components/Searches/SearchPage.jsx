@@ -13,7 +13,7 @@ export default function SearchPage(){
     
 
     const dispatch = useDispatch();
-   console.log("Cards de search", searching)
+//    console.log("Cards de search", searching)
     
   
     

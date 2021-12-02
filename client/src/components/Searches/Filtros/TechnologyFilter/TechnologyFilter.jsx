@@ -14,7 +14,7 @@ export default function TechFilter(){
     }, [dispatch]);
     
     const [keywords, setKeywords]= useState([]);
-    console.log("keywords", keywords);
+    // console.log("keywords", keywords);
 
     function deleteKey(e){
         e.preventDefault();
@@ -29,7 +29,7 @@ export default function TechFilter(){
         setKeywords(
             [...keywords, e.target.value]
         )
-            console.log("array tech", keywords)
+            // console.log("array tech", keywords)
         dispatch(technologyFilter(keywords.join('-')))
     }
 
