@@ -2,22 +2,22 @@ import React from 'react';
 import freelancer from '../../../assets/img/freelancerHome.jpg';
 import './OutStandingPeople.css'
 import {useDispatch, useSelector} from 'react-redux';
-import {getUser} from '../../../actions/actions';
+import {getBestOf} from '../../../actions/actions';
 import {useEffect} from 'react';
 import CardPeople from '../../Cards/CardPeople'
 
 export const OutStandingPeople = () => {
     const dispatch = useDispatch();
-    const users = useSelector((state)=> state.rootReducer.users)
+    const users = useSelector((state)=> state.rootReducer.bestof)
     
     
     useEffect(() => {           
-        dispatch(getUser()); 
+        dispatch(getBestOf('Back End Developer')); 
+        dispatch(getBestOf('Design')); 
+        dispatch(getBestOf('Marketing')); 
     }, [dispatch]);
     
-    let developer =  users?.filter((e) => e.categories[0].category.includes('Developer'))
-    console.log('USER', users)
-    console.log('DEV', developer)
+   
 
 
     //POR CALIFICACIÓN PRIMERO ORDERNARLO DE MAYOR A MENOR 
@@ -41,7 +41,6 @@ export const OutStandingPeople = () => {
                 {   
                     users?.map((e, i) => {
                         
-                    if(i < 3 && e.categories[0].category.includes('Developer')){
                        
                     return (
                     <CardPeople
@@ -55,7 +54,7 @@ export const OutStandingPeople = () => {
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     
                     />
-                    )}
+                    )
                     })
                 }
                 </div>
@@ -66,7 +65,7 @@ export const OutStandingPeople = () => {
                 <div className='best'>
                 {
                     users?.map((e, i) => {
-                    if(e.categories[0].category.includes('Design')){
+
                             
                     console.log("DESIGN", e)
                     return (
@@ -80,7 +79,7 @@ export const OutStandingPeople = () => {
                     key={e.id}
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
-                    )}
+                    )
                     })
                 }
                 </div>
@@ -91,7 +90,6 @@ export const OutStandingPeople = () => {
                 <div className='best'>
                 {
                     users?.map((e, i) => {
-                    if(i < 3 && e.categories[0].category.includes('Marketing')){
                        
                     return (
                     <CardPeople
@@ -104,7 +102,7 @@ export const OutStandingPeople = () => {
                     key={e.id}
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
-                    )}
+                    )
                     })
                 }
                 </div>

@@ -34,6 +34,7 @@ router.get("/filterByCategory", async (req, res, next) => {
     next(err);
   }
 });
+
 router.get("/bestOf", async (req, res, next) => {
   try {
     const {bestOf}=req.query

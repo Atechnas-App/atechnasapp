@@ -7,6 +7,9 @@ export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const POST_USER = 'POST_USER'
 export const GET_DETAILS = 'GET_DETAILS'
 export const FILTER = 'FILTER'
+export const DEVELOPER = 'DEVELOPER'
+export const DESIGN = 'DESIGN'
+export const MARKETING = 'MARKETING'
 
 
 

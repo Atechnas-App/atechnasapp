@@ -1,7 +1,8 @@
 
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -30,6 +31,17 @@ export function getCategories() {
     dispatch({
       type: GET_CATEGORIES,
       payload: categories.data
+    })
+    
+  }
+}
+
+export function getDevelopers(payload) {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestDevelopers');
+    dispatch({
+      type: DEVELOPER,
+      payload: bestof.data
     })
     
   }
