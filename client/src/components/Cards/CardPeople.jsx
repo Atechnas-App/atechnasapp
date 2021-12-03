@@ -8,11 +8,19 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
             <div>
                 <div className='contenedor-img-card'>
                 <img src={profilePicture} alt="img not found" className='imgCard' />
+                <p className='nombreCard'> {name} {lastName}</p>
+                <div className="container-categorias">
+                {categories?.map((e) =>{ 
+                    return(<h3 className="categorias-text">| {e.category} |</h3>)
+                    }) 
+                }
                 </div>
-                <p className='nombreCard'> {name.toUpperCase()} {lastName.toUpperCase()}</p>
-                {Array.isArray(categories)? categories?.map((e) =>{ return(<p>{e.category}</p>)}) : categories}
-                <p className='technologies'>{technology? technology?.map((e) => e) : 
-                'Javascript | React | Readux | Node.js'}</p>
+                <div className="container-tecnologias">
+                {technology?.map((e) => {
+                    return (<h3 className="tecnologias-text">| {e.technology} |</h3>)
+                    })
+                }
+                </div>
                 <p>{qualification}</p>
 
                 <div>
@@ -20,6 +28,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
                 </div>
 
             </div>
+        </div>
         </div>
     )
 }

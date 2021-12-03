@@ -231,4 +231,11 @@ export function getDetails(id) {
     })
   }
  }
+
+ export function editProfile(id, payload){
+   return async function(){
+    const editedProfile = await axios.put("http://localhost:3001/api/profile/" + id, payload)
+      return editedProfile
+   }
+ }
  
