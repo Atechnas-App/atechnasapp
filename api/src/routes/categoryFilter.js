@@ -26,9 +26,26 @@ router.get("/filterByCategory", async (req, res, next) => {
       where: {
         "$categories.category$": cat,
       },
-      include: [ Category, Language, Technology],
+      include: [Category, Language, Technology],
+      // limit:3,
     });
     res.status(200).send(filteredByCategory);
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/bestOf", async (req, res, next) => {
+  try {
+    const {bestOf}=req.query
+    const developers = await User.findAll({
+      where: {
+        "$categories.category$": bestOf,
+      },
+      include: [Category, Language, Technology],
+      limit: 3,
+      subQuery: false,
+    });
+    res.status(200).send(developers);
   } catch (err) {
     next(err);
   }
