@@ -36,11 +36,34 @@ export function getCategories() {
   }
 }
 
-export function getDevelopers(payload) {
+export function getDevelopers() {
   return async function(dispatch){
     const bestof = await axios('http://localhost:3001/api/bestDevelopers');
+    console.log('ACTION DEV', bestof.data)
     dispatch({
       type: DEVELOPER,
+      payload: bestof.data
+    })
+    
+  }
+}
+
+export function getDesign() {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestDesign');
+    dispatch({
+      type: DESIGN,
+      payload: bestof.data
+    })
+    
+  }
+}
+
+export function getMarketing() {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestMarketing');
+    dispatch({
+      type: MARKETING,
       payload: bestof.data
     })
     

@@ -8,7 +8,9 @@ const initialState = {
     // filteredUsers:[],
     technologie:[],
     details:[],
-    developers:[]
+    developers:[],
+    design:[],
+    marketing:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -37,6 +39,16 @@ export default function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         developers: action.payload
+                    }
+                case DESIGN:
+                    return{
+                        ...state,
+                        design: action.payload
+                    }
+                case MARKETING:
+                    return{
+                        ...state,
+                        marketing: action.payload
                     }
                 case FILTER:
                     

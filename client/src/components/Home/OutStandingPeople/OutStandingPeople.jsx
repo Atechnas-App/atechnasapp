@@ -2,19 +2,22 @@ import React from 'react';
 import freelancer from '../../../assets/img/freelancerHome.jpg';
 import './OutStandingPeople.css'
 import {useDispatch, useSelector} from 'react-redux';
-import {getBestOf} from '../../../actions/actions';
+import {getDevelopers, getDesign, getMarketing} from '../../../actions/actions';
 import {useEffect} from 'react';
 import CardPeople from '../../Cards/CardPeople'
 
 export const OutStandingPeople = () => {
     const dispatch = useDispatch();
-    const users = useSelector((state)=> state.rootReducer.bestof)
+    const dev = useSelector((state)=> state.rootReducer.developers)
+    const dis = useSelector((state)=> state.rootReducer.design)
+    const mar = useSelector((state)=> state.rootReducer.marketing)
     
+    console.log("LOCAL DEV", dev)
     
     useEffect(() => {           
-        dispatch(getBestOf('Back End Developer')); 
-        dispatch(getBestOf('Design')); 
-        dispatch(getBestOf('Marketing')); 
+        dispatch(getDevelopers()); 
+        dispatch(getDesign()); 
+        dispatch(getMarketing()); 
     }, [dispatch]);
     
    
@@ -39,7 +42,7 @@ export const OutStandingPeople = () => {
                 <div className='best'>
                 
                 {   
-                    users?.map((e, i) => {
+                    dev?.map((e, i) => {
                         
                        
                     return (
@@ -64,10 +67,10 @@ export const OutStandingPeople = () => {
                 <hr/>
                 <div className='best'>
                 {
-                    users?.map((e, i) => {
+                    dis?.map((e, i) => {
 
                             
-                    console.log("DESIGN", e)
+                   
                     return (
                     <CardPeople
                     profilePicture={e.profilePicture}
@@ -89,7 +92,7 @@ export const OutStandingPeople = () => {
                 <hr/>
                 <div className='best'>
                 {
-                    users?.map((e, i) => {
+                    mar?.map((e, i) => {
                        
                     return (
                     <CardPeople
