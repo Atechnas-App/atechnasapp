@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { categoryFilter, getCategories } from "../../../../actions/actions"
+import { Filter, getCategories } from "../../../../actions/actions"
 import "./CategoryFilter.css"
 
 export default function CatFilter(){
@@ -14,35 +14,37 @@ export default function CatFilter(){
     },[dispatch])
     
     const [category, setCategory] = useState([]);
-    console.log('category', category)
+    
     //poner un estado local donde se guarden las categorias en un array y mandarselo al back asi 
     //para que se concatenen y hay que filtrarlo para sacar los que no se checkean
 
     function handleCheck(e){
+        e.preventDefault();
         if (e.target.checked) {
            
+            dispatch(Filter([...category, e.target.value].join('-')))
             setCategory(
+                
                 [...category, e.target.value] 
                 
                 )
                
         }else {
+            
+            dispatch(Filter(category?.filter(c => c !== e.target.value).join('-')))
            
             setCategory(  
                 category?.filter(c => c !== e.target.value)
                 )
         };
-        e.preventDefault();
         
-        console.log("CAT onChange",category);
-        dispatch(categoryFilter(category.join('-')))
         }
     
       
     return (
         <div>
             <div>
-                <h3>Categoria</h3>
+                <h3 className='h3-categories h3-all'>Categoria</h3>
             </div>
             
               

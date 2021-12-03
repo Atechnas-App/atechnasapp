@@ -1,7 +1,7 @@
 
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -46,9 +46,10 @@ export function postLogin(payload){
 } // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
 
 export function Search(payload) {
+  
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?query='+ payload)
-        console.log('ACTION SEARCH', searching.data)    
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
+        console.log('ACTION SEARCH', searching.data)
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -56,31 +57,31 @@ export function Search(payload) {
     }
 }
 
-export function categoryFilter(payload) {
+export function Filter(payload) {
     return async function(dispatch){
-        const category = await axios('http://localhost:3001/api/filterByCategory?categories='+payload)
-        console.log('ACTION CATEGORIA', category.data)
+        const category = await axios('http://localhost:3001/api/filterSearch?searchValues='+payload)
+        console.log('INFO FILTER', category.data)
         dispatch({
-            type: CATEGORY_FILTER,
+            type: FILTER,
             payload: category.data
         })
     }
 }
 
-export function technologyFilter(payload) {
-  return async function(dispatch){
-      const tech = await axios('http://localhost:3001/api/filterByTechnology?technologies=' + payload)
+// export function technologyFilter(payload) {
+//   return async function(dispatch){
+//       const tech = await axios('http://localhost:3001/api/filterByTechnology?technologies=' + payload)
       
-      dispatch({
-          type: TECHNOLOGY_FILTER,
-          payload: tech.data
-      })
-  }
-}
+//       dispatch({
+//           type: TECHNOLOGY_FILTER,
+//           payload: tech.data
+//       })
+//   }
+// }
 
 export function getTechnologies(payload) {
   return async function(dispatch){
-      const tech = await axios('http://localhost:3001/api/getTechnologies', payload)
+      const tech = await axios('http://localhost:3001/api/getTechnologies')
       console.log('ACTION TECH', tech.data)
       dispatch({
           type: GET_TECHNOLOGIES,
@@ -230,5 +231,12 @@ export function getDetails(id) {
       payload: users.data
     })
   }
+ }
+
+ export function editProfile(id, payload){
+   return async function(){
+    const editedProfile = await axios.put("http://localhost:3001/api/profile/" + id, payload)
+      return editedProfile
+   }
  }
  

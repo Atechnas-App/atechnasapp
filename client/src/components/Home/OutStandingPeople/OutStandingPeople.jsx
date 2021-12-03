@@ -43,7 +43,7 @@ export const OutStandingPeople = () => {
                     profilePicture={e.profilePicture}
                     name={e.name}
                     lastName={e.lastName}
-                    technology = {e.technology}
+                    technology = {e.technologies}
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
@@ -69,7 +69,7 @@ export const OutStandingPeople = () => {
                     profilePicture={e.profilePicture}
                     name={e.name}
                     lastName={e.lastName}
-                    technology = {e.technology}
+                    technology = {e.technologies}
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
@@ -93,7 +93,7 @@ export const OutStandingPeople = () => {
                     profilePicture={e.profilePicture}
                     name={e.name}
                     lastName={e.lastName}
-                    technology = {e.technology}
+                    technology = {e.technologies}
                     qualification = {e.qualification}
                     id={e.id}
                     key={e.id}
