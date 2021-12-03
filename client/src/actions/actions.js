@@ -42,7 +42,18 @@ export function postLogin(payload){
     loglocal()
     return user
   }
-} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
+}
+
+export function githubLogin() {
+  return async function(dispatch){
+    const github = await axios('http://localhost:3001/api/github')
+    console.log(github)
+    dispatch({
+      type: 'GITHUB',
+      payload: github
+    })
+  }
+}
 
 export function Search(payload) {
     return async function(dispatch){

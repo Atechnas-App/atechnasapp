@@ -6,11 +6,17 @@ const initialState = {
     search:[],
     categories:[],
     filteredUsers:[],
-    technologies:[]
+    technologies:[],
+    githubUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'GITHUB':
+                    return {
+                        ...state,
+                        githubUser: action.payload
+                    }
         
                 case GET_USER:
                     
