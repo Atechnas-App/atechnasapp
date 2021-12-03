@@ -15,6 +15,11 @@ export const OutStandingPeople = () => {
         dispatch(getUser()); 
     }, [dispatch]);
     
+    let developer =  users?.filter((e) => e.categories[0].category.includes('Developer'))
+    console.log('USER', users)
+    console.log('DEV', developer)
+
+
     //POR CALIFICACIÓN PRIMERO ORDERNARLO DE MAYOR A MENOR 
     // DESPUES PONER LOS PRIMEROS TRES 
     // TIENE QUE ESTAR CONECTADO CON LA TABLA DE QUALIFICATIONS
@@ -33,10 +38,10 @@ export const OutStandingPeople = () => {
                 <hr className='hrOut'/>
                 <div className='best'>
                 
-                {
+                {   
                     users?.map((e, i) => {
-                        console.log('map pasar info', e.categories)
-                    if(i < 3){
+                        
+                    if(i < 3 && e.categories[0].category.includes('Developer')){
                        
                     return (
                     <CardPeople
@@ -59,11 +64,11 @@ export const OutStandingPeople = () => {
                 <h2>Diseño</h2>
                 <hr/>
                 <div className='best'>
-            
                 {
                     users?.map((e, i) => {
-                    if(i < 3){
-                       
+                    if(e.categories[0].category.includes('Design')){
+                            
+                    console.log("DESIGN", e)
                     return (
                     <CardPeople
                     profilePicture={e.profilePicture}
@@ -86,7 +91,7 @@ export const OutStandingPeople = () => {
                 <div className='best'>
                 {
                     users?.map((e, i) => {
-                    if(i < 3){
+                    if(i < 3 && e.categories[0].category.includes('Marketing')){
                        
                     return (
                     <CardPeople
