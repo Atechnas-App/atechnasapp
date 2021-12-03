@@ -14,35 +14,37 @@ export default function CatFilter(){
     },[dispatch])
     
     const [category, setCategory] = useState([]);
-    console.log('category', category)
+    console.log('cat Estado Local', category)
     //poner un estado local donde se guarden las categorias en un array y mandarselo al back asi 
     //para que se concatenen y hay que filtrarlo para sacar los que no se checkean
 
     function handleCheck(e){
+        e.preventDefault();
         if (e.target.checked) {
-           
+            console.log("CAT 1if",category);
+            dispatch(categoryFilter([...category, e.target.value].join('-')))
             setCategory(
+                
                 [...category, e.target.value] 
                 
                 )
                
         }else {
+            console.log("CAT else",category);
+            dispatch(categoryFilter(category?.filter(c => c !== e.target.value).join('-')))
            
             setCategory(  
                 category?.filter(c => c !== e.target.value)
                 )
         };
-        e.preventDefault();
         
-        console.log("CAT onChange",category);
-        dispatch(categoryFilter(category.join('-')))
         }
     
       
     return (
         <div>
             <div>
-                <h3>Categoria</h3>
+                <h3 className='h3-categories h3-all'>Categoria</h3>
             </div>
             
               
