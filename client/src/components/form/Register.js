@@ -214,7 +214,6 @@ export const Register = () => {
         <button
           type="submit"
           className="botonRegistrar"
-          onClick={(e) => onSubmit(e)}
         >
           Registrarse
         </button>
