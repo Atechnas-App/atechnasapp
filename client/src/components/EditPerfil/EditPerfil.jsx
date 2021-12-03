@@ -15,8 +15,8 @@ const detail = useSelector((state) => state.rootReducer.details)
 const userCategories = detail.categories.map((e)=>e.category)
 const userTechnologies = detail.technologies.map((e)=>e.technology)
 const userLanguages = detail.languages.map((e)=>e.languages)
-
-const categoriesToAdd = categories.filter(c => !userCategory.includes(c.category)) 
+const categoriesToAdd = categories.filter(c => !userCategories.includes(c.category))
+console.log(categoriesToAdd)
 
 useEffect(() => {
     dispatch(getCategories())
@@ -99,7 +99,8 @@ function onHandleCheck(e){
                     }):<option value="Sin idioma">Seleccionar idioma/s</option>}
                 </div>
                 <label>Categoría</label>
-                {detail.categories?detail.categories.map((e)=>{
+                <div>
+                    {detail.categories?detail.categories.map((e)=>{
                         return (
                             <div>
                                 <input type="checkbox" value={e.category} key={e.category} name="category" onChange={(e) => onHandleCheck(e)} defaultChecked/>
@@ -107,7 +108,17 @@ function onHandleCheck(e){
                             </div>
                         )
                     }):"Sin categoria"}
-                
+                </div>
+                <div>
+                    {categoriesToAdd?.map((e)=>{
+                    return (
+                        <div>
+                            <input type="checkbox" value={e.category} key={e.category} name="category" onChange={(e) => onHandleCheck(e)}/>
+                            <label>{e.category}</label> 
+                        </div>
+                    )
+                })}
+                </div>
                 <label>Keywords</label>
                 <input></input>
                 <label>Imagen</label>
