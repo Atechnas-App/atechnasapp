@@ -1,23 +1,105 @@
+
+
+
 .contenedorCard{
     text-align: center;
-    background: linear-gradient(#030303da, #9325d717);
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.63);
+    backdrop-filter: blur(5px);
     border-radius: 1em;
     margin: 1em;
     padding: 1em;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+    box-shadow: 4px 4px px rgba(0, 0, 0, 0.76);
     justify-content:space-between;
-    min-width: 20em;
-    border-right: solid 2px #9225d7;
-    border-bottom: solid 2px #9225d7;
+    min-width: 18em;
+    /* border-right: solid 2px #9225d7;
+    border-bottom: solid 2px #9225d7; */
+    border: 5px solid transparent;
+    border-image-slice: 1;
+    border-width: 2px;
+    /* border-image-source: linear-gradient(to bottom right, #52be84,  #9225d7); */
+    text-align: left;
+    transition: all .5s;
+}
+
+.btn:link,
+.btn:visited{
+  text-decoration: none;
+  text-transform:uppercase;
+  position:relative;
+  top:0;
+  left:0;
+  padding: 1em;
+  border-radius:1em;
+  display:inline-block;
+  transition: all .5s;
+}
+
+
+
+.btn:hover{
+   box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+   transform : translateY(-3px);
+}
+
+.btn:active{
+  box-shadow:0px 5px 10px rgba(0,0,0,0.2);
+  transform:translateY(-1px);
+}
+
+.btn-bottom-animation-1{
+  animation:comeFromBottom 1s ease-out .8s;
+}
+
+.btn::after{
+  content:"";
+  text-decoration: none;
+  text-transform:uppercase;
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  border-radius:1em;
+  display:inline-block;
+  z-index:-1;
+  transition: all .5s;
+}
+
+.btn-white::after {
+    background: rgb(0, 0, 0);
+}
+
+.btn-animation-1:hover::after {
+    transform: scaleX(1.2) scaleY(1.2);
+    opacity: 0;
+}
+
+@keyframes comeFromBottom{
+  0%{
+    opacity:0;
+    transform:translateY(40px);
+  } 
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+ 
+  
+.imgCard{
+
+    min-height: 120px;
+    min-width: 120px;
+    max-height: 120px;
+    max-width: 120px;
+    border-radius: 1em;
+   
     
 }
 
-.imgCard{
-    min-height: 100px;
-    min-width: 100px;
-    border-radius: 50%;
-    
+.technologies{
+    color: rgba(255, 255, 255, 0.596);
 }
 
 .nombreCard{
@@ -33,6 +115,7 @@
     font-size: 15px;
     border-radius: 0.5em;
     margin-top: 2em;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.726);
+    box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.753);
 
 }
+
