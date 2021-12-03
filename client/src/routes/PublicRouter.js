@@ -5,7 +5,7 @@ import { InvitedRoute } from './InvitedRoute'
 export const PublicRouter = () => {
     return (
         <Switch>
-            <Route path="/" element={InvitedRoute} />
+            <Route path="/" component={InvitedRoute} />
            {/*  <InvitedRoute/> */}
         </Switch>
     )

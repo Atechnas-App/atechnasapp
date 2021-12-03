@@ -54,11 +54,11 @@ export const Register = () => {
   }
 
   function onInputChange(e) {
-    e.preventDefault();
+    e.preventDefault()
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
-    });
+      [e.target.name]: e.target.value
+    })
   }
   // const handleOnClick = (e)=>{
   //   e.preventDefault();
@@ -68,10 +68,10 @@ export const Register = () => {
  
 
   function onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (ifFormIsValid1()) {
-      dispatch(postUser(user));
-      alert("¡Usuario creado con éxito!");
+      dispatch(postUser(user))
+      alert("¡Usuario creado con éxito!")
       setUser({
         name: "",
         lastName: "",
@@ -81,7 +81,7 @@ export const Register = () => {
         portfolio: "",
         confirmPassword: "",
         category: [],
-      });
+      })
     } // navigate('/profile')
   }
 
@@ -111,7 +111,7 @@ export const Register = () => {
       <form
         className="form-register"
         onSubmit={(e) => {
-          onSubmit(e);
+          onSubmit(e)
         }}
       >
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
@@ -207,18 +207,19 @@ export const Register = () => {
                     />
                     <label>{c.category}</label>
                   </div>
-                );
+                )
               })}
           </div>
         </div>
         <button
           type="submit"
           className="botonRegistrar"
+          onSubmit={(e) => onSubmit(e)}
         >
           Registrarse
         </button>
         {log.msgError1 && <div>{log.msgError1}</div>}
       </form>
     </div>
-  );
+  )
 };
