@@ -2,7 +2,7 @@
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
-  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -78,7 +78,18 @@ export function postLogin(payload){
     loglocal()
     return user
   }
-} // podemos hacer un dispatch de una action y mandar el payload, luego establecer la logica en el reducer
+}
+
+export function githubLogin() {
+  return async function(dispatch){
+    const github = await axios('http://localhost:3001/api/github')
+    console.log(github)
+    dispatch({
+      type: 'GITHUB',
+      payload: github
+    })
+  }
+}
 
 export function Search(payload) {
   
@@ -125,6 +136,15 @@ export function getTechnologies(payload) {
   }
 }
 
+export function getLanguages(payload) {
+  return async function(dispatch){
+      const lang = await axios('http://localhost:3001/api/language')
+      dispatch({
+          type: GET_LANGUAGES,
+          payload: lang.data
+      })
+  }
+}
 
 export const startGoogleLogin = () => {
 
@@ -269,7 +289,7 @@ export function getDetails(id) {
  }
 
  export function editProfile(id, payload){
-   return async function(){
+      return async function(){
     const editedProfile = await axios.put("http://localhost:3001/api/profile/" + id, payload)
       return editedProfile
    }

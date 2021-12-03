@@ -10,11 +10,14 @@ const getUserId = require('./getUsersDetails')
 const newJobs = require('./addJobsProfile')
 const filterByQualification = require('./qualificationFilter')
 const deletePost = require('./deletePost')
+const newTestimonial = require('./postTestimonials')
+const getTestimonial = require('./getTestimonial')
 const filterSearch = require('./filtersSearch')
-
+const getLanguages = require('./getLanguage')
 const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
-const { login, register, home } = require('./postUser')
+const { login, register } = require('./postUser')
+const githubLog = require('../controllers/passport-config-github')
 
  
 const router = Router();
@@ -24,6 +27,9 @@ const router = Router();
 
 
 router.use('/api', bulkCreate)
+router.use('/api', getTestimonial)
+router.use('/api', newTestimonial)
+router.use('/api', getLanguages)
 router.use('/api', getUsers)
 router.use('/api', getUserId)
 router.use('/api', newJobs)
@@ -35,10 +41,10 @@ router.use('/api', filterSearch)
 // router.use('/api', search)
 router.use('/api', login)
 router.use('/api', register)
-router.use('/api', home)
 router.use('/api', deletePost)
 router.use('/api', putUsers)
 router.use('/api', postTeams)
+router.use('/api', githubLog)
 
 
 
