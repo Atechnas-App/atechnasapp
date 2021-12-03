@@ -8,10 +8,18 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
             <div className='contenedorCard'>
                 <img src={profilePicture} alt="img not found" className='imgCard' />
                 <p className='nombreCard'> {name} {lastName}</p>
+                <div className="container-categorias">
                 {categories?.map((e) =>{ 
-                    return(<p>{e.category}</p>)}) 
+                    return(<h3 className="categorias-text">| {e.category} |</h3>)
+                    }) 
                 }
-                <p>{technology? technology?.map((e) => e) : 'Javascript | React | Readux | Node.js'}</p>
+                </div>
+                <div className="container-tecnologias">
+                {technology?.map((e) => {
+                    return (<h3 className="tecnologias-text">| {e.technology} |</h3>)
+                    })
+                }
+                </div>
                 <p>{qualification}</p>
                 <Link to={`/${id}`}>
                     <button className='botonDetalleCard'>Mas Detalles</button>

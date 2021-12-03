@@ -1,0 +1,33 @@
+.comentario-container{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 1em;
+    width: 95%;
+    max-width: 95%;
+    height: 175px;
+    max-height: 175px;
+}
+
+.comentario-usuario{
+    font-weight: normal;
+    text-transform: uppercase;
+    color: white;
+    margin: 0.2em 0em 0.2em 0em;
+    padding: 0.2em 0em 0.2em 0em;
+}
+
+.comentario-empresa{
+    font-weight: normal;
+    font-style: italic;
+    color: white;
+    padding: 0.2em 0em 0.2em 0em;
+}
+
+.comentario-text{
+    font-weight: normal;
+    color: white;
+    margin: 0.2em 0em 0.2em 0em;
+}

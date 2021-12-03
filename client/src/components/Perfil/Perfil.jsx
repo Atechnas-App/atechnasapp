@@ -5,6 +5,8 @@ import {useEffect} from 'react';
 import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
+import CardTrabajo from "./CardTrabajo/CardTrabajo"
+import CardComentario from "./CardComentario/CardComentario"
 
 export default function Perfil(props){
 const dispatch = useDispatch()
@@ -23,8 +25,8 @@ console.log(detail.categories, "Hay categorias?")
             <div className="datos-perfil">
                 <div className="foto-perfil">
                     <div>
-                        <img src={detail.profilePicture}></img>
-                        <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div>
+                        <img src={detail.profilePicture} alt="img not found"></img>
+                        {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
                     </div>
                     <div>
                         <form>
@@ -51,7 +53,7 @@ console.log(detail.categories, "Hay categorias?")
                     <h1>Mis trabajos</h1>
                 </div>
                 <div>
-                    <h2>Aca van los trabajos</h2>
+                    <CardTrabajo/>
                 </div>
             </div>
             <div className="comentarios-perfil">
@@ -59,7 +61,7 @@ console.log(detail.categories, "Hay categorias?")
                     <h1>Cometarios</h1>
                 </div>
                 <div>
-                    <h2>Aca van los comentarios</h2>
+                    <CardComentario/>
                 </div>
             </div>
         </div>

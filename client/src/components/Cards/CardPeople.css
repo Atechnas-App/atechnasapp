@@ -36,3 +36,21 @@
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.726);
 
 }
+
+.container-categorias{
+    display: flex;
+    text-transform: uppercase;
+}
+
+.container-tecnologias{
+    display: flex;
+    text-transform: uppercase;
+}
+
+.tecnologias-text{
+    font-weight: normal;
+}
+
+.categorias-text{
+    font-weight: normal;
+}
