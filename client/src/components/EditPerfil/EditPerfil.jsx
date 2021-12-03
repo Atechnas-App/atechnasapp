@@ -16,7 +16,7 @@ const userCategories = detail.categories.map((e)=>e.category)
 const userTechnologies = detail.technologies.map((e)=>e.technology)
 const userLanguages = detail.languages.map((e)=>e.languages)
 const categoriesToAdd = categories.filter(c => !userCategories.includes(c.category))
-
+console.log(categoriesToAdd)
 
 useEffect(() => {
     dispatch(getCategories())
@@ -113,8 +113,8 @@ function onHandleCheck(e){
                     {categoriesToAdd?.map((e)=>{
                     return (
                         <div>
-                            <input type="checkbox" value={e} key={e} name="category" onChange={(e) => onHandleCheck(e)}/>
-                            <label>{e}</label> 
+                            <input type="checkbox" value={e.category} key={e.category} name="category" onChange={(e) => onHandleCheck(e)}/>
+                            <label>{e.category}</label> 
                         </div>
                     )
                 })}
