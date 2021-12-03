@@ -9,13 +9,17 @@ router.post('/testimonial', async (req, res, next) => {
         const { 
             details,
             image,
+            name,
+            company
             
         } = req.body;
         
         await Testimonial.create(
             {  
                 details: details,
-                image: image, 
+                image: image,
+                name: name,
+                company: company, 
 
                 }
                 
