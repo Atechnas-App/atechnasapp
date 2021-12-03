@@ -44,7 +44,14 @@ export default function Nav(){
               <img className="imgUser" src={photo ? photo : photo1} alt="imagen usuario" width="100vw" heigth="100vh"/>
               <h3 className="nameUser">{name ? name : name1}</h3>
             </div>
+            <div className="menu pointerCursor hide">
+              <Link className="linkNav" to="/profile">
+                <h3>Perfil</h3>
+              </Link>
+              </div>
+              <div>
             <button onClick={handleLogout}>cerrar sesion</button>
+            </div>
           </div>
         )}
       </div>

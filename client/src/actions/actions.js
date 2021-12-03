@@ -1,4 +1,3 @@
-
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
@@ -221,14 +220,13 @@ Swal.fire({
 Swal.close()
 }
 }
-
 export function getDetails(id) {
-  return async function(dispatch){
-    const users = await axios.get("http://localhost:3001/api/details/" + id)
+  return async function (dispatch) {
+    const users = await axios.get("http://localhost:3001/api/details/" + id);
     return dispatch({
       type: GET_DETAILS,
-      payload: users.data
-    })
-  }
- }
+      payload: users.data,
+    });
+  };
+}
  
