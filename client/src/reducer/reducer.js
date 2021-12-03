@@ -8,11 +8,18 @@ const initialState = {
     filteredUsers:[],
     technologie:[],
     details:[],
-    languages:[]
+    languages:[],
+    // technologies:[],
+    githubUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'GITHUB':
+                    return {
+                        ...state,
+                        githubUser: action.payload
+                    }
         
                 case GET_USER:
                     

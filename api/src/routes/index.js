@@ -16,7 +16,8 @@ const filterSearch = require('./filtersSearch')
 const getLanguages = require('./getLanguage')
 const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
-const { login, register, home } = require('./postUser')
+const { login, register } = require('./postUser')
+const githubLog = require('../controllers/passport-config-github')
 
  
 const router = Router();
@@ -40,10 +41,10 @@ router.use('/api', filterSearch)
 // router.use('/api', search)
 router.use('/api', login)
 router.use('/api', register)
-router.use('/api', home)
 router.use('/api', deletePost)
 router.use('/api', putUsers)
 router.use('/api', postTeams)
+router.use('/api', githubLog)
 
 
 
