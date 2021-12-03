@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTechnologies, technologyFilter} from '../../../../actions/actions.js';
+import {getTechnologies, Filter} from '../../../../actions/actions.js';
 import './TechnologyFilter.css'
 
 //Select con listado de posibles keywords para buscar
@@ -14,11 +14,11 @@ export default function TechFilter(){
     }, [dispatch]);
     
     const [keywords, setKeywords]= useState([]);
-    console.log("keywords LOCAL", keywords);
+   
 
     function deleteKey(e){
         e.preventDefault();
-        dispatch(technologyFilter(keywords.filter(t => t !== e.target.value).join('-')))
+        dispatch(Filter(keywords.filter(t => t !== e.target.value).join('-')))
         setKeywords(
             keywords.filter(t => t !== e.target.value)
         )
@@ -26,8 +26,8 @@ export default function TechFilter(){
 
     function handleChange(e){
         e.preventDefault();
-        console.log("array tech ONCHANGE", keywords)
-        dispatch(technologyFilter([...keywords, e.target.value].join('-')))
+       
+        dispatch(Filter([...keywords, e.target.value].join('-')))
         setKeywords(
             [...keywords, e.target.value]
         )
