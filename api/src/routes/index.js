@@ -11,7 +11,7 @@ const newJobs = require('./addJobsProfile')
 const filterByQualification = require('./qualificationFilter')
 const deletePost = require('./deletePost')
 const filterSearch = require('./filtersSearch')
-
+const getLanguages = require('./getLanguage')
 const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
 const { login, register, home } = require('./postUser')
@@ -24,6 +24,7 @@ const router = Router();
 
 
 router.use('/api', bulkCreate)
+router.use('/api', getLanguages)
 router.use('/api', getUsers)
 router.use('/api', getUserId)
 router.use('/api', newJobs)
