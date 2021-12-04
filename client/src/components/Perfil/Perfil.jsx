@@ -11,10 +11,12 @@ import CardComentario from "./CardComentario/CardComentario"
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
+const {id} = JSON.parse(localStorage.getItem("user")); 
+
 let fullId = props.match.params.id
 
 useEffect(() => {
-    dispatch(getDetails(fullId))
+    dispatch(getDetails(fullId, id))
 }, [dispatch]);
 
 console.log(detail.categories, "Hay categorias?")
@@ -25,12 +27,12 @@ console.log(detail.categories, "Hay categorias?")
             <div className="datos-perfil">
                 <div className="foto-perfil">
                     <div>
-                        <img src={detail.profilePicture} alt="img not found"></img>
+                        <img src={detail.profilePicture} alt="img not found" width="250vw" height="250vh"></img>
                         {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
                     </div>
                     <div>
                         <form>
-                            <Link to={`/editPerfil/${fullId}`}>
+                            <Link to={`/editPerfil/${fullId, id}`}>
                                 <button>Editar Perfil</button>
                             </Link>
                             <button>Mensaje</button> 

@@ -84,8 +84,9 @@ const photo = localStorage.getItem("profileImage");
     e.preventDefault()
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
+    
   }
 
 
@@ -169,7 +170,7 @@ const photo = localStorage.getItem("profileImage");
                     value={user.profilePicture}
                   />
                   <br />
-                  <button className="botonImg" onClick={handleImageClick}>
+                  <button className="botonImg" onClick={handleImageClick} cursor="pointer">
                     subir
                   </button>
                 </div>

@@ -1,6 +1,17 @@
 
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
+import {
+  types,
+  GET_USER,
+  SEARCH,
+  CATEGORY_FILTER,
+  TECHNOLOGY_FILTER,
+  GET_TECHNOLOGIES,
+  FILTER,
+  GET_CATEGORIES,
+  GET_DETAILS,
+  GET_LANGUAGES,
+} from "../actions/types";
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
 
@@ -223,3 +234,13 @@ export function getDetails(id) {
   };
 }
  
+
+ export function editProfile(id, payload) {
+   return async function () {
+     const editedProfile = await axios.put(
+       "http://localhost:3001/api/profile/" + id,
+       payload
+     );
+     return editedProfile;
+   };
+ }

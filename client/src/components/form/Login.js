@@ -21,9 +21,10 @@ export const Login = () => {
 const history =useHistory()
 const dispatch = useDispatch()
 
-const {logued} = useSelector((state) => state);  
-console.log(logued)
-  const [formValues, handleInputChange] = useForm({
+const {auth,msgError1} = useSelector((state) => state.logued);  
+
+ 
+const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
   })
@@ -42,13 +43,13 @@ console.log(logued)
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
-  if(logued.auth === true){
+  if(auth === true){
     window.location.replace('/')
   } 
 }
 const handleGithubLogin = () => {
-  // dispatch(githubLogin())
-  window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
+  
+  window.open('http://localhost:3001/api/github', '_self')
 }
 
   const ifFormIsValid = () => {
@@ -70,6 +71,7 @@ const handleGithubLogin = () => {
     <div className='entrarContainer'>
       <h1 className='tituloRegister'>ENTRAR</h1>
       {/* LOGIN LOCAL  */}
+
       <form onSubmit={handleLogin}>
         <div>
           <p className='labels'>E-mail</p>
@@ -92,8 +94,8 @@ const handleGithubLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-        {logued.msgError1 && (
-        <div >{logued.msgError1}</div>
+        {msgError1 && (
+        <div >{msgError1}</div>
       )}
 
       <p/>
