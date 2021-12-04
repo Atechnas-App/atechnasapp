@@ -54,13 +54,13 @@ router.get('/login/failed', (req, res) => {
     success: false,
     message: 'failure'
   })
-})
+}) // HACER EL HANDLE POR SI CANCELA EL PERMISO DE AUTORIZACION EN GITHUB A LA PAGINA
 
 router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
 
 router.get('/github/callback', passport.authenticate('github', {
   successRedirect: 'http://localhost:3000',
-  failureRedirect: '/login/failed'
+  failureRedirect: 'http://localhost:3000/login'
 }))
 
 
