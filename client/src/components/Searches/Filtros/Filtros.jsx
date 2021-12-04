@@ -3,13 +3,14 @@ import QualFilter from "./QualificationFilter/QualificationFilter"
 import CatFilter from "./CategoryFilter/CategoryFilter"
 import {useState} from 'react';
 
+
 export default function Filtros(){
    
     return(
-        <div >
+        <div className='fixed-filters'>
             
             <CatFilter />
-            <QualFilter/>
+            {/* <QualFilter/> */}
             <TechFilter/>
             
         </div>

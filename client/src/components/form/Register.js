@@ -114,10 +114,12 @@ export const Register = () => {
           onSubmit(e)
         }}
       >
+
+      <div>
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
         <div className="flex">
           <div className="grupoRegister">
-        <UpLoadImage  />
+        
         <p/>
             <p className="labels">Nombre</p>
             <input
@@ -168,7 +170,7 @@ export const Register = () => {
         </div>
 
         <div className="flex">
-          <div className="grupoRegister">
+          <div className="grupoRegister"> 
             <p className="labels">Link al Portfolio</p>
             <input
               type="text"
@@ -190,27 +192,30 @@ export const Register = () => {
               className="fields"
             />
           </div>
-
-          <div className="grupoRegister">
-            <p className="labels">Categoría</p>
-            {categories &&
-              categories.map((c) => {
-                return (
-                  <div>
-                    <input
-                      key={c.id}
-                      type="checkbox"
-                      name="category"
-                      value={c.category}
-                      onChange={(e) => handleCheck(e)}
-                      className="checkbox"
-                    />
-                    <label>{c.category}</label>
-                  </div>
-                )
-              })}
-          </div>
-        </div>
+        </div>  
+            <div className="flex">
+              <UpLoadImage  />
+              <div className="grupoRegister">
+                <p className="labels">Categoría</p>
+                {categories &&
+                  categories.map((c) => {
+                    return (
+                      <div>
+                        <input
+                          key={c.id}
+                          type="checkbox"
+                          name="category"
+                          value={c.category}
+                          onChange={(e) => handleCheck(e)}
+                          className="checkbox"
+                        />
+                        <label>{c.category}</label>
+                      </div>
+                    )
+                  })}
+              </div>
+            </div>
+       
         <button
           type="submit"
           className="botonRegistrar"
@@ -219,6 +224,7 @@ export const Register = () => {
           Registrarse
         </button>
         {log.msgError1 && <div>{log.msgError1}</div>}
+      </div>
       </form>
     </div>
   )

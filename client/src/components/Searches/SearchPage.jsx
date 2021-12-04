@@ -26,18 +26,19 @@ export default function SearchPage(){
                 </div>
                 <div className="container-all">
                     <div className='container-filtro'>
-                        <Filtros/>
+                        <Filtros  className='fixed-filters'/>
                     </div>
                     
                     <div className='container-cards'>
                     {   
 
                             searching?.map((e) => {
+                            
                             return <CardPeople
                             profilePicture={e.profilePicture}
                             name={e.name}
                             lastName={e.lastName}
-                            technology = {e.technology}
+                            technology = {e.technologies}
                             qualification = {e.qualification}
                             id={e.id}
                             key={e.id}
