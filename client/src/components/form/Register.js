@@ -21,22 +21,7 @@ const photo = localStorage.getItem("profileImage");
   const categories = useSelector((state) => state.rootReducer.categories);
   const { msgError } = useSelector((state) => state.logued);
 
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-
-  const [user, setUser] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "", //agregue el confirmado
-    profilePicture: "",
-    portfolio: "",
-    category: [], // ver como pasarlo a array
-  });
-
-  
+ 
 
     const loadImg = async (files) => {
       const reader = new FileReader();
@@ -117,7 +102,7 @@ const photo = localStorage.getItem("profileImage");
   }; 
 
   const ifFormIsValid1 = () => {
-    console.log(setError)
+  
     if (!validator.isEmail(user.email)) {
       dispatch(setError("El email no es válido"));
       return false;
@@ -131,9 +116,14 @@ const photo = localStorage.getItem("profileImage");
       return false;
     }
     if (user.name.length === 0 || user.lastName.length === 0) {
-      alert("Por favor, complete todos los campos");
+      dispatch(setError("Por favor, complete todos los campos"));
+      return false;
+    } 
+    if(user.category.length === 0){
+      dispatch(setError("Por favor, seleccione al menos una categoría"));
       return false;
     }
+
     dispatch(removeError());
     return true;
   };

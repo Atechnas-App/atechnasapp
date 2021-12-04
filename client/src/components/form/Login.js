@@ -31,6 +31,8 @@ const [formValues, handleInputChange] = useForm({
 
   const { email, password } = formValues
 
+
+
   const handleLogin = (e) => {
     e.preventDefault()
     if (ifFormIsValid()) {
@@ -65,6 +67,9 @@ const handleGithubLogin = () => {
     return true;
 
   };
+
+
+
 
   return (
 
