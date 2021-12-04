@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from 'react-router';
 import "./form.css";
 import validator from "validator";
 import {
   getCategories,
   postUser,
-  removeError1,
-  setError1,
+  removeError,
+  setError,
+  
 } from "../../actions/actions";
-import { UpLoadImage } from "./UpLoadImage";
+
 
 export const Register = () => {
  
+ 
 
+const photo = localStorage.getItem("profileImage");
   const dispatch = useDispatch();
-  // const navigate = useNavigate()
+ 
   const categories = useSelector((state) => state.rootReducer.categories);
-  const { log } = useSelector((state) => state);
+  const { msgError } = useSelector((state) => state.logued);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -35,6 +37,31 @@ export const Register = () => {
   });
 
   
+
+    const loadImg = async (files) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(files);
+
+      const formData = new FormData();
+      formData.append("file", files);
+    
+      formData.append("upload_preset", "Atechnas");
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+      try {
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+          options
+        );
+        const res_1 = await res.json();
+        
+        return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
+      } catch (err) {
+        return console.log(err);
+      }
+    };
 
   function handleCheck(e) {
     e.preventDefault();
@@ -60,10 +87,7 @@ export const Register = () => {
       [e.target.name]: e.target.value,
     });
   }
-  // const handleOnClick = (e)=>{
-  //   e.preventDefault();
-  //   console.log(e)
-  // }
+
 
  
 
@@ -82,27 +106,34 @@ export const Register = () => {
         confirmPassword: "",
         category: [],
       });
-    } // navigate('/profile')
+     } // navigate('/profile')
   }
 
+
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    document.querySelector("#fotoPerfil").click();
+  }; 
+
   const ifFormIsValid1 = () => {
+    console.log(setError)
     if (!validator.isEmail(user.email)) {
-      dispatch(setError1("El email no es válido"));
+      dispatch(setError("El email no es válido"));
       return false;
     }
     if (user.password !== user.confirmPassword) {
-      dispatch(setError1("Las contraseñas no coinciden"));
+      dispatch(setError("Las contraseñas no coinciden"));
       return false;
     }
     if (user.password.trim().length === 0) {
-      dispatch(setError1("Falta la contraseña"));
+      dispatch(setError("Falta la contraseña"));
       return false;
     }
     if (user.name.length === 0 || user.lastName.length === 0) {
       alert("Por favor, complete todos los campos");
       return false;
     }
-    dispatch(removeError1());
+    dispatch(removeError());
     return true;
   };
   
@@ -117,8 +148,34 @@ export const Register = () => {
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
         <div className="flex">
           <div className="grupoRegister">
-        <UpLoadImage  />
-        <p/>
+            <div>
+              <div className="flex">
+                <div className="grupoRegister">
+                  <p className="labels">Imagen de perfil</p>
+                  <input
+                    type="file"
+                    name="profilePicture"
+                    id="fotoPerfil"
+                    style={{ display: "none" }}
+                    onChange={(e) => loadImg(e.target.files[0])}
+                  />
+
+                  <img
+                    src={user.profilePicture}
+                    alt="foto perfil"
+                    name="photo"
+                    width="250vw"
+                    height="250vh"
+                    value={user.profilePicture}
+                  />
+                  <br />
+                  <button className="botonImg" onClick={handleImageClick}>
+                    subir
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p />
             <p className="labels">Nombre</p>
             <input
               onChange={(e) => onInputChange(e)}
@@ -183,9 +240,9 @@ export const Register = () => {
             <p className="labels">Confirmar contraseña</p>
             <input
               type="password"
-              name="confirmpassword"
+              name="confirmPassword"
               placeholder="Confirmar contraseña"
-              value={user.confirmpassword}
+              value={user.confirmPassword}
               onChange={(e) => onInputChange(e)}
               className="fields"
             />
@@ -218,7 +275,7 @@ export const Register = () => {
         >
           Registrarse
         </button>
-        {log.msgError1 && <div>{log.msgError1}</div>}
+        {msgError?<div>{msgError}</div>:null}
       </form>
     </div>
   );

@@ -12,14 +12,15 @@ export default function Nav(){
 
    const history = useHistory()
  const dispatch = useDispatch()
- localStorage.setItem("user", "{}");
- localStorage.setItem("profileImage", " ");
+ if (!localStorage.getItem("user")) {
+   localStorage.setItem("user", "{}");
+} 
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
    const user = JSON.parse(localStorage.getItem("user")); 
-  
-   let name1 = user.name?user.name:"";
-   let photo1  = user.profilePicture?user.profilePicture:"";
+ 
+   let name1 = user.name;
+   let photo1  = user.profilePicture;
 
    const handleLogout = () => {
        dispatch(logoutAll());

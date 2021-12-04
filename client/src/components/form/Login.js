@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
   postLogin,
-  removeError,
-  setError,
+  removeError1,
+  setError1,
   startGoogleLogin,
 } from "../../actions/actions";
 import validator from 'validator'
@@ -19,8 +19,8 @@ export const Login = () => {
 const history =useHistory()
 const dispatch = useDispatch()
 
-const state = useSelector((state) => state);  
-
+const {logued} = useSelector((state) => state);  
+console.log(logued)
   const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
@@ -32,15 +32,16 @@ const state = useSelector((state) => state);
     e.preventDefault()
     if (ifFormIsValid()) {
       dispatch(postLogin(formValues));
+      if(localStorage.getItem("user","id")){
       history.push('/')
     }
-    
+  }
   }
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
-  if(state === true){
-    history.push('/')
+  if(logued.auth === true){
+    window.location.replace('/')
   } 
     
 }
@@ -48,13 +49,13 @@ const handleGoogleLogin = () => {
   const ifFormIsValid = () => {
 
     if (!validator.isEmail(email)) {
-      dispatch(setError("Email is invalid"));
+      dispatch(setError1("Correo invalido"))
       return false;
     } else if (password.trim().length === 0) {
-      dispatch(setError("Password is required"));
+      dispatch(setError1("La contraseña no puede estar vacia"));
       return false;
     }
-    dispatch(removeError());
+    dispatch(removeError1());
     return true;
 
   };
@@ -86,9 +87,9 @@ const handleGoogleLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-       {/*  {log.msgError && (
-        <div >{log.msgError}</div>
-      )} */}
+        {logued.msgError1 && (
+        <div >{logued.msgError1}</div>
+      )}
 
       <p/>
         <button

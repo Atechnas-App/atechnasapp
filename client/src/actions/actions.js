@@ -1,7 +1,6 @@
-import Swal from 'sweetalert2';
+
 import axios from 'axios';
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, GET_CATEGORIES, GET_DETAILS} from "../actions/types";
-import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
 
@@ -133,14 +132,9 @@ function loglocal(){
   return local
 }
 
-export const login = (uid, displayName, email, photoURL) => ({
+export const login = () => ({
   type: types.login,
-  payload: {
-    uid,
-    displayName,
-    email,
-    photoURL,
-  },
+  
 });
 
 export const logoutAll = () => {
@@ -199,28 +193,6 @@ export const finishLoding = () => ({
 });
 
 
-export const startUploading = (file)=>{
-  return  async (dispatch)=>{
-
-Swal.fire({
-  title: 'Subiendo imagen',
-  text: 'Espere un momento',
-  allowOutsideClick: false,
-  showConfirmButton: false,
-  onOpen: () => {
-    Swal.showLoading()
-  }
-})
-
-    try{    
-   const fileUrl = await fileUpload(file)
-  localStorage.setItem("profileImage", fileUrl)
-    }catch(error){
-      console.log(error)
-    }
-Swal.close()
-}
-}
 export function getDetails(id) {
   return async function (dispatch) {
     const users = await axios.get("http://localhost:3001/api/details/" + id);
