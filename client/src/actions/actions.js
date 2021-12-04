@@ -44,13 +44,13 @@ export function postLogin(payload){
   }
 }
 
-export function githubLogin() {
+export function getGithubUserInfo() {
   return async function(dispatch){
-    const github = await axios('http://localhost:3001/api/github')
-    console.log(github)
+    const githubUserInfo = await axios('http://localhost:3001/api/login/success')
+    console.log(githubUserInfo)
     dispatch({
       type: 'GITHUB',
-      payload: github
+      payload: githubUserInfo
     })
   }
 }

@@ -3,7 +3,7 @@ const GithubStrategy = require('passport-github2').Strategy
 const passport = require('passport')
 const { Router } = require("express");
 
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_CLIENT_URL } = process.env;
 const { User, Category } = require('../db');
 
 const router = Router();
@@ -16,7 +16,6 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-    console.log(_json)
     let user = await User.findOrCreate({
       where: {
         name: _json.login,
@@ -28,10 +27,6 @@ passport.use(new GithubStrategy({
       }
     })
     // user.addCategory(['Recruiter'])
-    console.log(user)
-    // .spread(function (user, created){
-    //   console.log(created)
-    // })
     done(null, user)
   }
 ));
@@ -47,20 +42,15 @@ router.get('/login/success', (req, res) => {
       user: req.user
     })
   }
+  console.log('REQ USER DEL LOGIN SUCCESS',req.user)
 })
 
-router.get('/login/failed', (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: 'failure'
-  })
-}) // HACER EL HANDLE POR SI CANCELA EL PERMISO DE AUTORIZACION EN GITHUB A LA PAGINA
 
 router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
 
 router.get('/github/callback', passport.authenticate('github', {
-  successRedirect: 'http://localhost:3000',
-  failureRedirect: 'http://localhost:3000/login'
+  successRedirect: GITHUB_CLIENT_URL,
+  failureRedirect: GITHUB_CLIENT_URL + '/login'
 }))
 
 

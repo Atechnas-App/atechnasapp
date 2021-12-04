@@ -6,7 +6,7 @@ import {
   removeError,
   setError,
   startGoogleLogin,
-  githubLogin
+  getGithubUserInfo
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
@@ -21,7 +21,8 @@ export const Login = () => {
 const history =useHistory()
 const dispatch = useDispatch()
 
-const state = useSelector((state) => state);  
+const state = useSelector( state => state)
+const githubUser = useSelector((state) => state.rootReducer.githubUser);  
 
   const [formValues, handleInputChange] = useForm({
     email: "",
@@ -46,8 +47,8 @@ const handleGoogleLogin = () => {
   } 
 }
 const handleGithubLogin = () => {
-  // dispatch(githubLogin())
   window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
+  dispatch(getGithubUserInfo())
 }
 
   const ifFormIsValid = () => {
@@ -63,6 +64,8 @@ const handleGithubLogin = () => {
     return true;
 
   };
+
+  console.log('ESTADO GLOBAL GH USER',githubUser)
 
   return (
 
