@@ -81,21 +81,21 @@ const photo = localStorage.getItem("profileImage");
   }
 
   function onInputChange(e) {
-    e.preventDefault();
+    e.preventDefault()
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
-    });
+      [e.target.name]: e.target.value
+    })
   }
 
 
  
 
   function onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (ifFormIsValid1()) {
-      dispatch(postUser(user));
-      alert("¡Usuario creado con éxito!");
+      dispatch(postUser(user))
+      alert("¡Usuario creado con éxito!")
       setUser({
         name: "",
         lastName: "",
@@ -142,7 +142,7 @@ const photo = localStorage.getItem("profileImage");
       <form
         className="form-register"
         onSubmit={(e) => {
-          onSubmit(e);
+          onSubmit(e)
         }}
       >
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
@@ -264,19 +264,19 @@ const photo = localStorage.getItem("profileImage");
                     />
                     <label>{c.category}</label>
                   </div>
-                );
+                )
               })}
           </div>
         </div>
         <button
           type="submit"
           className="botonRegistrar"
-          onClick={(e) => onSubmit(e)}
+          onSubmit={(e) => onSubmit(e)}
         >
           Registrarse
         </button>
         {msgError?<div>{msgError}</div>:null}
       </form>
     </div>
-  );
+  )
 };

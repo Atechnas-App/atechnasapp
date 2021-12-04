@@ -3,7 +3,7 @@ const { User, Category, Technology, Language } = require("../db");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 
-const initializePassport = require("./passport-config-local");
+const initializePassport = require("../controllers/passport-config-local");
 initializePassport(
   passport,
   (email) => User.findOne({ where: { email: email }, raw: true }),
@@ -12,18 +12,17 @@ initializePassport(
 
 const router = Router();
 
-const login = router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    failureFlash: true
-}), (req, res) => {
-    if(req.user){
-        console.log(req.user)
-        res.send(req.user)
-    }
-    if(!req.user){
-        // mandame de vuelta al login o mostra un msj de error o una alerta
-        res.send('error generico')
-    }
-})
+const login = router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.send(info.message); }
+    req.logIn(user, function (err) {
+      if (err) { return next(err); }
+      return res.send(user);
+    });
+  })(req, res, next);
+});
+
 
 const register = router.post(
   "/register",
@@ -70,13 +69,10 @@ const register = router.post(
       res.status(200).send("usuario creado");
     } catch (error) {
       console.log(error.message);
-      res.redirect("/register");
+      res.send(error.message);
     }
   }
 );
-const home = router.get("/home", (req, res) => {
-  res.send("logueado !!");
-});
 
 
 function checkAuthenticated(req, res, next) {
@@ -93,4 +89,4 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
-module.exports = { login, register, home };
+module.exports = { login, register };

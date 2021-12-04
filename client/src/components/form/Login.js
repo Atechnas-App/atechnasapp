@@ -6,9 +6,11 @@ import {
   removeError1,
   setError1,
   startGoogleLogin,
+  githubLogin
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
+import githubIcon from '../../assets/img/github-10-xxl.png'
 import { useHistory } from 'react-router-dom'
 
 
@@ -43,7 +45,10 @@ const handleGoogleLogin = () => {
   if(logued.auth === true){
     window.location.replace('/')
   } 
-    
+}
+const handleGithubLogin = () => {
+  // dispatch(githubLogin())
+  window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
 }
 
   const ifFormIsValid = () => {
@@ -106,6 +111,23 @@ const handleGoogleLogin = () => {
           </div>
         <p className="btn-text">
               <b>Entrar con Google</b>
+            </p>
+          <p />
+
+          </button>
+          <button
+          className="github-btn"
+          onClick={handleGithubLogin}
+        >
+          <div className="github-icon-wrapper">
+            <img height='25px' width='25px'
+              className="icon"
+              src={githubIcon}
+              alt=""
+            />
+          </div>
+        <p className="btn-text">
+              <b>Entrar con GitHub</b>
             </p>
           <p />
 

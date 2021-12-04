@@ -6,6 +6,8 @@ export const GET_TECHNOLOGIES = 'GET_TECHNOLOGIES'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const POST_USER = 'POST_USER'
 export const GET_DETAILS = 'GET_DETAILS'
+export const GET_LANGUAGES = 'GET_LANGUAGES'
+export const FILTER = 'FILTER'
 
 
 

@@ -1,4 +1,4 @@
-import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS } from "../actions/types";
+import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES } from "../actions/types";
 
 
 const initialState = {
@@ -7,11 +7,19 @@ const initialState = {
     categories:[],
     filteredUsers:[],
     technologie:[],
-    details:[]
+    details:[],
+    languages:[],
+    // technologies:[],
+    githubUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'GITHUB':
+                    return {
+                        ...state,
+                        githubUser: action.payload
+                    }
         
                 case GET_USER:
                     
@@ -29,15 +37,15 @@ export default function rootReducer(state = initialState, action) {
 
                     return {
                         ...state,
-                        search: action.payload,
+                        search: action.payload.content,
 
                     }
                     
-                case CATEGORY_FILTER:
+                case FILTER:
                     
                     return {
                         ...state,
-                        search: action.payload,
+                        filteredUsers: action.payload.content,
                     }
 
                 case GET_CATEGORIES:
@@ -49,21 +57,27 @@ export default function rootReducer(state = initialState, action) {
                 case GET_TECHNOLOGIES:
                     return {
                         ...state,
-                        technologies: action.payload,
+                        technologies: action.payload.rows,
                         
                     }
 
-                case TECHNOLOGY_FILTER:
-                    return {
-                        ...state,
-                        users: action.payload.content,
+                // case TECHNOLOGY_FILTER:
+                //     return {
+                //         ...state,
+                //         filteredUsers: action.payload.content,
                         
-                    }
+                //     }
                 
                 case GET_DETAILS:
                     return{
                         ...state,
                         details: action.payload
+                    }
+
+                case GET_LANGUAGES:
+                    return{
+                        ...state,
+                        languages: action.payload
                     }
 
                 default:
