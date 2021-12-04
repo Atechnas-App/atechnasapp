@@ -15,7 +15,7 @@ router.post('/newProfile/:id', async (req, res, next) => {
             qualification, 
         } = req.body;
         
-        await Post.create(
+       await Post.create(
             {  
                 company: company,
                 userId: id, 
