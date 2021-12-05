@@ -91,10 +91,10 @@ export function githubLogin() {
   }
 }
 
-export function Search(payload) {
+export function Search(payload, page) {
   
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload + '&page=' + page)
         console.log('ACTION SEARCH', searching.data)
         dispatch({
             type: SEARCH,

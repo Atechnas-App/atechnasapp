@@ -2,21 +2,15 @@ import React from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-import CardPeople from '../Cards/CardPeople'
 import { useSelector} from 'react-redux';
+import Renderizado from './Renderizado/Renderizado'
 
 
 export default function SearchPage(){
 
     const searching = useSelector((state)=> state.rootReducer.search);
-    const filter = useSelector((state)=> state.rootReducer.filteredUsers);
-    console.log('LOCAL SEARCH', searching)
-    console.log('LOCAL FILTER', filter)
-
-
-   
     
-  
+   
     
     return(
         <div className='container-searchpage'>
@@ -29,26 +23,7 @@ export default function SearchPage(){
                         <Filtros  className='fixed-filters'/>
                     </div>
                     
-                    <div className='container-cards'>
-                    {   
-
-                            searching?.map((e) => {
-                            
-                            return <CardPeople
-                            profilePicture={e.profilePicture}
-                            name={e.name}
-                            lastName={e.lastName}
-                            technology = {e.technologies}
-                            qualification = {e.qualification}
-                            id={e.id}
-                            key={e.id}
-                            categories={e.categories}
-                            />
-                        })
-                        
-                        
-                    }
-                    </div>
+                <Renderizado/>
                 
 
                 </div>
