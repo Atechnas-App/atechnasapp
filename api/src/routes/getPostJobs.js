@@ -7,7 +7,7 @@ const router = Router();
 router.get("/getJobs/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const getJobs = await Post.findAll({ where: { id: id },
+    const getJobs = await Post.findAll({ where: { userId: id },
         include: [{ model: User },  {model : Review}] });
         
     res.status(200).send(getJobs);

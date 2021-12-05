@@ -53,7 +53,7 @@ console.log(detail.categories, "Hay categorias?")
                     <h1>Mis trabajos</h1>
                 </div>
                 <div>
-                    <CardTrabajo/>
+                    <CardTrabajo id={fullId}/>
                 </div>
             </div>
             <div className="comentarios-perfil">

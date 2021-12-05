@@ -1,7 +1,7 @@
 
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES} from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, TECHNOLOGY_FILTER, GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
 import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
@@ -259,4 +259,31 @@ export function getDetails(id) {
       return editedProfile
    }
  }
+
+ export function getJobs(id) {
+   return async function(dispatch){
+     console.log(id.id,"id jobs")
+     const getJobs = await axios("http://localhost:3001/api/getJobs/"+id.id);
+     return dispatch({
+       type: GET_JOBS,
+       payload: getJobs.data
+     })
+   }
+ }
  
+ export function postJobs(id, payload) {
+   return async function(){
+     const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
+     return newJob
+   }
+ }
+
+ export function getTestimonials(){
+   return async function(dispatch){
+     const testimonials = await axios("http://localhost:3001/api/testimonial/")
+     return dispatch({
+       type: GET_TESTIMONIALS,
+       payload: testimonials.data
+     })
+   }
+ }

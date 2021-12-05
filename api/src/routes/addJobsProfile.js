@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/newProfile/:id', async (req, res, next) => {
     try {
-        const {id} = req.query;
+        const {id} = req.params;
         const { 
             company,
             title,
@@ -15,7 +15,7 @@ router.post('/newProfile/:id', async (req, res, next) => {
             qualification,
             url
         } = req.body;
-        
+        console.log(id)
        await Post.create(
             {  
                 company: company,
