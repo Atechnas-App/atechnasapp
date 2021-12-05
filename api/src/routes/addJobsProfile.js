@@ -11,18 +11,20 @@ router.post('/newProfile/:id', async (req, res, next) => {
             company,
             title,
             image, 
-            description, 
-            qualification, 
+            about, 
+            qualification,
+            url
         } = req.body;
         
        await Post.create(
             {  
                 company: company,
                 userId: id, 
-                description:description,
+                about : about ,
                 qualification: qualification, 
                 title: title, 
-                image: image}
+                image: image,
+                url: url,}
                 // {where: {id: id}}
                 
         )
