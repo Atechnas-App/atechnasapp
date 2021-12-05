@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import Nav from "../Nav/Nav"
 import { useEffect, useState } from "react"
 import {editProfile, getCategories, getDetails, getLanguages, getTechnologies} from "../../actions/actions"
-import Select from 'react-select'
+import { useHistory } from "react-router-dom"
 
 export default function EditPerfil(props){
-
+    const history = useHistory()
     const dispatch = useDispatch()
     const id = props.match.params.id
     useEffect(() => {
@@ -25,8 +25,6 @@ const userLanguages = detail.languages.map((e)=>e.languages)
 const categoriesToAdd = categories?.filter(c => !userCategories.includes(c.category))
 const technologiesToAdd = technologies?.filter(c => !userTechnologies.includes(c.technology))
 const languagesToAdd = languages?.filter(c => !userLanguages.includes(c.language))
-const addLanguage = languagesToAdd.map(e => {return {value:e.languages, label:e.languages}})
-const knowLanguage = userLanguages.map(e => {return {value:e, label:e}})
 
 
 const [editedProfile, setEditedProfile] = useState({
@@ -37,11 +35,10 @@ const [editedProfile, setEditedProfile] = useState({
     portfolio : detail.portfolio,
     location : detail.location, //Google maps
     categories : userCategories,
-    technologies : userTechnologies
-})
-const [editedLanguage, setEditedLanguage] = useState({
+    technologies : userTechnologies,
     languages: userLanguages
 })
+
 function onHandleChange(e){
     console.log(e)
     e.preventDefault()
@@ -55,10 +52,10 @@ function onSubmit(e){
     e.preventDefault()
     dispatch(editProfile(id, {
         ...editedProfile,
-        languages: editedLanguage.map(e => e.value)
     }))
     console.log(editedProfile, "Editado")
     alert("Los cambios se guardaron correctamente")
+    history.push('/'+id)
 }
 
 function onHandleCheckCategories(e){
@@ -90,6 +87,19 @@ function onHandleCheckTechnologies(e){
     }
 }
 
+function handleDelete(el) {
+    setEditedProfile({
+        ...editedProfile,
+        languages: editedProfile.languages.filter(lang => lang !== el)
+    })
+}
+
+function handleSelect(e) {
+    setEditedProfile({
+        ...editedProfile,
+        languages: [...editedProfile.languages,e.target.value]
+    })
+}
     return(
         <div className="editperfil-container">
             <Nav/>
@@ -116,7 +126,16 @@ function onHandleCheckTechnologies(e){
                 <input type="tel" placeholder="Teléfono" onChange={(e) => onHandleChange(e)} value={editedProfile.phone} name="phone"></input>
                 <label>Idiomas</label>
                 <div>
-                    <Select defaultValue={knowLanguage} isMulti name="languages" onChange={setEditedLanguage} options={addLanguage}/>
+                    <select onChange={e => handleSelect(e)}>
+                        <option selected disabled>Seleccioná idioma/s</option>
+                    {languagesToAdd?.map((e)=>{
+                    return (<option value={e.languages} key={e.languages} name="languages">{e.languages}</option>)
+                })}
+                </select>
+            {editedProfile.languages.map(lang => 
+            <div>
+                <button type="button" onClick={() => handleDelete(lang)}>{lang}</button>
+            </div>)}
                 </div>
                 <label>Categoría</label>
                 <div>
