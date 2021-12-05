@@ -1,0 +1,63 @@
+.edit-perfil-container{
+    min-width: 1250px;
+    max-width: 1350px;
+    margin: 0em auto;
+    padding: 1em;
+}
+
+.form-container{
+    display: flex;
+}
+
+.input-formulario{
+    display: flex;
+
+}
+
+.label-input-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-formulario{
+    min-width: 70%;
+    max-width: 70%;
+}
+
+.input-label{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.img-edit-perfil{
+    min-width: 240px;
+    min-height: 240px;
+    max-width: 240px;
+    max-height: 240px;
+    border-radius: 1em;
+    margin: 2em 0em;
+}
+
+.foto-perfil-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.boton-idioma-map{
+    display: flex;
+}
+
+.checkbox-container{
+    display: flex;
+    margin: 1em;
+}
+
+.all-checkbox{
+    margin: 0.5em
+}
+
+.boton-submit{
+    display: flex;
+    justify-content:end;
+    transform: translateX(-25%);
+}
