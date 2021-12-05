@@ -39,6 +39,39 @@ const [editedProfile, setEditedProfile] = useState({
     languages: userLanguages
 })
 
+const loadImg = async (files) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(files);
+  
+    const formData = new FormData();
+    formData.append("file", files);
+  
+    formData.append("upload_preset", "Atechnas");
+    const options = {
+      method: "POST",
+      body: formData,
+    };
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+        options
+      );
+      const res_1 = await res.json();
+  
+      return setEditedProfile((prev) => ({
+        ...prev,
+        profilePicture: res_1.secure_url,
+      }));
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    document.querySelector("#fotoPerfil").click();
+  }; 
+  
 function onHandleChange(e){
     console.log(e)
     e.preventDefault()
@@ -180,8 +213,22 @@ function handleSelect(e) {
                 })}
                 </div>
                 <label>Imagen</label>
-                <button>Subir</button>
-                <img alt="img not found" src={detail.profilePicture}></img>
+          <input
+            type="file"
+            name="profilePicture"
+            id="fotoPerfil"
+            style={{ display: "none" }}
+            onChange={(e) => loadImg(e.target.files[0])}
+          />
+          <button type="submit" onClick={handleImageClick} cursor="pointer">
+            Subir
+          </button>
+          <img
+            src={editedProfile.profilePicture}
+            alt="img not found"
+            width="250vw"
+            height="250vh"
+          ></img>
                 <hr></hr>
                 <input type="submit" value="Guardar"/>
             </form>
