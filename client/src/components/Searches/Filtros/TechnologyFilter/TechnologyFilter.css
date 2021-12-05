@@ -1,0 +1,31 @@
+.select-tech{
+    width: 80%;
+    border-radius: 0.5em;
+    padding: 0.3em;
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.349);
+    color: white;
+    margin-bottom: 0.5em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.466)
+    
+}
+
+.option-tech{
+    color: black;
+    
+}
+
+.boton-tech{
+    border-radius: 0.5em;
+    font-size: 1em;
+    padding: 0.3em;
+    margin: 0.5em 0.5em 0.5em 0em;
+    border-style: none;
+    color: rgb(255, 255, 255);
+    background-color: #4ea878;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.589)
+}
+
+.boton-tech:hover{
+    background-color: #52be8494;
+}

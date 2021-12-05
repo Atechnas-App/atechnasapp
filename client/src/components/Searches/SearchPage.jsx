@@ -2,10 +2,9 @@ import React from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-import {useEffect} from 'react';
 import CardPeople from '../Cards/CardPeople'
-import {useDispatch, useSelector} from 'react-redux';
-import {Search} from "../../actions/actions"
+import { useSelector} from 'react-redux';
+
 
 export default function SearchPage(){
 
@@ -27,18 +26,19 @@ export default function SearchPage(){
                 </div>
                 <div className="container-all">
                     <div className='container-filtro'>
-                        <Filtros/>
+                        <Filtros  className='fixed-filters'/>
                     </div>
                     
                     <div className='container-cards'>
-                        {   searching?
+                    {   
 
                             searching?.map((e) => {
+                            
                             return <CardPeople
                             profilePicture={e.profilePicture}
                             name={e.name}
                             lastName={e.lastName}
-                            technology = {e.technology}
+                            technology = {e.technologies}
                             qualification = {e.qualification}
                             id={e.id}
                             key={e.id}
@@ -46,21 +46,7 @@ export default function SearchPage(){
                             />
                         })
                         
-                    : filter?.map((e) => {
-                    
-                    return (<CardPeople
-                    profilePicture={e.profilePicture}
-                    name={e.name}
-                    lastName={e.lastName}
-                    technology = {e.technologies}
-                    qualification = {e.qualification}
-                    id={e.id}
-                    key={e.id}
-                    categories={e.categories}
-                    />)
-                 
-                
-                    })
+                        
                     }
                     </div>
                 

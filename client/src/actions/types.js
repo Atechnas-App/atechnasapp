@@ -10,6 +10,9 @@ export const GET_LANGUAGES = 'GET_LANGUAGES'
 export const FILTER = 'FILTER'
 export const GET_JOBS = 'GET_JOBS'
 export const GET_TESTIMONIALS = 'GET_TESTIMONIALS'
+export const DEVELOPER = 'DEVELOPER'
+export const DESIGN = 'DESIGN'
+export const MARKETING = 'MARKETING'
 
 
 

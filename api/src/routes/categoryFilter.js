@@ -26,9 +26,57 @@ router.get("/filterByCategory", async (req, res, next) => {
       where: {
         "$categories.category$": cat,
       },
-      include: [ Category, Language, Technology],
+      include: [Category, Language, Technology],
+      // limit:3,
     });
     res.status(200).send(filteredByCategory);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/bestDevelopers", async (req, res, next) => {
+
+  try {
+    const developers = await User.findAll({
+      where: {
+        "$categories.category$": "Full Stack Developer",
+      },
+      include: [Category, Language, Technology],
+      limit: 3,
+      subQuery: false,
+    });
+    res.status(200).send(developers);
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/bestDesign", async (req, res, next) => {
+  try {
+    const developers = await User.findAll({
+      where: {
+        "$categories.category$": "Design",
+      },
+      include: [Category, Language, Technology],
+      limit: 3,
+      subQuery: false,
+    });
+    res.status(200).send(developers);
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/bestMarketing", async (req, res, next) => {
+  try {
+    const developers = await User.findAll({
+      where: {
+        "$categories.category$": "Marketing",
+      },
+      include: [Category, Language, Technology],
+      limit: 3,
+      subQuery: false,
+    });
+    res.status(200).send(developers);
   } catch (err) {
     next(err);
   }
