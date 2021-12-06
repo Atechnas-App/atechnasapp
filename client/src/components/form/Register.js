@@ -119,8 +119,7 @@ export const Register = () => {
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
         <div className="flex">
           <div className="grupoRegister">
-        
-        <p/>
+      
             <p className="labels">Nombre</p>
             <input
               onChange={(e) => onInputChange(e)}
