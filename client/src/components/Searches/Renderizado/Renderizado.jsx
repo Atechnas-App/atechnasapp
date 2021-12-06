@@ -26,7 +26,7 @@ export default function Renderizado(){
 
     return(
         // <InfiniteScroll dataLength={searching.length} hasMore={true} next={()=> setPage((prev) => prev + 1)}>
-        <div>
+        <div className='renderizado-container'>
             <Paginado cardPage={cardPage} allCards={length} 
             paginado={paginado} actualPage={actualPage}/>
             <div className='container-cards'>
