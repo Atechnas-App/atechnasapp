@@ -14,7 +14,7 @@ export default function Renderizado(){
     // }, [page])
 
     const [actualPage, setActualPage] = useState(1);         
-    const [cardPage, setDogPage] = useState(9);            
+    const [cardPage, setDogPage] = useState(8);            
     const indexLast = actualPage * cardPage;               
     const indexFirst = indexLast - cardPage;              
     const totalCardsPage = searching?.slice(indexFirst, indexLast);

@@ -96,7 +96,7 @@ a{
 	max-width: 100%;
 	text-align: center;
  }
- #slider input[type=radio] {
+ #slider .input-c {
 	display: none;
  }
  #slider .label-c {

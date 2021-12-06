@@ -10,14 +10,11 @@
     padding: 1em;
     box-shadow: 4px 4px px rgba(0, 0, 0, 0.76);
     justify-content:space-between;
-    min-width: 18.5em;
-    max-width: 18.5em;
-    /* border-right: solid 2px #9225d7;
-    border-bottom: solid 2px #9225d7; */
+    min-width: 24em;
+    /* max-width: 20em; */
     border: 5px solid transparent;
     border-image-slice: 1;
     border-width: 2px;
-    /* border-image-source: linear-gradient(to bottom right, #52be84,  #9225d7); */
     text-align: left;
     transition: all .5s;
     

@@ -5,10 +5,10 @@ import izq from "../../../assets/img/izq.png";
 
 export default function CardsCarrusel() {
   return (
-    <div id="slider">
-   <input type="radio" name="slider" id="slide1" checked />
-   <input type="radio" name="slider" id="slide2" />
-   <input type="radio" name="slider" id="slide3" />
+  <div id="slider">
+   <input type="radio" name="slider" id="slide1" className='input-c' checked />
+   <input type="radio" name="slider" id="slide2" className='input-c'/>
+   <input type="radio" name="slider" id="slide3" className='input-c'/>
 
    <div id="slides">
       <div id="overflow">
