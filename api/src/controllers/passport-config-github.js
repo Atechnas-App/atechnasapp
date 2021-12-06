@@ -16,15 +16,17 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
+    console.log(_json)
     try{
       let user = await User.findOrCreate({
         where: {
-          name: _json.login,
+          name: !_json.name ? _json.login : _json.name,
           lastName: '',
           email: _json.email ? _json.email : 'ejemplo@mail.com',
           password: _json.node_id,
           profilePicture: _json.avatar_url,
           portfolio: _json.url,
+          description: _json.bio
         }
       })
       done(null, user)

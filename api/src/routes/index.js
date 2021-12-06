@@ -14,6 +14,7 @@ const newTestimonial = require('./postTestimonials')
 const getTestimonial = require('./getTestimonial')
 const filterSearch = require('./filtersSearch')
 const getLanguages = require('./getLanguage')
+const getJobs = require("./getPostJobs")
 const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
 const { login, register } = require('./postUser')
@@ -27,6 +28,7 @@ const router = Router();
 
 
 router.use('/api', bulkCreate)
+router.use('/api', getJobs)
 router.use('/api', getTestimonial)
 router.use('/api', newTestimonial)
 router.use('/api', getLanguages)
