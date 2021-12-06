@@ -8,6 +8,9 @@ export const POST_USER = 'POST_USER'
 export const GET_DETAILS = 'GET_DETAILS'
 export const GET_LANGUAGES = 'GET_LANGUAGES'
 export const FILTER = 'FILTER'
+export const DEVELOPER = 'DEVELOPER'
+export const DESIGN = 'DESIGN'
+export const MARKETING = 'MARKETING'
 
 
 

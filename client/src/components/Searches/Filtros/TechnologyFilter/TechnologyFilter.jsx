@@ -40,11 +40,11 @@ export default function TechFilter(){
                 <h3 className='h3-all'>Tecnologias</h3>
             </div>
             <div>
-                <select  onChange={(e)=>{handleChange(e)}}>
+                <select  onChange={(e)=>{handleChange(e)}} className='select-tech'>
                         
                         {
                             tech?.map(e => {
-                                return (<option key={e.id} value={e.technology}> {e.technology} </option>)
+                                return (<option className='option-tech' key={e.id} value={e.technology}> {e.technology} </option>)
                             })
 
                         }
@@ -52,7 +52,7 @@ export default function TechFilter(){
             </div>
             <div>
                 {keywords?.map((e, i)=>(
-                    <button key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
+                    <button className='boton-tech' key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
                 ))} 
             </div>
         </div>

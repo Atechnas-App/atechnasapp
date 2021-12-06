@@ -1,17 +1,8 @@
 
 import axios from 'axios';
-import {
-  types,
-  GET_USER,
-  SEARCH,
-  CATEGORY_FILTER,
-  TECHNOLOGY_FILTER,
-  GET_TECHNOLOGIES,
-  FILTER,
-  GET_CATEGORIES,
-  GET_DETAILS,
-  GET_LANGUAGES,
-} from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES} from "../actions/types";
+// import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
 
@@ -44,6 +35,40 @@ export function getCategories() {
   }
 }
 
+export function getDevelopers() {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestDevelopers');
+    console.log('ACTION DEV', bestof.data)
+    dispatch({
+      type: DEVELOPER,
+      payload: bestof.data
+    })
+    
+  }
+}
+
+export function getDesign() {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestDesign');
+    dispatch({
+      type: DESIGN,
+      payload: bestof.data
+    })
+    
+  }
+}
+
+export function getMarketing() {
+  return async function(dispatch){
+    const bestof = await axios('http://localhost:3001/api/bestMarketing');
+    dispatch({
+      type: MARKETING,
+      payload: bestof.data
+    })
+    
+  }
+}
+
 
 export function postLogin(payload){
   return async function(){
@@ -66,10 +91,10 @@ export function getGithubUserInfo() {
   }
 }
 
-export function Search(payload) {
+export function Search(payload, page) {
   
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload + '&page=' + page)
         console.log('ACTION SEARCH', searching.data)
         dispatch({
             type: SEARCH,

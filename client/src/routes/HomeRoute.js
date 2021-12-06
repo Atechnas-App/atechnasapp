@@ -5,7 +5,7 @@ import SearchPage from "../components/Searches/SearchPage";
 export const HomeRoute = () => {
   return (
     <Switch>
-      <Route exact path="/results" component={SearchPage} />
+      <Route path="/results?searcher=" component={SearchPage} />
     </Switch>
   );
 };

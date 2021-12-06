@@ -7,20 +7,20 @@ import {
   postUser,
   removeError,
   setError,
-
+  
 } from "../../actions/actions";
 
 
 export const Register = () => {
+ 
+ 
 
-
-
-  const photo = localStorage.getItem("profileImage");
   const dispatch = useDispatch();
-
+ 
   const categories = useSelector((state) => state.rootReducer.categories);
   const { msgError } = useSelector((state) => state.logued);
 
+ 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -36,30 +36,31 @@ export const Register = () => {
     category: [], // ver como pasarlo a array
   });
 
-  const loadImg = async (files) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(files);
 
-    const formData = new FormData();
-    formData.append("file", files);
+    const loadImg = async (files) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(files);
 
-    formData.append("upload_preset", "Atechnas");
-    const options = {
-      method: "POST",
-      body: formData,
+      const formData = new FormData();
+      formData.append("file", files);
+    
+      formData.append("upload_preset", "Atechnas");
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+      try {
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+          options
+        );
+        const res_1 = await res.json();
+        
+        return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
+      } catch (err) {
+        return console.log(err);
+      }
     };
-    try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
-        options
-      );
-      const res_1 = await res.json();
-
-      return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
-    } catch (err) {
-      return console.log(err);
-    }
-  };
 
   function handleCheck(e) {
     e.preventDefault();
@@ -84,11 +85,11 @@ export const Register = () => {
       ...user,
       [e.target.name]: e.target.value,
     })
-
+    
   }
 
 
-
+ 
 
   function onSubmit(e) {
     e.preventDefault()
@@ -105,17 +106,17 @@ export const Register = () => {
         confirmPassword: "",
         category: [],
       });
-    } // navigate('/profile')
+     } // navigate('/profile')
   }
 
 
   const handleImageClick = (e) => {
     e.preventDefault();
     document.querySelector("#fotoPerfil").click();
-  };
+  }; 
 
   const ifFormIsValid1 = () => {
-
+  
     if (!validator.isEmail(user.email)) {
       dispatch(setError("El email no es válido"));
       return false;
@@ -131,8 +132,8 @@ export const Register = () => {
     if (user.name.length === 0 || user.lastName.length === 0) {
       dispatch(setError("Por favor, complete todos los campos"));
       return false;
-    }
-    if (user.category.length === 0) {
+    } 
+    if(user.category.length === 0){
       dispatch(setError("Por favor, seleccione al menos una categoría"));
       return false;
     }
@@ -140,7 +141,7 @@ export const Register = () => {
     dispatch(removeError());
     return true;
   };
-
+  
   return (
     <div>
       <form
@@ -216,6 +217,7 @@ export const Register = () => {
             />
           </div>
           <div className="grupoRegister">
+
             <p className="labels">Contraseña</p>
             <input
               type="password"
@@ -230,6 +232,7 @@ export const Register = () => {
 
         <div className="flex">
           <div className="grupoRegister">
+          
             <p className="labels">Link al Portfolio</p>
             <input
               type="text"
@@ -279,7 +282,7 @@ export const Register = () => {
         >
           Registrarse
         </button>
-        {msgError ? <div>{msgError}</div> : null}
+        {msgError?<div>{msgError}</div>:null}
       </form>
     </div>
   )

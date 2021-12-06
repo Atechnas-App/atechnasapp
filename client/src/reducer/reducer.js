@@ -1,13 +1,18 @@
-import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES } from "../actions/types";
+
+import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS,  GET_LANGUAGES } from "../actions/types";
+
 
 
 const initialState = {
     users:[],
     search:[],
     categories:[],
-    filteredUsers:[],
+    // filteredUsers:[],
     technologie:[],
     details:[],
+    developers:[],
+    design:[],
+    marketing:[],
     languages:[],
     // technologies:[],
     githubUser: []
@@ -40,12 +45,26 @@ export default function rootReducer(state = initialState, action) {
                         search: action.payload.content,
 
                     }
-                    
+                case DEVELOPER:
+                    return{
+                        ...state,
+                        developers: action.payload
+                    }
+                case DESIGN:
+                    return{
+                        ...state,
+                        design: action.payload
+                    }
+                case MARKETING:
+                    return{
+                        ...state,
+                        marketing: action.payload
+                    }
                 case FILTER:
                     
                     return {
                         ...state,
-                        filteredUsers: action.payload.content,
+                        search: action.payload.content,
                     }
 
                 case GET_CATEGORIES:

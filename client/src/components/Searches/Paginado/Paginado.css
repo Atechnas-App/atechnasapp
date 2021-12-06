@@ -1,0 +1,39 @@
+.paginado-nav{
+    min-width: 900px;
+}
+
+.ul{
+    display: flex;
+    justify-content: left;
+    transition: all 2s;
+}
+
+.li-Paginado{
+    list-style: none;
+    margin: 0.5em;
+    text-align: center;
+}
+
+.paginado{
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+.paginado:hover{
+    color: white;
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+.actual{
+    background-color: #52be84;
+    color: white;
+    font-size: 1.7em;
+    padding: 0em 0.4em;
+    border-radius: 0.5em;
+    text-shadow: 2px 2px 0px #9225d7;
+    font-weight: bold;
+    box-shadow: 1px 1px 5px black;
+}
