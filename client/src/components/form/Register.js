@@ -7,46 +7,59 @@ import {
   postUser,
   removeError,
   setError,
-  
+
 } from "../../actions/actions";
 
 
 export const Register = () => {
- 
- 
 
-const photo = localStorage.getItem("profileImage");
+
+
+  const photo = localStorage.getItem("profileImage");
   const dispatch = useDispatch();
- 
+
   const categories = useSelector((state) => state.rootReducer.categories);
   const { msgError } = useSelector((state) => state.logued);
 
- 
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
-    const loadImg = async (files) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(files);
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "", //agregue el confirmado
+    profilePicture: "",
+    portfolio: "",
+    category: [], // ver como pasarlo a array
+  });
 
-      const formData = new FormData();
-      formData.append("file", files);
-    
-      formData.append("upload_preset", "Atechnas");
-      const options = {
-        method: "POST",
-        body: formData,
-      };
-      try {
-        const res = await fetch(
-          "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
-          options
-        );
-        const res_1 = await res.json();
-        
-        return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
-      } catch (err) {
-        return console.log(err);
-      }
+  const loadImg = async (files) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(files);
+
+    const formData = new FormData();
+    formData.append("file", files);
+
+    formData.append("upload_preset", "Atechnas");
+    const options = {
+      method: "POST",
+      body: formData,
     };
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+        options
+      );
+      const res_1 = await res.json();
+
+      return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
+    } catch (err) {
+      return console.log(err);
+    }
+  };
 
   function handleCheck(e) {
     e.preventDefault();
@@ -71,11 +84,11 @@ const photo = localStorage.getItem("profileImage");
       ...user,
       [e.target.name]: e.target.value,
     })
-    
+
   }
 
 
- 
+
 
   function onSubmit(e) {
     e.preventDefault()
@@ -92,17 +105,17 @@ const photo = localStorage.getItem("profileImage");
         confirmPassword: "",
         category: [],
       });
-     } // navigate('/profile')
+    } // navigate('/profile')
   }
 
 
   const handleImageClick = (e) => {
     e.preventDefault();
     document.querySelector("#fotoPerfil").click();
-  }; 
+  };
 
   const ifFormIsValid1 = () => {
-  
+
     if (!validator.isEmail(user.email)) {
       dispatch(setError("El email no es válido"));
       return false;
@@ -118,8 +131,8 @@ const photo = localStorage.getItem("profileImage");
     if (user.name.length === 0 || user.lastName.length === 0) {
       dispatch(setError("Por favor, complete todos los campos"));
       return false;
-    } 
-    if(user.category.length === 0){
+    }
+    if (user.category.length === 0) {
       dispatch(setError("Por favor, seleccione al menos una categoría"));
       return false;
     }
@@ -127,7 +140,7 @@ const photo = localStorage.getItem("profileImage");
     dispatch(removeError());
     return true;
   };
-  
+
   return (
     <div>
       <form
@@ -266,7 +279,7 @@ const photo = localStorage.getItem("profileImage");
         >
           Registrarse
         </button>
-        {msgError?<div>{msgError}</div>:null}
+        {msgError ? <div>{msgError}</div> : null}
       </form>
     </div>
   )

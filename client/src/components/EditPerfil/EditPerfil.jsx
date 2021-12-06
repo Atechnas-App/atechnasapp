@@ -15,10 +15,10 @@ const id = props.match.params.id
 const technologies = useSelector((state) => state.rootReducer.technologie)
 const categories = useSelector((state) => state.rootReducer.categories)
 const detail = useSelector((state) => state.rootReducer.details)
-const userCategories = detail.categories.map((e)=>e.category)
-const userTechnologies = detail.technologies.map((e)=>e.technology)
-const userLanguages = detail.languages.map((e)=>e.languages)
-const categoriesToAdd = categories.filter(c => !userCategories.includes(c.category))
+const userCategories = detail.categories?.map((e)=>e.category)
+const userTechnologies = detail.technologies?.map((e)=>e.technology)
+const userLanguages = detail.languages?.map((e)=>e.languages)
+const categoriesToAdd = categories?.filter(c => !userCategories.includes(c.category))
 console.log(categoriesToAdd)
 
 useEffect(() => {
@@ -175,8 +175,8 @@ function onHandleCheck(e){
           ></input>
           <label>Idiomas</label>
           <div>
-            {detail.languages.length > 0 ? (
-              detail.languages.map((e) => {
+            {detail.languages?.length > 0 ? (
+              detail.languages?.map((e) => {
                 return <button>{e.languages}</button>;
               })
             ) : (

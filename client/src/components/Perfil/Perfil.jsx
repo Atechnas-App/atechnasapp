@@ -12,11 +12,13 @@ export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
 const {id} = JSON.parse(localStorage.getItem("user")); 
+const id1 = localStorage.getItem('idgit')
+console.log(id1)
 
 let fullId = props.match.params.id
 
 useEffect(() => {
-    dispatch(getDetails(fullId, id))
+    dispatch(getDetails(fullId, id, id1))
 }, [dispatch]);
 
 console.log(detail.categories, "Hay categorias?")
@@ -32,7 +34,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <div>
                         <form>
-                            <Link to={`/editPerfil/${fullId, id}`}>
+                            <Link to={`/editPerfil/${fullId, id, id1}`}>
                                 <button>Editar Perfil</button>
                             </Link>
                             <button>Mensaje</button> 

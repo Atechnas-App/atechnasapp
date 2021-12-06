@@ -47,7 +47,8 @@ export function getCategories() {
 
 export function postLogin(payload){
   return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload) 
+    const user = await axios.post('http://localhost:3001/api/login', payload)
+    console.log(user, 'PAYLOAD LOGIN ERROR') 
     localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
     loglocal()
     return user
