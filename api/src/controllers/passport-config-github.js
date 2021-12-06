@@ -16,23 +16,35 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-    let user = await User.findOrCreate({
-      where: {
-        name: _json.login,
-        lastName: '',
-        email: _json.email ? _json.email : 'ejemplo@mail.com',
-        password: _json.node_id,
-        profilePicture: _json.avatar_url,
-        portfolio: _json.url,
-      }
-    })
+    try{
+      let user = await User.findOrCreate({
+        where: {
+          name: _json.login,
+          lastName: '',
+          email: _json.email ? _json.email : 'ejemplo@mail.com',
+          password: _json.node_id,
+          profilePicture: _json.avatar_url,
+          portfolio: _json.url,
+        }
+      })
+      done(null, user)
+    }
+    catch(err){
+      done(err)
+    }
     // user.addCategory(['Recruiter'])
-    done(null, user)
   }
 ));
 
 passport.serializeUser((user, done) => { done(null, user) })
 passport.deserializeUser((user, done) => { done(null, user) })
+
+router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
+
+router.get('/github/callback', passport.authenticate('github', {
+  successRedirect: GITHUB_CLIENT_URL,
+  failureRedirect: GITHUB_CLIENT_URL + '/login'
+}))
 
 router.get('/login/success', (req, res) => {
   if (req.user) {
@@ -44,14 +56,5 @@ router.get('/login/success', (req, res) => {
   }
   console.log('REQ USER DEL LOGIN SUCCESS',req.user)
 })
-
-
-router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
-
-router.get('/github/callback', passport.authenticate('github', {
-  successRedirect: GITHUB_CLIENT_URL,
-  failureRedirect: GITHUB_CLIENT_URL + '/login'
-}))
-
 
 module.exports = router
