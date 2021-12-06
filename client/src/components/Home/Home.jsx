@@ -18,7 +18,7 @@ export default function Home(){
             <div className='ajustarHome'> 
                          
                 <Nav/>
-                <Carrucel/>
+                <Carrucel className='carrucel'/>
                 <PageInfo/>
                 <Presentation/>
                 <Testimonial/>
