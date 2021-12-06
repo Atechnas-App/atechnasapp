@@ -37,12 +37,12 @@ export const logReducer = (state = initialState, action) => {
       case types.setError1:
         return {
           ...state,
-          msgError: action.payload,
+          msgError1: action.payload,
         };
       case types.removeError1:
         return {
           ...state,
-          msgError: null,
+          msgError1: null,
         };
       default:
         return state;

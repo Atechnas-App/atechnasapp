@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
   postLogin,
-  removeError,
-  setError,
+  removeError1,
+  setError1,
   startGoogleLogin,
   getGithubUserInfo
 } from "../../actions/actions";
@@ -23,27 +23,32 @@ const dispatch = useDispatch()
 
 const state = useSelector( state => state)
 const githubUser = useSelector((state) => state.rootReducer.githubUser);  
+const {auth,msgError1} = useSelector((state) => state.logued);  
 
-  const [formValues, handleInputChange] = useForm({
+ 
+const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
   })
 
   const { email, password } = formValues
 
+
+
   const handleLogin = (e) => {
     e.preventDefault()
     if (ifFormIsValid()) {
       dispatch(postLogin(formValues));
+      if(localStorage.getItem("user","id")){
       history.push('/')
     }
-    
+  }
   }
 
 const handleGoogleLogin = () => {
   dispatch(startGoogleLogin());
-  if(state === true){
-    history.push('/')
+  if(auth === true){
+    window.location.replace('/')
   } 
 }
 const handleGithubLogin = () => {
@@ -54,13 +59,13 @@ const handleGithubLogin = () => {
   const ifFormIsValid = () => {
 
     if (!validator.isEmail(email)) {
-      dispatch(setError("Email is invalid"));
+      dispatch(setError1("Correo invalido"))
       return false;
     } else if (password.trim().length === 0) {
-      dispatch(setError("Password is required"));
+      dispatch(setError1("La contraseña no puede estar vacia"));
       return false;
     }
-    dispatch(removeError());
+    dispatch(removeError1());
     return true;
 
   };
@@ -72,6 +77,7 @@ const handleGithubLogin = () => {
     <div className='entrarContainer'>
       <h1 className='tituloRegister'>ENTRAR</h1>
       {/* LOGIN LOCAL  */}
+
       <form onSubmit={handleLogin}>
         <div>
           <p className='labels'>E-mail</p>
@@ -94,9 +100,9 @@ const handleGithubLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-       {/*  {log.msgError && (
-        <div >{log.msgError}</div>
-      )} */}
+        {msgError1 && (
+        <div >{msgError1}</div>
+      )}
 
       <p/>
         <button

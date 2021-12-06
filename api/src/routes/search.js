@@ -1,51 +1,52 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { User } = require("../db");
+const { User, Category, Language, Technology } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
-  // Recibo un array de strings las cuales van ser las palabras filtro
   try {
-    const { query } = req.query;
-    // const categorias = ["developer", "design", "marketing", "recruiter"];
-    // const toLowerQuery = query.toLowerCase();
+    const pageAsNumber = Number.parseInt(req.query.page);
+    const sizeAsNumber = Number.parseInt(req.query.size);
 
-    // Categories filter
-    const filteredByCategory = await Category.findAll({
-      where: { category: { [Op.iLike]: "%" + query + "%" } },
-      include: [{ model: User }],
+    let page = 0;
+    if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+      page = pageAsNumber;
+    }
+    let size = 15;
+    if (!Number.isNaN(sizeAsNumber)) {
+      if (sizeAsNumber > 0 && sizeAsNumber < 15) {
+        size = sizeAsNumber;
+      }
+    }
+    const { searcher } = req.query;
+
+    // Pagination : this will give an object with properties :
+    //  count{total of rows}  and rows{{data users},{data users},{data users}}
+    const users = await User.findAndCountAll({
+      where: {
+        [Op.or]: [
+          { name: { [Op.iLike]: `%${searcher}%` } },
+          { lastName: { [Op.iLike]: `%${searcher}%` } },
+          { description: { [Op.iLike]: `%${searcher}%` } },
+          { "$categories.category$": { [Op.iLike]: `%${searcher}%` } },
+          { "$languages.languages$": { [Op.iLike]: `%${searcher}%` } },
+          { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
+        ],
+      },
+       include: [Category, Language, Technology], 
+
+      limit: size,
+      offset: page * size,
+      subQuery: false,
     });
-
-    const dbSearch = categorias.includes(query)
-      ? {
-          where: {
-            category:
-            {[Op.iLike]: "%" + query + "%"},
-          },
-        }
-      : {
-          where: {
-            [Op.or]: [
-              {
-                name: { [Op.iLike]: "%" + query + "%" },
-              },
-              {
-                lastName: { [Op.iLike]: "%" + query + "%" },
-              },
-              {
-                email: { [Op.iLike]: "%" + query + "%" },
-              },
-            ],
-          },
-        };
-
-    const filtro = await User.findAll(dbSearch);
-
-    res.status(200).send(filtro);
+    // res.send(users);
+    res.status(200).send({
+      count:users.count,
+      content : users.rows,
+      totalPages : Math.ceil(users.count/ size)
+    });
   } catch (error) {
     console.log(error.message);
-    console.log(error.parameters);
-    // console.log(Model.rawAttributes.category);
   }
 });
 

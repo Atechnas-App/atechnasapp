@@ -18,7 +18,7 @@ router.put("/profile/:id", async (req, res, next) => {
       portfolio,
       location,
     } = req.body;
-
+console.log(req.body)
     const user = await User.findOne({
       where: { id: id },
       include: [
@@ -27,7 +27,6 @@ router.put("/profile/:id", async (req, res, next) => {
         { model: Language },
       ],
     });
-    console.log(user);
     if (
       company ||
       phone ||

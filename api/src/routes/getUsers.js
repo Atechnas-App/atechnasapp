@@ -34,8 +34,10 @@ router.get("/getusers", async (req, res, next) => {
         {model: Technology},
         {model: Language}
       ],
+      // include:{all:true},
       limit: size,
       offset: page * size,
+
     });
 
     res.send({

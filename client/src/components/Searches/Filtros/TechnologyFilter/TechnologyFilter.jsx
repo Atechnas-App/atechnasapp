@@ -1,12 +1,11 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTechnologies, technologyFilter} from '../../../../actions/actions.js';
-
+import {getTechnologies, Filter} from '../../../../actions/actions.js';
+/* import './TechnologyFilter.css' */
 
 //Select con listado de posibles keywords para buscar
 export default function TechFilter(){
-    const [keywords, setKeywords]= useState([])
     const dispatch = useDispatch();
     const tech = useSelector((state)=> state.rootReducer.technologies)
     
@@ -14,33 +13,35 @@ export default function TechFilter(){
         dispatch(getTechnologies())
     }, [dispatch]);
     
-    console.log("TECNOLOGIAS", tech);
+    const [keywords, setKeywords]= useState([]);
+   
 
     function deleteKey(e){
         e.preventDefault();
+        dispatch(Filter(keywords.filter(t => t !== e.target.value).join('-')))
         setKeywords(
-           
             keywords.filter(t => t !== e.target.value)
         )
     }
 
     function handleChange(e){
         e.preventDefault();
+       
+        dispatch(Filter([...keywords, e.target.value].join('-')))
         setKeywords(
             [...keywords, e.target.value]
-            )
-        dispatch(technologyFilter(keywords))
+        )
     }
 
 
     return(
         <div>
             <div>
-                <h3>Tecnologias</h3>
+                <h3 className='h3-all'>Tecnologias</h3>
             </div>
             <div>
                 <select  onChange={(e)=>{handleChange(e)}}>
-                    
+                        
                         {
                             tech?.map(e => {
                                 return (<option key={e.id} value={e.technology}> {e.technology} </option>)
@@ -51,7 +52,7 @@ export default function TechFilter(){
             </div>
             <div>
                 {keywords?.map((e, i)=>(
-                    <button className='botonesTemps' key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
+                    <button key={i} value={e} onClick={(e)=>{deleteKey(e)}}> {e} </button>
                 ))} 
             </div>
         </div>

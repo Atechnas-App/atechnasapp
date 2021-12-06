@@ -5,7 +5,7 @@ import { HomeRoute } from './HomeRoute'
 export const PrivateRouter = () => {
     return (
         <Switch>
-            <Route  path="/" element={HomeRoute} />
+            <Route  path="/" component={HomeRoute} />
             {/* <HomeRoute/> */}
         </Switch>
             

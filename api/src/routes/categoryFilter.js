@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const { User, Category } = require("../db");
+const { User, Category, Language, Technology } = require("../db");
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get("/categories", async (req, res, next) => {
     next(err);
   }
 });
-
+// va a recibir un string de variables, cambiar a array?
 router.get("/filterByCategory", async (req, res, next) => {
   try {
     // queremos todos los usuarios que tengan determinadas categoria
@@ -20,11 +20,15 @@ router.get("/filterByCategory", async (req, res, next) => {
     // ordenar por calificacion
     //
     const { categories } = req.query;
-    const filteredByCategory = await Category.findAll({
-      where: { category: categories },
-      include: [{ model: User }],
+    const cat = categories.split("-");
+    console.log("soy un array", cat);
+    const filteredByCategory = await User.findAll({
+      where: {
+        "$categories.category$": cat,
+      },
+      include: [ Category, Language, Technology],
     });
-    res.status(200).send(filteredByCategory[0].users);
+    res.status(200).send(filteredByCategory);
   } catch (err) {
     next(err);
   }

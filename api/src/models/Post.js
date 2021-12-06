@@ -16,6 +16,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
 
+   
+    
     image: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -26,14 +28,15 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
 
-    description: {
+    about: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-
+    
     qualification: {
       type: DataTypes.STRING,
       allowNull: true,
+
     },
 
   });
