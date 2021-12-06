@@ -6,23 +6,25 @@ const router = Router();
 
 router.post('/newProfile/:id', async (req, res, next) => {
     try {
-        const {id} = req.query;
+        const {id} = req.params;
         const { 
             company,
             title,
             image, 
-            description, 
-            qualification, 
+            about, 
+            qualification,
+            url
         } = req.body;
-        
-        await Post.create(
+        console.log(id)
+       await Post.create(
             {  
                 company: company,
                 userId: id, 
-                description:description,
+                about : about ,
                 qualification: qualification, 
                 title: title, 
-                image: image}
+                image: image,
+                url: url,}
                 // {where: {id: id}}
                 
         )

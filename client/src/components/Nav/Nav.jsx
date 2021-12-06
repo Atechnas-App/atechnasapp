@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 // import foto from "../../assets/img/Persona1.png";
 import './Nav.css';
 import {Link , useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logoutAll } from '../../actions/actions';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetails, logoutAll } from '../../actions/actions';
 
 
 export default function Nav(){
-
+  
+  const detail = useSelector((state) => state.rootReducer.details);
    const history = useHistory()
  const dispatch = useDispatch()
- localStorage.setItem("user", "{}");
- localStorage.setItem("profileImage", " ");
+ if (!localStorage.getItem("user")) {
+   localStorage.setItem("user", "{}");
+} 
+
+
    const name = localStorage.getItem("displayName")
    const photo = localStorage.getItem("photoURL")
    const user = JSON.parse(localStorage.getItem("user")); 
-  
-   let name1 = user.name?user.name:"";
-   let photo1  = user.profilePicture?user.profilePicture:"";
-
+ 
+   let name1 = user.name;
+   let id = user.id;
+   
+   useEffect(() => {
+     dispatch(getDetails(id));
+    }, [dispatch]);
+    let photo1  = detail.profilePicture?  detail.profilePicture:user.profilePicture ;
+    
    const handleLogout = () => {
        dispatch(logoutAll());
        localStorage.setItem("user", "{}")
@@ -41,10 +49,23 @@ export default function Nav(){
         ) : (
           <div className="containerUser">
             <div className="containerUserImg">
-              <img className="imgUser" src={photo ? photo : photo1} alt="imagen usuario" width="100vw" heigth="100vh"/>
-              <h3 className="nameUser">{name ? name : name1}</h3>
+              <img
+                className="imgUser"
+                src={photo ? photo : photo1}
+                alt="imagen usuario"
+                width="100vw"
+                heigth="100vh"
+              />
+              <h3 >{name ? name : name1}</h3>
             </div>
-            <button onClick={handleLogout}>cerrar sesion</button>
+            <div >
+              <Link to={"/" + id}>
+                <button style={{textDecoration:"none"}}>Perfil</button>
+              </Link>
+            </div>
+            <div>
+              <button onClick={handleLogout}>cerrar sesion</button>
+            </div>
           </div>
         )}
       </div>

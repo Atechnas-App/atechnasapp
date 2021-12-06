@@ -1,9 +1,10 @@
 
-import Swal from 'sweetalert2';
 import axios from 'axios';
+
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
-  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES} from "../actions/types";
-import { fileUpload } from '../assets/cloudinary/Cloudinary';
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
+
+// import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
 
@@ -73,29 +74,29 @@ export function getMarketing() {
 
 export function postLogin(payload){
   return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload) 
+    const user = await axios.post('http://localhost:3001/api/login', payload)
+    console.log(user, 'PAYLOAD LOGIN ERROR') 
     localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
     loglocal()
     return user
   }
 }
 
-export function githubLogin() {
+export function getGithubUserInfo() {
   return async function(dispatch){
-    const github = await axios('http://localhost:3001/api/github')
-    console.log(github)
+    const githubUserInfo = await axios('http://localhost:3001/api/login/success')
+    console.log(githubUserInfo)
     dispatch({
       type: 'GITHUB',
-      payload: github
+      payload: githubUserInfo
     })
   }
 }
 
-export function Search(payload, page) {
+export function Search(payload) {
   
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload + '&page=' + page)
-        console.log('ACTION SEARCH', searching.data)
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -189,14 +190,9 @@ function loglocal(){
   return local
 }
 
-export const login = (uid, displayName, email, photoURL) => ({
+export const login = () => ({
   type: types.login,
-  payload: {
-    uid,
-    displayName,
-    email,
-    photoURL,
-  },
+  
 });
 
 export const logoutAll = () => {
@@ -255,32 +251,9 @@ export const finishLoding = () => ({
 });
 
 
-export const startUploading = (file)=>{
-  return  async (dispatch)=>{
-
-Swal.fire({
-  title: 'Subiendo imagen',
-  text: 'Espere un momento',
-  allowOutsideClick: false,
-  showConfirmButton: false,
-  onOpen: () => {
-    Swal.showLoading()
-  }
-})
-
-    try{    
-   const fileUrl = await fileUpload(file)
-  localStorage.setItem("profileImage", fileUrl)
-    }catch(error){
-      console.log(error)
-    }
-Swal.close()
-}
-}
-
 export function getDetails(id) {
-  return async function(dispatch){
-    const users = await axios.get("http://localhost:3001/api/details/" + id)
+  return async function (dispatch) {
+    const users = await axios.get("http://localhost:3001/api/details/" + id);
     return dispatch({
       type: GET_DETAILS,
       payload: users.data
@@ -294,4 +267,31 @@ export function getDetails(id) {
       return editedProfile
    }
  }
+
+ export function getJobs(id) {
+   return async function(dispatch){
+     console.log(id.id,"id jobs")
+     const getJobs = await axios("http://localhost:3001/api/getJobs/"+id.id);
+     return dispatch({
+       type: GET_JOBS,
+       payload: getJobs.data
+     })
+   }
+ }
  
+ export function postJobs(id, payload) {
+   return async function(){
+     const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
+     return newJob
+   }
+ }
+
+ export function getTestimonials(){
+   return async function(dispatch){
+     const testimonials = await axios("http://localhost:3001/api/testimonial/")
+     return dispatch({
+       type: GET_TESTIMONIALS,
+       payload: testimonials.data
+     })
+   }
+ }

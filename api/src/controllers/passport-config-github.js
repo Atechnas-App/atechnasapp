@@ -3,7 +3,7 @@ const GithubStrategy = require('passport-github2').Strategy
 const passport = require('passport')
 const { Router } = require("express");
 
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_CLIENT_URL } = process.env;
 const { User, Category } = require('../db');
 
 const router = Router();
@@ -17,27 +17,36 @@ passport.use(new GithubStrategy({
     // done(null, profile)
     const { _json } = profile
     console.log(_json)
-    let user = await User.findOrCreate({
-      where: {
-        name: _json.login,
-        lastName: '',
-        email: _json.email ? _json.email : 'ejemplo@mail.com',
-        password: _json.node_id,
-        profilePicture: _json.avatar_url,
-        portfolio: _json.url,
-      }
-    })
+    try{
+      let user = await User.findOrCreate({
+        where: {
+          name: !_json.name ? _json.login : _json.name,
+          lastName: '',
+          email: _json.email ? _json.email : 'ejemplo@mail.com',
+          password: _json.node_id,
+          profilePicture: _json.avatar_url,
+          portfolio: _json.url,
+          description: _json.bio
+        }
+      })
+      done(null, user)
+    }
+    catch(err){
+      done(err)
+    }
     // user.addCategory(['Recruiter'])
-    console.log(user)
-    // .spread(function (user, created){
-    //   console.log(created)
-    // })
-    done(null, user)
   }
 ));
 
 passport.serializeUser((user, done) => { done(null, user) })
 passport.deserializeUser((user, done) => { done(null, user) })
+
+router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
+
+router.get('/github/callback', passport.authenticate('github', {
+  successRedirect: GITHUB_CLIENT_URL,
+  failureRedirect: GITHUB_CLIENT_URL + '/login'
+}))
 
 router.get('/login/success', (req, res) => {
   if (req.user) {
@@ -47,21 +56,7 @@ router.get('/login/success', (req, res) => {
       user: req.user
     })
   }
+  console.log('REQ USER DEL LOGIN SUCCESS',req.user)
 })
-
-router.get('/login/failed', (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: 'failure'
-  })
-})
-
-router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
-
-router.get('/github/callback', passport.authenticate('github', {
-  successRedirect: 'http://localhost:3000',
-  failureRedirect: '/login/failed'
-}))
-
 
 module.exports = router

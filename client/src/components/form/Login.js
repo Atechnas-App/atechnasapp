@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
   postLogin,
-  removeError,
-  setError,
+  removeError1,
+  setError1,
   startGoogleLogin,
-  githubLogin
+  getGithubUserInfo
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
@@ -18,10 +18,13 @@ import { useHistory } from 'react-router-dom'
 
 
 export const Login = () => {
-const history =useHistory()
-const dispatch = useDispatch()
+  const history = useHistory()
+  const dispatch = useDispatch()
 
-const state = useSelector((state) => state);  
+  const state = useSelector(state => state)
+  const githubUser = useSelector((state) => state.rootReducer.githubUser);
+  const { auth, msgError1 } = useSelector((state) => state.logued);
+
 
   const [formValues, handleInputChange] = useForm({
     email: "",
@@ -29,46 +32,55 @@ const state = useSelector((state) => state);
   })
 
   const { email, password } = formValues
+  const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
+  console.log(loginErrorMessage, 'loginErrorMessage')
+
+
 
   const handleLogin = (e) => {
     e.preventDefault()
-    if (ifFormIsValid()) {
-      dispatch(postLogin(formValues));
-      history.push('/')
-    }
-    
+    // if (!typeof loginErrorMessage === 'string')
+      if (ifFormIsValid()) {
+        dispatch(postLogin(formValues));
+        if (localStorage.getItem("user", "id")) {
+          history.push('/')
+        }
+      }
   }
 
-const handleGoogleLogin = () => {
-  dispatch(startGoogleLogin());
-  if(state === true){
-    history.push('/')
-  } 
-}
-const handleGithubLogin = () => {
-  // dispatch(githubLogin())
-  window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
-}
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin());
+    if (auth === true) {
+      window.location.replace('/')
+    }
+  }
+  const handleGithubLogin = () => {
+    window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
+    dispatch(getGithubUserInfo())
+  }
 
   const ifFormIsValid = () => {
 
     if (!validator.isEmail(email)) {
-      dispatch(setError("Email is invalid"));
+      dispatch(setError1("Correo invalido"))
       return false;
     } else if (password.trim().length === 0) {
-      dispatch(setError("Password is required"));
+      dispatch(setError1("La contraseña no puede estar vacia"));
       return false;
     }
-    dispatch(removeError());
+    dispatch(removeError1());
     return true;
 
   };
+
+  console.log('ESTADO GLOBAL GH USER', githubUser)
 
   return (
 
     <div className='entrarContainer'>
       <h1 className='tituloRegister'>ENTRAR</h1>
       {/* LOGIN LOCAL  */}
+      {/* {loginErrorMessage && <p>{loginErrorMessage}</p>} */}
       <form onSubmit={handleLogin}>
         <div>
           <p className='labels'>E-mail</p>
@@ -91,11 +103,11 @@ const handleGithubLogin = () => {
         <button onClick={handleLogin} className='botonImg'>Entrar</button>
         {/* FIN LOGIN LOCAL */}
 
-       {/*  {log.msgError && (
-        <div >{log.msgError}</div>
-      )} */}
+        {msgError1 && (
+          <div >{msgError1}</div>
+        )}
 
-      <p/>
+        <p />
         <button
           className="google-btn"
           onClick={handleGoogleLogin}
@@ -108,13 +120,13 @@ const handleGithubLogin = () => {
               alt="google button"
             />
           </div>
-        <p className="btn-text">
-              <b>Entrar con Google</b>
-            </p>
+          <p className="btn-text">
+            <b>Entrar con Google</b>
+          </p>
           <p />
 
-          </button>
-          <button
+        </button>
+        <button
           className="github-btn"
           onClick={handleGithubLogin}
         >
@@ -125,13 +137,13 @@ const handleGithubLogin = () => {
               alt=""
             />
           </div>
-        <p className="btn-text">
-              <b>Entrar con GitHub</b>
-            </p>
+          <p className="btn-text">
+            <b>Entrar con GitHub</b>
+          </p>
           <p />
 
-          </button>
-        </form>
-      </div>
-    );
+        </button>
+      </form>
+    </div>
+  );
 }
