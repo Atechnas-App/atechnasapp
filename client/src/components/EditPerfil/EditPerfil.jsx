@@ -106,7 +106,7 @@ export default function EditPerfil(props) {
       "Los cambios se guardaron correctamente",
       "success"
     );
-    history.push("/" + id);
+    history.push("/perfil/" + id);
   }
 
   function onHandleCheckCategories(e) {
