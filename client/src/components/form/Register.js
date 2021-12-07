@@ -37,6 +37,7 @@ export const Register = () => {
   });
 
 
+
     const loadImg = async (files) => {
       const reader = new FileReader();
       reader.readAsDataURL(files);
@@ -65,6 +66,7 @@ export const Register = () => {
   function handleCheck(e) {
     e.preventDefault();
     if (e.target.checked) {
+      
       setUser({
         ...user,
         category: user.category.concat(e.target.value),
