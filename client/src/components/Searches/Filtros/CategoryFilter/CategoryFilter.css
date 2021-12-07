@@ -1,9 +1,9 @@
 .container-checkbox{
-    display: flex;
+    /* display: flex; */
 
 }
 .container-checkbox-label{
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: left;
 }
@@ -15,4 +15,10 @@
 
 .checkbox-input{
     margin: 5px;
+}
+
+.h3-all{
+    font-size: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }

@@ -10,10 +10,12 @@ import {Search} from "../../actions/actions"
 export default function SearchPage(){
 
     const searching = useSelector((state)=> state.rootReducer.search);
-    
+    const filter = useSelector((state)=> state.rootReducer.filteredUsers);
+    console.log('LOCAL SEARCH', searching)
+    console.log('LOCAL FILTER', filter)
 
-    const dispatch = useDispatch();
-   console.log("Cards de search", searching)
+
+   
     
   
     
@@ -24,25 +26,43 @@ export default function SearchPage(){
                     <Nav/>
                 </div>
                 <div className="container-all">
-                    <Filtros/>
+                    <div className='container-filtro'>
+                        <Filtros/>
+                    </div>
                     
-                <div>
-                    {   
-                        searching?.map((e) => {
-                        return <CardPeople
-                        profilePicture={e.profilePicture}
-                        name={e.name}
-                        lastName={e.lastName}
-                        technology = {e.technology}
-                        qualification = {e.qualification}
-                        id={e.id}
-                        key={e.id}
-                        categories={e.categories}
-                        />
+                    <div className='container-cards'>
+                        {   searching?
+
+                            searching?.map((e) => {
+                            return <CardPeople
+                            profilePicture={e.profilePicture}
+                            name={e.name}
+                            lastName={e.lastName}
+                            technology = {e.technology}
+                            qualification = {e.qualification}
+                            id={e.id}
+                            key={e.id}
+                            categories={e.categories}
+                            />
                         })
                         
+                    : filter?.map((e) => {
+                    
+                    return (<CardPeople
+                    profilePicture={e.profilePicture}
+                    name={e.name}
+                    lastName={e.lastName}
+                    technology = {e.technologies}
+                    qualification = {e.qualification}
+                    id={e.id}
+                    key={e.id}
+                    categories={e.categories}
+                    />)
+                 
+                
+                    })
                     }
-                </div>
+                    </div>
                 
 
                 </div>

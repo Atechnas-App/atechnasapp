@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const { Op, } = require("sequelize");
-const { User, Technology, Category } = require("../db");
+const { Op } = require("sequelize");
+const { User, Category, Language, Technology } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
@@ -22,7 +22,7 @@ router.get("/search", async (req, res) => {
 
     // Pagination : this will give an object with properties :
     //  count{total of rows}  and rows{{data users},{data users},{data users}}
-    const users = await User.findAll({
+    const users = await User.findAndCountAll({
       where: {
         [Op.or]: [
           { name: { [Op.iLike]: `%${searcher}%` } },
@@ -33,13 +33,18 @@ router.get("/search", async (req, res) => {
           { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
         ],
       },
-      include: { all: true },
+       include: [Category, Language, Technology], 
 
       limit: size,
       offset: page * size,
       subQuery: false,
     });
-    res.send(users);
+    // res.send(users);
+    res.status(200).send({
+      count:users.count,
+      content : users.rows,
+      totalPages : Math.ceil(users.count/ size)
+    });
   } catch (error) {
     console.log(error.message);
   }
