@@ -154,33 +154,9 @@ export const Register = () => {
         <div className="flex">
           <div className="grupoRegister">
             <div>
-              <div className="flex">
-                <div className="grupoRegister">
-                  <p className="labels">Imagen de perfil</p>
-                  <input
-                    type="file"
-                    name="profilePicture"
-                    id="fotoPerfil"
-                    style={{ display: "none" }}
-                    onChange={(e) => loadImg(e.target.files[0])}
-                  />
-
-                  <img
-                    src={user.profilePicture}
-                    alt="foto perfil"
-                    name="photo"
-                    width="250vw"
-                    height="250vh"
-                    value={user.profilePicture}
-                  />
-                  <br />
-                  <button className="botonImg" onClick={handleImageClick} cursor="pointer">
-                    subir
-                  </button>
-                </div>
-              </div>
+              
             </div>
-            <p />
+  
             <p className="labels">Nombre</p>
             <input
               onChange={(e) => onInputChange(e)}
@@ -254,27 +230,55 @@ export const Register = () => {
               className="fields"
             />
           </div>
-
-          <div className="grupoRegister">
-            <p className="labels">Categoría</p>
-            {categories &&
-              categories.map((c) => {
-                return (
-                  <div>
-                    <input
-                      key={c.id}
-                      type="checkbox"
-                      name="category"
-                      value={c.category}
-                      onChange={(e) => handleCheck(e)}
-                      className="checkbox"
-                    />
-                    <label>{c.category}</label>
-                  </div>
-                )
-              })}
-          </div>
         </div>
+          
+          <div className="flex">
+                <div className="grupoRegister">
+                  <p className="labels">Imagen de perfil</p>
+                  <input
+                    type="file"
+                    name="profilePicture"
+                    id="fotoPerfil"
+                    style={{ display: "none" }}
+                    onChange={(e) => loadImg(e.target.files[0])}
+                  />
+
+                  <img
+                    src={user.profilePicture}
+                    alt="foto perfil"
+                    name="photo"
+                    width="250vw"
+                    height="250vh"
+                    value={user.profilePicture}
+                  />
+                  <br />
+                  <button className="botonImg" onClick={handleImageClick} cursor="pointer">
+                    subir
+                  </button>
+                </div>
+                <div className="grupoRegister">
+                  <p className="labels">Categoría</p>
+                  {categories &&
+                    categories.map((c) => {
+                      return (
+                        <div>
+                          <input
+                            key={c.id}
+                            type="checkbox"
+                            name="category"
+                            value={c.category}
+                            onChange={(e) => handleCheck(e)}
+                            className="checkbox"
+                          />
+                          <label>{c.category}</label>
+                        </div>
+                      )
+                    })}
+                </div>
+              </div>
+
+         
+        
         <button
           type="submit"
           className="botonRegistrar"

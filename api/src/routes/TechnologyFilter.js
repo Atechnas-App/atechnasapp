@@ -4,7 +4,6 @@ const { User, Category, Language, Technology } = require("../db");
 const router = Router();
 
 router.get("/getTechnologies", async (req, res, next) => {
-  // no anda
   try {
     const allTechnologies = await Technology.findAndCountAll({
       include: User,

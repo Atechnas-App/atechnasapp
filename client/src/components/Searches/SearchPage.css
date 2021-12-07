@@ -32,3 +32,9 @@
     min-width: 20%;
     min-height: 100%;
 }
+.fixed-filters{
+    float: left;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 15px;
+}

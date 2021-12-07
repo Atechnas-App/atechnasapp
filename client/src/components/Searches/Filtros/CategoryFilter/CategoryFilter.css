@@ -1,11 +1,9 @@
-.container-checkbox{
-    /* display: flex; */
 
-}
 .container-checkbox-label{
     /* display: flex; */
     flex-direction: column;
     align-items: left;
+    
 }
 .container-checkbox-input{
     display: flex;

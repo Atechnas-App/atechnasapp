@@ -1,0 +1,104 @@
+.perfil-container{
+    min-width: 1250px;
+    max-width: 1350px;
+    margin: 0em auto;
+    padding: 1em;
+}
+
+.datos-perfil{
+    display: flex;
+    padding-top: 1em;
+}
+
+.foto-perfil{
+    width: 25%;
+    padding: 1em 2em;
+}
+.foto-de-perfil{
+    min-width: 240px;
+    min-height: 240px;
+    max-width: 240px;
+    max-width: 240px;
+    border-radius: 1em;
+    
+}
+
+.boton-perfil{
+    border-style: none;
+    background: #54be84;
+    color: #ffffff;
+    padding: 0.5em 0.5em;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 1em;
+    margin: 1em 0.5em;
+}
+
+.boton-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nombre-completo-perfil{
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.hr-perfil-violeta{
+    height: 0.3em;
+    background: #9225d7;
+    border-style: none;
+    width: 10%;
+    margin: 0.5em 0em;
+}
+
+.hr-perfil-verde{
+    height: 0.3em;
+    background: #54be84;
+    border-style: none;
+    width: 10%;
+    margin: 0.5em 0em;
+}
+
+.idiomas-perfil{
+    text-transform: uppercase;
+    margin: 0em 1em;
+    font-size: large;
+}
+
+.contenedor-idiomas{
+    display: flex;
+    justify-content: start ;
+    margin: 1em 0em;
+    
+}
+.descripcion-texto{
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    min-height: 8em ;
+    max-height: 8em ;
+    padding: 1em;
+    min-width: 47em;
+    max-width: 47em;
+}
+
+.descripcion-portfolio{
+    color: white;
+}
+
+.keyword-container{
+    display: flex;
+    justify-content: start;
+}
+
+.keyword{
+    margin: 1em;
+    border: solid;
+    border-width: 1px;
+    border-color: #54be84;
+    border-radius: 10px;
+    padding: 0.2em 0.5em;
+    background-color: black;
+
+}

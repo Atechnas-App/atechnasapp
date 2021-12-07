@@ -6,7 +6,7 @@ import {
   removeError1,
   setError1,
   startGoogleLogin,
-  githubLogin
+  getGithubUserInfo
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
@@ -22,36 +22,39 @@ const history =useHistory()
 const dispatch = useDispatch()
 const {auth,msgError1} = useSelector((state) => state.logued);  
 
- 
-const [formValues, handleInputChange] = useForm({
+
+  const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
   })
 
   const { email, password } = formValues
+  const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
+  console.log(loginErrorMessage, 'loginErrorMessage')
 
 
 
   const handleLogin = (e) => {
     e.preventDefault()
-    if (ifFormIsValid()) {
-      dispatch(postLogin(formValues));
-      if(localStorage.getItem("user","id")){
-      history.push('/')
-    }
-  }
+    // if (!typeof loginErrorMessage === 'string')
+      if (ifFormIsValid()) {
+        dispatch(postLogin(formValues));
+        if (localStorage.getItem("user", "id")) {
+          history.push('/')
+        }
+      }
   }
 
-const handleGoogleLogin = () => {
-  dispatch(startGoogleLogin());
-  if(auth === true){
-    window.location.replace('/')
-  } 
-}
-const handleGithubLogin = () => {
-  
-  window.open('http://localhost:3001/api/github', '_self')
-}
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin());
+    if (auth === true) {
+      window.location.replace('/')
+    }
+  }
+  const handleGithubLogin = () => {
+    window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
+    dispatch(getGithubUserInfo())
+  }
 
   const ifFormIsValid = () => {
 
@@ -67,15 +70,14 @@ const handleGithubLogin = () => {
 
   };
 
-
-
+  console.log('ESTADO GLOBAL GH USER', githubUser)
 
   return (
 
     <div className='entrarContainer'>
       <h1 className='tituloRegister'>ENTRAR</h1>
       {/* LOGIN LOCAL  */}
-
+      {/* {loginErrorMessage && <p>{loginErrorMessage}</p>} */}
       <form onSubmit={handleLogin}>
         <div>
           <p className='labels'>E-mail</p>
@@ -99,10 +101,10 @@ const handleGithubLogin = () => {
         {/* FIN LOGIN LOCAL */}
 
         {msgError1 && (
-        <div >{msgError1}</div>
-      )}
+          <div >{msgError1}</div>
+        )}
 
-      <p/>
+        <p />
         <button
           className="google-btn"
           onClick={handleGoogleLogin}
@@ -115,13 +117,13 @@ const handleGithubLogin = () => {
               alt="google button"
             />
           </div>
-        <p className="btn-text">
-              <b>Entrar con Google</b>
-            </p>
+          <p className="btn-text">
+            <b>Entrar con Google</b>
+          </p>
           <p />
 
-          </button>
-          <button
+        </button>
+        <button
           className="github-btn"
           onClick={handleGithubLogin}
         >
@@ -132,13 +134,13 @@ const handleGithubLogin = () => {
               alt=""
             />
           </div>
-        <p className="btn-text">
-              <b>Entrar con GitHub</b>
-            </p>
+          <p className="btn-text">
+            <b>Entrar con GitHub</b>
+          </p>
           <p />
 
-          </button>
-        </form>
-      </div>
-    );
+        </button>
+      </form>
+    </div>
+  );
 }

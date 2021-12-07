@@ -7,8 +7,12 @@ import Perfil from "../components/Perfil/Perfil"
 
 
 export const InvitedRoute = () => {
+  const local = JSON.parse(localStorage.getItem("user"));
+  // const isAdmin = localStorage.getItem("isAdmin");
+
     return (
       <Switch>
+        {/* RUTAS PUBLICAS */}
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />          
