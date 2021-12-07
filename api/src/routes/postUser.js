@@ -36,8 +36,8 @@ const register = router.post(
         lastName,
         email,
         category,
-        languages,
-        technology,
+        // languages,
+        // technology,
         profilePicture,
         portfolio,
       } = req.body;
@@ -53,14 +53,14 @@ const register = router.post(
         where: { category: category },
         include: [User],
       });
-      let languagesDb = await Language.findAll({
-        where: { languages },
-        include: [User],
-      });
-      let technologyDb = await Technology.findAll({
-        where: { technology },
-        include: [User],
-      });
+      // let languagesDb = await Language.findAll({
+      //   where: { languages },
+      //   include: [User],
+      // });
+      // let technologyDb = await Technology.findAll({
+      //   where: { technology },
+      //   include: [User],
+      // });
       newUser.addCategory(categories);
       newUser.addLanguage(languagesDb);
       newUser.addTechnology(technologyDb);
