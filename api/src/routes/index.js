@@ -12,7 +12,7 @@ const filterByQualification = require('./qualificationFilter')
 const deletePost = require('./deletePost')
 
 const putUsers = require('./putUsers')
-const postTeams = require('./createTeam')
+const Publications = require('./Publications')
 const { login, register, home } = require('./postUser')
 
  
@@ -36,7 +36,7 @@ router.use('/api', register)
 router.use('/api', home)
 router.use('/api', deletePost)
 router.use('/api', putUsers)
-router.use('/api', postTeams)
+router.use('/api', Publications)
 
 
 
