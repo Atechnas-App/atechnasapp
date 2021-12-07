@@ -3,25 +3,28 @@ import React from 'react'
 import { InvitedRoute } from "./InvitedRoute";
 import { HomeRoute } from "./HomeRoute"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 export const AppRoutes = () => {
 
+const {logued} = useSelector(state => state.auth)
 
   return (
     <div>
         <BrowserRouter>          
           <Switch>
-            <Route
+            <Route   
+                   
               path="/"
-              component={
-                InvitedRoute
-              }
+              component={InvitedRoute}
+              isAutenticated={logued?.log}
               />
             <Route
              path="/"
              component={HomeRoute}
+             isAutenticated={logued?.log}
              />
               
           </Switch>

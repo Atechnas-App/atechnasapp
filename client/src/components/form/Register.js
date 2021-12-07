@@ -15,13 +15,27 @@ export const Register = () => {
  
  
 
-const photo = localStorage.getItem("profileImage");
   const dispatch = useDispatch();
  
   const categories = useSelector((state) => state.rootReducer.categories);
   const { msgError } = useSelector((state) => state.logued);
 
  
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "", //agregue el confirmado
+    profilePicture: "",
+    portfolio: "",
+    category: [], // ver como pasarlo a array
+  });
+
 
     const loadImg = async (files) => {
       const reader = new FileReader();
@@ -203,6 +217,7 @@ const photo = localStorage.getItem("profileImage");
             />
           </div>
           <div className="grupoRegister">
+
             <p className="labels">Contraseña</p>
             <input
               type="password"
@@ -217,6 +232,7 @@ const photo = localStorage.getItem("profileImage");
 
         <div className="flex">
           <div className="grupoRegister">
+          
             <p className="labels">Link al Portfolio</p>
             <input
               type="text"

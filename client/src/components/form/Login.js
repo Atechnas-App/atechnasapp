@@ -20,7 +20,6 @@ import { useHistory } from 'react-router-dom'
 export const Login = () => {
 const history =useHistory()
 const dispatch = useDispatch()
-
 const {auth,msgError1} = useSelector((state) => state.logued);  
 
  
