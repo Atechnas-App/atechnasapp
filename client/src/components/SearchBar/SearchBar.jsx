@@ -22,6 +22,7 @@ export default function SearchBar(){
         setSearch(e.target.value)
     }
 
+    
     return(
 
         <div>
