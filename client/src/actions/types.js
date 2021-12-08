@@ -13,6 +13,7 @@ export const GET_TESTIMONIALS = 'GET_TESTIMONIALS'
 export const DEVELOPER = 'DEVELOPER'
 export const DESIGN = 'DESIGN'
 export const MARKETING = 'MARKETING'
+export const DETAIL_JOB = 'DETAIL_JOB'
 
 
 

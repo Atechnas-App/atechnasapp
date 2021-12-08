@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "nuka-carousel": "^4.8.4",
     "react-select": "^5.2.1"
   }
 }

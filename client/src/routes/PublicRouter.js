@@ -1,12 +1,23 @@
-import React from 'react'
+/* import React from 'react'
 import { Route, Switch } from "react-router-dom";
-import { InvitedRoute } from './InvitedRoute'
+import { Redirect } from 'react-router';
 
-export const PublicRouter = () => {
+export const PublicRouter = ({isAutenticated,
+component: Component,
+...rest}) => {
     return (
-        <Switch>
-            <Route path="/" component={InvitedRoute} />
-           {/*  <InvitedRoute/> */}
-        </Switch>
+      <Switch>
+     <Route 
+      {...rest}       
+      component={(props)=>
+          (!isAutenticated)
+          ?
+          <Component {...props}/> 
+          :
+          <Redirect to="/"/>
+      } 
+           />
+     </Switch>
     )
 }
+ */
