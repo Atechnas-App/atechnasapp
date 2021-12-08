@@ -19,7 +19,6 @@ const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
 const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
-
  
 const router = Router();
 
@@ -47,12 +46,6 @@ router.use('/api', deletePost)
 router.use('/api', putUsers)
 router.use('/api', postTeams)
 router.use('/api', githubLog)
-
-
-
-
-
-
 
 
 module.exports = router;
