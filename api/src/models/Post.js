@@ -15,31 +15,19 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-
-   
     
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
 
-    company: {
-      type: DataTypes.STRING,
+
+    description: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
 
-    about: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    
-    qualification: {
-      type: DataTypes.STRING,
-      allowNull: true,
-
-    },
-
-    url: {
+   price: {
       type: DataTypes.STRING,
       allowNull: true,
     }

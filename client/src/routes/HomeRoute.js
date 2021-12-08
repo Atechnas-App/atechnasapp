@@ -8,10 +8,10 @@ import SearchPage from "../components/Searches/SearchPage";
 export const HomeRoute = () => {
   return (
     <Switch>
-      <Route exact path="/perfil/editPerfil/:id" component={EditPerfil} />
+     {/*  <Route exact path="/perfil/editPerfil/:id" component={EditPerfil} />
       <Route exact path="/perfil/:id" component={Perfil} />
 
-      <Redirect to="/perfil/:id" />
+      <Redirect to="/perfil/:id" /> */}
     </Switch>
   );
 };

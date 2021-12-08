@@ -3,11 +3,57 @@ import React from 'react'
 import { InvitedRoute } from "./InvitedRoute";
 import { HomeRoute } from "./HomeRoute"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 
 
 export const AppRoutes = () => {
+
+
+  return (
+    <div>
+        <BrowserRouter>          
+          <Switch>
+            <Route
+              path="/"
+              component={
+                InvitedRoute
+              }
+              />
+            <Route
+             path="/"
+             component={HomeRoute}
+             />
+              
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import React from 'react'
+/* import { Route } from 'react-router' */
+/* import { InvitedRoute } from "./InvitedRoute";
+import { HomeRoute } from "./HomeRoute"
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux'; */
+
+
+
+/* export const AppRoutes = () => {
 
 const {logued} = useSelector(state => state.auth)
 
@@ -31,5 +77,5 @@ const {logued} = useSelector(state => state.auth)
         </BrowserRouter>
       </div>
     );
-  }
+  } */ 
   

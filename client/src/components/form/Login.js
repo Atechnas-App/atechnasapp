@@ -70,7 +70,7 @@ const {auth,msgError1} = useSelector((state) => state.logued);
 
   };
 
-  console.log('ESTADO GLOBAL GH USER', githubUser)
+  /* console.log('ESTADO GLOBAL GH USER', githubUser) */
 
   return (
 

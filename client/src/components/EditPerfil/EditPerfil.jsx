@@ -22,21 +22,21 @@ export default function EditPerfil(props) {
     dispatch(getLanguages());
     dispatch(getDetails(id));
   }, [dispatch, id]);
-  const technologies = useSelector((state) => state.rootReducer.technologies);
-  const categories = useSelector((state) => state.rootReducer.categories);
-  const languages = useSelector((state) => state.rootReducer.languages);
-  const detail = useSelector((state) => state.rootReducer.details);
-  const userCategories = detail.categories.map((e) => e.category);
-  const userTechnologies = detail.technologies.map((e) => e.technology);
-  const userLanguages = detail.languages.map((e) => e.languages);
+  const technologies = useSelector((state) => state.rootReducer?.technologies);
+  const categories = useSelector((state) => state.rootReducer?.categories);
+  const languages = useSelector((state) => state.rootReducer?.languages);
+  const detail = useSelector((state) => state.rootReducer?.details);
+  const userCategories = detail.categories?.map((e) => e?.category);
+  const userTechnologies = detail.technologies?.map((e) => e?.technology);
+  const userLanguages = detail.languages?.map((e) => e?.languages);
   const categoriesToAdd = categories?.filter(
-    (c) => !userCategories.includes(c.category)
+    (c) => !userCategories?.includes(c?.category)
   );
   const technologiesToAdd = technologies?.filter(
-    (c) => !userTechnologies.includes(c.technology)
+    (c) => !userTechnologies?.includes(c?.technology)
   );
   const languagesToAdd = languages?.filter(
-    (c) => !userLanguages.includes(c.language)
+    (c) => !userLanguages.includes(c?.language)
   );
 
   const [editedProfile, setEditedProfile] = useState({
@@ -278,7 +278,7 @@ export default function EditPerfil(props) {
                 </select>
               </div>
               <div className="boton-idioma-map">
-                {editedProfile.languages.map((lang) => (
+                {editedProfile.languages?.map((lang) => (
                   <div>
                     <button className="boton-perfil" type="button" onClick={() => handleDelete(lang)}>
                       {lang}

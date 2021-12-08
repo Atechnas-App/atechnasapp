@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { Route, Switch } from "react-router-dom";
 import{Redirect} from 'react-router'
 
@@ -18,3 +18,4 @@ export const PrivateRouter = ({isAutenticated, component: Component, ...rest}) =
       </Switch>
     );
 }
+ */

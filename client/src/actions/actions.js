@@ -290,7 +290,8 @@ export function getDetails(id) {
  
  export function postJobs(id, payload) {
    return async function(){
-     const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
+     const newJob = await axios.post(`http://localhost:3001/api/newProfile/` + id , payload ) 
+     console.log(payload, "actions");
      return newJob
    }
  }
