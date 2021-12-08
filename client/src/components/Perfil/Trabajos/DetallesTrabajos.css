@@ -1,0 +1,49 @@
+.detalle-trabajo-contenedor{
+    min-width: 1250px;
+    max-width: 1350px;
+    margin: 0em auto;
+    padding: 1em;
+}
+
+.carousel-trabajo{
+    margin: 0em auto;
+}
+
+.descripcion-trabajo{
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    min-height: 8em ;
+    max-height: 16em ;
+    padding: 1em;
+    margin: 2em auto;
+    min-width: 95%;
+    max-width: 95%;
+}
+
+.precio-contenedor{
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}
+
+.texto-precio{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: end;
+    margin: 1em 4.2em 0em 0em;
+}
+
+.precio-trabajo{
+    text-align: center;
+    margin: 0.5em 1em 1em 1em;
+    font-size: 30px;
+    font-weight: bold;
+    width: 5em;
+    border: solid;
+    border-width: 1px;
+    border-color: #54be84;
+    border-radius: 10px;
+    padding: 0.5em 0.5em;
+    background-color: black;
+}
