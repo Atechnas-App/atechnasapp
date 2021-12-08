@@ -4,7 +4,12 @@ const { User, Category, Language, Technology } = require("../db");
 const router = Router();
 
 router.get("/search", async (req, res) => {
+  console.log("soy la query",req.query)
+  
   try {
+    const {searcher}=req.query
+    const search = searcher.includes("-") ? searcher.split("-") : searcher;
+    console.log("soy el search",search)
     const pageAsNumber = Number.parseInt(req.query.page);
     const sizeAsNumber = Number.parseInt(req.query.size);
 
@@ -12,27 +17,33 @@ router.get("/search", async (req, res) => {
     if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
       page = pageAsNumber;
     }
-    let size = 10;
+    let size = 2;
     if (!Number.isNaN(sizeAsNumber)) {
-      if (sizeAsNumber > 0 && sizeAsNumber < 15) {
+      if (sizeAsNumber > 0 && sizeAsNumber < 2) {
         size = sizeAsNumber;
       }
     }
-    const { searcher } = req.query;
+    const condition = Array.isArray(search) ?  {
+      [Op.or]: [
+        { "$technologies.technology$": search },
+        { "$categories.category$": search },
+      ],
+    }
+    :{
+      [Op.or]: [
+        { name: { [Op.iLike]: `%${search}%` } },
+        { lastName: { [Op.iLike]: `%${search}%` } },
+        { description: { [Op.iLike]: `%${search}%` } },
+        { "$categories.category$": { [Op.iLike]: `%${search}%` } },
+        { "$languages.languages$": { [Op.iLike]: `%${search}%` } },
+        { "$technologies.technology$": { [Op.iLike]: `%${search}%` } },
+      ],
+    }
 
     // Pagination : this will give an object with properties :
     //  count{total of rows}  and rows{{data users},{data users},{data users}}
     const users = await User.findAndCountAll({
-      where: {
-        [Op.or]: [
-          { name: { [Op.iLike]: `%${searcher}%` } },
-          { lastName: { [Op.iLike]: `%${searcher}%` } },
-          { description: { [Op.iLike]: `%${searcher}%` } },
-          { "$categories.category$": { [Op.iLike]: `%${searcher}%` } },
-          { "$languages.languages$": { [Op.iLike]: `%${searcher}%` } },
-          { "$technologies.technology$": { [Op.iLike]: `%${searcher}%` } },
-        ],
-      },
+      where: condition ,
        include: [Category, Language, Technology], 
 
       limit: size,

@@ -19,6 +19,7 @@ const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
 const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
+const mp = require("../routes/mercadopago")
 
  
 const router = Router();
@@ -47,6 +48,7 @@ router.use('/api', deletePost)
 router.use('/api', putUsers)
 router.use('/api', postTeams)
 router.use('/api', githubLog)
+router.use('/api', mp)
 
 
 
