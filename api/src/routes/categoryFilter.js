@@ -40,7 +40,7 @@ router.get("/bestDevelopers", async (req, res, next) => {
   try {
     const developers = await User.findAll({
       where: {
-        "$categories.category$": "Full Stack Developer",
+        "$categories.category$": "Developer",
       },
       include: [Category, Language, Technology],
       limit: 3,
@@ -55,7 +55,7 @@ router.get("/bestDesign", async (req, res, next) => {
   try {
     const developers = await User.findAll({
       where: {
-        "$categories.category$": "Design",
+        "$categories.category$": "Designer",
       },
       include: [Category, Language, Technology],
       limit: 3,

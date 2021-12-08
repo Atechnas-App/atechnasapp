@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { CompleteRegister } from '../components/form/CompleteRegister';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
@@ -8,14 +8,23 @@ import Perfil from "../components/Perfil/Perfil"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 
 export const InvitedRoute = () => {
+  const local = JSON.parse(localStorage.getItem("user"));
+  // const isAdmin = localStorage.getItem("isAdmin");
+
     return (
       <Switch>
+        {/* RUTAS PUBLICAS */}
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />
-        <Route exact path="/completeregister" component={CompleteRegister} />
-        <Route exact path="/:id" component={Perfil} />
-        <Route exact path="/editPerfil/:id" component={EditPerfil}/>
+        {/* <Route path="/results?searcher=" component={SearchPage} /> */}
+
+
+        {/* RUTAS USUARIOS */}
+        {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
+        {local?.id && <Route exact path="/perfil/:id" component={Perfil} />}
+        {local?.id && <Route exact path="/perfil/edit/:id" component={EditPerfil}/>}
+        {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
       </Switch>
     );
 }

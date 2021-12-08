@@ -105,27 +105,15 @@ export function getGithubUserInfo() {
   };
 }
 
-export function Search(payload, page) {
-  return async function (dispatch) {
-    const searching = await axios(
-      "http://localhost:3001/api/search?searcher=" + payload + "&page=" + page
-    );
-    console.log("ACTION SEARCH", searching.data);
-    console.log("payload", payload, "pagina", page);
-    dispatch({
-      type: SEARCH,
-      payload: searching.data,
-    });
-  };
-}
-export function stateSearchBar(payload) {
-  return async function (dispatch) {
-    console.log("stateSearchBar", payload);
-    dispatch({
-      type: "STATE-SEARCHBAR",
-      payload,
-    });
-  };
+export function Search(payload) {
+  
+    return async function(dispatch){
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
+        dispatch({
+            type: SEARCH,
+            payload: searching.data
+        })
+    }
 }
 
 export function Filter(payload, page) {
