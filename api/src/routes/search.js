@@ -50,4 +50,32 @@ router.get("/search", async (req, res) => {
   }
 });
 
+
+router.get('/prueba', async (req, res) => {
+  try {
+    const { buscar } = req.query
+
+    const resultadoUser = await User.findAll(
+      {
+        where: {
+          [Op.or]: [
+            { name: { [Op.iLike]: `%${buscar}%` } },
+            { lastName: { [Op.iLike]: `%${buscar}%` } },
+            { '$technologies.technology$': { [Op.iLike]: `%${buscar}%` } },
+            { '$categories.category$': { [Op.iLike]: `%${buscar}%` } },
+            { '$languages.languages$': { [Op.iLike]: `%${buscar}%` } },
+          ]
+        },
+        include: {
+          all: true,
+        }
+
+      })
+
+    res.status(200).send(resultadoUser)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports = router;

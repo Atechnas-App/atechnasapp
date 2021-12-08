@@ -73,12 +73,23 @@ export function getMarketing() {
 
 
 export function postLogin(payload){
-  return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload)
-    console.log(user, 'PAYLOAD LOGIN ERROR') 
+  return async function(dispatch){
+    const user = await axios.post('http://localhost:3001/api/login', payload) 
     localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
     loglocal()
-    return user
+    console.log(user.data)
+    if(user.data.id){
+dispatch({
+      type: types.login,
+      payload: user.data,
+    })
+  }
+   else{
+      dispatch({
+        type: types.logout,
+        payload: user.data,
+      })
+    }
   }
 }
 
@@ -155,7 +166,7 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
+        /* dispatch(login(user.uid, user.displayName, user.email, user.photoURL)) */;
         dispatch(startLoding())
         (dispatch(loginStore()))
         dispatch(finishLoding())  
@@ -169,20 +180,19 @@ export const startGoogleLogin = () => {
 }
 
 
- function loginStore() {
-  try{  firebase.auth().onAuthStateChanged(function(user) {
-     if (user) {
-      var displayName = user.displayName;
-      var email = user.email;
-      var photoURL = user.photoURL;
-      
-      localStorage.setItem("displayName",displayName)
-      localStorage.setItem("email",email)
-      localStorage.setItem("photoURL",photoURL)}
-    })
-  }catch(error){
-      console.log(error)
-}
+async function loginStore() {
+  try {
+     firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        localStorage.setItem("displayName", user.displayName);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("photoURL", user.photoURL);
+      }
+      localStorage.setItem("id", user.uid);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function loglocal(){
@@ -190,33 +200,32 @@ function loglocal(){
   return local
 }
 
-export const login = () => ({
+/* export const login = (payload) => ({
   type: types.login,
-  
-});
+  ...payload,
+}); */
 
-export const logoutAll = () => {
+export const logoutAll =  () => {
   return (dispatch) => {
-   try{ firebase
-      .auth()
-      .signOut()  
-      .then(() => {
-        dispatch(logout());
+  
+firebase
+    .auth()
+    .signOut()  
+    .then(() => {
+      dispatch(logout());
         dispatch(logoutStore());
       })
       .catch((error) => {
         console.log(error);
-      });}
-      catch(error){
-        console.log(error)
-      }
-  }
+  })
 };
+}
 
 function logoutStore() {
   localStorage.removeItem("displayName")
   localStorage.removeItem("email")
   localStorage.removeItem("photoURL")
+  localStorage.removeItem("id")
 }
 
 
@@ -281,7 +290,8 @@ export function getDetails(id) {
  
  export function postJobs(id, payload) {
    return async function(){
-     const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
+     const newJob = await axios.post(`http://localhost:3001/api/newProfile/` + id , payload ) 
+     console.log(payload, "actions");
      return newJob
    }
  }

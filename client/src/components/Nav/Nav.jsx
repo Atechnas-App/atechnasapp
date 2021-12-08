@@ -27,6 +27,7 @@ export default function Nav(){
    useEffect(() => {
      dispatch(getDetails(id));
     }, [dispatch]);
+    
     let photo1  = detail.profilePicture?  detail.profilePicture:user.profilePicture ;
     
    const handleLogout = () => {

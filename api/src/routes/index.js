@@ -44,8 +44,7 @@ router.use('/api', login)
 router.use('/api', register)
 router.use('/api', deletePost)
 router.use('/api', putUsers)
-router.use('/api', postTeams)
-router.use('/api', githubLog)
+/* router.use('/api', Publications) */
 
 
 module.exports = router;
