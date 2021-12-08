@@ -19,7 +19,7 @@ let fullId = props.match.params.id
 
 useEffect(() => {
     dispatch(getDetails(fullId, id, id1))
-}, [dispatch]);
+}, [dispatch]);// eslint-disable
 
 console.log(detail.categories, "Hay categorias?")
 

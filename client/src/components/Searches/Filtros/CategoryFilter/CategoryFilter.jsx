@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Filter, getCategories } from "../../../../actions/actions"
+import { getCategories, Search, stateSearchBar } from "../../../../actions/actions"
 import "./CategoryFilter.css"
 
 export default function CatFilter(){
@@ -22,20 +22,23 @@ export default function CatFilter(){
         e.preventDefault();
         if (e.target.checked) {
            
-            dispatch(Filter([...category, e.target.value].join('-')))
+            dispatch(Search([...category, e.target.value].join('-')))
+            
             setCategory(
                 
                 [...category, e.target.value] 
                 
                 )
-               
-        }else {
-            
-            dispatch(Filter(category?.filter(c => c !== e.target.value).join('-')))
-           
-            setCategory(  
-                category?.filter(c => c !== e.target.value)
-                )
+            dispatch(stateSearchBar([...category, e.target.value].join('-') ))
+                
+            }else {
+                
+                dispatch(Search(category?.filter(c => c !== e.target.value).join('-')))
+                
+                setCategory(  
+                    category?.filter(c => c !== e.target.value)
+                    )
+                    dispatch(stateSearchBar(category))
         };
         
         }
@@ -51,8 +54,8 @@ export default function CatFilter(){
             <div className="container-checkbox">
 
               {
-                  categories && categories.map( c => {
-                  return <div>
+                  categories && categories.map( (c,i) => {
+                  return <div key={i} >
                     <input key={c.id} type='checkbox' name='category' value={c.category}  onChange={(e) => {handleCheck(e)}} className='checkbox'/>
                     <label>{c.category}</label>
                   </div>

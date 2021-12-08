@@ -1,5 +1,5 @@
 
-import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS,  GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
+import { GET_USER, SEARCH, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS,  GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
 
 
 
@@ -14,7 +14,7 @@ const initialState = {
     design:[],
     marketing:[],
     languages:[],
-    // technologies:[],
+    stateSearchBar:null,
     githubUser: [],
     jobs: [],
     testimonials:[],
@@ -44,7 +44,14 @@ export default function rootReducer(state = initialState, action) {
 
                     return {
                         ...state,
-                        search: action.payload.content,
+                        search: action.payload,
+
+                    }
+                case "STATE-SEARCHBAR":
+
+                    return {
+                        ...state,
+                        stateSearchBar: action.payload,
 
                     }
                 case DEVELOPER:
@@ -66,7 +73,7 @@ export default function rootReducer(state = initialState, action) {
                     
                     return {
                         ...state,
-                        search: action.payload.content,
+                        search: action.payload,
                     }
 
                 case GET_CATEGORIES:

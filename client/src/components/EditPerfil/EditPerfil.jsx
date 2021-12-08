@@ -1,20 +1,29 @@
 import "./EditPerfil.css";
 import { useDispatch, useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   editProfile,
   getCategories,
   getDetails,
   getLanguages,
   getTechnologies,
+  addMercadoPago,
 } from "../../actions/actions";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation} from "react-router-dom";
 import Swal from "sweetalert2";
+// const { APP_ID } = process.env;
 
 export default function EditPerfil(props) {
+  function useQuery() {
+    const { search } = useLocation();
+  
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
   const history = useHistory();
   const dispatch = useDispatch();
+  const code = useQuery()
+  console.log(code.get("code"))
   const id = props.match.params.id;
   useEffect(() => {
     dispatch(getCategories());
@@ -232,7 +241,7 @@ export default function EditPerfil(props) {
               <input type="password" placeholder="••••••••••" disabled></input>
             </div>
             <div className="label-input">
-              <button >Cambia tu contraseña</button>
+              <button>Cambia tu contraseña</button>
             </div>
             <div className="label-input">
               <label className="input-label">Link Portfolio</label>
@@ -280,11 +289,24 @@ export default function EditPerfil(props) {
               <div className="boton-idioma-map">
                 {editedProfile.languages.map((lang) => (
                   <div>
-                    <button className="boton-perfil" type="button" onClick={() => handleDelete(lang)}>
+                    <button
+                      className="boton-perfil"
+                      type="button"
+                      onClick={() => handleDelete(lang)}
+                    >
                       {lang}
                     </button>
                   </div>
                 ))}
+              </div>
+              <div className="boton-idioma-map">
+                <div>
+                  <button className="boton-perfil" type="button">
+                    <a href={`https://auth.mercadopago.com.ar/authorization?client_id=6946581129047191&response_type=code&platform_id=mp&state=RANDOM_ID&redirect_uri=http://localhost:3000/editperfil/`}>
+                      Añadir Mercado Pago
+                    </a>
+                  </button>
+                </div>
               </div>
             </div>
             <div>
@@ -362,9 +384,9 @@ export default function EditPerfil(props) {
               </div>
             </div>
             <div className="boton-submit">
-                <button className="boton-perfil" type="submit" value="Guardar">
+              <button className="boton-perfil" type="submit" value="Guardar">
                 Guardar
-                </button>
+              </button>
             </div>
           </form>
         </div>
@@ -383,7 +405,12 @@ export default function EditPerfil(props) {
             alt="img not found"
             className="img-edit-perfil"
           ></img>
-          <button className="boton-perfil" type="submit" onClick={handleImageClick} cursor="pointer">
+          <button
+            className="boton-perfil"
+            type="submit"
+            onClick={handleImageClick}
+            cursor="pointer"
+          >
             Subir
           </button>
         </div>

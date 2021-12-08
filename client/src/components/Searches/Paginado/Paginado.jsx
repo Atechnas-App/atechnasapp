@@ -13,7 +13,7 @@ export default function Paginado({cardPage, allCards, paginado, actualPage}){
             <ul className='ul'>
                 {numPaginas && numPaginas.map(num => (
                     <li key={num} className='li-Paginado'>
-                    <a className={num === actualPage? 'actual' : 'paginado'} href='#' onClick={() => paginado(num)}><strong> {num} </strong></a>
+                    {/* <a className={num === actualPage? 'actual' : 'paginado'} href='#' onClick={() => paginado(num)}><strong> {num} </strong></a> */}
                     </li>
                 ))}
             </ul>

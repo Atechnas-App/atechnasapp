@@ -21,7 +21,7 @@ export const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const state = useSelector(state => state)
+  // const state = useSelector(state => state)
   const githubUser = useSelector((state) => state.rootReducer.githubUser);
   const { auth, msgError1 } = useSelector((state) => state.logued);
 

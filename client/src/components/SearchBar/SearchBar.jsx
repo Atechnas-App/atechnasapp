@@ -1,8 +1,8 @@
 import React from 'react';
 import './SearchBar.css';
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Search} from '../../actions/actions.js';
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {Search,stateSearchBar} from '../../actions/actions.js';
 import {useHistory} from 'react-router-dom';
 
 
@@ -17,6 +17,7 @@ export default function SearchBar(){
     function onSubmit(e){
         e.preventDefault();
         dispatch(Search(search))
+        dispatch(stateSearchBar(search))
         history.push('/results')
         
         

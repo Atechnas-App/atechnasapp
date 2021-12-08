@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTestimonials } from '../../../actions/actions'
+// import { getTestimonials } from '../../../actions/actions'
 import Persona1 from '../../../assets/img/Persona1.png'
 import Persona2 from '../../../assets/img/Persona2.png'
 import Persona3 from '../../../assets/img/Persona3.png'
@@ -9,9 +9,9 @@ import './Testimonial.modules.css'
 export default function Testimonial(){
     const dispatch = useDispatch();
     const testimonials = useSelector((state)=> state.rootReducer.testimonials)
-    useEffect(() => {
-        dispatch(getTestimonials())
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(getTestimonials())
+    // },[dispatch])
 
     return(
         <div className='testimonial-container'>
