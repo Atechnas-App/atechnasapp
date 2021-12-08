@@ -6,6 +6,7 @@ import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';
 import Perfil from "../components/Perfil/Perfil"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
+import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
@@ -17,6 +18,7 @@ export const InvitedRoute = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />
+        <Route exact path="/testing" component={DetallesTrabajo}/>
         {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
