@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
   GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
@@ -283,6 +283,17 @@ export function getDetails(id) {
    return async function(){
      const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
      return newJob
+   }
+ }
+
+ export function getDetailJob(id){
+   return async function(dispatch){
+     console.log(id, "ID DETALLE DEL TRABAJO")
+     const detailJob = await axios.get("http://localhost:3001/api/getJobs/detail/"+id)
+     return dispatch({
+      type: DETAIL_JOB,
+      payload: detailJob.data
+     })
    }
  }
 

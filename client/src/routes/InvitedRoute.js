@@ -18,7 +18,7 @@ export const InvitedRoute = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />
-        <Route exact path="/testing" component={DetallesTrabajo}/>
+        <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>
         {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
