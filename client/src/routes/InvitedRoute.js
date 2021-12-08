@@ -18,7 +18,6 @@ export const InvitedRoute = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginadnRegister} />
         <Route exact path="/results" component={SearchPage } />
-        <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>
         {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
@@ -27,6 +26,7 @@ export const InvitedRoute = () => {
         {local?.id && <Route exact path="/perfil/:id" component={Perfil} />}
         {local?.id && <Route exact path="/perfil/edit/:id" component={EditPerfil}/>}
         {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
+        {local?.id && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
       </Switch>
     );
 }
