@@ -11,6 +11,8 @@ export default function CardTrabajo(id){
     useEffect(() => {
         dispatch(getJobs(id))
     },[dispatch,id])
+    console.log(jobs, "card trabajo")
+    console.log(id, "Jobs")
     return (
         <div>
             

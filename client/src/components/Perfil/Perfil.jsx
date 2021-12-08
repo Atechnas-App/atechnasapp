@@ -20,7 +20,7 @@ let fullId = props.match.params.id
 useEffect(() => {
     dispatch(getDetails(fullId, id, id1))
 }, [dispatch]);
-
+console.log(detail )
 console.log(detail.categories, "Hay categorias?")
 
     return(

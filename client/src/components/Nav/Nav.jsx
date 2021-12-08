@@ -26,7 +26,7 @@ export default function Nav(){
    
    useEffect(() => {
      dispatch(getDetails(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
     
     let photo1  = detail.profilePicture?  detail.profilePicture:user.profilePicture ;
     
@@ -62,6 +62,11 @@ export default function Nav(){
             <div >
               <Link to={"/perfil/" + id}>
                 <button style={{textDecoration:"none"}}>Perfil</button>
+              </Link>
+            </div>
+            <div>
+              <Link to={"/trabajos/"+id}>
+                <button>Mis trabajos</button>
               </Link>
             </div>
             <div>

@@ -13,7 +13,7 @@ export default function DetallesTrabajo(props){
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
-    },[dispatch])
+    },[dispatch,id])
 
     
 

@@ -281,6 +281,7 @@ export function getDetails(id) {
    return async function(dispatch){
      console.log(id.id,"id jobs")
      const getJobs = await axios("http://localhost:3001/api/getJobs/"+id.id);
+     console.log(getJobs.data, "getjobs")
      return dispatch({
        type: GET_JOBS,
        payload: getJobs.data
@@ -298,12 +299,21 @@ export function getDetails(id) {
 
  export function getDetailJob(id){
    return async function(dispatch){
-     console.log(id, "ID DETALLE DEL TRABAJO")
+     console.log(id, "ID GET DETALLE DEL TRABAJO")
      const detailJob = await axios.get("http://localhost:3001/api/getJobs/detail/"+id)
      return dispatch({
       type: DETAIL_JOB,
       payload: detailJob.data
      })
+   }
+ }
+
+ export function editJob(id, payload){
+   return async function(){
+     console.log(id, "EDIT JOB ID")
+     console.log(payload, "EDIT JOB PAYLOAD")
+     const editedJob = await axios.put("http://localhost:3001/api/editJobs/"+ id,payload)
+     return editedJob
    }
  }
 

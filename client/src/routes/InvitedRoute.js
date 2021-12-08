@@ -7,7 +7,8 @@ import SearchPage from '../components/Searches/SearchPage';
 import Perfil from "../components/Perfil/Perfil"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-import { Form } from "../components/Perfil/trabajos/Form";
+import { Form } from "../components/Perfil/Trabajos/Form";
+import { EditarTrabajo } from '../components/Perfil/Trabajos/EditarTrabajo';
 
 
 export const InvitedRoute = () => {
@@ -32,6 +33,7 @@ export const InvitedRoute = () => {
         {local?.id && (
           <Route exact path="/perfil/edit/trabajos/:id" component={Form} />
         )}
+        <Route exact path="/trabajos/edit/:id" component={EditarTrabajo} />
   
       </Switch>
     );
