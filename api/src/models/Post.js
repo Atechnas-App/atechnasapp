@@ -16,15 +16,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
 
-   
-    
     image: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    company: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true,
     },
 
@@ -32,15 +25,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    
-    qualification: {
-      type: DataTypes.STRING,
-      allowNull: true,
 
+    price: {
+      type: DataTypes.REAL,
+      allowNull: true,
     },
 
-    url: {
-      type: DataTypes.STRING,
+    paused: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
     }
 
