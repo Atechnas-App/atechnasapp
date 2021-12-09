@@ -15,15 +15,16 @@ import Swal from "sweetalert2";
 // const { APP_ID } = process.env;
 
 export default function EditPerfil(props) {
-  function useQuery() {
-    const { search } = useLocation();
-  
-    return React.useMemo(() => new URLSearchParams(search), [search]);
-  }
+  // function useQuery() {
+    
+  //   return React.useMemo(() => new URLSearchParams(search), [search]);
+  // }
+  const { search } = useLocation();
+  const query = new URLSearchParams(search);
+  const code = query.get("code");
+  console.log(code);
   const history = useHistory();
   const dispatch = useDispatch();
-  const code = useQuery()
-  console.log(code.get("code"))
   const id = props.match.params.id;
   useEffect(() => {
     dispatch(getCategories());

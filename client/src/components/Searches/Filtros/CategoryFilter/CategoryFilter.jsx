@@ -38,7 +38,7 @@ export default function CatFilter(){
                 setCategory(  
                     category?.filter(c => c !== e.target.value)
                     )
-                    dispatch(stateSearchBar(category))
+                    dispatch(stateSearchBar(category?.filter(c => c !== e.target.value)))
         };
         
         }

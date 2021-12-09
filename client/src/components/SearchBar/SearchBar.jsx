@@ -15,6 +15,7 @@ export default function SearchBar(){
     function onSubmit(e){
         e.preventDefault();
         dispatch(Search(search))
+        dispatch(stateSearchBar(search))
         history.push('/results')      
     }
     function handdleInput(e){
