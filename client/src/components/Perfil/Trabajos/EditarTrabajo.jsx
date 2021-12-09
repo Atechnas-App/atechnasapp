@@ -14,6 +14,7 @@ export default function EditarTrabajo(props){
     useEffect(()=>{
         dispatch(getDetailJob(id))
     },[dispatch,id])
+
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
     const [editedJob, setEditedJob] = useState({
@@ -62,96 +63,102 @@ const loadImg = async (files) => {
   }
 };
 
+// function handleDelete(el) {
+//   setEditedJob({
+//     ...editedJob,
+//     image: editedJob.image.filter((img) => img !== el),
+//   });
+// }
 
 //dos
-const loadImg1 = async (files) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(files);
+// const loadImg1 = async (files) => {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(files);
 
-  const formData = new FormData();
-  formData.append("file", files);
+//   const formData = new FormData();
+//   formData.append("file", files);
 
-  formData.append("upload_preset", "Atechnas");
-  const options = {
-    method: "POST",
-    body: formData,
-  };
-  try {
-{Swal.fire({
-    title: 'Cargando imagen',
-    onBeforeOpen: () => {
-        Swal.showLoading();
-        }
-    })}
-
-
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
-      options
-    );
-    const res_1 = await res.json();
-
-    {Swal.close()}
-    return setEditedJob((prev) => ({
-      ...prev,
-      image: [...prev.image,res_1.secure_url]
-    }));
-  } catch (err) {
-    return console.log(err);
-  }
-};
-
-//tres
-const loadImg2 = async (files) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(files);
-
-  const formData = new FormData();
-  formData.append("file", files);
-
-  formData.append("upload_preset", "Atechnas");
-  const options = {
-    method: "POST",
-    body: formData,
-  };
-  try {
-{Swal.fire({
-    title: 'Cargando imagen',
-    onBeforeOpen: () => {
-        Swal.showLoading();
-        }
-    })}
+//   formData.append("upload_preset", "Atechnas");
+//   const options = {
+//     method: "POST",
+//     body: formData,
+//   };
+//   try {
+// {Swal.fire({
+//     title: 'Cargando imagen',
+//     onBeforeOpen: () => {
+//         Swal.showLoading();
+//         }
+//     })}
 
 
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
-      options
-    );
-    const res_1 = await res.json();
+//     const res = await fetch(
+//       "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+//       options
+//     );
+//     const res_1 = await res.json();
 
-    {Swal.close()}
-    return setEditedJob((prev) => ({
-      ...prev,
-      image: [...prev.image, res_1.secure_url],
-    }));
-  } catch (err) {
-    return console.log(err);
-  }
-};
+//     {Swal.close()}
+//     return setEditedJob((prev) => ({
+//       ...prev,
+//       image: [...prev.image,res_1.secure_url]
+//     }));
+//   } catch (err) {
+//     return console.log(err);
+//   }
+// };
+
+// //tres
+// const loadImg2 = async (files) => {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(files);
+
+//   const formData = new FormData();
+//   formData.append("file", files);
+
+//   formData.append("upload_preset", "Atechnas");
+//   const options = {
+//     method: "POST",
+//     body: formData,
+//   };
+//   try {
+// {Swal.fire({
+//     title: 'Cargando imagen',
+//     onBeforeOpen: () => {
+//         Swal.showLoading();
+//         }
+//     })}
+
+
+//     const res = await fetch(
+//       "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+//       options
+//     );
+//     const res_1 = await res.json();
+
+//     {Swal.close()}
+//     return setEditedJob((prev) => ({
+//       ...prev,
+//       image: [...prev.image, res_1.secure_url],
+//     }));
+//   } catch (err) {
+//     return console.log(err);
+//   }
+// };
 //terminan peticiones a cloudinary
 
  const handleImageClick = (e) => {
    e.preventDefault();
    document.querySelector("#fotoPerfil")?.click()
  };
- const handleImageClick1 = (e) => {
-   e.preventDefault();
-   document.querySelector("#fotoPerfil1")?.click()
- };
- const handleImageClick2 = (e) => {
-   e.preventDefault();
-   document.querySelector("#fotoPerfil2")?.click()
- };
+//  const handleImageClick1 = (e) => {
+//    e.preventDefault();
+//    document.querySelector("#fotoPerfil1")?.click()
+//  };
+//  const handleImageClick2 = (e) => {
+//    e.preventDefault();
+//    document.querySelector("#fotoPerfil2")?.click()
+//  };
  
  
  const onInputChange = (e) => {
@@ -174,6 +181,13 @@ const loadImg2 = async (files) => {
         history.push("/trabajos/detalle/"+id)
         }
 
+        function handleDelete(img){
+          setEditedJob({
+            ...editedJob,
+            image: editedJob.image.filter(i => i !== img)
+          })
+        }
+
     return (
       <div className="container">
         <form onSubmit={e => onSubmitEditTrabajo(e)}>
@@ -186,8 +200,37 @@ const loadImg2 = async (files) => {
               value={editedJob.title}
             />
           </div>
-            <div className="images">
-              <div className="foto-perfil-container">
+           <div className="images">
+                <div className="foto-perfil-container">
+                <label className="input-label">Imagenes</label>
+                <hr className="hr-perfil-verde"></hr>
+             {editedJob?.image? editedJob?.image?.map((img,i) => {
+               return (<div>
+                <input
+                  type="file"
+                  name="image"
+                  id="fotoPerfil"
+                   style={{ display: "none" }}
+                  onChange={(e) => loadImg(e.target.files[i])}
+                />
+                <img
+                  src={img}
+                  alt="img not found"
+                  className="img-edit-perfil"
+                ></img>
+              <button
+                className="boton-perfil"
+                type="submit"
+                onClick={handleImageClick}
+                cursor="pointer"
+              >
+                Subir
+              </button></div>
+               )
+              }):
+              <div>No se encontraron imagenes</div>}
+             </div>
+             {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
                 <hr className="hr-perfil-verde"></hr>
                 <input
@@ -211,7 +254,7 @@ const loadImg2 = async (files) => {
                   Subir
                 </button>
               </div>
-              <div className="foto-perfil-container">
+               <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
                 <hr className="hr-perfil-verde"></hr>
                 <input
@@ -258,7 +301,7 @@ const loadImg2 = async (files) => {
                 >
                   Subir
                 </button>
-                </div>
+                </div> */}
               </div>
               <div className="desc">
                 <label>Descripcion</label>

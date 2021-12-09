@@ -36,7 +36,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <div>
                         <form className="boton-container">
-                            <Link to={`/perfil/${detail.name}/editarPerfil/${fullId}`}>
+                            <Link to={`/perfil/editarPerfil/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
                             

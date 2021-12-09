@@ -106,8 +106,8 @@ export default function EditPerfil(props) {
       "Los cambios se guardaron correctamente",
       "success"
     );
-    history.push("/perfil/" + id);
-    Swal.close();
+    history.push("/me/" + id);
+    // Swal.close();
   }
 
   function onHandleCheckCategories(e) {
