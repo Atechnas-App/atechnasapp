@@ -5,14 +5,15 @@ const router = Router();
 
 router.post('/newPublication', async (req, res) => {
     try {
-        const { title, description, image, userid } = req.body;
+        const { title, description, image, userid ,price,state} = req.body;
         const validaPublication = await Publication.findOne({ where: { title: title } })
         const createPublication = await Publication.create({
             title,
             description,
             image,
             createdBy: userid,
-            state: "Activo"
+            price,
+            state
         })
         const busquedauser = await User.findOne({ where: { id: userid } })
         if (!validaPublication) {
@@ -57,33 +58,32 @@ router.put('/removePublication', async (req, res) => {
 });
 
 
-// router.put('/modPublication', async (req, res) => {
-//     const { nameTeam, description, newNameTeam, newImage } = req.body
-//     const validaTeam = await Publication.findOne({ where: { name: nameTeam } })
-//     console.log()
-//     if (validaTeam) {
-//         await Publication.update({
-//             name: newNameTeam,
-//             description: description,
-//             image: newImage
-//         }, {
-//             where: { id: validaTeam.dataValues.id }
-//         });
-//     } else {
-//         res.status(404).send('el equipo de trabjo no se encuentra')
-//     }
-//     const resultado = await Publication.findOne({ where: { id: validaTeam.dataValues.id }, include: { all: true } });
-//     res.status(200).send(resultado)
-// });
+router.put('/modPublication', async (req, res) => {
+    const { nameTeam, description, newNameTeam, newImage } = req.body
+    const validaTeam = await Publication.findOne({ where: { name: nameTeam } })
+    console.log()
+    if (validaTeam) {
+        await Publication.update({
+            name: newNameTeam,
+            description: description,
+            image: newImage
+        }, {
+            where: { id: validaTeam.dataValues.id }
+        });
+    } else {
+        res.status(404).send('el equipo de trabjo no se encuentra')
+    }
+    const resultado = await Publication.findOne({ where: { id: validaTeam.dataValues.id }, include: { all: true } });
+    res.status(200).send(resultado)
+});
 
 router.get('/Publications', async (req, res) => {
     try {
         const allPublications = await Publication.findAll({
             include: { all: true }
-        })
+        });
         res.status(200).send(allPublications)
     } catch (error) {
-        res.status(404).send('error en el get de teams')
         console.log(error)
     }
 })

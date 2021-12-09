@@ -16,7 +16,7 @@ const filterSearch = require('./filtersSearch')
 const getLanguages = require('./getLanguage')
 const getJobs = require("./getPostJobs")
 const putUsers = require('./putUsers')
-const postTeams = require('./createTeam')
+const Publications = require('./Publications')
 const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
  
