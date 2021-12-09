@@ -18,7 +18,7 @@ console.log(id1)
 let fullId = props.match.params.id
 
 useEffect(() => {
-    dispatch(getDetails(fullId, id, id1))
+    dispatch(getDetails(fullId, id1))
 }, [dispatch]);
 console.log(detail )
 console.log(detail.categories, "Hay categorias?")
@@ -33,15 +33,6 @@ console.log(detail.categories, "Hay categorias?")
                     <div className="foto-de-perfil">
                         <img className="foto-de-perfil" src={detail.profilePicture} alt="img not found"></img>
                         {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
-                    </div>
-                    <div>
-                        <form className="boton-container">
-                            <Link to={`/perfil/${detail.name}/editarPerfil/${fullId}`}>
-                                <button className="boton-perfil">Editar Perfil</button>
-                            </Link>
-                            {/* <button className="boton-perfil">Mensaje</button> 
-                            <button className="boton-perfil">Contratar</button> */}
-                        </form>
                     </div>
                 </div>
                 <div className="descripcion-perfil">

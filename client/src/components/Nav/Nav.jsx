@@ -60,7 +60,7 @@ export default function Nav(){
               <h3 >{name ? name : name1}</h3>
             </div>
             <div >
-              <Link to={"/perfil/" + id}>
+              <Link to={`/me/${id}`}>
                 <button style={{textDecoration:"none"}}>Perfil</button>
               </Link>
             </div>

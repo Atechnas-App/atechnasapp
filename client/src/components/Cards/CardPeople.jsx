@@ -25,7 +25,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
                 <p>{qualification}</p>
 
                 <div>
-                <Link to={"/perfil/" + id}><button className='botonDetalleCard'>Mas Detalles</button></Link>
+                <Link to={`/perfil/${id}`}><button className='botonDetalleCard'>Mas Detalles</button></Link>
                 </div>
 
             </div>
