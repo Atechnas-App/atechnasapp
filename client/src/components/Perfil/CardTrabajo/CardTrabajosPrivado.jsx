@@ -14,7 +14,7 @@ export default function CardTrabajo(id){
     console.log(jobs, "card trabajo")
     console.log(id, "Jobs")
     return (
-        <div>
+        <div className='cards-trabajos'>
             
         {jobs.map((j)=>{
             return(

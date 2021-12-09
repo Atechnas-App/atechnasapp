@@ -37,7 +37,8 @@
 
 .container{
     perspective: 1000px;
-    width: 350px;
+    max-width: 350px;
+    margin: 1em;
     
 }
 
@@ -76,4 +77,9 @@
     background: #d63be4;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.349);
 
+}
+
+.cards-trabajos{
+    display: flex;
+    
 }
