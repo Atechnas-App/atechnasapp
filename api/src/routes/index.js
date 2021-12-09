@@ -20,6 +20,7 @@ const postTeams = require('./createTeam')
 const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
 const authMP = require('../controllers/authMP')
+const create_preference = require('../controllers/preferenceMP')
 
  
 const router = Router();
@@ -49,6 +50,7 @@ router.use('/api', putUsers)
 router.use('/api', postTeams)
 router.use('/api', githubLog)
 router.use('/api', authMP)
+router.use('/api', create_preference)
 
 
 

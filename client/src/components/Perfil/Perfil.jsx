@@ -7,6 +7,7 @@ import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
 import CardComentario from "./CardComentario/CardComentario"
+import axios from "axios";
 
 export default function Perfil(props) {
     const dispatch = useDispatch()
@@ -22,6 +23,10 @@ export default function Perfil(props) {
     }, [dispatch]);
 
     console.log(detail.categories, "Hay categorias?")
+
+    function handleHire(){
+        axios.post('http://localhost:3001/api/create_preference', {quantity: 10, price: 100, description: 'BACKEND DEVELOPER'})
+    }
 
     return (
         <div className="perfil-container">
@@ -39,7 +44,7 @@ export default function Perfil(props) {
                             <Link to={`/editPerfil/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
-                            <button className="boton-perfil">Contratar</button>
+                            <button className="boton-perfil" onClick={handleHire}>Contratar</button>
                             <button className="boton-perfil">Mensaje</button>
                         </form>
                     </div>

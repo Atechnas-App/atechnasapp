@@ -7,7 +7,6 @@ const axios = require('axios')
 
 
 router.get('/authMPrealizado', (req, res) => {
-    console.log(req.query)
     const { code , state } = req.query;
     if (code) {
       let userCredentials = {
@@ -20,7 +19,6 @@ router.get('/authMPrealizado', (req, res) => {
       axios
         .post("https://api.mercadopago.com/oauth/token", userCredentials)
         .then((cred) => {
-          console.log(cred.data);
             User.update({
                 access_token: cred.data.access_token,
                 token_type: cred.data.token_type,
@@ -39,7 +37,7 @@ router.get('/authMPrealizado', (req, res) => {
         })
         .catch((err) => console.log(err.message));
     }
-    res.send('usuario autorizado')
+    res.redirect(`http://localhost:3000/${state}`)
 })
 
 
