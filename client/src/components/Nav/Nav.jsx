@@ -59,7 +59,7 @@ export default function Nav(props) {
             <div className="containerUserImg">
           <ul className="submenu">
             <li>
-              <Link to={"/me/" + id}>
+              <Link to={"/miPerfil/" + id}>
                 <button style={{ textDecoration: "none" }}>Perfil</button>
               </Link>
             </li>

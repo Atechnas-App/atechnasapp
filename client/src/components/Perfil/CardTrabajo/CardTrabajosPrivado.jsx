@@ -11,7 +11,9 @@ export default function CardTrabajo(id){
     useEffect(() => {
         dispatch(getJobs(id))
     },[dispatch,id])
-    console.log(jobs, "card trabajo")
+
+    
+    console.log(jobs[0]?.user.id, "JOBS card trabajo")
     console.log(id, "Jobs")
     return (
         <div className='cards-trabajos'>
@@ -34,8 +36,11 @@ export default function CardTrabajo(id){
                 </div>
             </div>
         </div>)})}
-    
-        
+        <div className='div-btn-mas'>
+            <Link to={'/perfil/crearTrabajos/'+ jobs[0]?.user.id}>
+                <button className="boton-mas-trabajos">+</button>
+            </Link>
+        </div>
     </div>
     )
 }
