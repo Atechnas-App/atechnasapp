@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
+import Nav from '../../Nav/Nav'
 import "./form.css"
 
 export default function EditarTrabajo(props){
     const dispatch = useDispatch()
     const history = useHistory()
-    const detailJobs = useSelector(state=>state.rootReducer?.detailJob)
+    const detailJobs = useSelector(state=>state.rootReducer.detailJob)
     const id = props.match.params.id
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
-    },[dispatch,id])
+      },[dispatch,id])
 
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
@@ -52,7 +53,7 @@ const loadImg = async (files) => {
       options
     );
     const res_1 = await res.json();
-
+console.log(res_1, "RES")
     {Swal.close()}
     return setEditedJob((prev) => ({
       ...prev,
@@ -169,6 +170,14 @@ const loadImg = async (files) => {
         })
     }
     
+  function onInputSelect(e){
+    e.preventDefault()
+    setEditedJob({
+      ...editedJob,
+      paused: e.target.value,
+    })
+  }
+
     const onSubmitEditTrabajo= async (e) => {
         e.preventDefault();
         dispatch(editJob(id,{
@@ -187,8 +196,10 @@ const loadImg = async (files) => {
             image: editedJob.image.filter(i => i !== img)
           })
         }
+    
 
-    return (
+    return (<div>
+      <Nav/>
       <div className="container">
         <form onSubmit={e => onSubmitEditTrabajo(e)}>
           <div>
@@ -225,10 +236,31 @@ const loadImg = async (files) => {
                 cursor="pointer"
               >
                 Subir
-              </button></div>
-               )
-              }):
-              <div>No se encontraron imagenes</div>}
+              </button>
+               </div>
+             )}):
+             <>
+             <input
+             type="file"
+             name="image"
+             id="fotoPerfil"
+              style={{ display: "none" }}
+             onChange={(e) => loadImg(e.target.files)}
+           />
+           <img
+             src=""
+             alt="img not found"
+             className="img-edit-perfil"
+           ></img>
+         <button
+           className="boton-perfil"
+           type="submit"
+           onClick={handleImageClick}
+           cursor="pointer"
+         >
+           Subir
+         </button>
+              </>}
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -324,11 +356,20 @@ const loadImg = async (files) => {
                     onChange={onInputChange}
                   />
                 </span>
+                <div>
+                <label>Pausado: </label>
+                <select onChange={onInputSelect}>
+                  <option selected disabled>Selecciona una opción:</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+                </div>
                 </div>
                 <button type="submit">
                   Guardar
                 </button>
         </form>
+      </div>
       </div>
     );
 }
