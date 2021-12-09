@@ -259,7 +259,7 @@ export default function EditPerfil(props) {
                   <input className='input-edit' type="password" placeholder="••••••••••" disabled></input>
                 </div>
                 <div className="label-input btn-contra-div">
-                  <button className='boton-contra-edit'>Cambia tu contraseña</button>
+                  <button type='button' className='boton-contra-edit'>Cambia tu contraseña</button>
                 </div>
               </div>
             </div>
