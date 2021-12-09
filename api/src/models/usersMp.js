@@ -31,13 +31,23 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
 
 
     refresh_token: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-
-
+    public_key: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    live_mode: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
   });
 };

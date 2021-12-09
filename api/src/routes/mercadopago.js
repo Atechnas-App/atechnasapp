@@ -1,24 +1,23 @@
-const {Router} =require("express")
+const { Router } = require("express");
+const axios = require("axios");
 // const open = require("open");
 // const path = require("path");
 const mercadopago = require("mercadopago");
-const {Usermp} =require("../db")
+const { Usersmp } = require("../db");
 
-  
 const router = Router();
 // PUBLIC =TEST-1c069190-12d6-466a-a3a5-c442a8521f48
 
- 
 const mercadoPagoPublicKey = process.env.PUBLIC_KEY;
 if (!mercadoPagoPublicKey) {
-    console.log("Error: public key not defined");
-    process.exit(1);
+  console.log("Error: public key not defined");
+  process.exit(1);
 }
 
 const mercadoPagoAccessToken = process.env.ACCESS_TOKEN;
 if (!mercadoPagoAccessToken) {
-    console.log("Error: access token not defined");
-    process.exit(1);
+  console.log("Error: access token not defined");
+  process.exit(1);
 }
 
 mercadopago.configurations.setAccessToken(mercadoPagoAccessToken);
@@ -33,17 +32,33 @@ mercadopago.configurations.setAccessToken(mercadoPagoAccessToken);
 // app.use(express.static("./static"));
 // app.use(express.json());
 
-router.post("/accesmp", (req,res)=>{
-    const {code}=req.query
+router.get("/accesmp", (req, res) => {
+  const { code } = req.query;
+  console.log("desde el back", code);
+  if (code) {
+    let userCredentials = {
+      client_secret: process.env.CLIENT_SECRET,
+      client_id: process.env.APP_ID,
+      grant_type: "authorization_code",
+      code,
+      redirect_uri: "http://localhost:3001/api/accesmp",
+    };
 
-
-    res.status(200).render("index", { mercadoPagoPublicKey });
-
-
-
-})
+    axios
+      .post("https://api.mercadopago.com/oauth/token", userCredentials)
+      .then((cred) => {
+        console.log(cred.data);
+        Usersmp.create(cred.data);
+      })
+      .then( r => res.send(cred.data))
+      .catch((err) => console.log(err.message));
+  } else {
+    res.send("Code not provided")
+  }
+  // res.status(200).render("index", { mercadoPagoPublicKey });
+});
 // app.get("/", function (req, res) {
-// }); 
+// });
 
 router.post("/process_payment", (req, res) => {
   const { body } = req;
@@ -59,26 +74,27 @@ router.post("/process_payment", (req, res) => {
       email: payer.email,
       identification: {
         type: payer.identification.docType,
-        number: payer.identification.docNumber
-      }
-    }
+        number: payer.identification.docNumber,
+      },
+    },
   };
 
-  mercadopago.payment.save(paymentData)
-    .then(function(response) {
+  mercadopago.payment
+    .save(paymentData)
+    .then(function (response) {
       const { response: data } = response;
       res.status(response.status).json({
         status_detail: data.status_detail,
         status: data.status,
-        id: data.id
+        id: data.id,
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       res.status(error.status).send(error);
     });
 });
 
-module.exports=router;
+module.exports = router;
 // {
 //     "id": 1034748483,
 //     "nickname": "TESTSH1SBBOG",

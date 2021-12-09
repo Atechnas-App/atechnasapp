@@ -19,7 +19,7 @@ const putUsers = require('./putUsers')
 const postTeams = require('./createTeam')
 const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
- 
+const mp = require("../routes/mercadopago")
 const router = Router();
 
 // Configurar los routers
