@@ -36,7 +36,7 @@ export const InvitedRoute = () => {
         {local?.id && (
           <Route exact path="/perfil/crearTrabajos/:id" component={Form} />
         )}
-        <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} /> {/* agregar /:name/ */ }
+        {local?.id && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
   
       </Switch>
     );
