@@ -8,6 +8,7 @@ import {
   getDetails,
   getLanguages,
   getTechnologies,
+  contratarUser
 } from "../../actions/actions";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -26,11 +27,11 @@ export default function EditPerfil(props) {
   const categories = useSelector((state) => state.rootReducer.categories);
   const languages = useSelector((state) => state.rootReducer.languages);
   const detail = useSelector((state) => state.rootReducer.details);
-  const userCategories = detail.categories.map((e) => e.category);
-  const userTechnologies = detail.technologies.map((e) => e.technology);
-  const userLanguages = detail.languages.map((e) => e.languages);
+  const userCategories = detail.categories?.map((e) => e.category);
+  const userTechnologies = detail.technologies?.map((e) => e.technology);
+  const userLanguages = detail.languages?.map((e) => e.languages);
   const categoriesToAdd = categories?.filter(
-    (c) => !userCategories.includes(c.category)
+    (c) => !userCategories?.includes(c.category)
   );
   const technologiesToAdd = technologies?.filter(
     (c) => !userTechnologies.includes(c.technology)
@@ -155,13 +156,23 @@ export default function EditPerfil(props) {
       languages: [...editedProfile.languages, e.target.value],
     });
   }
+
+  // function handleHire(){
+  //   dispatch(contratarUser())
+  // }
   return (
     <div className="edit-perfil-container">
       <Nav />
       <h1>PERFIL</h1>
+          <button>
+            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7308381246776093&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
+              AUTORIZAR MERCADOPAGO
+            </a>
+          </button>
       <hr className="hr-perfil-violeta"></hr>
       <div className="form-container">
         <div className="input-formulario">
+
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="label-input-container">
               <label className="input-label">Nombre</label>
@@ -278,7 +289,7 @@ export default function EditPerfil(props) {
                 </select>
               </div>
               <div className="boton-idioma-map">
-                {editedProfile.languages.map((lang) => (
+                {editedProfile.languages?.map((lang) => (
                   <div>
                     <button className="boton-perfil" type="button" onClick={() => handleDelete(lang)}>
                       {lang}
@@ -293,20 +304,20 @@ export default function EditPerfil(props) {
               <div className="checkbox-container">
                 {detail.categories
                   ? detail.categories.map((e) => {
-                      return (
-                        <div className="all-checkbox">
-                          <input
-                            type="checkbox"
-                            value={e.category}
-                            key={e.category}
-                            name="category"
-                            onChange={(e) => onHandleCheckCategories(e)}
-                            defaultChecked
-                          />
-                          <label>{e.category}</label>
-                        </div>
-                      );
-                    })
+                    return (
+                      <div className="all-checkbox">
+                        <input
+                          type="checkbox"
+                          value={e.category}
+                          key={e.category}
+                          name="category"
+                          onChange={(e) => onHandleCheckCategories(e)}
+                          defaultChecked
+                        />
+                        <label>{e.category}</label>
+                      </div>
+                    );
+                  })
                   : "Sin categoria"}
                 {categoriesToAdd?.map((e) => {
                   return (
@@ -330,20 +341,20 @@ export default function EditPerfil(props) {
               <div className="checkbox-container">
                 {detail.technologies
                   ? detail.technologies.map((e) => {
-                      return (
-                        <div className="all-checkbox">
-                          <input
-                            type="checkbox"
-                            value={e.technology}
-                            key={e.technology}
-                            name="technology"
-                            onChange={(e) => onHandleCheckTechnologies(e)}
-                            defaultChecked
-                          />
-                          <label>{e.technology}</label>
-                        </div>
-                      );
-                    })
+                    return (
+                      <div className="all-checkbox">
+                        <input
+                          type="checkbox"
+                          value={e.technology}
+                          key={e.technology}
+                          name="technology"
+                          onChange={(e) => onHandleCheckTechnologies(e)}
+                          defaultChecked
+                        />
+                        <label>{e.technology}</label>
+                      </div>
+                    );
+                  })
                   : "Sin keywords"}
                 {technologiesToAdd?.map((e) => {
                   return (
@@ -362,9 +373,9 @@ export default function EditPerfil(props) {
               </div>
             </div>
             <div className="boton-submit">
-                <button className="boton-perfil" type="submit" value="Guardar">
+              <button className="boton-perfil" type="submit" value="Guardar">
                 Guardar
-                </button>
+              </button>
             </div>
           </form>
         </div>

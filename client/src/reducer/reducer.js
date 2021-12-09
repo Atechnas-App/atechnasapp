@@ -18,10 +18,16 @@ const initialState = {
     githubUser: [],
     jobs: [],
     testimonials:[],
+    authMP: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'AUTH_MP':
+                    return {
+                        ...state,
+                        authMP: action.payload
+                    }
                 case 'GITHUB':
                     return {
                         ...state,

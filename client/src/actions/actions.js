@@ -7,6 +7,15 @@ import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING,
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
+export function contratarUser(){
+  return async function(dispatch){
+    const authMP = await axios('http://localhost:3001/api/authMP')
+    dispatch({
+      type: 'AUTH_MP',
+      payload: authMP.data
+    })
+  }
+}
 
 export function getUser() {
     return async function(dispatch){
@@ -93,10 +102,10 @@ export function getGithubUserInfo() {
   }
 }
 
-export function Search(payload, page) {
+export function Search(payload) {
   
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload + '&page=' + page)
+        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload)
         console.log('ACTION SEARCH', searching.data)
         dispatch({
             type: SEARCH,

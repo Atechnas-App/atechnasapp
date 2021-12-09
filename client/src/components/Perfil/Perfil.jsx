@@ -1,31 +1,31 @@
 import "./Perfil.css"
 import React from "react"
-import {useDispatch, useSelector} from 'react-redux';
-import {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
 import CardComentario from "./CardComentario/CardComentario"
 
-export default function Perfil(props){
-const dispatch = useDispatch()
-const detail = useSelector((state) => state.rootReducer.details)
-const {id} = JSON.parse(localStorage.getItem("user")); 
-const id1 = localStorage.getItem('idgit')
-console.log(id1)
+export default function Perfil(props) {
+    const dispatch = useDispatch()
+    const detail = useSelector((state) => state.rootReducer.details)
+    const { id } = JSON.parse(localStorage.getItem("user"));
+    const id1 = localStorage.getItem('idgit')
+    console.log(id1)
 
-let fullId = props.match.params.id
+    let fullId = props.match.params.id
 
-useEffect(() => {
-    dispatch(getDetails(fullId, id, id1))
-}, [dispatch]);
+    useEffect(() => {
+        dispatch(getDetails(fullId, id, id1))
+    }, [dispatch]);
 
-console.log(detail.categories, "Hay categorias?")
+    console.log(detail.categories, "Hay categorias?")
 
-    return(
+    return (
         <div className="perfil-container">
-            <Nav/>
+            <Nav />
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
@@ -39,8 +39,8 @@ console.log(detail.categories, "Hay categorias?")
                             <Link to={`/editPerfil/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
-                            {/* <button className="boton-perfil">Mensaje</button> 
-                            <button className="boton-perfil">Contratar</button> */}
+                            <button className="boton-perfil">Contratar</button>
+                            <button className="boton-perfil">Mensaje</button>
                         </form>
                     </div>
                 </div>
@@ -48,11 +48,11 @@ console.log(detail.categories, "Hay categorias?")
                     <h1 className="nombre-completo-perfil">{detail.name} {detail.lastName}</h1>
                     <hr className="hr-perfil-violeta"></hr>
                     <div className="contenedor-idiomas">
-                    {detail.languages?.map((e)=>{
-                        return(
-                            <h4 className="idiomas-perfil">{e.languages}</h4>
-                        )
-                    })}
+                        {detail.languages?.map((e) => {
+                            return (
+                                <h4 className="idiomas-perfil">{e.languages}</h4>
+                            )
+                        })}
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
@@ -61,13 +61,13 @@ console.log(detail.categories, "Hay categorias?")
                     <h2>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
                     <div className="keyword-container">
-                            {detail.technologies?detail.technologies.map((e)=>{
+                        {detail.technologies ? detail.technologies.map((e) => {
                             return <h3 className="keyword">{e.technology}</h3>
-                        }):"Sin keywords"}
+                        }) : "Sin keywords"}
                     </div>
                 </div>
             </div>
-            <div className="trabajos-perfil">
+            {/* <div className="trabajos-perfil">
                 <div>
                     <h1>MIS TRABAJOS</h1>
                     <hr className="hr-perfil-verde"></hr>
@@ -84,7 +84,7 @@ console.log(detail.categories, "Hay categorias?")
                 <div>
                     <CardComentario/>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

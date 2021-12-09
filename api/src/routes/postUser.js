@@ -66,7 +66,7 @@ const register = router.post(
       newUser.addTechnology(technologyDb);
       console.log("creado", newUser.toJSON());
       // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
-      res.status(200).send("usuario creado");
+      res.status(200).send("usuario creadoo");
     } catch (error) {
       console.log(error.message);
       res.send(error.message);
