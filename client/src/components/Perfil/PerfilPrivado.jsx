@@ -5,7 +5,7 @@ import {useEffect} from 'react';
 import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
-import CardTrabajo from "./CardTrabajo/CardTrabajo"
+import CardTrabajosPrivado from "./CardTrabajo/CardTrabajosPrivado"
 import CardComentario from "./CardComentario/CardComentario"
 
 export default function Perfil(props){
@@ -39,8 +39,7 @@ console.log(detail.categories, "Hay categorias?")
                             <Link to={`/perfil/edit/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
-                            {/* <button className="boton-perfil">Mensaje</button> 
-                            <button className="boton-perfil">Contratar</button> */}
+                            
                         </form>
                     </div>
                 </div>
@@ -73,7 +72,7 @@ console.log(detail.categories, "Hay categorias?")
                     <hr className="hr-perfil-verde"></hr>
                 </div>
                 <div>
-                    <CardTrabajo id={fullId}/>
+                    <CardTrabajosPrivado id={fullId}/>
                 </div>
             </div>
             <div className="comentarios-perfil">

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
 import "./form.css"
 
-export const EditarTrabajo = (props) => {
+export default function EditarTrabajo(props){
     const dispatch = useDispatch()
     const history = useHistory()
     const detailJobs = useSelector(state=>state.rootReducer?.detailJob)

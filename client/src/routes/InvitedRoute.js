@@ -4,11 +4,12 @@ import { CompleteRegister } from '../components/form/CompleteRegister';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';
-import Perfil from "../components/Perfil/Perfil"
+import PerfilPrivado from "../components/Perfil/PerfilPrivado"
+import PerfilPublico from "../components/Perfil/PerfilPublico"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
 import { Form } from "../components/Perfil/Trabajos/Form";
-import { EditarTrabajo } from '../components/Perfil/Trabajos/EditarTrabajo';
+import EditarTrabajo  from '../components/Perfil/Trabajos/EditarTrabajo';
 
 
 export const InvitedRoute = () => {
@@ -26,14 +27,15 @@ export const InvitedRoute = () => {
 
         {/* RUTAS USUARIOS */}
         {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
-        {local?.id && <Route exact path="/perfil/:id" component={Perfil} />}
-        {local?.id && <Route exact path="/perfil/edit/:id" component={EditPerfil}/>}
+        {local?.id && <Route exact path="/perfil/:name/:id" component={PerfilPrivado} />}
+        {local?.id && <Route exact path="/perfil/:id" component={PerfilPublico} />}
+        {local?.id && <Route exact path="/perfil/:name/editarPerfil/:id" component={EditPerfil}/>}
         {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
         {local?.id && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
         {local?.id && (
-          <Route exact path="/perfil/edit/trabajos/:id" component={Form} />
+          <Route exact path="/perfil/:name/crearTrabajos/:id" component={Form} />
         )}
-        <Route exact path="/trabajos/edit/:id" component={EditarTrabajo} />
+        <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />
   
       </Switch>
     );
