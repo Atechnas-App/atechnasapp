@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
-import { postJobs } from '../../../actions/actions'
+import { postJobs, setError } from '../../../actions/actions'
+import { Link, useHistory } from 'react-router-dom'
 import "./form.css"
+import "../../EditPerfil/EditPerfil.css";
 
 export const Form = (props) => {
 
 const id = props.match.params.id
-
+const history = useHistory()
    const dispatch = useDispatch()
     const [formulary, setFormulary] = useState({
         title:'',
@@ -156,23 +158,58 @@ const loadImg2 = async (files) => {
     
     const onSubmitTrabajos= async (e) => {
         e.preventDefault();
-        dispatch(postJobs(id,formulary))
-        alert('Trabajo publicado')
-        setFormulary({
-            title: '',
-            image: [],
-            about: '',
-            price:'',
-            paused: false
-        })
-        }
+         if(ifFormIsValid()){
+
+           Swal.fire({ 
+               title: '¿Estas seguro?',
+               text: "¡No podrás revertir esto!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: '¡Sí, crear trabajo!'
+             }).then((result) => {
+               if (result.value) {
+                 dispatch(postJobs(formulary,id))
+                 Swal.fire(
+                   '¡Creado!',
+                   'El trabajo ha sido creado.',
+                   'success'
+                 )
+                 history.push('/perfil/edit/'+id)
+                 Swal.close()
+           setFormulary({
+               title: '',
+               image: [],
+               about: '',
+               price:'',
+               paused: false
+           })
+           }
+          })
+         }
+    }
+
+  const ifFormIsValid = () => {
+      if (formulary.title.length > 0 && formulary.image.length > 0 && formulary.about.length > 0 && formulary.price.length > 0) {
+          return true
+      } else {
+       Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '¡Por favor, completa todos los campos!',
+      })
+               return false
+      }
+    }
 
     return (
       <div className="container">
         <form onSubmit={onSubmitTrabajos}>
-          <div>
-            <label>Titulo</label>
+          <div className="title">
+            <h1>Titulo</h1>
             <input
+              className="inputTitle"
               type="text"
               name="title"
               onChange={onInputChange}
@@ -180,13 +217,11 @@ const loadImg2 = async (files) => {
             />
             <div className="images">
               <div className="foto-perfil-container">
-                <label className="input-label">Foto de perfil</label>
-                <hr className="hr-perfil-verde"></hr>
                 <input
                   type="file"
                   name="image"
                   id="fotoPerfil"
-                   style={{ display: "none" }}
+                  style={{ display: "none" }}
                   onChange={(e) => loadImg(e.target.files[0])}
                 />
                 <img
@@ -204,8 +239,6 @@ const loadImg2 = async (files) => {
                 </button>
               </div>
               <div className="foto-perfil-container">
-                <label className="input-label">Foto de perfil</label>
-                <hr className="hr-perfil-verde"></hr>
                 <input
                   type="file"
                   name="image"
@@ -228,8 +261,6 @@ const loadImg2 = async (files) => {
                 </button>
               </div>
               <div className="foto-perfil-container">
-                <label className="input-label">Foto de perfil</label>
-                <hr className="hr-perfil-verde"></hr>
                 <input
                   type="file"
                   name="image"
@@ -251,29 +282,37 @@ const loadImg2 = async (files) => {
                   Subir
                 </button>
               </div>
-              <div className="desc">
-                <label>Descripcion</label>
-                <textarea
-                className="descripcion"
-                  name="about"
-                  onChange={onInputChange}
-                  value={formulary.about}
-                />
-                <label>Precio</label>
-                <span className="currencyinput">
-                  $      
-                  <input
-                    className="currencyinputPrice"
-                    type="number"
-                    name="price"
-                    value={formulary.price}
-                    onChange={onInputChange}
-                  />
-                </span>
+            </div>
 
-                <button type="submit" onClick={onSubmitTrabajos}>
-                  Guardar
+            <div className="desc">
+              <h3>Descripcion</h3>
+              <textarea
+                className="textarea"
+                name="about"
+                onChange={onInputChange}
+                value={formulary.about}
+              />
+              <h3>Precio</h3>
+              <span className="currencyinput">
+                $
+                <input
+                  className="currencyinputPrice"
+                  min="0"
+                  type="number"
+                  name="price"
+                  value={formulary.price}
+                  onChange={onInputChange}
+                />
+              </span>
+<div className="botons">
+              <button type="submit" className="boton-perfil" onClick={onSubmitTrabajos}>
+                Guardar
+              </button>
+              <Link to={"/perfil/edit/"+ id}>
+                <button className="boton-perfil" type="submit">
+                  Regresar
                 </button>
+              </Link>
               </div>
             </div>
           </div>

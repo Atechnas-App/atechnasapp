@@ -9,7 +9,7 @@ import {
   getLanguages,
   getTechnologies,
 } from "../../actions/actions";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function EditPerfil(props) {
@@ -106,7 +106,8 @@ export default function EditPerfil(props) {
       "Los cambios se guardaron correctamente",
       "success"
     );
-    history.push(`/perfil/${id}`);
+    history.push("/perfil/" + id);
+    Swal.close();
   }
 
   function onHandleCheckCategories(e) {
@@ -114,7 +115,7 @@ export default function EditPerfil(props) {
     if (e.target.checked) {
       setEditedProfile({
         ...editedProfile,
-        categories: editedProfile.categories.concat(e.target.value),
+        categories: editedProfile.categories?.concat(e.target.value),
       });
     } else {
       setEditedProfile({
@@ -130,7 +131,7 @@ export default function EditPerfil(props) {
     if (e.target.checked) {
       setEditedProfile({
         ...editedProfile,
-        technologies: editedProfile.technologies.concat(e.target.value),
+        technologies: editedProfile.technologies?.concat(e.target.value),
       });
     } else {
       setEditedProfile({
@@ -145,7 +146,7 @@ export default function EditPerfil(props) {
   function handleDelete(el) {
     setEditedProfile({
       ...editedProfile,
-      languages: editedProfile.languages.filter((lang) => lang !== el),
+      languages: editedProfile.languages?.filter((lang) => lang !== el),
     });
   }
 
