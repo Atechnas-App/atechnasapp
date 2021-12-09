@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,8 +24,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     state: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.ENUM('Activo', 'EnProceso','Cancelado','Pausado','Terminado'),
+      // defaultValue: 'Activo'
     },
+    price:{
+      type:DataTypes.BIGINT,
+      allowNull:false
+    }
   });
 };
