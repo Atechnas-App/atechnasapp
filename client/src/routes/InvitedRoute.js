@@ -6,7 +6,7 @@ import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';
 import Perfil from "../components/Perfil/Perfil"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
-import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
+import DetallesTrabajo from '../components/Perfil/trabajos/DetallesTrabajo';
 import { Form } from "../components/Perfil/trabajos/Form";
 
 

@@ -13,7 +13,7 @@ const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
 const {id} = JSON.parse(localStorage.getItem("user")); 
 const id1 = localStorage.getItem('idgit')
-console.log(id1)
+
 
 let fullId = props.match.params.id
 
@@ -36,9 +36,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <div>
                         <form className="boton-container">
-                            <Link to={`/perfil/edit/${fullId}`}>
-                                <button className="boton-perfil">Editar Perfil</button>
-                            </Link>
+                           
                             {/* <button className="boton-perfil">Mensaje</button> 
                             <button className="boton-perfil">Contratar</button> */}
                         </form>
