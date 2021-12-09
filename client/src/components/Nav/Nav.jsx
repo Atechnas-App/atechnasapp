@@ -65,11 +65,6 @@ export default function Nav(){
               </Link>
             </div>
             <div>
-              <Link to={"/trabajos/"+id}>
-                <button>Mis trabajos</button>
-              </Link>
-            </div>
-            <div>
               <button onClick={handleLogout}>cerrar sesion</button>
             </div>
           </div>

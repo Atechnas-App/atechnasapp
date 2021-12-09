@@ -27,13 +27,13 @@ export const InvitedRoute = () => {
         {/* RUTAS USUARIOS */}
         {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
         {local?.id && <Route exact path="/perfil/:id" component={Perfil} />}
-        {local?.id && <Route exact path="/perfil/edit/:id" component={EditPerfil}/>}
+        {local?.id && <Route exact path="/perfil/:name/editarPerfil/:id" component={EditPerfil}/>}
         {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
         {local?.id && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
         {local?.id && (
-          <Route exact path="/perfil/edit/trabajos/:id" component={Form} />
+          <Route exact path="/perfil/:name/crearTrabajos/:id" component={Form} />
         )}
-        <Route exact path="/trabajos/edit/:id" component={EditarTrabajo} />
+        <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} /> {/* agregar /:name/ */ }
   
       </Switch>
     );

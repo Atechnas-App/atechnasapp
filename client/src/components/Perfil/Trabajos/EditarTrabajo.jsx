@@ -15,7 +15,7 @@ export const EditarTrabajo = (props) => {
         dispatch(getDetailJob(id))
     },[dispatch,id])
    console.log(id, "id editar trabajo")
-   console.log(detailJobs.title, "detalle trabajo")
+   console.log(detailJobs.image, "detalle trabajo")
     const [editedJob, setEditedJob] = useState({
         title: detailJobs.title,
         image: detailJobs.image,
@@ -185,7 +185,8 @@ const loadImg2 = async (files) => {
               onChange={e => onInputChange(e)}
               value={editedJob.title}
             />
-            {/* <div className="images">
+          </div>
+            <div className="images">
               <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
                 <hr className="hr-perfil-verde"></hr>
@@ -197,7 +198,7 @@ const loadImg2 = async (files) => {
                   onChange={(e) => loadImg(e.target.files[0])}
                 />
                 <img
-                  src={editedJob?.image[0]}
+                  src={editedJob.image[0]}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
@@ -221,7 +222,7 @@ const loadImg2 = async (files) => {
                   onChange={(e) => loadImg1(e.target.files[0])}
                 />
                 <img
-                  src={editedJob?.image[1]}
+                  src={editedJob.image[1]}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
@@ -242,10 +243,10 @@ const loadImg2 = async (files) => {
                   name="image"
                   id="fotoPerfil2"
                   style={{ display: "none" }}
-                  onChange={(e) => loadImg2(e.target.files[0])}
+                  onChange={(e) => loadImg2(e.target.files[1])}
                 />
                 <img
-                  src={editedJob?.image[2]}
+                  src={editedJob.image[2]}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
@@ -257,7 +258,8 @@ const loadImg2 = async (files) => {
                 >
                   Subir
                 </button>
-              </div> */}
+                </div>
+              </div>
               <div className="desc">
                 <label>Descripcion</label>
                 <textarea
@@ -266,6 +268,8 @@ const loadImg2 = async (files) => {
                   onChange={onInputChange}
                   value={editedJob.about}
                 />
+                </div>
+                <div>
                 <label>Precio</label>
                 <span className="currencyinput">
                   $      
@@ -277,13 +281,10 @@ const loadImg2 = async (files) => {
                     onChange={onInputChange}
                   />
                 </span>
-
+                </div>
                 <button type="submit">
                   Guardar
                 </button>
-              </div>
-            </div>
-
         </form>
       </div>
     );
