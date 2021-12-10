@@ -330,7 +330,7 @@ export default function EditPerfil(props) {
                 </div>
               </div>
                 <div className="boton-idioma-map">
-                  {editedProfile.languages.map((lang) => (
+                  {editedProfile?.languages?.map((lang) => (
                     <div>
                       <button className="boton-perfil" type="button" onClick={() => handleDelete(lang)}>
                         {lang}
