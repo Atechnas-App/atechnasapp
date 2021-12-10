@@ -48,34 +48,34 @@ export default function Nav(props) {
           <h3>Ingresar / Registrarse</h3>
         </Link>
       ) : (
-        <div className="containerUser">
-              <img
-                className="imgUser"
-                src={photo ? photo : photo1}
-                alt="imagen usuario"
-                width="100vw"
-                heigth="100vh"
-              />
-              <h3>{name ? name : name1}</h3>
-            
+        <div>
+        <img
+              className="imgUser"
+              src={photo ? photo : photo1}
+              alt="imagen usuario"
+              width="100vw"
+              heigth="100vh"
+            />
+        <ul className="nav">
+<li>{name ? name : name1}
+<ul>
+<li>
+    <Link to={"/perfil/" + id}>
+      <button style={{ textDecoration: "none" }}>Perfil</button>
+    </Link>
+  </li>
+  <li>
+    <Link to={`/perfil/edit/${id}`}>
+      <button>Editar Perfil</button>
+    </Link>
+  </li>
+  <li>
+    <button onClick={handleLogout}>cerrar sesion</button>
+  </li>
+</ul>
 
-            <div className="containerUserImg">
-          <ul className="submenu">
-            <li>
-              <Link to={"/perfil/" + id}>
-                <button style={{ textDecoration: "none" }}>Perfil</button>
-              </Link>
-            </li>
-            <li>
-              <Link to={`/perfil/edit/${id}`}>
-                <button>Editar Perfil</button>
-              </Link>
-            </li>
-            <li>
-              <button onClick={handleLogout}>cerrar sesion</button>
-            </li>
-      </ul>
-          </div>
+</li>              
+          </ul>
           </div>
       )}
     </div>
