@@ -18,24 +18,21 @@ export default function Nav(props) {
   const name = localStorage.getItem("displayName");
   const photo = localStorage.getItem("photoURL");
   const user = JSON.parse(localStorage.getItem("user"));
-
-  let name1 = user.name;
-  let id = user.id;
-
-  useEffect(() => {
-    dispatch(getDetails(id));
-  }, [dispatch]);
-
-  let photo1 = detail.profilePicture
-    ? detail.profilePicture
-    : user.profilePicture;
-
-  const handleLogout = () => {
-    dispatch(logoutAll());
-    localStorage.setItem("user", "{}");
-    history.push("/login");
-  };
-
+ 
+   let name1 = user.name;
+   let id = user.id;
+   
+   useEffect(() => {
+     dispatch(getDetails(id));
+    }, [dispatch, id]);
+    
+    let photo1  = detail.profilePicture?  detail.profilePicture:user.profilePicture ;
+    
+   const handleLogout = () => {
+       dispatch(logoutAll());
+       localStorage.setItem("user", "{}")
+       history.push("/login");     
+   }
   return (
     <div className="containerNav">
       <Link to="/">

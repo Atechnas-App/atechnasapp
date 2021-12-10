@@ -11,10 +11,12 @@ export default function CardTrabajo(id){
     useEffect(() => {
         dispatch(getJobs(id))
     },[dispatch,id])
-    console.log(jobs, "card trabajo")
+
+    
+    console.log(jobs[0]?.user.id, "JOBS card trabajo")
     console.log(id, "Jobs")
     return (
-        <div>
+        <div className='cards-trabajos'>
             
         {jobs.map((j)=>{
             return(
@@ -27,17 +29,18 @@ export default function CardTrabajo(id){
                     <p className='precio-card'>$ {j.price}</p>
                 </div>
                 <div class="back">
-                    <Link to={'/trabajos/detalle/'+ j.id}>
-                        <button className="boton-cardpost"> Más detalles </button>
+                    <Link to={`/perfil/editarTrabajos/${j.id}`}>
+                        <button className="boton-cardpost"> Editar </button>
                     </Link>
-                    <Link to={''}> {/* Link a Mercado Pago */}
-                    <button className="boton-cardpost"> Contratar </button>
-                    </Link>
+                    
                 </div>
             </div>
         </div>)})}
-    
-        
+        <div className='div-btn-mas'>
+            <Link to={'/perfil/crearTrabajos/'+ jobs[0]?.user.id}>
+                <button className="boton-mas-trabajos">+</button>
+            </Link>
+        </div>
     </div>
     )
 }

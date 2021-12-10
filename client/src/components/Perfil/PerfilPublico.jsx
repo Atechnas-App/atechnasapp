@@ -13,14 +13,14 @@ const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
 const {id} = JSON.parse(localStorage.getItem("user")); 
 const id1 = localStorage.getItem('idgit')
-
+console.log(id1)
 
 let fullId = props.match.params.id
 
 useEffect(() => {
-    dispatch(getDetails(fullId, id, id1))
+    dispatch(getDetails(fullId, id1))
 }, [dispatch]);
-
+console.log(detail )
 console.log(detail.categories, "Hay categorias?")
 
     return(
@@ -33,13 +33,6 @@ console.log(detail.categories, "Hay categorias?")
                     <div className="foto-de-perfil">
                         <img className="foto-de-perfil" src={detail.profilePicture} alt="img not found"></img>
                         {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
-                    </div>
-                    <div>
-                        <form className="boton-container">
-                           
-                            {/* <button className="boton-perfil">Mensaje</button> 
-                            <button className="boton-perfil">Contratar</button> */}
-                        </form>
                     </div>
                 </div>
                 <div className="descripcion-perfil">

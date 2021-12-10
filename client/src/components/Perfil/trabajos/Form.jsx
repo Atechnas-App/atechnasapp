@@ -5,6 +5,7 @@ import { postJobs, setError } from '../../../actions/actions'
 import { Link, useHistory } from 'react-router-dom'
 import "./form.css"
 import "../../EditPerfil/EditPerfil.css";
+import Nav from '../../Nav/Nav'
 
 export const Form = (props) => {
 
@@ -170,13 +171,13 @@ const loadImg2 = async (files) => {
                confirmButtonText: '¡Sí, crear trabajo!'
              }).then((result) => {
                if (result.value) {
-                 dispatch(postJobs(formulary,id))
+                 dispatch(postJobs(id,formulary))
                  Swal.fire(
                    '¡Creado!',
                    'El trabajo ha sido creado.',
                    'success'
                  )
-                 history.push('/perfil/edit/'+id)
+                 history.push('/miPerfil/'+id)
                  Swal.close()
            setFormulary({
                title: '',
@@ -204,6 +205,8 @@ const loadImg2 = async (files) => {
     }
 
     return (
+      <div>
+      <Nav/>
       <div className="container">
         <form onSubmit={onSubmitTrabajos}>
           <div className="title">
@@ -318,7 +321,7 @@ const loadImg2 = async (files) => {
           </div>
         </form>
       </div>
-    );
+   </div>);
 }
 
 
