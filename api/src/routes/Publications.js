@@ -3,9 +3,10 @@ const { Op } = require("sequelize");
 const { User, Publication } = require("../db");
 const router = Router();
 
-router.post('/newPublication', async (req, res) => {
+router.post('/newPublication/:userid', async (req, res) => {
     try {
-        const { title, description, image, userid ,price,state} = req.body;
+        const { userid } = req.params
+        const { title, description, image, price, state } = req.body;
         const validaPublication = await Publication.findOne({ where: { title: title } })
         const createPublication = await Publication.create({
             title,
@@ -19,7 +20,7 @@ router.post('/newPublication', async (req, res) => {
         if (!validaPublication) {
             await busquedauser.addPublication(createPublication);
         } else {
-            res.status(404).send('el nombre del equipo ya se encuentra en uso')
+            res.status(404).send('trabajo en proceso')
         }
         const resultado = await Publication.findOne({ where: { title: title }, include: { all: true } });
         res.status(200).send(resultado);
@@ -28,8 +29,8 @@ router.post('/newPublication', async (req, res) => {
     }
 });
 
-router.put('/addPublication', async (req, res) => {
-    const { userid, idPublication } = req.body
+router.put('/addPublication/:userid/:idPublication', async (req, res) => {
+    const { userid, idPublication } = req.params
     const busquedauser = await User.findOne({ where: { id: userid } })
     const validaPublication = await Publication.findOne({ where: { id: idPublication } })
     if (validaPublication) {
@@ -41,13 +42,13 @@ router.put('/addPublication', async (req, res) => {
     res.status(200).send(resultado)
 });
 
-router.put('/removePublication', async (req, res) => {
-    const { userid, idPublication } = req.body
+router.put('/removePublication/:userid/:idPublication', async (req, res) => {
+    const { userid, idPublication } = req.params
     const busquedauser = await User.findOne({ where: { id: userid } })
     const validaPublication = await Publication.findOne({ where: { id: idPublication } })
     if (validaPublication) {
-        
-        if(validaPublication.createdBy !== busquedauser.id){
+
+        if (validaPublication.createdBy !== busquedauser.id) {
             await busquedauser.removePublication(validaPublication);
         }
     } else {
@@ -58,34 +59,67 @@ router.put('/removePublication', async (req, res) => {
 });
 
 
-router.put('/modPublication', async (req, res) => {
-    const { nameTeam, description, newNameTeam, newImage } = req.body
-    const validaTeam = await Publication.findOne({ where: { name: nameTeam } })
-    console.log()
-    if (validaTeam) {
-        await Publication.update({
-            name: newNameTeam,
-            description: description,
-            image: newImage
-        }, {
-            where: { id: validaTeam.dataValues.id }
+router.put('/modPublication/:publicationid', async (req, res) => {
+    const { publicationid } = req.params;
+    const { description, title, image, price, pause } = req.body
+    const validaPublication = await Publication.findOne({ where: { id: publicationid } })
+    if (validaPublication) {
+        await validaPublication.update({
+            title,
+            description,
+            image,
+            price,
+            // paused
         });
     } else {
-        res.status(404).send('el equipo de trabjo no se encuentra')
+        res.status(404).send('publicacion no esncontrada')
     }
-    const resultado = await Publication.findOne({ where: { id: validaTeam.dataValues.id }, include: { all: true } });
-    res.status(200).send(resultado)
+    res.status(200).send(validaPublication)
 });
 
+router.get('/Publications/:idPublication', async (req, res) => {
+    try {
+        const { idPublication } = req.params
+            const respublication = await Publication.findOne({
+                where: {
+                    id: idPublication
+                },
+                include: {
+                    all: true
+                }
+            })
+            res.status(200).send(respublication)
+    } catch (error) {
+        console.log(error)
+    }
+})
 router.get('/Publications', async (req, res) => {
     try {
         const allPublications = await Publication.findAll({
             include: { all: true }
         });
         res.status(200).send(allPublications)
+
+
     } catch (error) {
         console.log(error)
     }
+})
+
+router.delete('/deletePublication/:id',async (req,res)=>{
+    const {id}= req.params
+    try {
+        const eliminado = await Publication.findOne({
+            where:{
+                id
+            }        
+        })
+        const cEliminado = await eliminado.destroy();
+        res.status(200).send('publicacion eliminada')
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 
