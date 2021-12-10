@@ -64,7 +64,7 @@ export default function Nav(props) {
               </Link>
             </li>
             <li>
-              <button onClick={handleLogout}>cerrar sesion</button>
+              <button onClick={handleLogout}>Cerrar sesion</button>
             </li>
       </ul>
           </div>
