@@ -106,7 +106,7 @@ export default function EditPerfil(props) {
       "Los cambios se guardaron correctamente",
       "success"
     );
-    history.push("/me/" + id);
+    history.push("/miPerfil/" + id);
     // Swal.close();
   }
 
