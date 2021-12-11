@@ -10,8 +10,8 @@ import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
 import { Form } from "../components/Perfil/Trabajos/Form";
 import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
-import Error404 from '../components/Error404/Error404'
-
+import Error404 from '../components/Error404/Error404';
+import Contactanos from '../components/Footer/Contactanos';
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
@@ -24,6 +24,7 @@ export const InvitedRoute = () => {
       <Route exact path="/login" component={LoginadnRegister} />
       <Route exact path="/results" component={SearchPage} />
       <Route exact path="/noEncontrado" component={Error404} />
+      <Route exact path='/contactanos' component={Contactanos}/>
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 

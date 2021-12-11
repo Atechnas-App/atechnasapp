@@ -9,7 +9,7 @@ import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
 import './Home.css';
 import {useSelector} from 'react-redux';
-import ScrollUpButton from "react-scroll-up-button";
+// import ScrollUpButton from "react-scroll-up-button";
 import Carousel from 'nuka-carousel';
 import Carrucel1 from "../../assets/img/Carrucel.jpg"
 import Carrucel2 from "../../assets/img/Carrucel2.jpg"
@@ -23,7 +23,7 @@ export default function Home(){
     return(
         <div className='containerHome'> 
             <div className='ajustarHome'> 
-                <ScrollUpButton/>
+                {/* <ScrollUpButton/> */}
                 <Nav/>
                 <Carousel heightMode="first" enableKeyboardControls="true" autoplay="true">
                     <img src={Carrucel1} />
