@@ -3,6 +3,23 @@ const { Op } = require("sequelize");
 const { User, Publication } = require("../db");
 const router = Router();
 
+router.get('/PublicationsUser/:userid', async (req, res) => {
+    try {
+        const { userid } = req.params
+        const publications = await Publication.findAll({
+            where: {
+                userid: userid
+            },
+            include: {
+                all: true
+            }
+        })
+        res.status(200).send(publications)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.post('/newPublication/:userid', async (req, res) => {
     try {
         const { userid } = req.params

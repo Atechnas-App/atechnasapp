@@ -44,7 +44,7 @@ router.use('/api', login)
 router.use('/api', register)
 router.use('/api', deletePost)
 router.use('/api', putUsers)
-/* router.use('/api', Publications) */
+router.use('/api', Publications)
 
 
 module.exports = router;
