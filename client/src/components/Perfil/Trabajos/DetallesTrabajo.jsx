@@ -30,7 +30,7 @@ export default function DetallesTrabajo(props){
             <h1 className="titulo-trabajo">{job?.title}</h1>
             <hr className="hr-perfil-violeta"></hr>
             <div className="descripcion-trabajo">
-                <p className="texto-descripcion-trabajo">{job?.about}</p>
+                <p className="texto-descripcion-trabajo">{job?.description}</p>
             </div>
             <div className="precio-contenedor">
                 <div className="texto-precio">Precio</div>

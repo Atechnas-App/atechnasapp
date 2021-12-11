@@ -15,7 +15,7 @@ const history = useHistory()
     const [formulary, setFormulary] = useState({
         title:'',
         image:[],
-        about:'',
+        description:'',
         price:'',
         paused:false
     })
@@ -159,7 +159,6 @@ const loadImg2 = async (files) => {
     
     const onSubmitTrabajos= async (e) => {
         e.preventDefault();
-         if(ifFormIsValid()){
 
            Swal.fire({ 
                title: '¿Estas seguro?',
@@ -182,27 +181,27 @@ const loadImg2 = async (files) => {
            setFormulary({
                title: '',
                image: [],
-               about: '',
+               description: '',
                price:'',
                paused: false
            })
            }
           })
-         }
+         
     }
 
-  const ifFormIsValid = () => {
-      if (formulary.title.length > 0 && formulary.image.length > 0 && formulary.about.length > 0 && formulary.price.length > 0) {
-          return true
-      } else {
-       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '¡Por favor, completa todos los campos!',
-      })
-               return false
-      }
-    }
+  // const ifFormIsValid = () => {
+  //     if (formulary.title?.length > 0 && formulary.image?.length > 0 && formulary.about?.length > 0 && formulary.price?.length > 0) {
+  //         return true
+  //     } else {
+  //      Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: '¡Por favor, completa todos los campos!',
+  //     })
+  //              return false
+  //     }
+  //   }
 
     return (
       <div className='form-conatiner-trabajo'>
@@ -240,7 +239,7 @@ const loadImg2 = async (files) => {
             <div className="descripcion-container">
               <h1 className='h1-descripcion-trabajo'>Descripcion del trabajo</h1>
               <hr className='hr-perfil-verde'></hr>
-              <textarea className="descripcion-trabajo" name="about" onChange={onInputChange} value={formulary.about}/>
+              <textarea className="descripcion-trabajo" name="description" onChange={onInputChange} value={formulary.description}/>
             </div>
             <div>
               <h1 className='h1-descripcion-trabajo'>Precio</h1>

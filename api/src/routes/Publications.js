@@ -8,7 +8,7 @@ router.get('/PublicationsUser/:userid', async (req, res) => {
         const { userid } = req.params
         const publications = await Publication.findAll({
             where: {
-                userid: userid
+                createdBy: userid
             },
             include: {
                 all: true
