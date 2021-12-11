@@ -10,6 +10,7 @@ import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
 import { Form } from "../components/Perfil/Trabajos/Form";
 import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
+import Error404 from '../components/Error404/Error404'
 
 
 export const InvitedRoute = () => {
@@ -22,6 +23,7 @@ export const InvitedRoute = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={LoginadnRegister} />
       <Route exact path="/results" component={SearchPage} />
+      <Route exact path="/noEncontrado" component={Error404} />
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
