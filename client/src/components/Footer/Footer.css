@@ -24,6 +24,7 @@
 
 .h-text{
     font-weight: normal;
+    color: white;
 }
 
 .hrPresentationFooter{
@@ -70,4 +71,9 @@
 .logo-ycombinator{
     width: 15%;
     margin: 1em;
+}
+
+.socialmedia{
+    height: 50px;
+    width: 50px;
 }
