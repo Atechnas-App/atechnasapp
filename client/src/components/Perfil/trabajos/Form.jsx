@@ -159,7 +159,7 @@ const loadImg2 = async (files) => {
     
     const onSubmitTrabajos= async (e) => {
         e.preventDefault();
-
+        if(ifFormIsValid()) {
            Swal.fire({ 
                title: '¿Estas seguro?',
                text: "¡No podrás revertir esto!",
@@ -187,21 +187,21 @@ const loadImg2 = async (files) => {
            })
            }
           })
-         
+        }
     }
 
-  // const ifFormIsValid = () => {
-  //     if (formulary.title?.length > 0 && formulary.image?.length > 0 && formulary.about?.length > 0 && formulary.price?.length > 0) {
-  //         return true
-  //     } else {
-  //      Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: '¡Por favor, completa todos los campos!',
-  //     })
-  //              return false
-  //     }
-  //   }
+  const ifFormIsValid = () => {
+      if (formulary.title?.length > 0 && formulary.image?.length > 0 && formulary.description?.length > 0 && formulary.price?.length > 0) {
+          return true
+      } else {
+       Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '¡Por favor, completa todos los campos!',
+      })
+               return false
+      }
+    }
 
     return (
       <div className='form-conatiner-trabajo'>
