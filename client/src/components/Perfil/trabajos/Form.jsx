@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
-import { postJobs, setError } from '../../../actions/actions'
+import { postJobs } from '../../../actions/actions'
 import { Link, useHistory } from 'react-router-dom'
 import "./form.css"
 import "../../EditPerfil/EditPerfil.css";
@@ -34,12 +34,12 @@ const loadImg = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -48,7 +48,7 @@ const loadImg = async (files) => {
     );
     const res_1 = await res.json();
 
-    {Swal.close()}
+    Swal.close()
     return setFormulary((prev) => ({
       ...prev,
       image: [...prev.image,res_1.secure_url]
@@ -73,12 +73,12 @@ const loadImg1 = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -87,7 +87,7 @@ const loadImg1 = async (files) => {
     );
     const res_1 = await res.json();
 
-    {Swal.close()}
+    Swal.close()
     return setFormulary((prev) => ({
       ...prev,
       image: [...prev.image,res_1.secure_url]
@@ -111,12 +111,12 @@ const loadImg2 = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -125,7 +125,7 @@ const loadImg2 = async (files) => {
     );
     const res_1 = await res.json();
 
-    {Swal.close()}
+    Swal.close()
     return setFormulary((prev) => ({
       ...prev,
       image: [...prev.image, res_1.secure_url],
