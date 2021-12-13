@@ -7,7 +7,6 @@ import axios from "axios"
 
 export default function CardTrabajo(id){
 
-    const [link, setLink] = useState('')
     const jobs = useSelector((state)=> state.rootReducer.jobs)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -16,16 +15,6 @@ export default function CardTrabajo(id){
     console.log(jobs, "card trabajo")
     console.log(id, "Jobs")
 
-    useEffect(() => {
-        axios.post(`http://localhost:3001/api/create_preference?id=${id.id}`, { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
-            .then(res => {
-                setLink(res.data)
-                console.log(res.data)
-            })
-            .catch(err => console.log(err))
-
-    }, [id])
-    console.log(link, "link mp")
     return (
         <div>
             
@@ -43,12 +32,6 @@ export default function CardTrabajo(id){
                     <Link to={'/trabajos/detalle/'+ j.id}>
                         <button className="boton-cardpost"> Más detalles </button>
                     </Link>
-                    <a
-                                href={link}
-                                className="boton-perfil"
-                            >
-                                Contratar
-                            </a>
                 </div>
             </div>
         </div>)})}
