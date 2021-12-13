@@ -37,7 +37,7 @@ router.get('/authMPrealizado', (req, res) => {
         })
         .catch((err) => console.log(err.message));
     }
-    res.redirect(`http://localhost:3000/${state}`)
+    res.redirect(`http://localhost:3000/miPerfil/${state}`)
 })
 
 
