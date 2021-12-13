@@ -19,13 +19,13 @@ export default function EditarTrabajo(props){
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
     const [editedJob, setEditedJob] = useState({
-        title: detailJobs.title,
-        image: detailJobs.image,
-        about: detailJobs.about,
-        price: detailJobs.price,
-        paused: detailJobs.paused,
+        title: detailJobs?.title,
+        image: detailJobs?.image,
+        description: detailJobs?.description,
+        price: detailJobs?.price,
+        paused: detailJobs?.paused,
     })
-console.log(editedJob, "editedJOB")
+console.log(detailJobs, "DETAILS JOBS!")
 //uno
 const loadImg = async (files) => {
   const reader = new FileReader();
@@ -239,7 +239,7 @@ console.log(res_1, "RES")
               </button>
                </div>
              )}):
-             <>
+             <div>
              <input
              type="file"
              name="image"
@@ -260,7 +260,7 @@ console.log(res_1, "RES")
          >
            Subir
          </button>
-              </>}
+              </div>}
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -339,9 +339,9 @@ console.log(res_1, "RES")
                 <label>Descripcion</label>
                 <textarea
                 className="descripcion"
-                  name="about"
+                  name="description"
                   onChange={onInputChange}
-                  value={editedJob.about}
+                  value={editedJob.description}
                 />
                 </div>
                 <div>

@@ -8,6 +8,7 @@ import {
   getDetails,
   getLanguages,
   getTechnologies,
+  contratarUser
 } from "../../actions/actions";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -156,6 +157,10 @@ export default function EditPerfil(props) {
       languages: [...editedProfile.languages, e.target.value],
     });
   }
+
+  // function handleHire(){
+  //   dispatch(contratarUser())
+  // }
   return (
     <div className="edit-perfil-container">
       <Nav />
@@ -330,7 +335,7 @@ export default function EditPerfil(props) {
                 </div>
               </div>
                 <div className="boton-idioma-map">
-                  {editedProfile.languages.map((lang) => (
+                  {editedProfile?.languages?.map((lang) => (
                     <div>
                       <button className="boton-perfil" type="button" onClick={() => handleDelete(lang)}>
                         {lang}

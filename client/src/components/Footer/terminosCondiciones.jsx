@@ -1,12 +1,12 @@
-import './pregResp'
+import './terminosCondiciones'
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
-export default function PregResp(){
+export default function TerminosCondiciones(){
     return(
         <div>
             <Nav/>
-            <h1>FAQ</h1>
+            <h1>Terminos y Condiciones</h1>
             <Footer/>
         </div>
     )
