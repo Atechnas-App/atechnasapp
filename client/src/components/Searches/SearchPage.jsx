@@ -22,7 +22,7 @@ export default function SearchPage(){
                     <div className='container-filtro'>
                         <Filtros  className='fixed-filters'/>
                     </div>
-                    
+                  
                 <Renderizado/>
                 
 

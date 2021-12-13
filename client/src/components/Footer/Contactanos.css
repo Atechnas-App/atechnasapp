@@ -12,6 +12,7 @@
 .card-contactanos{
  background: rgba(255, 255, 255, 0.062);
  box-shadow: 0px 0px 10px black;
+ border: solid 0.5px rgba(255, 255, 255, 0.178);
  backdrop-filter: blur(3px);
  position: relative;
  width: 20%;
@@ -39,4 +40,4 @@
 
 .block{
     display: block;
-}
+} 
