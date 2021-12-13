@@ -8,9 +8,17 @@ import {PageInfo} from "./PageInfo/PageInfo";
 import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
 import './Home.css';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { useEffect } from "react";
+import { getGithubUserInfo } from "../../actions/actions";
 
 export default function Home(){
+    const dispatch = useDispatch();
+    
+useEffect(() => {
+    dispatch(getGithubUserInfo());
+}, [dispatch]);
+
     const search = useSelector((state)=> state.rootReducer.search)
 
     return(

@@ -7,6 +7,7 @@ const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_CLIENT_URL } = process.en
 const { User, Category } = require('../db');
 
 const router = Router();
+const info = {};
 
 passport.use(new GithubStrategy({
   clientID: GITHUB_CLIENT_ID,
@@ -16,7 +17,12 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-    console.log(_json)
+{
+  info
+  info.name = _json.name? _json.name : _json.login
+  info.profilePicture = _json.avatar_url
+}
+    /* console.log(_json) */
     try{
       let user = await User.findOrCreate({
         where: {
@@ -35,6 +41,7 @@ passport.use(new GithubStrategy({
       done(err)
     }
     // user.addCategory(['Recruiter'])
+    /* console.log(info) */
   }
 ));
 
@@ -49,12 +56,14 @@ router.get('/github/callback', passport.authenticate('github', {
 }))
 
 router.get('/login/success', (req, res) => {
-  if (req.user) {
+  /* const name = info.name? info.name : 'ejemplo' */
+  if (info.name) {
     res.status(200).json({
       success: true,
       message: 'successful',
-      user: req.user
+      user: info
     })
+    /* console.log(info) */
   }
   console.log('REQ USER DEL LOGIN SUCCESS',req.user)
 })

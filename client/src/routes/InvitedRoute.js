@@ -13,6 +13,7 @@ import EditarTrabajo from '../components/Perfil/trabajos/EditarTrabajo';
 
 
 export const InvitedRoute = () => {
+  
   const local = JSON.parse(localStorage.getItem("user"))?
   JSON.parse(localStorage.getItem("user")) : localStorage.getItem("idgit");
   // const isAdmin = localStorage.getItem("isAdmin");

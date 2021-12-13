@@ -15,18 +15,18 @@ export default function Nav(props) {
     localStorage.setItem("user", "{}");
   }
 
-  const name = localStorage.getItem("displayName");
-  const photo = localStorage.getItem("photoURL");
+
+const id1 = localStorage.getItem("idgit");
   const user = JSON.parse(localStorage.getItem("user"));
  
-   let name1 = user.name;
+   let name = user.name;
    let id = user.id;
    
    useEffect(() => {
      dispatch(getDetails(id));
     }, [dispatch, id]);
     
-    let photo1  = detail.profilePicture?  detail.profilePicture:user.profilePicture ;
+    let photo  = /* detail.profilePicture ?  detail.profilePicture : */ user.profilePicture ;
     
    const handleLogout = () => {
        dispatch(logoutAll());
@@ -40,7 +40,7 @@ export default function Nav(props) {
       </Link>
       <SearchBar></SearchBar>
 
-      {!name && !name1 ? (
+      {!name ?(
         <Link className="linkNavReg" to="/login">
           <h3>Ingresar / Registrarse</h3>
         </Link>
@@ -48,21 +48,21 @@ export default function Nav(props) {
         <div>
         <img
               className="imgUser"
-              src={photo ? photo : photo1}
+              src={photo}
               alt="imagen usuario"
               width="100vw"
               heigth="100vh"
             />
         <ul className="nav">
-<li>{name ? name : name1}
+<li>{name}
 <ul>
 <li>
-    <Link to={"/perfil/" + id}>
+    <Link to={"/perfil/" + id ? id : id1}>
       <button style={{ textDecoration: "none" }}>Perfil</button>
     </Link>
   </li>
   <li>
-    <Link to={`/perfil/edit/${id}`}>
+    <Link to={`/perfil/edit/${id ? id : id1}`}>
       <button>Editar Perfil</button>
     </Link>
   </li>
