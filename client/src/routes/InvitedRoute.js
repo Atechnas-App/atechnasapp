@@ -15,7 +15,6 @@ import Contactanos from '../components/Footer/Contactanos'
 import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
-import Contactanos from '../components/Footer/Contactanos';
 
 
 export const InvitedRoute = () => {
