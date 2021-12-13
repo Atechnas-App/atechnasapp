@@ -27,9 +27,10 @@ export default function Perfil(props) {
 
 
     useEffect(() => {
-        axios.post('http://localhost:3001/api/create_preference', { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
+        axios.post(`http://localhost:3001/api/create_preference?id=${detail.id}`, { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
             .then(res => {
                 setLink(res.data)
+                console.log(res.data)
             })
             .catch(err => console.log(err))
 
