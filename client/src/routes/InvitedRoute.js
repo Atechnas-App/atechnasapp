@@ -15,6 +15,8 @@ import Contactanos from '../components/Footer/Contactanos'
 import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
+import Contactanos from '../components/Footer/Contactanos';
+
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
@@ -31,6 +33,9 @@ export const InvitedRoute = () => {
       <Route exact path="/FAQ" component={PregResp}/>
       <Route exact path="/contactanos" component={Contactanos}/>
       <Route exact path="/terms" component={Terms}/>
+      <Route exact path='/contactanos' component={Contactanos}/>
+
+
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
