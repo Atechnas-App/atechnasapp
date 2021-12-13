@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1036130844,
+    "nickname": "TETE4901441",
+    "password": "qatest1912",
+    "site_status": "active",
+    "email": "test_user_64122391@testuser.com",
+    "credentials": [
+      {
+        "public_key": "APP_USR-7a304fcd-3af4-4298-b802-7dcba3a31615",
+        "acces_token": "APP_USR-7885833807001114-121119-783509f881f2c2a3c602e1cc6f1ba1e9-1036130844",
+        "client_id": 7885833807001114,
+        "client_secret": "J4BOZbvqbKPZfIkMvVzx9JePFxnsaJEQ"
+      },
+      {
+        "public_key": "TEST-91573f42-e601-4cb4-9207-22b310574402",
+        "acces_token": "TEST-7885833807001114-121119-e53b0830cb43776161b8feee134ab3df-1036130844"
+      }
+    ]
+  },
+  {
+    "id": 1034198352,
+    "nickname": "TESTHZD7L62I",
+    "password": "qatest937",
+    "site_status": "active",
+    "email": "test_user_92504117@testuser.com",
+    "created_at": "06/12/2021"
+  },
+  {
+    "id": 1034206379,
+    "nickname": "TETE8656820",
+    "password": "qatest3259",
+    "site_status": "active",
+    "email": "test_user_85124771@testuser.com",
+    "created_at": "06/12/2021"
+  }
+]
