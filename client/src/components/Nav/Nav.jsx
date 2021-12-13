@@ -46,30 +46,49 @@ export default function Nav(props) {
           <h3>Ingresar / Registrarse</h3>
         </Link>
       ) : (
-        <div className='div-nav'>
-        <img
-              className="imgUser"
-              src={photo ? photo : photo1}
-              alt="imagen usuario"
-              width="100vw"
-              heigth="100vh"
-            />
-        <ul className="nav">
-<li>{name ? name : name1}
-<ul>
-<li>
-    <Link to={"/miPerfil/" + id}>
-      <button style={{ textDecoration: "none" }}>Perfil</button>
-    </Link>
-  </li>
-  <li>
-    <button onClick={handleLogout}>cerrar sesion</button>
-  </li>
-</ul>
-
-</li>              
-          </ul>
+          <div class="dropdown">
+            <div className='img-border'>
+              <img
+                className="imgUser"
+                src={photo ? photo : photo1}
+                alt="imagen usuario"
+                width="70px"
+                heigth="70px"
+              />
+            </div>
+            <div class="dropdown-content">
+              <Link to={"/miPerfil/" + id}>
+                <a>Perfil</a>
+              </Link>
+              <a onClick={handleLogout} className='cursor'>cerrar sesion</a>
+              
+            </div>
           </div>
+
+//         <div className='div-nav'>
+//         <img
+//               className="imgUser"
+//               src={photo ? photo : photo1}
+//               alt="imagen usuario"
+//               width="100vw"
+//               heigth="100vh"
+//             />
+//         <ul className="ul-nav">
+// <li>{name ? name : name1}
+// <ul>
+// <li>
+//     <Link to={"/miPerfil/" + id}>
+//       <button style={{ textDecoration: "none" }}>Perfil</button>
+//     </Link>
+//   </li>
+//   <li>
+//     <button onClick={handleLogout}>cerrar sesion</button>
+//   </li>
+// </ul>
+
+// </li>              
+//           </ul>
+//           </div>
       )}
     </div>
   );

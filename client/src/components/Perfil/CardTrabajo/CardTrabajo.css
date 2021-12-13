@@ -5,6 +5,7 @@
     transition: all 1s linear;
     transform-style: preserve-3d;
    
+   
 }
 
 .front,
@@ -94,6 +95,7 @@
 
 .cards-trabajos{
     display: flex;
+    flex-wrap: wrap;
     padding: 1em;
     
 }
