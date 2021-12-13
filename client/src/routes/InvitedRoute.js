@@ -7,7 +7,7 @@ import PerfilPrivado from "../components/Perfil/PerfilPrivado"
 import PerfilPublico from "../components/Perfil/PerfilPublico"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-import Form from "../components/Perfil/Trabajos/Form";
+import Form from '../components/Perfil/Trabajos/Form'
 import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
 import Error404 from '../components/Error404/Error404'
 import Contactanos from '../components/Footer/Contactanos'
