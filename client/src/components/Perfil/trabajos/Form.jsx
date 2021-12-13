@@ -7,7 +7,7 @@ import "./form.css"
 import "../../EditPerfil/EditPerfil.css";
 import Nav from '../../Nav/Nav'
 
-export const Form = (props) => {
+export default function Form(props){
 
 const id = props.match.params.id
 const history = useHistory()
