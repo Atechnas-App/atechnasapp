@@ -11,9 +11,9 @@ import CardComentario from "./CardComentario/CardComentario"
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
-const {id} = JSON.parse(localStorage.getItem("user")); 
+const {id} = JSON.parse(localStorage.getItem("user"));
 const id1 = localStorage.getItem('idgit')
-
+console.log(id, "id editar trabajo")
 
     let fullId = props.match.params.id
 

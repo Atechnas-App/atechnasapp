@@ -16,6 +16,7 @@ router.get('/authMPrealizado', (req, res) => {
         code,
         redirect_uri: "http://localhost:3001/api/authMPrealizado",
       };
+      console.log(userCredentials)
       axios
         .post("https://api.mercadopago.com/oauth/token", userCredentials)
         .then((cred) => {

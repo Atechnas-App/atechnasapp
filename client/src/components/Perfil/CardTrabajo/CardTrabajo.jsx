@@ -17,7 +17,7 @@ export default function CardTrabajo(id){
     console.log(id, "Jobs")
 
     useEffect(() => {
-        axios.post(`http://localhost:3001/api/create_preference?id=${id}`, { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
+        axios.post(`http://localhost:3001/api/create_preference?id=${id.id}`, { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
             .then(res => {
                 setLink(res.data)
                 console.log(res.data)
@@ -25,7 +25,7 @@ export default function CardTrabajo(id){
             .catch(err => console.log(err))
 
     }, [id])
-
+    console.log(link, "link mp")
     return (
         <div>
             

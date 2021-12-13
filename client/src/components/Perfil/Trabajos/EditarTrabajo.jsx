@@ -14,7 +14,7 @@ export default function EditarTrabajo(props){
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
-      },[dispatch,id])
+      },[dispatch,id, detailJobs])
 
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
@@ -211,32 +211,25 @@ console.log(res_1, "RES")
               value={editedJob.title}
             />
           </div>
+                <input
+                  type="file"
+                  name="image"
+                  id="fotoPerfil"
+                   style={{ display: "none" }}
+                  onChange={(e) => loadImg(e.target.files[0])}
+                />
            <div className="images">
                 <div className="foto-perfil-container">
                 <label className="input-label">Imagenes</label>
                 <hr className="hr-perfil-verde"></hr>
              {editedJob?.image? editedJob?.image?.map((img,i) => {
                return (<div>
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil"
-                   style={{ display: "none" }}
-                  onChange={(e) => loadImg(e.target.files[i])}
-                />
                 <img
                   src={img}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
-              <button
-                className="boton-perfil"
-                type="submit"
-                onClick={handleImageClick}
-                cursor="pointer"
-              >
-                Subir
-              </button>
+              <button type="button" onClick={() => handleDelete(img)}>Eliminar</button>
                </div>
              )}):
              <div>
@@ -245,22 +238,22 @@ console.log(res_1, "RES")
              name="image"
              id="fotoPerfil"
               style={{ display: "none" }}
-             onChange={(e) => loadImg(e.target.files)}
+             onChange={(e) => loadImg(e.target.files[0])}
            />
            <img
              src=""
              alt="img not found"
              className="img-edit-perfil"
            ></img>
-         <button
-           className="boton-perfil"
-           type="submit"
-           onClick={handleImageClick}
-           cursor="pointer"
-         >
-           Subir
-         </button>
               </div>}
+              <button
+                className="boton-perfil"
+                type="submit"
+                onClick={handleImageClick}
+                cursor="pointer"
+              >
+                Subir
+              </button>
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
