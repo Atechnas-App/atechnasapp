@@ -2,6 +2,7 @@ import React from 'react'
 import "./Footer.css"
 import logohenry from "../../assets/img/logohenry.png"
 import Ycombinator from "../../assets/img/Ycombinator.png"
+import {Link} from 'react-router-dom'
 
 export default function Footer(){
     return (
@@ -12,11 +13,15 @@ export default function Footer(){
                     <hr className="hrPresentationFooter"></hr>
                     <h3 className="h-text">Sobre Nosotros</h3>
                     <h3 className="h-text">Ayuda</h3>
+                    <Link to='/contactanos'>
                     <h3 className="h-text">Contactanos</h3>
+                    </Link>
                     <h3 className="h-text">Terminos y Condiciones</h3>
                 </div>
                 <div className="upper-footer-container-center">
-                    <h1 className="footer-title">Contactanos</h1>
+                    
+                        <h1 className="footer-title">Contactanos</h1>
+                    
                     <hr className="hrPresentationFooter"></hr>
                     <h3 className="h-text">0800-888-Atechnas</h3>
                     <h3 className="h-text">atechnasapp@gmail.com</h3>
