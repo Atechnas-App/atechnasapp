@@ -8,7 +8,8 @@ const axios = require('axios')
 
 
 router.post("/create_preference", async (req, res) => {
-    const prestador = await User.findByPk('ffe41a85-adcd-4474-8c9d-3a1968d052b1', { raw: true})
+    const prestador = await User.findByPk(req.query.id, { raw: true})
+	console.log(req.query.id)
     mercadopago.configure({
         access_token: prestador.access_token,
     });
