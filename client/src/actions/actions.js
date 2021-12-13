@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
+import { types, GET_USER, SEARCH, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
   GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';

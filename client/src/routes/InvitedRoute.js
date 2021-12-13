@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { CompleteRegister } from '../components/form/CompleteRegister';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';
@@ -8,7 +7,7 @@ import PerfilPrivado from "../components/Perfil/PerfilPrivado"
 import PerfilPublico from "../components/Perfil/PerfilPublico"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-import { Form } from "../components/Perfil/Trabajos/Form";
+import Form from "../components/Perfil/Trabajos/Form";
 import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
 import Error404 from '../components/Error404/Error404'
 import Contactanos from '../components/Footer/Contactanos'
