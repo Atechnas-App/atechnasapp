@@ -165,7 +165,7 @@ export default function EditPerfil(props) {
       <Nav />
       <h1>PERFIL</h1>
           <button>
-            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7308381246776093&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
+            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
               AUTORIZAR MERCADOPAGO
             </a>
           </button>

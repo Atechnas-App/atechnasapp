@@ -1,5 +1,5 @@
 import "./Perfil.css"
-import React from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getDetails } from "../../actions/actions";
@@ -15,6 +15,7 @@ export default function Perfil(props) {
     const { id } = JSON.parse(localStorage.getItem("user"));
     const id1 = localStorage.getItem('idgit')
     console.log(id1)
+    const [link, setLink] = useState('')
 
     let fullId = props.match.params.id
 
@@ -24,9 +25,16 @@ export default function Perfil(props) {
 
     console.log(detail.categories, "Hay categorias?")
 
-    function handleHire(){
-        axios.post('http://localhost:3001/api/create_preference', {quantity: 10, price: 100, description: 'BACKEND DEVELOPER'})
-    }
+
+    useEffect(() => {
+        axios.post('http://localhost:3001/api/create_preference', { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
+            .then(res => {
+                setLink(res.data)
+            })
+            .catch(err => console.log(err))
+
+    }, [])
+
 
     return (
         <div className="perfil-container">
@@ -44,7 +52,12 @@ export default function Perfil(props) {
                             <Link to={`/editPerfil/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
-                            <button className="boton-perfil" onClick={handleHire}>Contratar</button>
+                            <a
+                                href={link}
+                                className="boton-perfil"
+                            >
+                                Contratar
+                            </a>
                             <button className="boton-perfil">Mensaje</button>
                         </form>
                     </div>

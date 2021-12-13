@@ -8,7 +8,7 @@ const axios = require('axios')
 
 
 router.post("/create_preference", async (req, res) => {
-    const prestador = await User.findByPk('ee6f647e-868d-4293-b705-8f51d9c63714', { raw: true})
+    const prestador = await User.findByPk('ffe41a85-adcd-4474-8c9d-3a1968d052b1', { raw: true})
     mercadopago.configure({
         access_token: prestador.access_token,
     });
@@ -23,16 +23,16 @@ router.post("/create_preference", async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "/feedback",
-			"failure": "/feedback",
-			"pending": "/feedback"
+			"success": "http://localhost:3000",
+			"failure": "http://localhost:3000",
+			"pending": "http://localhost:3000"
 		},
 		auto_return: "approved",
+		marketplace_fee : 5
 	};
-
-	mercadopago.preferences.create(preference)
+	await mercadopago.preferences.create(preference)
 		.then(function (response) {
-			res.redirect(response.body.init_point)
+			res.send(response.body.init_point)
 		}).catch(function (error) {
 			console.log(error);
 		});
