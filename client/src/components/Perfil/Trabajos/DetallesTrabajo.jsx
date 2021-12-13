@@ -15,16 +15,16 @@ export default function DetallesTrabajo(props){
     useEffect(()=>{
         dispatch(getDetailJob(id))
     },[dispatch,id])
-    // useEffect(() => {
-    //     axios.post(`http://localhost:3001/api/create_preference?id=${id.id}`, { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
-    //         .then(res => {
-    //             setLink(res.data)
-    //             console.log(res.data)
-    //         })
-    //         .catch(err => console.log(err))
+    useEffect(() => {
+        axios.post(`http://localhost:3001/api/create_preference?id=${job.createdBy}`, { quantity: 1, price: job.price, description: job.title })
+            .then(res => {
+                setLink(res.data)
+                console.log(res.data)
+            })
+            .catch(err => console.log(err))
 
-    // }, [id])
-    
+    }, [job.createdBy])
+    console.log(job, "detalle del trabajo")
 
     return(
         <div className="detalle-trabajo-contenedor">

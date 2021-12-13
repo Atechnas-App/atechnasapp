@@ -10,11 +10,11 @@ export default function EditarTrabajo(props){
     const dispatch = useDispatch()
     const history = useHistory()
     const detailJobs = useSelector(state=>state.rootReducer.detailJob)
-    const id = props.match.params.id
+    const id = props.match?.params.id
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
-      },[dispatch,id, detailJobs])
+      },[dispatch,id])
 
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
@@ -197,7 +197,7 @@ console.log(res_1, "RES")
           })
         }
     
-
+        console.log(editedJob, "trabajo editado")
     return (<div>
       <Nav/>
       <div className="container">
@@ -208,7 +208,7 @@ console.log(res_1, "RES")
               type="text"
               name="title"
               onChange={e => onInputChange(e)}
-              value={editedJob.title}
+              value={editedJob?.title}
             />
           </div>
                 <input
@@ -334,7 +334,7 @@ console.log(res_1, "RES")
                 className="descripcion"
                   name="description"
                   onChange={onInputChange}
-                  value={editedJob.description}
+                  value={editedJob?.description}
                 />
                 </div>
                 <div>
@@ -345,7 +345,7 @@ console.log(res_1, "RES")
                     className="currencyinputPrice"
                     type="number"
                     name="price"
-                    value={editedJob.price}
+                    value={editedJob?.price}
                     onChange={onInputChange}
                   />
                 </span>
