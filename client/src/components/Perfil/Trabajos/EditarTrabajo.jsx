@@ -239,7 +239,7 @@ console.log(res_1, "RES")
               </button>
                </div>
              )}):
-             <>
+             <div>
              <input
              type="file"
              name="image"
@@ -260,7 +260,7 @@ console.log(res_1, "RES")
          >
            Subir
          </button>
-              </>}
+              </div>}
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>

@@ -9,6 +9,7 @@ import {
   setError,
   
 } from "../../actions/actions";
+import Swal from "sweetalert2";
 
 
 export const Register = () => {
@@ -97,7 +98,9 @@ export const Register = () => {
     e.preventDefault()
     if (ifFormIsValid1()) {
       dispatch(postUser(user))
-      alert("¡Usuario creado con éxito!")
+      Swal.fire('USUARIO CREADO',
+      "Recuerde iniciar sesion",
+      "success");
       setUser({
         name: "",
         lastName: "",

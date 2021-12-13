@@ -53,7 +53,7 @@ const {auth,msgError1} = useSelector((state) => state.logued);
   }
   const handleGithubLogin = () => {
     window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
-    dispatch(getGithubUserInfo())
+    // dispatch(getGithubUserInfo())
   }
 
   const ifFormIsValid = () => {
