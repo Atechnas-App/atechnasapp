@@ -35,7 +35,7 @@ export const InvitedRoute = () => {
 
 
         {/* RUTAS USUARIOS */}
-        {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
+        {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
         {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/trabajos/detalle/:id" to="/error" />}
