@@ -14,11 +14,13 @@ export default function Renderizado(){
     // }, [page])
 
     const [actualPage, setActualPage] = useState(1);         
-    const [cardPage, setDogPage] = useState(8);            
+    const [cardPage, setDogPage] = useState(4);            
     const indexLast = actualPage * cardPage;               
     const indexFirst = indexLast - cardPage;              
     const totalCardsPage = searching?.slice(indexFirst, indexLast);
     const length = searching?.length;
+
+    console.log(searching, 'SOY EL SEARCHING 06/12')
 
     const paginado = (pageNumber) => {
         setActualPage(pageNumber);

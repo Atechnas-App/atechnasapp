@@ -10,7 +10,7 @@ export default function EditarTrabajo(props){
     const dispatch = useDispatch()
     const history = useHistory()
     const detailJobs = useSelector(state=>state.rootReducer.detailJob)
-    const id = props.match.params.id
+    const id = props.match?.params.id
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
@@ -19,13 +19,13 @@ export default function EditarTrabajo(props){
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
     const [editedJob, setEditedJob] = useState({
-        title: detailJobs.title,
-        image: detailJobs.image,
-        about: detailJobs.about,
-        price: detailJobs.price,
-        paused: detailJobs.paused,
+        title: detailJobs?.title,
+        image: detailJobs?.image,
+        description: detailJobs?.description,
+        price: detailJobs?.price,
+        paused: detailJobs?.paused,
     })
-console.log(editedJob, "editedJOB")
+console.log(detailJobs, "DETAILS JOBS!")
 //uno
 const loadImg = async (files) => {
   const reader = new FileReader();
@@ -197,7 +197,7 @@ console.log(res_1, "RES")
           })
         }
     
-
+        console.log(editedJob, "trabajo editado")
     return (<div>
       <Nav/>
       <div className="container">
@@ -208,27 +208,44 @@ console.log(res_1, "RES")
               type="text"
               name="title"
               onChange={e => onInputChange(e)}
-              value={editedJob.title}
+              value={editedJob?.title}
             />
           </div>
+                <input
+                  type="file"
+                  name="image"
+                  id="fotoPerfil"
+                   style={{ display: "none" }}
+                  onChange={(e) => loadImg(e.target.files[0])}
+                />
            <div className="images">
                 <div className="foto-perfil-container">
                 <label className="input-label">Imagenes</label>
                 <hr className="hr-perfil-verde"></hr>
              {editedJob?.image? editedJob?.image?.map((img,i) => {
                return (<div>
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil"
-                   style={{ display: "none" }}
-                  onChange={(e) => loadImg(e.target.files[i])}
-                />
                 <img
                   src={img}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
+              <button type="button" onClick={() => handleDelete(img)}>Eliminar</button>
+               </div>
+             )}):
+             <div>
+             <input
+             type="file"
+             name="image"
+             id="fotoPerfil"
+              style={{ display: "none" }}
+             onChange={(e) => loadImg(e.target.files[0])}
+           />
+           <img
+             src=""
+             alt="img not found"
+             className="img-edit-perfil"
+           ></img>
+              </div>}
               <button
                 className="boton-perfil"
                 type="submit"
@@ -237,30 +254,6 @@ console.log(res_1, "RES")
               >
                 Subir
               </button>
-               </div>
-             )}):
-             <>
-             <input
-             type="file"
-             name="image"
-             id="fotoPerfil"
-              style={{ display: "none" }}
-             onChange={(e) => loadImg(e.target.files)}
-           />
-           <img
-             src=""
-             alt="img not found"
-             className="img-edit-perfil"
-           ></img>
-         <button
-           className="boton-perfil"
-           type="submit"
-           onClick={handleImageClick}
-           cursor="pointer"
-         >
-           Subir
-         </button>
-              </>}
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -339,9 +332,9 @@ console.log(res_1, "RES")
                 <label>Descripcion</label>
                 <textarea
                 className="descripcion"
-                  name="about"
+                  name="description"
                   onChange={onInputChange}
-                  value={editedJob.about}
+                  value={editedJob?.description}
                 />
                 </div>
                 <div>
@@ -352,7 +345,7 @@ console.log(res_1, "RES")
                     className="currencyinputPrice"
                     type="number"
                     name="price"
-                    value={editedJob.price}
+                    value={editedJob?.price}
                     onChange={onInputChange}
                   />
                 </span>

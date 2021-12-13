@@ -8,9 +8,14 @@ import {PageInfo} from "./PageInfo/PageInfo";
 import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
 import './Home.css';
-import {useDispatch, useSelector} from 'react-redux';
-import { useEffect } from "react";
-import { getGithubUserInfo } from "../../actions/actions";
+import {useSelector} from 'react-redux';
+import ScrollUpButton from "react-scroll-up-button";
+import Carousel from 'nuka-carousel';
+import Carrucel1 from "../../assets/img/Carrucel.jpg"
+import Carrucel2 from "../../assets/img/Carrucel2.jpg"
+import Carrucel3 from "../../assets/img/Carrucel3.jpg"
+import { Link } from "react-router-dom";
+
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -24,9 +29,13 @@ useEffect(() => {
     return(
         <div className='containerHome'> 
             <div className='ajustarHome'> 
-                         
+                <ScrollUpButton/>
                 <Nav/>
-                <Carrucel className='carrucel'/>
+                <Carousel heightMode="first" enableKeyboardControls="true" autoplay="true">
+                    <img src={Carrucel1} />
+                    <img src={Carrucel2} />
+                    <img src={Carrucel3} />
+                </Carousel>
                 <PageInfo/>
                 <Presentation/>
                 <Testimonial/>

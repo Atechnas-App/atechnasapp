@@ -15,7 +15,7 @@ const history = useHistory()
     const [formulary, setFormulary] = useState({
         title:'',
         image:[],
-        about:'',
+        description:'',
         price:'',
         paused:false
     })
@@ -159,8 +159,7 @@ const loadImg2 = async (files) => {
     
     const onSubmitTrabajos= async (e) => {
         e.preventDefault();
-         if(ifFormIsValid()){
-
+        if(ifFormIsValid()) {
            Swal.fire({ 
                title: '¿Estas seguro?',
                text: "¡No podrás revertir esto!",
@@ -182,17 +181,17 @@ const loadImg2 = async (files) => {
            setFormulary({
                title: '',
                image: [],
-               about: '',
+               description: '',
                price:'',
                paused: false
            })
            }
           })
-         }
+        }
     }
 
   const ifFormIsValid = () => {
-      if (formulary.title.length > 0 && formulary.image.length > 0 && formulary.about.length > 0 && formulary.price.length > 0) {
+      if (formulary.title?.length > 0 && formulary.image?.length > 0 && formulary.description?.length > 0 && formulary.price?.length > 0) {
           return true
       } else {
        Swal.fire({
@@ -205,109 +204,50 @@ const loadImg2 = async (files) => {
     }
 
     return (
-      <div>
+      <div className='form-conatiner-trabajo'>
       <Nav/>
       <div className="container">
         <form onSubmit={onSubmitTrabajos}>
           <div className="title">
-            <h1>Titulo</h1>
-            <input
-              className="inputTitle"
-              type="text"
-              name="title"
-              onChange={onInputChange}
-              value={formulary.title}
-            />
+            <h1 className='h1-titulo-trabajo'>Título del trabajo</h1>
+            <hr className='hr-perfil-verde'></hr>
+            <input className="inputTitle" type="text" name="title" onChange={onInputChange} value={formulary.title}/>
+          </div>
             <div className="images">
               <div className="foto-perfil-container">
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil"
-                  style={{ display: "none" }}
-                  onChange={(e) => loadImg(e.target.files[0])}
-                />
-                <img
-                  src={formulary.image[0]}
-                  alt="img not found"
-                  className="img-edit-perfil"
-                ></img>
-                <button
-                  className="boton-perfil"
-                  type="submit"
-                  onClick={handleImageClick}
-                  cursor="pointer"
-                >
+                <input type="file" name="image" id="fotoPerfil" style={{ display: "none" }} onChange={(e) => loadImg(e.target.files[0])}/>
+                <img src={formulary.image[0]} alt="img not found" className="img-edit-perfil"></img>
+                <button className="boton-perfil" type="submit" onClick={handleImageClick} cursor="pointer">
                   Subir
                 </button>
               </div>
               <div className="foto-perfil-container">
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil1"
-                  style={{ display: "none" }}
-                  onChange={(e) => loadImg1(e.target.files[0])}
-                />
-                <img
-                  src={formulary.image[1]}
-                  alt="img not found"
-                  className="img-edit-perfil"
-                ></img>
-                <button
-                  className="boton-perfil"
-                  type="submit"
-                  onClick={handleImageClick1}
-                  cursor="pointer"
-                >
+                <input type="file" name="image" id="fotoPerfil1" style={{ display: "none" }} onChange={(e) => loadImg1(e.target.files[0])}/>
+                <img src={formulary.image[1]} alt="img not found" className="img-edit-perfil"></img>
+                <button className="boton-perfil" type="submit" onClick={handleImageClick1} cursor="pointer">
                   Subir
                 </button>
               </div>
               <div className="foto-perfil-container">
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil2"
-                  style={{ display: "none" }}
-                  onChange={(e) => loadImg2(e.target.files[0])}
-                />
-                <img
-                  src={formulary.image[2]}
-                  alt="img not found"
-                  className="img-edit-perfil"
-                ></img>
-                <button
-                  className="boton-perfil"
-                  type="submit"
-                  onClick={handleImageClick2}
-                  cursor="pointer"
-                >
+                <input type="file" name="image" id="fotoPerfil2" style={{ display: "none" }} onChange={(e) => loadImg2(e.target.files[0])}/>
+                <img src={formulary.image[2]} alt="img not found" className="img-edit-perfil"></img>
+                <button className="boton-perfil" type="submit" onClick={handleImageClick2} cursor="pointer">
                   Subir
                 </button>
               </div>
             </div>
-
-            <div className="desc">
-              <h3>Descripcion</h3>
-              <textarea
-                className="textarea"
-                name="about"
-                onChange={onInputChange}
-                value={formulary.about}
-              />
-              <h3>Precio</h3>
-              <span className="currencyinput">
-                $
-                <input
-                  className="currencyinputPrice"
-                  min="0"
-                  type="number"
-                  name="price"
-                  value={formulary.price}
-                  onChange={onInputChange}
-                />
-              </span>
-<div className="botons">
+            <div className="descripcion-container">
+              <h1 className='h1-descripcion-trabajo'>Descripcion del trabajo</h1>
+              <hr className='hr-perfil-verde'></hr>
+              <textarea className="descripcion-trabajo" name="description" onChange={onInputChange} value={formulary.description}/>
+            </div>
+            <div>
+              <h1 className='h1-descripcion-trabajo'>Precio</h1>
+              <hr className='hr-perfil-verde'></hr>
+              <span className="currencyinput">$</span>
+              <input className="precio-trabajo-edit" min="0" type="number" name="price" value={formulary.price} onChange={onInputChange}/>
+            </div>
+            <div className="botons">
               <button type="submit" className="boton-perfil" onClick={onSubmitTrabajos}>
                 Guardar
               </button>
@@ -316,12 +256,11 @@ const loadImg2 = async (files) => {
                   Regresar
                 </button>
               </Link>
-              </div>
             </div>
-          </div>
         </form>
       </div>
-   </div>);
+   </div>
+   );
 }
 
 

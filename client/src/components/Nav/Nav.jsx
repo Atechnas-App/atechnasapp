@@ -33,7 +33,7 @@ const id1 = localStorage.getItem("idgit");
        localStorage.setItem("user", "{}")
        history.push("/login");     
    }
-  return (
+   return (
     <div className="containerNav">
       <Link to="/">
         <h1 className="nombreLogo">ATECHNAS</h1>

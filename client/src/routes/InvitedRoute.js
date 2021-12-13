@@ -7,9 +7,14 @@ import SearchPage from '../components/Searches/SearchPage';
 import PerfilPrivado from "../components/Perfil/PerfilPrivado"
 import PerfilPublico from "../components/Perfil/PerfilPublico"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
-import DetallesTrabajo from '../components/Perfil/trabajos/DetallesTrabajo';
-import { Form } from "../components/Perfil/trabajos/Form";
-import EditarTrabajo from '../components/Perfil/trabajos/EditarTrabajo';
+import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
+import { Form } from "../components/Perfil/Trabajos/Form";
+import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
+import Error404 from '../components/Error404/Error404'
+import Contactanos from '../components/Footer/Contactanos'
+import SobreNosotros from '../components/Footer/sobreNosotros'
+import PregResp from '../components/Footer/pregResp'
+import Terms from '../components/Footer/terminosCondiciones'
 
 
 export const InvitedRoute = () => {
@@ -24,6 +29,14 @@ export const InvitedRoute = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={LoginadnRegister} />
       <Route exact path="/results" component={SearchPage} />
+      <Route exact path="/error" component={Error404} />
+      <Route exact path="/sobreNosotros" component={SobreNosotros}/>
+      <Route exact path="/FAQ" component={PregResp}/>
+      <Route exact path="/contactanos" component={Contactanos}/>
+      <Route exact path="/terms" component={Terms}/>
+      <Route exact path='/contactanos' component={Contactanos}/>
+
+
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
