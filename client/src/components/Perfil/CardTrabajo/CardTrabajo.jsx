@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getJobs } from "../../../actions/actions"
 import {Link} from 'react-router-dom'
 import "./CardTrabajo.css"
-import axios from "axios"
 
 export default function CardTrabajo(id){
 
