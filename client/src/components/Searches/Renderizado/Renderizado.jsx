@@ -34,7 +34,7 @@ export default function Renderizado(){
             paginado={paginado} actualPage={actualPage}/>
             <div className='container-cards'>
                         {   
-                            totalCardsPage?
+                            
 
                             totalCardsPage?.map((e) => {
                                 
@@ -50,9 +50,7 @@ export default function Renderizado(){
                                 />
                             })
                             
-                            :
                             
-                            <Loading/>
                             
                         }
                         </div>

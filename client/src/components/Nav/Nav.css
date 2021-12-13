@@ -62,7 +62,7 @@
 
 ul{
   list-style: none;
-  
+  transition: ease 1s;
 }
 
 
@@ -86,9 +86,14 @@ display: block;
   display: none;
   position: relative;
   min-width: 140px;
+  
 }
 
 .nav li:hover > ul{
   display: contents;
-  transition: ease 0.3s;
+  transition: ease 1s;
+}
+
+.div-nav{
+  align-items: center;
 }

@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails, logoutAll } from "../../actions/actions";
 
+
 export default function Nav(props) {
   let fullId = props?.match?.params?.id;
   const detail = useSelector((state) => state.rootReducer.details);
@@ -45,7 +46,7 @@ export default function Nav(props) {
           <h3>Ingresar / Registrarse</h3>
         </Link>
       ) : (
-        <div>
+        <div className='div-nav'>
         <img
               className="imgUser"
               src={photo ? photo : photo1}
