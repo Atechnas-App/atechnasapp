@@ -7,6 +7,15 @@ import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING,
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
+export function contratarUser(){
+  return async function(dispatch){
+    const authMP = await axios('http://localhost:3001/api/authMP')
+    dispatch({
+      type: 'AUTH_MP',
+      payload: authMP.data
+    })
+  }
+}
 
 export function getUser() {
     return async function(dispatch){
