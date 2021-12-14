@@ -3,12 +3,12 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';
-import PerfilPrivado from "../components/Perfil/PerfilPrivado"
+/* import PerfilPrivado from "../components/Perfil/PerfilPrivado"
 import PerfilPublico from "../components/Perfil/PerfilPublico"
 import EditPerfil from '../components/EditPerfil/EditPerfil';
 import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-/* import Form from '../components/Perfil/Trabajos/Form' */
-import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
+/* import Form from '../components/Perfil/Trabajos/Form' 
+import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo'; */
 import Error404 from '../components/Error404/Error404'
 import Contactanos from '../components/Footer/Contactanos'
 import SobreNosotros from '../components/Footer/sobreNosotros'
@@ -37,8 +37,8 @@ export const InvitedRoute = () => {
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
-        {/* RUTAS USUARIOS */}
-        {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
+        {/* {/* RUTAS USUARIOS */}
+       {/* {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
         {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/trabajos/detalle/:id" to="/error" />}
@@ -50,9 +50,9 @@ export const InvitedRoute = () => {
         {local?.id && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
         {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
         {local?.id && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
-        {/* {local?.id && <Route exact path="/perfil/crearTrabajos/:id" component={Form} />} */}
-        {local?.id && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
-        
+        {/* {local?.id && <Route exact path="/perfil/crearTrabajos/:id" component={Form} />} 
+        {local?.id && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />}
+         */}
       </Switch>
     );
 }
