@@ -45,9 +45,7 @@ export const InvitedRoute = () => {
         {local?.id  && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
         {!local?.id? local.id : local.idgit && <Route exact path="/login" component={LoginadnRegister} />}
         {local?.id? local.id : local.idgit && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
-        {local?.id ? local.id : local.idgit&& (
-          <Route exact path="/perfil/crearTrabajos/:id" component={Form} />
-        )}
+        {local?.id ? local.id : local.idgit&& ( <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />)}
         {local?.id? local.id : local.idgit && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
   
       </Switch>
