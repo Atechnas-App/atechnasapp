@@ -8,7 +8,7 @@ import {PageInfo} from "./PageInfo/PageInfo";
 import {Presentation} from "./Presentation/Presentation";
 import Testimonial from "./Testimonial/Testimonial";
 import './Home.css';
-import {useSelector} from 'react-redux';
+/* import {useSelector} from 'react-redux'; */
 /* import ScrollUpButton from "react-scroll-up-button"; */
 import Carousel from 'nuka-carousel';
 import Carrucel1 from "../../assets/img/Carrucel.jpg"
