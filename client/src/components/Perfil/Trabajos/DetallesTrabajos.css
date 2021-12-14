@@ -5,8 +5,15 @@
     
 }
 
+.carrousel-details{
+    height: 400px;
+}
+
 .padding-detail{
     padding: 1em;
+    display: flex;
+    justify-content: center;
+    
 }
 
 .carousel-trabajo{
@@ -33,9 +40,9 @@
 }
 
 .texto-precio{
-    font-size: 30px;
+    font-size: 1em;
     font-weight: bold;
-    text-align: end;
+    /* text-align: end; */
     margin: 1em 4.2em 0em 0em;
 }
 
@@ -48,7 +55,23 @@
     border: solid;
     border-width: 1px;
     border-color: #54be84;
-    border-radius: 10px;
+    border-radius: 1em;
     padding: 0.5em 0.5em;
     background-color: black;
+}
+
+.flex-btn-details{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-details{
+    /* height: 50px; */
+    margin: 0.5em 1em 1em 1em;
+    font-size: 30px;
+    font-weight: bold;
+    width: 5em;
+    border: solid;
+    border-width: 1px;
+    text-align: center;
 }

@@ -30,29 +30,35 @@ export default function DetallesTrabajo(props){
         <div className="detalle-trabajo-contenedor">
             <Nav/>
             <div className='padding-detail'>
-                <Carousel className="carousel-trabajo">
-                    {job?.image?.map((img)=>{
-                        return(
-                            <img src={img} alt="img not found"/> 
-                            )
-                        })}
-                </Carousel>
-                <h1 className="titulo-trabajo">{job?.title}</h1>
-                <hr className="hr-perfil-violeta"></hr>
-                <div className="descripcion-trabajo">
-                    <p className="texto-descripcion-trabajo">{job?.description}</p>
+                <div>
+                    <div className='carrousel-details'>
+                        <Carousel className="carousel-trabajo">
+
+                            {job?.image?.map((img)=>{
+                                return(
+                                    <img src={img} alt="img not found"/> 
+                                    )
+                                })}
+                        </Carousel>
+                    </div>
+                    <h1 className="titulo-trabajo">{job?.title}</h1>
+                    
+                    <div className="descripcion-texto">
+                        <p className="texto-descripcion-trabajo">{job?.description}</p>
+                    </div>
+                    <div className='flex-btn-details'>
+                        <div className="precio-contenedor">
+                            <div className="precio-trabajo">${job?.price}</div>
+                        </div>
+                        
+                                            <a
+                                            href={link}
+                                            className="boton-perfil btn-details"
+                                            >
+                                            Contratar
+                                        </a>
+                    </div>
                 </div>
-                <div className="precio-contenedor">
-                    <div className="texto-precio">Precio</div>
-                    <div className="precio-trabajo">${job?.price}</div>
-                </div>
-                {/* <button>Comprar</button> */}
-                                    <a
-                                    href={link}
-                                    className="boton-perfil"
-                                >
-                                    Contratar
-                                </a>
             </div>
         </div>
     )

@@ -27,6 +27,7 @@ console.log(detail.categories, "Hay categorias?")
         <div className="perfil-container">
             <Nav/>
         <div className='container-info-perfil'> 
+            
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
