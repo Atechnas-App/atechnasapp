@@ -26,6 +26,7 @@ console.log(detail.categories, "Hay categorias?")
     return(
         <div className="perfil-container">
             <Nav/>
+        <div className='container-info-perfil'> 
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
@@ -47,7 +48,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
+                    <button cursor="pointer" className="boton-portfolio">PORTFOLIO</button>
                     </a>
                     <h2>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
@@ -76,6 +77,7 @@ console.log(detail.categories, "Hay categorias?")
                     <CardComentario/>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

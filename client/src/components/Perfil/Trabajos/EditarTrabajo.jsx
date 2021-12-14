@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
 import Nav from '../../Nav/Nav'
-import "./form.css"
+import "./EditarTrabajo.css"
 
 export default function EditarTrabajo(props){
     const dispatch = useDispatch()
@@ -200,11 +200,12 @@ console.log(res_1, "RES")
 
     return (<div>
       <Nav/>
-      <div className="container">
+      <div className="container-edit">
         <form onSubmit={e => onSubmitEditTrabajo(e)}>
-          <div>
-            <label>Titulo</label>
+          <div className='titulo-edit'>
+            <label className='label-edit-work'>Titulo</label> 
             <input
+              className="input-edit"
               type="text"
               name="title"
               onChange={e => onInputChange(e)}
@@ -213,8 +214,8 @@ console.log(res_1, "RES")
           </div>
            <div className="images">
                 <div className="foto-perfil-container">
-                <label className="input-label">Imagenes</label>
-                <hr className="hr-perfil-verde"></hr>
+                <label  className='label-edit-work'>Imagenes</label>
+                
              {editedJob?.image? editedJob?.image?.map((img,i) => {
                return (<div>
                 <input
@@ -336,36 +337,39 @@ console.log(res_1, "RES")
                 </div> */}
               </div>
               <div className="desc">
-                <label>Descripcion</label>
+                <label className='label-edit-work'>Descripción</label>
                 <textarea
-                className="descripcion"
+                className="input-edit"
                   name="description"
                   onChange={onInputChange}
                   value={editedJob.description}
                 />
                 </div>
-                <div>
-                <label>Precio</label>
-                <span className="currencyinput">
-                  $      
-                  <input
-                    className="currencyinputPrice"
-                    type="number"
-                    name="price"
-                    value={editedJob.price}
-                    onChange={onInputChange}
-                  />
-                </span>
-                <div>
-                <label>Pausado: </label>
-                <select onChange={onInputSelect}>
-                  <option selected disabled>Selecciona una opción:</option>
-                  <option value="true">True</option>
-                  <option value="false">False</option>
-                </select>
+                <div className='flex-edit'>
+                  <div>
+                    <label>Precio: </label>
+                    <span >
+                           
+                      <input
+                        className="input-edit"
+                        placeholder="$"
+                        type="number"
+                        name="price"
+                        value={editedJob.price}
+                        onChange={onInputChange}
+                      />
+                    </span>
+                  </div>
+                  <div>
+                  <label>Pausado: </label>
+                  <select onChange={onInputSelect} className="input-edit">
+                    <option selected disabled>Selecciona una opción:</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
                 </div>
                 </div>
-                <button type="submit">
+                <button type="submit" className='boton-perfil'>
                   Guardar
                 </button>
         </form>

@@ -72,6 +72,10 @@
     color: #52be84;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.582);
     box-shadow: 1px 1px 3px black;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 0.5em 1em;
+    font-size: 1em;
 }
 
 .boton-perfil:hover{

@@ -39,6 +39,7 @@ export default function Nav(props) {
       <Link to="/">
         <h1 className="nombreLogo">ATECHNAS</h1>
       </Link>
+      <div className='flex-searchbar'>
       <SearchBar></SearchBar>
 
       {!name && !name1 ? (
@@ -52,8 +53,8 @@ export default function Nav(props) {
                 className="imgUser"
                 src={photo ? photo : photo1}
                 alt="imagen usuario"
-                width="70px"
-                heigth="70px"
+                width="50px"
+                heigth="50px"
               />
             </div>
             <div class="dropdown-content">
@@ -90,6 +91,7 @@ export default function Nav(props) {
 //           </ul>
 //           </div>
       )}
+    </div>
     </div>
   );
 }
