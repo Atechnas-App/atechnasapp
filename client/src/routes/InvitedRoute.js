@@ -1,22 +1,21 @@
-import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { LoginadnRegister } from '../components/form/LoginadnRegister';
-import Home from '../components/Home/Home';
-import SearchPage from '../components/Searches/SearchPage';
-import PerfilPrivado from "../components/Perfil/PerfilPrivado"
-import PerfilPublico from "../components/Perfil/PerfilPublico"
-import EditPerfil from '../components/EditPerfil/EditPerfil';
-import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-import Error404 from '../components/Error404/Error404'
-import Contactanos from '../components/Footer/Contactanos'
-import SobreNosotros from '../components/Footer/sobreNosotros'
-import PregResp from '../components/Footer/pregResp'
-import Terms from '../components/Footer/terminosCondiciones' 
-import Form from '../components/Perfil/Trabajos/Form';
-import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
+import React from "react";
+import { Route, Switch } from "react-router";
+import Home from "../components/Home/Home";
+import { LoginadnRegister } from "../components/form/LoginadnRegister";
+import SearchPage from "../components/Searches/SearchPage";
+import Error404 from "../components/Error404/Error404";
+import SobreNosotros from "../components/Footer/sobreNosotros";
+import PregResp from "../components/Footer/pregResp";
+import Contactanos from "../components/Footer/Contactanos";
+import PerfilPublico from "../components/Perfil/PerfilPublico";
+import PerfilPrivado from "../components/Perfil/PerfilPrivado";
+import EditPerfil from "../components/EditPerfil/EditPerfil";
+import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
+import Form from "../components/Perfil/Trabajos/Form";
+import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
 
 export const InvitedRoute = () => {
-  const local = JSON.parse(localStorage.getItem("user")); 
+  const local = JSON.parse(localStorage.getItem("user"));
   // const isAdmin = localStorage.getItem("isAdmin");
 
   return (
@@ -31,9 +30,7 @@ export const InvitedRoute = () => {
       <Route exact path="/contactanos" component={Contactanos} />
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/contactanos" component={Contactanos} />
-
-      <Route path="/results?searcher=" component={SearchPage} />
-
+      /* <Route path="/results?searcher=" component={SearchPage} /> */
       {/* RUTAS USUARIOS */}
       {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
       {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
@@ -47,7 +44,6 @@ export const InvitedRoute = () => {
       {local?.id && (
         <Route exact path="/miPerfil/:id" component={PerfilPrivado} />
       )}
-
       {local?.id && (
         <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil} />
       )}
@@ -67,4 +63,4 @@ export const InvitedRoute = () => {
       )}
     </Switch>
   );
-}
+};
