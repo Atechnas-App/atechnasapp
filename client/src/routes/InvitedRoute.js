@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch } from "react-router-dom";
 import Home from "../components/Home/Home";
 import { LoginadnRegister } from "../components/form/LoginadnRegister";
 import SearchPage from "../components/Searches/SearchPage";

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
 import Nav from '../../Nav/Nav'
-import "./form.css"
+import "../Trabajos/form.css"
 
 export default function EditarTrabajo(props){
     const dispatch = useDispatch()
