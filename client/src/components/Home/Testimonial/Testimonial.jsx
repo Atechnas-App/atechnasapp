@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTestimonials } from '../../../actions/actions'
-import Persona1 from '../../../assets/img/Persona1.png'
+/* import Persona1 from '../../../assets/img/Persona1.png' */
 import Persona2 from '../../../assets/img/Persona2.png'
 import Persona3 from '../../../assets/img/Persona3.png'
 import './Testimonial.modules.css'

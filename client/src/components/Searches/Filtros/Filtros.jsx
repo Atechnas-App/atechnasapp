@@ -1,7 +1,7 @@
 import TechFilter from "./TechnologyFilter/TechnologyFilter"
-import QualFilter from "./QualificationFilter/QualificationFilter"
+/* import QualFilter from "./QualificationFilter/QualificationFilter" */
 import CatFilter from "./CategoryFilter/CategoryFilter"
-import {useState} from 'react';
+/* import {useState} from 'react'; */
 
 
 export default function Filtros(){

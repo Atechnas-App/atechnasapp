@@ -1,20 +1,18 @@
-import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { LoginadnRegister } from '../components/form/LoginadnRegister';
-import Home from '../components/Home/Home';
-import SearchPage from '../components/Searches/SearchPage';
-import PerfilPrivado from "../components/Perfil/PerfilPrivado"
-import PerfilPublico from "../components/Perfil/PerfilPublico"
-import EditPerfil from '../components/EditPerfil/EditPerfil';
-import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
-import Form from "../components/Perfil/Trabajos/Form";
-import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
-import Error404 from '../components/Error404/Error404'
-import Contactanos from '../components/Footer/Contactanos'
-import SobreNosotros from '../components/Footer/sobreNosotros'
-import PregResp from '../components/Footer/pregResp'
-import Terms from '../components/Footer/terminosCondiciones'
-
+import React from "react";
+import { Route, Switch, Redirect} from "react-router-dom";
+import Home from "../components/Home/Home";
+import { LoginadnRegister } from "../components/form/LoginadnRegister";
+import SearchPage from "../components/Searches/SearchPage";
+import Error404 from "../components/Error404/Error404";
+import SobreNosotros from "../components/Footer/sobreNosotros";
+import PregResp from "../components/Footer/pregResp";
+import Contactanos from "../components/Footer/Contactanos";
+import PerfilPublico from "../components/Perfil/PerfilPublico";
+import PerfilPrivado from "../components/Perfil/PerfilPrivado";
+import EditPerfil from "../components/EditPerfil/EditPerfil";
+import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
+import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo";
+import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
 
 export const InvitedRoute = () => {
   

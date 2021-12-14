@@ -23,7 +23,7 @@ export default function DetallesTrabajo(props){
             })
             .catch(err => console.log(err))
 
-    }, [job.createdBy])
+    }, [job.createdBy ,job.price, job.title])
     console.log(job, "detalle del trabajo")
 
     return(

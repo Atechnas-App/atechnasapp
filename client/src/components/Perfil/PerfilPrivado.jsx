@@ -6,7 +6,7 @@ import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 import CardTrabajosPrivado from "./CardTrabajo/CardTrabajosPrivado"
-import CardComentario from "./CardComentario/CardComentario"
+
 
 export default function Perfil(props){
 const dispatch = useDispatch()
@@ -19,7 +19,7 @@ console.log(id, "id editar trabajo")
 
 useEffect(() => {
     dispatch(getDetails(fullId, id, id1))
-}, [dispatch]);
+}, [dispatch, fullId, id, id1]);
 console.log(detail )
 console.log(detail.categories, "Hay categorias?")
 

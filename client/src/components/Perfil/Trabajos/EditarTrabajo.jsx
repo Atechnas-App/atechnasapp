@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
 import Nav from '../../Nav/Nav'
-import "./form.css"
+import "../Trabajos/form.css"
 
 export default function EditarTrabajo(props){
     const dispatch = useDispatch()
@@ -40,12 +40,12 @@ const loadImg = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -54,7 +54,7 @@ const loadImg = async (files) => {
     );
     const res_1 = await res.json();
 console.log(res_1, "RES")
-    {Swal.close()}
+    Swal.close()
     return setEditedJob((prev) => ({
       ...prev,
       image: [...prev.image,res_1.secure_url]

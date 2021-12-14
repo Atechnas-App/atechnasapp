@@ -6,7 +6,7 @@ import {
   removeError1,
   setError1,
   startGoogleLogin,
-  getGithubUserInfo
+/*   getGithubUserInfo */
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"

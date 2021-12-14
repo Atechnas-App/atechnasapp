@@ -2,13 +2,13 @@ import React from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-import { useSelector} from 'react-redux';
+/* import { useSelector} from 'react-redux'; */
 import Renderizado from './Renderizado/Renderizado'
 
 
 export default function SearchPage(){
 
-    const searching = useSelector((state)=> state.rootReducer.search);
+    /* const searching = useSelector((state)=> state.rootReducer.search); */
     
    
     

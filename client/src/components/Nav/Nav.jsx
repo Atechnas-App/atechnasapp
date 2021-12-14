@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetails, logoutAll } from "../../actions/actions";
 
 export default function Nav(props) {
-  let fullId = props?.match?.params?.id;
+  /* let fullId = props?.match?.params?.id; */
   const detail = useSelector((state) => state.rootReducer.details);
   const history = useHistory();
   const dispatch = useDispatch();

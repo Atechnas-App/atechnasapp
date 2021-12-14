@@ -1,5 +1,5 @@
 import React from 'react';
-import freelancer from '../../../assets/img/freelancerHome.jpg';
+/* import freelancer from '../../../assets/img/freelancerHome.jpg'; */
 import './OutStandingPeople.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {getDevelopers, getDesign, getMarketing} from '../../../actions/actions';
