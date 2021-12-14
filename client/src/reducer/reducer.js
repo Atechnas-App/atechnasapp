@@ -1,5 +1,5 @@
 
-import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS,  GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
+import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, DETAIL_JOB} from "../actions/types";
 
 
 
@@ -18,10 +18,17 @@ const initialState = {
     githubUser: [],
     jobs: [],
     testimonials:[],
+    detailJob:[],
+    authMP: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'AUTH_MP':
+                    return {
+                        ...state,
+                        authMP: action.payload
+                    }
                 case 'GITHUB':
                     return {
                         ...state,
@@ -111,6 +118,12 @@ export default function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         testimonials: action.payload
+                    }
+                
+                case DETAIL_JOB:
+                    return{
+                        ...state,
+                        detailJob: action.payload
                     }
 
                 default:

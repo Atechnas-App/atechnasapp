@@ -8,25 +8,21 @@ router.post('/newProfile/:id', async (req, res, next) => {
     try {
         const {id} = req.params;
         const { 
-            company,
             title,
             image, 
             about, 
-            qualification,
-            url
+            price,
+            paused
         } = req.body;
-        console.log(id)
        await Post.create(
             {  
-                company: company,
+                title: title,
+                image: image, 
+                about: about, 
+                price: price,
+                paused: paused,
                 userId: id, 
-                about : about ,
-                qualification: qualification, 
-                title: title, 
-                image: image,
-                url: url,}
-                // {where: {id: id}}
-                
+                }                
         )
         res.status(200).send('Post Creado')
     

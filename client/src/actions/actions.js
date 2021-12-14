@@ -1,16 +1,25 @@
 
 import axios from 'axios';
 
-import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, TECHNOLOGY_FILTER, 
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
   GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
 
+export function contratarUser(){
+  return async function(dispatch){
+    const authMP = await axios(`/api/authMP`)
+    dispatch({
+      type: 'AUTH_MP',
+      payload: authMP.data
+    })
+  }
+}
 
 export function getUser() {
     return async function(dispatch){
-        const users = await axios('http://localhost:3001/api/getusers')
+        const users = await axios(`/api/getusers`)
         dispatch({
             type: GET_USER,
             payload: users.data
@@ -21,14 +30,14 @@ export function getUser() {
 
 export function postUser(payload) {
   return async function(){
-    const newUser = await axios.post('http://localhost:3001/api/register', payload);
+    const newUser = await axios.post(`/api/register`, payload);
     return newUser;
   }
 }
 
 export function getCategories() {
   return async function(dispatch){
-    const categories = await axios('http://localhost:3001/api/categories');
+    const categories = await axios(`/api/categories`);
     dispatch({
       type: GET_CATEGORIES,
       payload: categories.data
@@ -39,7 +48,7 @@ export function getCategories() {
 
 export function getDevelopers() {
   return async function(dispatch){
-    const bestof = await axios('http://localhost:3001/api/bestDevelopers');
+    const bestof = await axios(`/api/bestDevelopers`);
     console.log('ACTION DEV', bestof.data)
     dispatch({
       type: DEVELOPER,
@@ -51,7 +60,7 @@ export function getDevelopers() {
 
 export function getDesign() {
   return async function(dispatch){
-    const bestof = await axios('http://localhost:3001/api/bestDesign');
+    const bestof = await axios(`/api/bestDesign`);
     dispatch({
       type: DESIGN,
       payload: bestof.data
@@ -62,7 +71,7 @@ export function getDesign() {
 
 export function getMarketing() {
   return async function(dispatch){
-    const bestof = await axios('http://localhost:3001/api/bestMarketing');
+    const bestof = await axios(`/api/bestMarketing`);
     dispatch({
       type: MARKETING,
       payload: bestof.data
@@ -73,18 +82,29 @@ export function getMarketing() {
 
 
 export function postLogin(payload){
-  return async function(){
-    const user = await axios.post('http://localhost:3001/api/login', payload)
-    console.log(user, 'PAYLOAD LOGIN ERROR') 
+  return async function(dispatch){
+    const user = await axios.post(`/api/login`, payload) 
     localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
     loglocal()
-    return user
+    console.log(user.data)
+    if(user.data.id){
+dispatch({
+      type: types.login,
+      payload: user.data,
+    })
+  }
+   else{
+      dispatch({
+        type: types.logout,
+        payload: user.data,
+      })
+    }
   }
 }
 
 export function getGithubUserInfo() {
   return async function(dispatch){
-    const githubUserInfo = await axios('http://localhost:3001/api/login/success')
+    const githubUserInfo = await axios(`/api/login/success`)
     console.log(githubUserInfo)
     dispatch({
       type: 'GITHUB',
@@ -93,11 +113,10 @@ export function getGithubUserInfo() {
   }
 }
 
-export function Search(payload, page) {
+export function Search(payload) {
   
     return async function(dispatch){
-        const searching = await axios('http://localhost:3001/api/search?searcher='+ payload + '&page=' + page)
-        console.log('ACTION SEARCH', searching.data)
+        const searching = await axios(`/api/search?searcher=`+ payload)
         dispatch({
             type: SEARCH,
             payload: searching.data
@@ -107,7 +126,7 @@ export function Search(payload, page) {
 
 export function Filter(payload) {
     return async function(dispatch){
-        const category = await axios('http://localhost:3001/api/filterSearch?searchValues='+payload)
+        const category = await axios(`/api/filterSearch?searchValues=`+payload)
         console.log('INFO FILTER', category.data)
         dispatch({
             type: FILTER,
@@ -118,7 +137,7 @@ export function Filter(payload) {
 
 // export function technologyFilter(payload) {
 //   return async function(dispatch){
-//       const tech = await axios('http://localhost:3001/api/filterByTechnology?technologies=' + payload)
+//       const tech = await axios(`/api/filterByTechnology?technologies=` + payload)
       
 //       dispatch({
 //           type: TECHNOLOGY_FILTER,
@@ -129,7 +148,7 @@ export function Filter(payload) {
 
 export function getTechnologies(payload) {
   return async function(dispatch){
-      const tech = await axios('http://localhost:3001/api/getTechnologies')
+      const tech = await axios(`/api/getTechnologies`)
       console.log('ACTION TECH', tech.data)
       dispatch({
           type: GET_TECHNOLOGIES,
@@ -140,7 +159,7 @@ export function getTechnologies(payload) {
 
 export function getLanguages(payload) {
   return async function(dispatch){
-      const lang = await axios('http://localhost:3001/api/language')
+      const lang = await axios(`/api/language`)
       dispatch({
           type: GET_LANGUAGES,
           payload: lang.data
@@ -156,7 +175,7 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
+        /* dispatch(login(user.uid, user.displayName, user.email, user.photoURL)) */;
         dispatch(startLoding())
         (dispatch(loginStore()))
         dispatch(finishLoding())  
@@ -170,20 +189,19 @@ export const startGoogleLogin = () => {
 }
 
 
- function loginStore() {
-  try{  firebase.auth().onAuthStateChanged(function(user) {
-     if (user) {
-      var displayName = user.displayName;
-      var email = user.email;
-      var photoURL = user.photoURL;
-      
-      localStorage.setItem("displayName",displayName)
-      localStorage.setItem("email",email)
-      localStorage.setItem("photoURL",photoURL)}
-    })
-  }catch(error){
-      console.log(error)
-}
+async function loginStore() {
+  try {
+     firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        localStorage.setItem("displayName", user.displayName);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("photoURL", user.photoURL);
+      }
+      localStorage.setItem("id", user.uid);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function loglocal(){
@@ -191,33 +209,32 @@ function loglocal(){
   return local
 }
 
-export const login = () => ({
+/* export const login = (payload) => ({
   type: types.login,
-  
-});
+  ...payload,
+}); */
 
-export const logoutAll = () => {
+export const logoutAll =  () => {
   return (dispatch) => {
-   try{ firebase
-      .auth()
-      .signOut()  
-      .then(() => {
-        dispatch(logout());
+  
+firebase
+    .auth()
+    .signOut()  
+    .then(() => {
+      dispatch(logout());
         dispatch(logoutStore());
       })
       .catch((error) => {
         console.log(error);
-      });}
-      catch(error){
-        console.log(error)
-      }
-  }
+  })
 };
+}
 
 function logoutStore() {
   localStorage.removeItem("displayName")
   localStorage.removeItem("email")
   localStorage.removeItem("photoURL")
+  localStorage.removeItem("id")
 }
 
 
@@ -254,7 +271,7 @@ export const finishLoding = () => ({
 
 export function getDetails(id) {
   return async function (dispatch) {
-    const users = await axios.get("http://localhost:3001/api/details/" + id);
+    const users = await axios.get(`/api/details/` + id);
     return dispatch({
       type: GET_DETAILS,
       payload: users.data
@@ -264,7 +281,7 @@ export function getDetails(id) {
 
  export function editProfile(id, payload){
       return async function(){
-    const editedProfile = await axios.put("http://localhost:3001/api/profile/" + id, payload)
+    const editedProfile = await axios.put(`/api/profile/` + id, payload)
       return editedProfile
    }
  }
@@ -272,7 +289,8 @@ export function getDetails(id) {
  export function getJobs(id) {
    return async function(dispatch){
      console.log(id.id,"id jobs")
-     const getJobs = await axios("http://localhost:3001/api/getJobs/"+id.id);
+     const getJobs = await axios(`/api/PublicationsUser/`+id.id);
+     console.log(getJobs.data, "getjobs")
      return dispatch({
        type: GET_JOBS,
        payload: getJobs.data
@@ -282,14 +300,35 @@ export function getDetails(id) {
  
  export function postJobs(id, payload) {
    return async function(){
-     const newJob = await axios.post("http://localhost:3001/api/newProfile/"+id,payload)
+     const newJob = await axios.post(`/api/newPublication/` + id , payload ) 
+     console.log(payload, "actions");
      return newJob
+   }
+ }
+
+ export function getDetailJob(id){
+   return async function(dispatch){
+     console.log(id, "ID GET DETALLE DEL TRABAJO")
+     const detailJob = await axios.get(`/api/Publications/`+id)
+     return dispatch({
+      type: DETAIL_JOB,
+      payload: detailJob.data
+     })
+   }
+ }
+
+ export function editJob(id, payload){
+   return async function(){
+     console.log(id, "EDIT JOB ID")
+     console.log(payload, "EDIT JOB PAYLOAD")
+     const editedJob = await axios.put(`/api/modPublication/`+ id,payload)
+     return editedJob
    }
  }
 
  export function getTestimonials(){
    return async function(dispatch){
-     const testimonials = await axios("http://localhost:3001/api/testimonial/")
+     const testimonials = await axios(`/api/testimonial/`)
      return dispatch({
        type: GET_TESTIMONIALS,
        payload: testimonials.data

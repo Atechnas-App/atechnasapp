@@ -42,7 +42,7 @@ export const OutStandingPeople = () => {
                 <div className='best'>
                 
                 {   
-                    dev?.map((e, i) => {
+                    dev?.map((e) => {
                         
                        
                     return (

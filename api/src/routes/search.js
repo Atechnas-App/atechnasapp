@@ -12,9 +12,9 @@ router.get("/search", async (req, res) => {
     if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
       page = pageAsNumber;
     }
-    let size = 10;
+    let size = 20;
     if (!Number.isNaN(sizeAsNumber)) {
-      if (sizeAsNumber > 0 && sizeAsNumber < 15) {
+      if (sizeAsNumber > 0 && sizeAsNumber < 20) {
         size = sizeAsNumber;
       }
     }
@@ -49,5 +49,33 @@ router.get("/search", async (req, res) => {
     console.log(error.message);
   }
 });
+
+
+router.get('/prueba', async (req, res) => {
+  try {
+    const { buscar } = req.query
+
+    const resultadoUser = await User.findAll(
+      {
+        where: {
+          [Op.or]: [
+            { name: { [Op.iLike]: `%${buscar}%` } },
+            { lastName: { [Op.iLike]: `%${buscar}%` } },
+            { '$technologies.technology$': { [Op.iLike]: `%${buscar}%` } },
+            { '$categories.category$': { [Op.iLike]: `%${buscar}%` } },
+            { '$languages.languages$': { [Op.iLike]: `%${buscar}%` } },
+          ]
+        },
+        include: {
+          all: true,
+        }
+
+      })
+
+    res.status(200).send(resultadoUser)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;

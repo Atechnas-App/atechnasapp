@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTechnologies, Filter} from '../../../../actions/actions.js';
-/* import './TechnologyFilter.css' */
+import './TechnologyFilter.css' 
 
 //Select con listado de posibles keywords para buscar
 export default function TechFilter(){
