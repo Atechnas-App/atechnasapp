@@ -203,7 +203,7 @@ console.log(res_1, "RES")
       <div className="container-edit">
         <form onSubmit={e => onSubmitEditTrabajo(e)}>
           <div className='titulo-edit'>
-            <label className='label-edit-work'>Titulo</label> 
+            <label className='label-edit-work'>Titulo</label> <br/>
             <input
               className="input-edit"
               type="text"
@@ -347,7 +347,7 @@ console.log(res_1, "RES")
                 </div>
                 <div className='flex-edit'>
                   <div>
-                    <label>Precio: </label>
+                    <label>Precio</label>
                     <span >
                            
                       <input
