@@ -335,3 +335,17 @@ export function getDetails(id) {
      })
    }
  }
+
+ export function postTestimonial(payload){
+   return async function(){
+     const testimonial = await axios.post(`/api/testimonial`, payload)
+     return testimonial
+   }
+ }
+
+ export function deleteTestimonial(id){
+   return async function(){
+     const test = await axios.delete(`/api/deleteTestimonial?id=${id}`)
+     return test
+   }
+ }

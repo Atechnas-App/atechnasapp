@@ -15,12 +15,13 @@ import Contactanos from '../components/Footer/Contactanos'
 import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
+import Testimonials from '../components/Admin/Testimonials';
 
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
   // const isAdmin = localStorage.getItem("isAdmin");
-  const githubUser = JSON.parse(localStorage.getItem("idgit"))
+  // const githubUser = JSON.parse(localStorage.getItem("idgit"))
   return (
     <Switch>
       {/* RUTAS PUBLICAS */}
@@ -33,25 +34,25 @@ export const InvitedRoute = () => {
       <Route exact path="/contactanos" component={Contactanos}/>
       <Route exact path="/terms" component={Terms}/>
       <Route exact path='/contactanos' component={Contactanos}/>
-
+      <Route exact path="/Admin/testimonios" component={Testimonials}/>
 
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
         {/* RUTAS USUARIOS */}
-        {(!local?.id || !githubUser) && <Redirect exact from="/perfil/:id" to="/login" />}
-        {(!local?.id || !githubUser) && <Redirect from="/miPerfil/:id" to="/error" />}
-        {(!local?.id || !githubUser) && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
-        {(!local?.id || !githubUser) && <Redirect from="/trabajos/detalle/:id" to="/error" />}
-        {(!local?.id || !githubUser) && <Redirect from="/perfil/crearTrabajos/:id" to="/error" />}
-        {(!local?.id || !githubUser) && <Redirect from="/perfil/editarTrabajos/:id" to="/error" />}
-        {(!local?.id || !githubUser) && <Route exact path="/login" component={LoginadnRegister} />}
-        {(local?.id || githubUser) && <Route exact path="/perfil/:id" component={PerfilPublico} />}
-        {(local?.id || githubUser) && <Route exact path="/miPerfil/:id" component={PerfilPrivado} />}
-        {(local?.id || githubUser) && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
-        {(local?.id || githubUser) && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
-        {(local?.id || githubUser) && <Route exact path="/perfil/crearTrabajos/:id" component={Form} />}
-        {(local?.id || githubUser) && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
+        {(!local?.id ) && <Redirect exact from="/perfil/:id" to="/login" />}
+        {(!local?.id ) && <Redirect from="/miPerfil/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/trabajos/detalle/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/crearTrabajos/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/editarTrabajos/:id" to="/error" />}
+        {(!local?.id ) && <Route exact path="/login" component={LoginadnRegister} />}
+        {(local?.id) && <Route exact path="/perfil/:id" component={PerfilPublico} />}
+        {(local?.id) && <Route exact path="/miPerfil/:id" component={PerfilPrivado} />}
+        {(local?.id) && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
+        {(local?.id) && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
+        {(local?.id) && <Route exact path="/perfil/crearTrabajos/:id" component={Form} />}
+        {(local?.id) && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
         
       </Switch>
     );
