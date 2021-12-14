@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
-  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, GET_ALL_JOBS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
@@ -286,6 +286,15 @@ export function getDetails(id) {
    }
  }
 
+ export function getAllJobs(){
+   return async function(dispatch){
+     const allJobs = await axios.get(`/api/Publications`)
+      return dispatch({
+        type: GET_ALL_JOBS,
+        payload: allJobs.data
+      })
+   }
+ }
  export function getJobs(id) {
    return async function(dispatch){
      console.log(id.id,"id jobs")
@@ -323,6 +332,13 @@ export function getDetails(id) {
      console.log(payload, "EDIT JOB PAYLOAD")
      const editedJob = await axios.put(`/api/modPublication/`+ id,payload)
      return editedJob
+   }
+ }
+
+ export function deleteJob(id){
+   return async function(){
+     const deletedJob = await axios.delete(`/api/deletePublication/${id}`)
+     return deletedJob
    }
  }
 
