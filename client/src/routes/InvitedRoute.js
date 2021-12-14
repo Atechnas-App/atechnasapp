@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect} from "react-router-dom";
 import Home from "../components/Home/Home";
 import { LoginadnRegister } from "../components/form/LoginadnRegister";
 import SearchPage from "../components/Searches/SearchPage";
@@ -11,7 +11,7 @@ import PerfilPublico from "../components/Perfil/PerfilPublico";
 import PerfilPrivado from "../components/Perfil/PerfilPrivado";
 import EditPerfil from "../components/EditPerfil/EditPerfil";
 import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
-/* import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo"; */
+import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo";
 import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
 
 export const InvitedRoute = () => {
@@ -28,7 +28,7 @@ export const InvitedRoute = () => {
       <Route exact path="/sobreNosotros" component={SobreNosotros} />
       <Route exact path="/FAQ" component={PregResp} />
       <Route exact path="/contactanos" component={Contactanos} />
-      <Route exact path="/terms" component={Terms} />
+      {/* <Route exact path="/terms" component={Terms} /> */}
       <Route exact path="/contactanos" component={Contactanos} />
       /* <Route path="/results?searcher=" component={SearchPage} /> */
       {/* RUTAS USUARIOS */}
