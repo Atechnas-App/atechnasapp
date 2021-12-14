@@ -26,9 +26,9 @@ export default function Home(){
                {/*  <ScrollUpButton/> */}
                 <Nav/>
                 <Carousel heightMode="first" enableKeyboardControls="true" autoplay="true">
-                    <img src={Carrucel1} />
-                    <img src={Carrucel2} />
-                    <img src={Carrucel3} />
+                    <img src={Carrucel1} alt=""/>
+                    <img src={Carrucel2} alt=""/>
+                    <img src={Carrucel3} alt=""/>
                 </Carousel>
                 <PageInfo/>
                 <Presentation/>
