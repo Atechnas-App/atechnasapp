@@ -17,7 +17,7 @@ import Terms from '../components/Footer/terminosCondiciones' */
 
 
 export const InvitedRoute = () => {
-  const local = JSON.parse(localStorage.getItem("user"));
+  /* const local = JSON.parse(localStorage.getItem("user")); */
   // const isAdmin = localStorage.getItem("isAdmin");
 
   return (

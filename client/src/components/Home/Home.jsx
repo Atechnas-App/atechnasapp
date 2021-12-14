@@ -18,7 +18,7 @@ import Carrucel3 from "../../assets/img/Carrucel3.jpg"
 
 
 export default function Home(){
-    const search = useSelector((state)=> state.rootReducer.search)
+    /* const search = useSelector((state)=> state.rootReducer.search) */
 
     return(
         <div className='containerHome'> 
