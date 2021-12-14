@@ -8,9 +8,8 @@ import {
   getDetails,
   getLanguages,
   getTechnologies,
-  contratarUser
 } from "../../actions/actions";
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function EditPerfil(props) {

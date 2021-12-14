@@ -4,14 +4,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
-import { Link } from "react-router-dom";
+
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
 import CardComentario from "./CardComentario/CardComentario"
 
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
-const {id} = JSON.parse(localStorage.getItem("user")); 
+/* const {id} = JSON.parse(localStorage.getItem("user")) */; 
 const id1 = localStorage.getItem('idgit')
 console.log(id1)
 
@@ -19,7 +19,7 @@ let fullId = props.match.params.id
 
 useEffect(() => {
     dispatch(getDetails(fullId, id1))
-}, [dispatch]);
+}, [dispatch, fullId, id1]);
 console.log(detail )
 console.log(detail.categories, "Hay categorias?")
 
