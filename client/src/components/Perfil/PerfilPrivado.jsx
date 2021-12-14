@@ -1,40 +1,27 @@
 import "./Perfil.css"
-import React, { useState } from "react"
+import React from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getDetails } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
-import CardTrabajo from "./CardTrabajo/CardTrabajo"
+import CardTrabajosPrivado from "./CardTrabajo/CardTrabajosPrivado"
 import CardComentario from "./CardComentario/CardComentario"
-import axios from "axios";
 
-export default function Perfil(props) {
-    const dispatch = useDispatch()
-    const detail = useSelector((state) => state.rootReducer.details)
-    const { id } = JSON.parse(localStorage.getItem("user"));
-    const id1 = localStorage.getItem('idgit')
-    console.log(id1)
-    const [link, setLink] = useState('')
+export default function Perfil(props){
+const dispatch = useDispatch()
+const detail = useSelector((state) => state.rootReducer.details)
+const {id} = JSON.parse(localStorage.getItem("user"));
+const id1 = localStorage.getItem('idgit')
+console.log(id, "id editar trabajo")
 
     let fullId = props.match.params.id
 
-    useEffect(() => {
-        dispatch(getDetails(fullId, id, id1))
-    }, [dispatch]);
-
-    console.log(detail.categories, "Hay categorias?")
-
-
-    useEffect(() => {
-        axios.post('http://localhost:3001/api/create_preference', { quantity: 10, price: 100, description: 'BACKEND DEVELOPER' })
-            .then(res => {
-                setLink(res.data)
-            })
-            .catch(err => console.log(err))
-
-    }, [])
-
+useEffect(() => {
+    dispatch(getDetails(fullId, id, id1))
+}, [dispatch]);
+console.log(detail )
+console.log(detail.categories, "Hay categorias?")
 
     return (
         <div className="perfil-container">
@@ -49,16 +36,14 @@ export default function Perfil(props) {
                     </div>
                     <div>
                         <form className="boton-container">
-                            <Link to={`/editPerfil/${fullId}`}>
+                            <Link to={`/perfil/editarPerfil/${fullId}`}>
                                 <button className="boton-perfil">Editar Perfil</button>
                             </Link>
-                            <a
-                                href={link}
-                                className="boton-perfil"
-                            >
-                                Contratar
+                            <button>
+                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
+                                AUTORIZAR MERCADOPAGO
                             </a>
-                            <button className="boton-perfil">Mensaje</button>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -85,16 +70,16 @@ export default function Perfil(props) {
                     </div>
                 </div>
             </div>
-            {/* <div className="trabajos-perfil">
+            <div className="trabajos-perfil">
                 <div>
                     <h1>MIS TRABAJOS</h1>
                     <hr className="hr-perfil-verde"></hr>
                 </div>
                 <div>
-                    <CardTrabajo id={fullId}/>
+                    <CardTrabajosPrivado id={fullId}/>
                 </div>
             </div>
-            <div className="comentarios-perfil">
+            {/* <div className="comentarios-perfil">
             <div>
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>

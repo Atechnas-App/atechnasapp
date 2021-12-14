@@ -7,10 +7,13 @@
 
 .form-container{
     display: flex;
+    justify-content: space-between;
+    text-align: left;
 }
 
 .input-formulario{
     display: flex;
+    justify-content: center;
 
 }
 
@@ -41,6 +44,7 @@
 .foto-perfil-container{
     display: flex;
     flex-direction: column;
+    margin: 2em auto;
 }
 
 .boton-idioma-map{
@@ -48,16 +52,112 @@
 }
 
 .checkbox-container{
-    display: flex;
-    margin: 1em;
+    /* display: flex; */
+    /* margin: 1em; */
+    min-width: 300px;
 }
 
-.all-checkbox{
-    margin: 0.5em
-}
 
 .boton-submit{
     display: flex;
-    justify-content:end;
-    transform: translateX(-25%);
+    justify-content:center;
+    
+    
+}
+
+
+.boton-perfil{
+    background: #52be843d;
+    border: solid 2px #52be84;
+    color: #52be84;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.582);
+    box-shadow: 1px 1px 3px black;
+}
+
+.boton-perfil:hover{
+    background: linear-gradient(#52be84, #5bdd66) ;
+    color: white;
+    
+}
+.flex{
+    width: 100%;
+    display: flex;
+    
+}
+
+.block{
+    display:block
+}
+
+.label-input{
+    margin: 1.5em;
+    min-width: 300px;
+}
+
+.input-edit{
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0em 0.5em 0.5em 0.5em;
+    font-size: 1em;
+}
+
+.all-checkbox{
+    width: 100%;
+}
+
+.boton-div-edit{
+    align-items: right;
+}
+
+.boton-contra-edit{
+    border-style: none;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius:0.5em;
+    border: solid 2px #9225d7;
+    color:#9225d7;
+    filter: opacity(2);
+    font-weight: bold;
+    background: #9325d73d;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.596);
+    box-shadow: 1px 1px 2px black;
+    width: 100%;
+}
+
+.boton-contra-edit:hover{
+    background: linear-gradient(#9225d7, #6325d7) ;
+    color: white;
+}
+
+.boton-contra-edit:active{
+    background: #c526ec;
+    color: white;
+}
+
+.btn-contra-div{
+    text-align: right;
+    margin-right: 0em;
+}
+
+.h1-edit{
+    margin-bottom: 0em;
+}
+
+.hr-perfil-verde{
+    background: linear-gradient(to right, #52be84, #5aee67);
+    height: 5px;
+}
+
+.hr-perfil-violeta{
+    background: linear-gradient(to right, #9225d7, #511cb4);
+    height: 5px;
+}
+
+.hr-violeta-email{
+    margin-top: 2.5em;
+    width: 105%;
+    
+    background: linear-gradient(to right, #511cb4, #9225d7);
+    height: 1.5px;
+    border-style: none;
 }

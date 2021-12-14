@@ -14,8 +14,9 @@ router.get('/authMPrealizado', (req, res) => {
         client_id: process.env.MP_APP_ID,
         grant_type: "authorization_code",
         code,
-        redirect_uri: "http://localhost:3001/api/authMPrealizado",
+        redirect_uri: `${process.env.URL_BACK}/api/authMPrealizado`,
       };
+      console.log(userCredentials)
       axios
         .post("https://api.mercadopago.com/oauth/token", userCredentials)
         .then((cred) => {
@@ -37,7 +38,7 @@ router.get('/authMPrealizado', (req, res) => {
         })
         .catch((err) => console.log(err.message));
     }
-    res.redirect(`http://localhost:3000/${state}`)
+    res.redirect(`${process.env.URL_FRONT}/miPerfil/${state}`)
 })
 
 

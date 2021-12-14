@@ -8,11 +8,12 @@ const axios = require('axios')
 
 
 router.post("/create_preference", async (req, res) => {
-	const prestador = await User.findByPk('ca1e5b8a-8502-4794-8936-64a545524dfb', { raw: true })
-	mercadopago.configure({
-		access_token: prestador.access_token,
-	});
-	const { quantity, price, description } = req.body
+    const prestador = await User.findByPk(req.query.id, { raw: true})
+	console.log(req.query.id)
+    mercadopago.configure({
+        access_token: prestador.access_token,
+    });
+    const {quantity, price, description} = req.body
 
 	let preference = {
 		items: [
@@ -62,14 +63,3 @@ router.get('/feedback', async function (req, res) {
 });
 
 module.exports = router
-
-// query: {
-//     payment_id: '18819619701',
-//     status: 'approved',
-//     payment_type: 'credit_card',
-//     merchant_order_id: '3773850169',
-//     preference_id: '1034206289-0b769ba1-4d96-41a4-b82b-8ab5942cb754',
-//     site_id: 'MLA',
-//     processing_mode: 'aggregator',
-//     merchant_account_id: 'null'
-//   },

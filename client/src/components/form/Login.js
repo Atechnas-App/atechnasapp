@@ -18,12 +18,9 @@ import { useHistory } from 'react-router-dom'
 
 
 export const Login = () => {
-  const history = useHistory()
-  const dispatch = useDispatch()
-
-  const state = useSelector(state => state)
-  const githubUser = useSelector((state) => state.rootReducer.githubUser);
-  const { auth, msgError1 } = useSelector((state) => state.logued);
+const history =useHistory()
+const dispatch = useDispatch()
+const {auth,msgError1} = useSelector((state) => state.logued);  
 
 
   const [formValues, handleInputChange] = useForm({
@@ -56,7 +53,7 @@ export const Login = () => {
   }
   const handleGithubLogin = () => {
     window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
-    dispatch(getGithubUserInfo())
+    // dispatch(getGithubUserInfo())
   }
 
   const ifFormIsValid = () => {
@@ -73,7 +70,7 @@ export const Login = () => {
 
   };
 
-  console.log('ESTADO GLOBAL GH USER', githubUser)
+  /* console.log('ESTADO GLOBAL GH USER', githubUser) */
 
   return (
 

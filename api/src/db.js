@@ -62,8 +62,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User, Message, Review, Team, Testimonial, Language, Post, UserAdmin, Technology, Category, Payments } = sequelize.models;
 
 // Aca vendrian las relaciones
-User.belongsToMany(Team, {through: 'Users-Teams'})
-Team.belongsToMany(User, {through: 'Users-Teams'})
+User.belongsToMany(Publication, {through: 'Users-Publications'})
+Publication.belongsToMany(User, {through: 'Users-Publications'})
 User.belongsToMany(Message, {through: 'User-Message'})
 Message.belongsToMany(User, {through: 'User-Message'})
 User.belongsToMany(Language, {through: 'User-Language'})

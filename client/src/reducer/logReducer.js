@@ -1,7 +1,6 @@
 import { types } from "../actions/types";
 
 const initialState = {
-  login: false,
   msgError: null,
   msgError1: null,
   auth: false,

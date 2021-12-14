@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "nuka-carousel": "^4.8.4",
     "axios": "^0.24.0",
     "mercadopago": "^1.5.9",
     "react-select": "^5.2.1"
