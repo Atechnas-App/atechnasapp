@@ -2,19 +2,27 @@ import React from 'react';
 import freelancer from '../../../assets/img/freelancerHome.jpg';
 import './OutStandingPeople.css'
 import {useDispatch, useSelector} from 'react-redux';
-import {getUser} from '../../../actions/actions';
+import {getDevelopers, getDesign, getMarketing} from '../../../actions/actions';
 import {useEffect} from 'react';
 import CardPeople from '../../Cards/CardPeople'
 
 export const OutStandingPeople = () => {
     const dispatch = useDispatch();
-    const users = useSelector((state)=> state.rootReducer.users)
+    const dev = useSelector((state)=> state.rootReducer.developers)
+    const dis = useSelector((state)=> state.rootReducer.design)
+    const mar = useSelector((state)=> state.rootReducer.marketing)
     
+    console.log("LOCAL DEV", dev)
     
     useEffect(() => {           
-        dispatch(getUser()); 
+        dispatch(getDevelopers()); 
+        dispatch(getDesign()); 
+        dispatch(getMarketing()); 
     }, [dispatch]);
     
+   
+
+
     //POR CALIFICACIÓN PRIMERO ORDERNARLO DE MAYOR A MENOR 
     // DESPUES PONER LOS PRIMEROS TRES 
     // TIENE QUE ESTAR CONECTADO CON LA TABLA DE QUALIFICATIONS
@@ -33,10 +41,9 @@ export const OutStandingPeople = () => {
                 <hr className='hrOut'/>
                 <div className='best'>
                 
-                {
-                    users?.map((e, i) => {
-                        console.log('map pasar info', e.categories)
-                    if(i < 3){
+                {   
+                    dev?.map((e) => {
+                        
                        
                     return (
                     <CardPeople
@@ -50,7 +57,7 @@ export const OutStandingPeople = () => {
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     
                     />
-                    )}
+                    )
                     })
                 }
                 </div>
@@ -59,11 +66,11 @@ export const OutStandingPeople = () => {
                 <h2>Diseño</h2>
                 <hr/>
                 <div className='best'>
-            
                 {
-                    users?.map((e, i) => {
-                    if(i < 3){
-                       
+                    dis?.map((e, i) => {
+
+                            
+                   
                     return (
                     <CardPeople
                     profilePicture={e.profilePicture}
@@ -75,7 +82,7 @@ export const OutStandingPeople = () => {
                     key={e.id}
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
-                    )}
+                    )
                     })
                 }
                 </div>
@@ -85,8 +92,7 @@ export const OutStandingPeople = () => {
                 <hr/>
                 <div className='best'>
                 {
-                    users?.map((e, i) => {
-                    if(i < 3){
+                    mar?.map((e, i) => {
                        
                     return (
                     <CardPeople
@@ -99,7 +105,7 @@ export const OutStandingPeople = () => {
                     key={e.id}
                     categories={e.categories !== undefined? e.categories : 'no tiene categoria'}
                     />
-                    )}
+                    )
                     })
                 }
                 </div>

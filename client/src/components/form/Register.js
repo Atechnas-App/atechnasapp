@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from 'react-router';
 import "./form.css";
 import validator from "validator";
 import {
   getCategories,
   postUser,
-  removeError1,
-  setError1,
+  removeError,
+  setError,
+  
 } from "../../actions/actions";
-import { UpLoadImage } from "./UpLoadImage";
+import Swal from "sweetalert2";
+
 
 export const Register = () => {
  
+ 
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate()
+ 
   const categories = useSelector((state) => state.rootReducer.categories);
-  const { log } = useSelector((state) => state);
+  const { msgError } = useSelector((state) => state.logued);
 
+ 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -34,11 +37,37 @@ export const Register = () => {
     category: [], // ver como pasarlo a array
   });
 
-  
+
+
+    const loadImg = async (files) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(files);
+
+      const formData = new FormData();
+      formData.append("file", files);
+    
+      formData.append("upload_preset", "Atechnas");
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+      try {
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/Atechnas/image/upload",
+          options
+        );
+        const res_1 = await res.json();
+        
+        return setUser((prev) => ({ ...prev, profilePicture: res_1.secure_url }));
+      } catch (err) {
+        return console.log(err);
+      }
+    };
 
   function handleCheck(e) {
     e.preventDefault();
     if (e.target.checked) {
+      
       setUser({
         ...user,
         category: user.category.concat(e.target.value),
@@ -57,13 +86,11 @@ export const Register = () => {
     e.preventDefault()
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
+    
   }
-  // const handleOnClick = (e)=>{
-  //   e.preventDefault();
-  //   console.log(e)
-  // }
+
 
  
 
@@ -71,7 +98,9 @@ export const Register = () => {
     e.preventDefault()
     if (ifFormIsValid1()) {
       dispatch(postUser(user))
-      alert("¡Usuario creado con éxito!")
+      Swal.fire('USUARIO CREADO',
+      "Recuerde iniciar sesion",
+      "success");
       setUser({
         name: "",
         lastName: "",
@@ -81,28 +110,40 @@ export const Register = () => {
         portfolio: "",
         confirmPassword: "",
         category: [],
-      })
-    } // navigate('/profile')
+      });
+     } // navigate('/profile')
   }
 
+
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    document.querySelector("#fotoPerfil").click();
+  }; 
+
   const ifFormIsValid1 = () => {
+  
     if (!validator.isEmail(user.email)) {
-      dispatch(setError1("El email no es válido"));
+      dispatch(setError("El email no es válido"));
       return false;
     }
     if (user.password !== user.confirmPassword) {
-      dispatch(setError1("Las contraseñas no coinciden"));
+      dispatch(setError("Las contraseñas no coinciden"));
       return false;
     }
     if (user.password.trim().length === 0) {
-      dispatch(setError1("Falta la contraseña"));
+      dispatch(setError("Falta la contraseña"));
       return false;
     }
     if (user.name.length === 0 || user.lastName.length === 0) {
-      alert("Por favor, complete todos los campos");
+      dispatch(setError("Por favor, complete todos los campos"));
+      return false;
+    } 
+    if(user.category.length === 0){
+      dispatch(setError("Por favor, seleccione al menos una categoría"));
       return false;
     }
-    dispatch(removeError1());
+
+    dispatch(removeError());
     return true;
   };
   
@@ -117,8 +158,10 @@ export const Register = () => {
         <h1 className="tituloRegister">BIENVENIDO A ATECHNAS</h1>
         <div className="flex">
           <div className="grupoRegister">
-        <UpLoadImage  />
-        <p/>
+            <div>
+              
+            </div>
+  
             <p className="labels">Nombre</p>
             <input
               onChange={(e) => onInputChange(e)}
@@ -155,6 +198,7 @@ export const Register = () => {
             />
           </div>
           <div className="grupoRegister">
+
             <p className="labels">Contraseña</p>
             <input
               type="password"
@@ -169,6 +213,7 @@ export const Register = () => {
 
         <div className="flex">
           <div className="grupoRegister">
+          
             <p className="labels">Link al Portfolio</p>
             <input
               type="text"
@@ -183,34 +228,62 @@ export const Register = () => {
             <p className="labels">Confirmar contraseña</p>
             <input
               type="password"
-              name="confirmpassword"
+              name="confirmPassword"
               placeholder="Confirmar contraseña"
-              value={user.confirmpassword}
+              value={user.confirmPassword}
               onChange={(e) => onInputChange(e)}
               className="fields"
             />
           </div>
-
-          <div className="grupoRegister">
-            <p className="labels">Categoría</p>
-            {categories &&
-              categories.map((c) => {
-                return (
-                  <div>
-                    <input
-                      key={c.id}
-                      type="checkbox"
-                      name="category"
-                      value={c.category}
-                      onChange={(e) => handleCheck(e)}
-                      className="checkbox"
-                    />
-                    <label>{c.category}</label>
-                  </div>
-                )
-              })}
-          </div>
         </div>
+          
+          <div className="flex">
+                <div className="grupoRegister">
+                  <p className="labels">Imagen de perfil</p>
+                  <input
+                    type="file"
+                    name="profilePicture"
+                    id="fotoPerfil"
+                    style={{ display: "none" }}
+                    onChange={(e) => loadImg(e.target.files[0])}
+                  />
+
+                  <img
+                    src={user.profilePicture}
+                    alt="foto perfil"
+                    name="photo"
+                    width="250vw"
+                    height="250vh"
+                    value={user.profilePicture}
+                  />
+                  <br />
+                  <button className="botonImg" onClick={handleImageClick} cursor="pointer">
+                    subir
+                  </button>
+                </div>
+                <div className="grupoRegister">
+                  <p className="labels">Categoría</p>
+                  {categories &&
+                    categories.map((c) => {
+                      return (
+                        <div>
+                          <input
+                            key={c.id}
+                            type="checkbox"
+                            name="category"
+                            value={c.category}
+                            onChange={(e) => handleCheck(e)}
+                            className="checkbox"
+                          />
+                          <label>{c.category}</label>
+                        </div>
+                      )
+                    })}
+                </div>
+              </div>
+
+         
+        
         <button
           type="submit"
           className="botonRegistrar"
@@ -218,7 +291,7 @@ export const Register = () => {
         >
           Registrarse
         </button>
-        {log.msgError1 && <div>{log.msgError1}</div>}
+        {msgError?<div>{msgError}</div>:null}
       </form>
     </div>
   )

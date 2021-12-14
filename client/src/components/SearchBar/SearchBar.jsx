@@ -12,22 +12,17 @@ export default function SearchBar(){
     // const searching = useSelector((state)=> state.rootReducer.search)
     const history = useHistory();
     
-
-
     function onSubmit(e){
         e.preventDefault();
         dispatch(Search(search))
-        
-        history.push('/results')
-        
-        
+        history.push('/results')      
     }
-
     function handdleInput(e){
         e.preventDefault();
         setSearch(e.target.value)
     }
 
+    
     return(
 
         <div>

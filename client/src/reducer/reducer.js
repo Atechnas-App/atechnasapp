@@ -1,20 +1,34 @@
-import { GET_USER, SEARCH, CATEGORY_FILTER, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES } from "../actions/types";
+
+import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, DETAIL_JOB} from "../actions/types";
+
 
 
 const initialState = {
     users:[],
     search:[],
     categories:[],
-    filteredUsers:[],
+    // filteredUsers:[],
     technologie:[],
     details:[],
+    developers:[],
+    design:[],
+    marketing:[],
     languages:[],
     // technologies:[],
-    githubUser: []
+    githubUser: [],
+    jobs: [],
+    testimonials:[],
+    detailJob:[],
+    authMP: []
 };
 
 export default function rootReducer(state = initialState, action) {
     switch(action.type){
+                case 'AUTH_MP':
+                    return {
+                        ...state,
+                        authMP: action.payload
+                    }
                 case 'GITHUB':
                     return {
                         ...state,
@@ -40,12 +54,26 @@ export default function rootReducer(state = initialState, action) {
                         search: action.payload.content,
 
                     }
-                    
+                case DEVELOPER:
+                    return{
+                        ...state,
+                        developers: action.payload
+                    }
+                case DESIGN:
+                    return{
+                        ...state,
+                        design: action.payload
+                    }
+                case MARKETING:
+                    return{
+                        ...state,
+                        marketing: action.payload
+                    }
                 case FILTER:
                     
                     return {
                         ...state,
-                        filteredUsers: action.payload.content,
+                        search: action.payload.content,
                     }
 
                 case GET_CATEGORIES:
@@ -78,6 +106,24 @@ export default function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         languages: action.payload
+                    }
+                
+                case GET_JOBS:
+                    return{
+                        ...state,
+                        jobs: action.payload
+                    }
+
+                case GET_TESTIMONIALS:
+                    return {
+                        ...state,
+                        testimonials: action.payload
+                    }
+                
+                case DETAIL_JOB:
+                    return{
+                        ...state,
+                        detailJob: action.payload
                     }
 
                 default:

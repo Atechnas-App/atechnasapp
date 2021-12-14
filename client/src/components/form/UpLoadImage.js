@@ -28,9 +28,9 @@ export const UpLoadImage = () => {
   };
 
   return (
-    <div>
-      <div className="flex">
-        <div className="grupoRegister">
+    <div className='grupoRegister'>
+      
+
           <p className="labels">Imagen de perfil</p>
           <input
             type="file"
@@ -59,8 +59,8 @@ export const UpLoadImage = () => {
             onChange={(e) => setInput(e.target.value)}
             value={photo}
           />
-        </div>
-      </div>
+       
+      
     </div>
   );
 };

@@ -7,25 +7,23 @@ const router = Router();
 
 router.post('/newProfile/:id', async (req, res, next) => {
     try {
-        const {id} = req.query;
+        const {id} = req.params;
         const { 
-            company,
             title,
             image, 
-            description, 
-            qualification, 
+            about, 
+            price,
+            paused
         } = req.body;
-        
-        await Post.create(
+       await Post.create(
             {  
-                company: company,
+                title: title,
+                image: image, 
+                about: about, 
+                price: price,
+                paused: paused,
                 userId: id, 
-                description:description,
-                qualification: qualification, 
-                title: title, 
-                image: image}
-                // {where: {id: id}}
-                
+                }                
         )
         res.status(200).send('Post Creado')
     

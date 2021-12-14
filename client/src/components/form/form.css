@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     margin-top: 1em;
+    
 }
 
 .Antechna{
@@ -84,8 +85,16 @@
     border-left: solid 2px white;
     padding: 0.5em;
     padding-left: 8em;
+  
 }
 
 .olvido-contraseña{
     color:white;
 }
+
+#inputPhoto{
+    visibility: hidden;
+}
+
+
+

@@ -5,9 +5,9 @@ const { User, Publication } = require("../db");
 const router = Router();
 
 const transporter = nodemailer.createTransport({
-    host:'smtp.gmail.com',
-    port:465,
-    secure:true,
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: 'atechnasapp@gmail.com',
         pass: 'bfxijgmvmrjcjrym'
@@ -29,16 +29,16 @@ router.post('/newPublication/:userid', async (req, res) => {
         })
         const busquedauser = await User.findOne({ where: { id: userid } });
         const mailOptions = {
-            from:"Atechnas",
-            to:busquedauser.email,
-            subject:"nueva publicacion en atechnas",
-            text:'Hola Bienvenido a Atechnas, Haz creado una nueva publicacion, te notificaremos cuando alguien requiera tu trabajo'
+            from: "Atechnas",
+            to: busquedauser.email,
+            subject: "nueva publicacion en atechnas",
+            text: `Hola Bienvenido a Atechnas, Haz creado una nueva publicacion "${title}", te notificaremos cuando alguien requiera tu trabajo`
         }
         if (!validaPublication) {
-            transporter.sendMail(mailOptions,(error,info)=>{
-                if(error){
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
                     console.log(`error al enviar correo: ${error} `);
-                }else{
+                } else {
                     console.log(`correo enviado correctamente a : ${busquedauser.email}`);
                 }
             })
@@ -104,15 +104,15 @@ router.put('/modPublication/:publicationid', async (req, res) => {
 router.get('/Publications/:idPublication', async (req, res) => {
     try {
         const { idPublication } = req.params
-            const respublication = await Publication.findOne({
-                where: {
-                    id: idPublication
-                },
-                include: {
-                    all: true
-                }
-            })
-            res.status(200).send(respublication)
+        const respublication = await Publication.findOne({
+            where: {
+                id: idPublication
+            },
+            include: {
+                all: true
+            }
+        })
+        res.status(200).send(respublication)
     } catch (error) {
         console.log(error)
     }
@@ -130,13 +130,13 @@ router.get('/Publications', async (req, res) => {
     }
 })
 
-router.delete('/deletePublication/:id',async (req,res)=>{
-    const {id}= req.params
+router.delete('/deletePublication/:id', async (req, res) => {
+    const { id } = req.params
     try {
         const eliminado = await Publication.findOne({
-            where:{
-                id:id
-            }        
+            where: {
+                id: id
+            }
         })
         const cEliminado = await eliminado.destroy();
         res.status(200).send(cEliminado + 'publicacion eliminada')

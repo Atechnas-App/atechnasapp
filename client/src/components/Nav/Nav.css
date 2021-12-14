@@ -9,6 +9,8 @@
   margin-bottom: 1em;
 }
 
+
+
 /* .imglognav{
     border: solid 3px rgb(192, 192, 192);
     border-radius: 50%;
@@ -17,7 +19,7 @@
 
 .linkNavReg{
     color:white;
-    margin-top: 0.5em;
+    
 }
 
 .nombreLogo{
@@ -26,6 +28,7 @@
     animation-iteration-count: infinite;
     animation-duration: 2s;
     color: white;
+    z-index: -1;
 }
 
 @keyframes atechnas{
@@ -54,4 +57,38 @@
           -0.025em -0.025em 0 #3bfd92,
           -0.025em -0.05em 0 #a412ff;
       }
+}
+
+
+ul{
+  list-style: none;
+  
+}
+
+
+.nav li Link{
+background-color: #000;
+color: #fff;
+text-decoration: none;
+padding: 10px 15px;
+display: block;
+}
+.nav li Link:hover{
+  background-color: #434343;
+   
+}
+.nav >li{
+  float: left;
+
+}
+
+.nav li ul{ 
+  display: none;
+  position: relative;
+  min-width: 140px;
+}
+
+.nav li:hover > ul{
+  display: contents;
+  transition: ease 0.3s;
 }

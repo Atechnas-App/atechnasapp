@@ -12,7 +12,7 @@ router.get("/filterSearch", async (req, res, next) => {
   if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
     page = pageAsNumber;
   }
-  let size = 2;
+  let size = 10;
   if (!Number.isNaN(sizeAsNumber)) {
     if (sizeAsNumber > 0 && sizeAsNumber < 15) {
       size = sizeAsNumber;
