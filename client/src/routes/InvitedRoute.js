@@ -11,7 +11,7 @@ import PerfilPublico from "../components/Perfil/PerfilPublico";
 import PerfilPrivado from "../components/Perfil/PerfilPrivado";
 import EditPerfil from "../components/EditPerfil/EditPerfil";
 import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
-import Form from "../components/Perfil/Trabajos/Form";
+import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo";
 import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
 
 export const InvitedRoute = () => {
@@ -47,12 +47,12 @@ export const InvitedRoute = () => {
       {local?.id && (
         <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil} />
       )}
-      {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
+      {!local?.id && (<Route exact path="/login" component={LoginadnRegister} />)}
       {local?.id && (
         <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo} />
       )}
       {local?.id && (
-        <Route exact path="/perfil/crearTrabajos/:id" component={Form} />
+        <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />
       )}
       {local?.id && (
         <Route
