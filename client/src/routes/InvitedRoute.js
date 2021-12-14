@@ -30,7 +30,7 @@ export const InvitedRoute = () => {
       <Route exact path="/contactanos" component={Contactanos} />
       {/* <Route exact path="/terms" component={Terms} /> */}
       <Route exact path="/contactanos" component={Contactanos} />
-      /* <Route path="/results?searcher=" component={SearchPage} /> */
+     { /* <Route path="/results?searcher=" component={SearchPage} /> */}
       {/* RUTAS USUARIOS */}
       {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
       {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
@@ -51,9 +51,9 @@ export const InvitedRoute = () => {
       {local?.id && (
         <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo} />
       )}
-      {/* {local?.id && (
+      {local?.id && (
         <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />
-      )} */}
+      )}
       {local?.id && (
         <Route
           exact
