@@ -16,6 +16,7 @@ import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
 import Testimonials from '../components/Admin/Testimonials';
+import ControlPanel from '../components/Admin/ControlPanel';
 
 
 export const InvitedRoute = () => {
@@ -35,6 +36,7 @@ export const InvitedRoute = () => {
       <Route exact path="/terms" component={Terms}/>
       <Route exact path='/contactanos' component={Contactanos}/>
       <Route exact path="/Admin/testimonios" component={Testimonials}/>
+      <Route exact path="/Admin/menu" component={ControlPanel}/>
 
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
