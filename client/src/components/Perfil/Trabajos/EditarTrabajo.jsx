@@ -347,7 +347,7 @@ console.log(res_1, "RES")
                 </div>
                 <div className='flex-edit'>
                   <div>
-                    <label>Precio</label>
+                    <label>Precio: </label>
                     <span >
                            
                       <input
@@ -364,8 +364,8 @@ console.log(res_1, "RES")
                   <label>Pausado: </label>
                   <select onChange={onInputSelect} className="input-edit">
                     <option selected disabled>Selecciona una opción:</option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                    <option value="true" className='option-edit-work'>True</option>
+                    <option value="false" className='option-edit-work'>False</option>
                   </select>
                 </div>
                 </div>

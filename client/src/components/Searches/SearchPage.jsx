@@ -15,10 +15,10 @@ export default function SearchPage(){
     
     return(
         <div className='container-searchpage'>
-            <div className='components-searchpage'>
                 <div className="nav-container">
                     <Nav/>
                 </div>
+            <div className='components-searchpage'>
                 <div className="container-all">
                     <div className='container-filtro'>
                         <Filtros  className='fixed-filters'/>

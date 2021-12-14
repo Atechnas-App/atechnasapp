@@ -29,29 +29,31 @@ export default function DetallesTrabajo(props){
     return(
         <div className="detalle-trabajo-contenedor">
             <Nav/>
-            <Carousel className="carousel-trabajo">
-                {job?.image?.map((img)=>{
-                    return(
-                        <img src={img} alt="img not found"/> 
-                        )
-                    })}
-            </Carousel>
-            <h1 className="titulo-trabajo">{job?.title}</h1>
-            <hr className="hr-perfil-violeta"></hr>
-            <div className="descripcion-trabajo">
-                <p className="texto-descripcion-trabajo">{job?.description}</p>
+            <div className='padding-detail'>
+                <Carousel className="carousel-trabajo">
+                    {job?.image?.map((img)=>{
+                        return(
+                            <img src={img} alt="img not found"/> 
+                            )
+                        })}
+                </Carousel>
+                <h1 className="titulo-trabajo">{job?.title}</h1>
+                <hr className="hr-perfil-violeta"></hr>
+                <div className="descripcion-trabajo">
+                    <p className="texto-descripcion-trabajo">{job?.description}</p>
+                </div>
+                <div className="precio-contenedor">
+                    <div className="texto-precio">Precio</div>
+                    <div className="precio-trabajo">${job?.price}</div>
+                </div>
+                {/* <button>Comprar</button> */}
+                                    <a
+                                    href={link}
+                                    className="boton-perfil"
+                                >
+                                    Contratar
+                                </a>
             </div>
-            <div className="precio-contenedor">
-                <div className="texto-precio">Precio</div>
-                <div className="precio-trabajo">${job?.price}</div>
-            </div>
-            {/* <button>Comprar</button> */}
-                                <a
-                                href={link}
-                                className="boton-perfil"
-                            >
-                                Contratar
-                            </a>
         </div>
     )
 }

@@ -2,6 +2,10 @@
     min-width: 1250px;
     max-width: 1350px;
     margin: 0em auto;
+    
+}
+
+.container-info-edit-perfil{
     padding: 1em;
 }
 
@@ -103,6 +107,7 @@
     padding: 0.5em;
     border-radius: 0em 0.5em 0.5em 0.5em;
     font-size: 1em;
+    
 }
 
 .all-checkbox{
@@ -164,4 +169,8 @@
     background: linear-gradient(to right, #511cb4, #9225d7);
     height: 1.5px;
     border-style: none;
+}
+
+.option-edit{
+    color: black;
 }

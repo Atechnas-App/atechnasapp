@@ -2,11 +2,16 @@
     min-width: 1250px;
     max-width: 1350px;
     margin: 0em auto;
+    
+}
+
+.padding-detail{
     padding: 1em;
 }
 
 .carousel-trabajo{
     margin: 0em auto;
+    /* max-height: 100px; */
 }
 
 .descripcion-trabajo{
