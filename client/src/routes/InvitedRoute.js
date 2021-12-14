@@ -15,6 +15,7 @@ import Contactanos from '../components/Footer/Contactanos'
 import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
+import Testimonials from '../components/Admin/Testimonials';
 
 
 export const InvitedRoute = () => {
@@ -33,7 +34,7 @@ export const InvitedRoute = () => {
       <Route exact path="/contactanos" component={Contactanos}/>
       <Route exact path="/terms" component={Terms}/>
       <Route exact path='/contactanos' component={Contactanos}/>
-
+      <Route exact path="/Admin/testimonios" component={Testimonials}/>
 
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
