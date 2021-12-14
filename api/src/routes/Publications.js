@@ -1,7 +1,18 @@
 const { Router } = require("express");
+const nodemailer = require('nodemailer');
 const { Op } = require("sequelize");
 const { User, Publication } = require("../db");
 const router = Router();
+
+const transporter = nodemailer.createTransport({
+    host:'smtp.gmail.com',
+    port:465,
+    secure:true,
+    auth: {
+        user: 'atechnasapp@gmail.com',
+        pass: 'bfxijgmvmrjcjrym'
+    }
+});
 
 router.post('/newPublication/:userid', async (req, res) => {
     try {
@@ -16,8 +27,21 @@ router.post('/newPublication/:userid', async (req, res) => {
             price,
             state
         })
-        const busquedauser = await User.findOne({ where: { id: userid } })
+        const busquedauser = await User.findOne({ where: { id: userid } });
+        const mailOptions = {
+            from:"Atechnas",
+            to:busquedauser.email,
+            subject:"nueva publicacion en atechnas",
+            text:'Hola Bienvenido a Atechnas, Haz creado una nueva publicacion, te notificaremos cuando alguien requiera tu trabajo'
+        }
         if (!validaPublication) {
+            transporter.sendMail(mailOptions,(error,info)=>{
+                if(error){
+                    console.log(`error al enviar correo: ${error} `);
+                }else{
+                    console.log(`correo enviado correctamente a : ${busquedauser.email}`);
+                }
+            })
             await busquedauser.addPublication(createPublication);
         } else {
             res.status(404).send('trabajo en proceso')
@@ -72,7 +96,7 @@ router.put('/modPublication/:publicationid', async (req, res) => {
             // paused
         });
     } else {
-        res.status(404).send('publicacion no esncontrada')
+        res.status(404).send('publicacion no encontrada')
     }
     res.status(200).send(validaPublication)
 });
@@ -111,11 +135,11 @@ router.delete('/deletePublication/:id',async (req,res)=>{
     try {
         const eliminado = await Publication.findOne({
             where:{
-                id
+                id:id
             }        
         })
         const cEliminado = await eliminado.destroy();
-        res.status(200).send('publicacion eliminada')
+        res.status(200).send(cEliminado + 'publicacion eliminada')
     } catch (error) {
         console.log(error)
     }
