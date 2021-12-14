@@ -12,4 +12,13 @@ router.get("/testimonial", async (req, res, next) => {
   }
 });
 
+router.delete("/deleteTestimonial", async (req,res,next) => {
+  try {
+    const {id} = req.query;
+    await Testimonial.destroy({ where: {id:id}})
+    res.status(200).send("Testimonio eliminado")
+  } catch (error) {
+    next(error)
+  }
+})
 module.exports = router;

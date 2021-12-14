@@ -16,6 +16,7 @@ router.put("/profile/:id", async (req, res, next) => {
       categories,
       portfolio,
       location,
+      status,
     } = req.body;
     console.log(req.body);
     const user = await User.findOne({
@@ -32,7 +33,8 @@ router.put("/profile/:id", async (req, res, next) => {
       description ||
       profilePicture ||
       portfolio ||
-      location
+      location ||
+      status
     ) {
       user.company = company ? company : user.company;
       user.phone = phone ? phone : user.phone;
@@ -42,6 +44,7 @@ router.put("/profile/:id", async (req, res, next) => {
         : user.profilePicture;
       user.portfolio = portfolio ? portfolio : user.portfolio;
       user.location = location ? location : user.location;
+      user.status = status ? status : user.status;
     }
     if (categories) {
       let categoriesDb = await Category.findAll({

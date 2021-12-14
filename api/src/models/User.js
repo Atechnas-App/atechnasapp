@@ -71,8 +71,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
 
-    premium: {
-      type: DataTypes.BOOLEAN,
+    status: {
+      type: DataTypes.ENUM("ACTIVO","BANEADO","EN REVISION"),
       allowNull: true,
     },
 
