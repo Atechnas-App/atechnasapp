@@ -48,7 +48,7 @@ export default function Testimonials(){
     console.log(testimonials[0]?.id)
     return (
         <div>
-            <h2>Testimonios</h2>
+            <h1>Testimonios</h1>
             {
                 testimonials?.map(testimonial => {
                     return(<div>
