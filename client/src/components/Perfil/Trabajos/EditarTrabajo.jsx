@@ -10,7 +10,7 @@ export default function EditarTrabajo(props){
     const dispatch = useDispatch()
     const history = useHistory()
     const detailJobs = useSelector(state=>state.rootReducer.detailJob)
-    const id = props.match.params.id
+    const id = props.match?.params.id
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
@@ -197,7 +197,7 @@ console.log(res_1, "RES")
           })
         }
     
-
+        console.log(editedJob, "trabajo editado")
     return (<div>
       <Nav/>
       <div className="container">
@@ -208,35 +208,28 @@ console.log(res_1, "RES")
               type="text"
               name="title"
               onChange={e => onInputChange(e)}
-              value={editedJob.title}
+              value={editedJob?.title}
             />
           </div>
+                <input
+                  type="file"
+                  name="image"
+                  id="fotoPerfil"
+                   style={{ display: "none" }}
+                  onChange={(e) => loadImg(e.target.files[0])}
+                />
            <div className="images">
                 <div className="foto-perfil-container">
                 <label className="input-label">Imagenes</label>
                 <hr className="hr-perfil-verde"></hr>
              {editedJob?.image? editedJob?.image?.map((img,i) => {
                return (<div>
-                <input
-                  type="file"
-                  name="image"
-                  id="fotoPerfil"
-                   style={{ display: "none" }}
-                  onChange={(e) => loadImg(e.target.files[i])}
-                />
                 <img
                   src={img}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
-              <button
-                className="boton-perfil"
-                type="submit"
-                onClick={handleImageClick}
-                cursor="pointer"
-              >
-                Subir
-              </button>
+              <button type="button" onClick={() => handleDelete(img)}>Eliminar</button>
                </div>
              )}):
              <div>
@@ -245,22 +238,22 @@ console.log(res_1, "RES")
              name="image"
              id="fotoPerfil"
               style={{ display: "none" }}
-             onChange={(e) => loadImg(e.target.files)}
+             onChange={(e) => loadImg(e.target.files[0])}
            />
            <img
              src=""
              alt="img not found"
              className="img-edit-perfil"
            ></img>
-         <button
-           className="boton-perfil"
-           type="submit"
-           onClick={handleImageClick}
-           cursor="pointer"
-         >
-           Subir
-         </button>
               </div>}
+              <button
+                className="boton-perfil"
+                type="submit"
+                onClick={handleImageClick}
+                cursor="pointer"
+              >
+                Subir
+              </button>
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -341,7 +334,7 @@ console.log(res_1, "RES")
                 className="descripcion"
                   name="description"
                   onChange={onInputChange}
-                  value={editedJob.description}
+                  value={editedJob?.description}
                 />
                 </div>
                 <div>
@@ -352,7 +345,7 @@ console.log(res_1, "RES")
                     className="currencyinputPrice"
                     type="number"
                     name="price"
-                    value={editedJob.price}
+                    value={editedJob?.price}
                     onChange={onInputChange}
                   />
                 </span>

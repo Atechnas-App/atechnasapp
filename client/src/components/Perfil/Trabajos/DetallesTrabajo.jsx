@@ -1,12 +1,13 @@
 import "./DetallesTrabajos.css"
 import Carousel from 'nuka-carousel';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDetailJob } from "../../../actions/actions";
 import Nav from "../../Nav/Nav";
+import axios from "axios";
 
 export default function DetallesTrabajo(props){
-
+    const [link, setLink] = useState('')
     const dispatch = useDispatch();
     const job = useSelector(state=>state.rootReducer.detailJob)
     const id = props.match.params.id
@@ -14,8 +15,16 @@ export default function DetallesTrabajo(props){
     useEffect(()=>{
         dispatch(getDetailJob(id))
     },[dispatch,id])
+    useEffect(() => {
+        axios.post(`http://localhost:3001/api/create_preference?id=${job.createdBy}`, { quantity: 1, price: job.price, description: job.title })
+            .then(res => {
+                setLink(res.data)
+                console.log(res.data)
+            })
+            .catch(err => console.log(err))
 
-    
+    }, [job.createdBy])
+    console.log(job, "detalle del trabajo")
 
     return(
         <div className="detalle-trabajo-contenedor">
@@ -36,7 +45,13 @@ export default function DetallesTrabajo(props){
                 <div className="texto-precio">Precio</div>
                 <div className="precio-trabajo">${job?.price}</div>
             </div>
-            <button>Comprar</button>
+            {/* <button>Comprar</button> */}
+                                <a
+                                href={link}
+                                className="boton-perfil"
+                            >
+                                Contratar
+                            </a>
         </div>
     )
 }

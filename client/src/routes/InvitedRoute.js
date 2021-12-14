@@ -16,6 +16,7 @@ import SobreNosotros from '../components/Footer/sobreNosotros'
 import PregResp from '../components/Footer/pregResp'
 import Terms from '../components/Footer/terminosCondiciones'
 
+
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
   // const isAdmin = localStorage.getItem("isAdmin");
@@ -31,11 +32,14 @@ export const InvitedRoute = () => {
       <Route exact path="/FAQ" component={PregResp}/>
       <Route exact path="/contactanos" component={Contactanos}/>
       <Route exact path="/terms" component={Terms}/>
+      <Route exact path='/contactanos' component={Contactanos}/>
+
+
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
 
         {/* RUTAS USUARIOS */}
-        {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
+        {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
         {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
         {!local?.id && <Redirect from="/trabajos/detalle/:id" to="/error" />}

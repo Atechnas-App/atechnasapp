@@ -13,6 +13,7 @@ export default function CardTrabajo(id){
     },[dispatch,id])
     console.log(jobs, "card trabajo")
     console.log(id, "Jobs")
+
     return (
         <div>
             
@@ -29,9 +30,6 @@ export default function CardTrabajo(id){
                 <div class="back">
                     <Link to={'/trabajos/detalle/'+ j.id}>
                         <button className="boton-cardpost"> Más detalles </button>
-                    </Link>
-                    <Link to={''}> {/* Link a Mercado Pago */}
-                    <button className="boton-cardpost"> Contratar </button>
                     </Link>
                 </div>
             </div>
