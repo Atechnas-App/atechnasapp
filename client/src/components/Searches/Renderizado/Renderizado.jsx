@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSelector, useDispatch} from 'react-redux';
+import React, {useState, /* useEffect */} from 'react';
+/* import InfiniteScroll from 'react-infinite-scroll-component'; */
+import { useSelector,/*  useDispatch */} from 'react-redux';
 import CardPeople from '../../Cards/CardPeople';
 import Paginado from '../Paginado/Paginado'
 
@@ -14,7 +14,7 @@ export default function Renderizado(){
     // }, [page])
 
     const [actualPage, setActualPage] = useState(1);         
-    const [cardPage, setDogPage] = useState(4);            
+    const [cardPage, /* setDogPage */] = useState(4);            
     const indexLast = actualPage * cardPage;               
     const indexFirst = indexLast - cardPage;              
     const totalCardsPage = searching?.slice(indexFirst, indexLast);

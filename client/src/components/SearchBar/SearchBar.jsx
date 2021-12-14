@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchBar.css';
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Search} from '../../actions/actions.js';
 import {useHistory} from 'react-router-dom';
 
