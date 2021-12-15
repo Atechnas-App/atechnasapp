@@ -1,9 +1,5 @@
 import "./Perfil.css"
-<<<<<<< HEAD
-import React, {useState} from "react"
-=======
 import React, { useState } from "react"
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import { getDetails, postReview } from "../../actions/actions";

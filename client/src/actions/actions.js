@@ -310,24 +310,15 @@ export function getDetails(id) {
  
  export function postJobs(id, payload) {
    return async function(){
-<<<<<<< HEAD
-     const newJob = await axios.post(`http://localhost:3001/api/newPublication/` + id , payload ) 
-=======
      const newJob = await axios.post(`/api/newPublication/` + id , payload ) 
      console.log(payload, "actions");
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
      return newJob
    }
  }
 
  export function getDetailJob(id){
    return async function(dispatch){
-<<<<<<< HEAD
-     const detailJob = await axios.get("http://localhost:3001/api/Publications/"+id)
-=======
-     console.log(id, "ID GET DETALLE DEL TRABAJO")
      const detailJob = await axios.get(`/api/Publications/`+id)
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
      return dispatch({
       type: DETAIL_JOB,
       payload: detailJob.data
@@ -337,13 +328,8 @@ export function getDetails(id) {
 
  export function editJob(id, payload){
    return async function(){
-<<<<<<< HEAD
-     const editedJob = await axios.put("http://localhost:3001/api/modPublication/"+ id,payload)
-=======
-     console.log(id, "EDIT JOB ID")
-     console.log(payload, "EDIT JOB PAYLOAD")
+
      const editedJob = await axios.put(`/api/modPublication/`+ id,payload)
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
      return editedJob
    }
  }
@@ -365,13 +351,6 @@ export function getDetails(id) {
    }
  }
 
-<<<<<<< HEAD
- export function postReview(userId, payload) {
-  return async function(){
-    console.log("review echa", payload,userId)
-    const newReview = await axios.post("http://localhost:3001/api/review/"+ userId, payload )
-    
-=======
  export function postTestimonial(payload){
    return async function(){
      const testimonial = await axios.post(`/api/testimonial`, payload)
@@ -390,19 +369,14 @@ export function getDetails(id) {
   return async function(){
     const newReview = await axios.post("/api/review/"+ userId, payload )
 
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
     return newReview
   }
 }
 
 export function getReview(id){
   return async function(dispatch){
-<<<<<<< HEAD
-    const review = await axios("http://localhost:3001/api/getUserReview/"+id)
-=======
     console.log("soy review",id)
     const review = await axios("/api/getUserReview/"+id)
->>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
     return dispatch({
       type: GET_REVIEWS,
       payload: review.data
