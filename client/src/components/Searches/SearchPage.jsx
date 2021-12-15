@@ -2,8 +2,9 @@ import React, {Suspense, lazy} from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
-/* import { useSelector} from 'react-redux'; */
-import Renderizado from './Renderizado/Renderizado'
+import { useSelector} from 'react-redux';
+import Loading from '../Loading/Loading'
+const Renderizado = lazy(()=> import('./Renderizado/Renderizado'))
 
 
 export default function SearchPage(){

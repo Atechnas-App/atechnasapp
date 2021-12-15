@@ -1,8 +1,8 @@
 
 import axios from 'axios';
 
-import { types, GET_USER, SEARCH, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
-  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS} from "../actions/types";
+import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, GET_ALL_JOBS, GET_REVIEWS, GET_ALL_REVIEWS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
