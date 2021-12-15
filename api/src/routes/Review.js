@@ -60,7 +60,7 @@ router.get("/getReview", async (req, res, next) => {
     try {
         const reviewEliminado = await Review.findOne({
             where:{
-                id
+                id: id
             }        
         })
         const reviewElim = await reviewEliminado.destroy();

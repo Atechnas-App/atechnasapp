@@ -23,7 +23,7 @@ export default function EditarTrabajo(props){
         image: detailJobs?.image,
         description: detailJobs?.description,
         price: detailJobs?.price,
-        paused: detailJobs?.paused,
+        state: detailJobs?.state,
     })
 console.log(detailJobs, "DETAILS JOBS!")
 //uno
@@ -350,11 +350,11 @@ console.log(res_1, "RES")
                   />
                 </span>
                 <div>
-                <label>Pausado: </label>
+                <label>Estado: </label>
                 <select onChange={onInputSelect}>
                   <option selected disabled>Selecciona una opción:</option>
-                  <option value="true">True</option>
-                  <option value="false">False</option>
+                  <option value="Activo">Activo</option>
+                  <option value="Pausado">Pausado</option>
                 </select>
                 </div>
                 </div>
