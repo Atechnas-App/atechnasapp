@@ -144,33 +144,49 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
 
 router.put('/aceptPublication/:userid/:idPublication', async (req, res) => {
     const { userid, idPublication } = req.params
-    const busquedauser = await User.findOne({ where: { id: userid } })
-    const validaPublication = await Publication.findOne({ where: { id: idPublication } })
-    const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
-    const mailOptionsDelete = {
-        from: "Atechnas",
-        to: busquedauser.email,
-        subject: `${usercreador.name}, aceptó Trabajar contigo`,
-        html: `<h1>Hola ${busquedauser.name}, </h1> \n<p><b>${usercreador.name}</b> accedió a trabajar contigo en <b> ${validaPublication.title}</b>, en el siguiente link podrás realizar el pago: </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
-    }
-    if (validaPublication) {
+    const validaPublication = await Publication.findOne({ where: { id: idPublication }, include: { all: true } })
+    const usercreador = await User.findOne({ where: { id: userid } });
 
-        if (validaPublication.createdBy !== busquedauser.id) {
-            transporter.sendMail(mailOptionsCreate, (error, info) => {
-                if (error) {
-                    console.log(`error al enviar correo: ${error} `);
-                } else {
-                    console.log(`correo enviado correctamente a : ${usercreador.email}`);
+    if (validaPublication && userid === validaPublication.createdBy) {
+
+        validaPublication.users.map((e) => {
+            if (e.id === validaPublication.createdBy) {
+                const mailOptions = {
+                    from: "Atechnas",
+                    to: e.email,
+                    subject: `es hora de empezar`,
+                    html: `<h1>Hola ${e.name}, </h1> \n<p>has aceptado trabajar en <b>${validaPublication.title}</b> es hora de ponerte manos a la obra.`
                 }
-            })
-            transporter.sendMail(mailOptionsDelete, (error, info) => {
-                if (error) {
-                    console.log(`error al enviar correo: ${error} `);
-                } else {
-                    console.log(`correo enviado correctamente a : ${busquedauser.email}`);
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(`error al enviar correo: ${error} `);
+                    } else {
+                        console.log(`correo enviado correctamente a : ${usercreador.email}`);
+                    }
+                })
+            } else {
+
+                const mailOptions = {
+                    from: "Atechnas",
+                    to: e.email,
+                    subject: `${usercreador.name}, aceptó Trabajar contigo`,
+                    html: `<h1>Hola , </h1> \n<p><b>${usercreador.name}</b> accedió a trabajar contigo en <b> ${validaPublication.title}</b>, en el siguiente link podrás realizar el pago: </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
                 }
-            })
-        }
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(`error al enviar correo: ${error} `);
+                    } else {
+                        console.log(`correo enviado correctamente a : ${usercreador.email}`);
+                    }
+                })
+            }
+        })
+        await validaPublication.update(
+            {
+                state:'EnProceso'
+            }
+        )
+
     } else {
         res.status(404).send('esta publicacion no esta disponible')
     }
@@ -182,7 +198,7 @@ router.put('/aceptPublication/:userid/:idPublication', async (req, res) => {
 
 router.put('/modPublication/:publicationid', async (req, res) => {
     const { publicationid } = req.params;
-    const { description, title, image, price, state} = req.body
+    const { description, title, image, price, state } = req.body
     const validaPublication = await Publication.findOne({ where: { id: publicationid } })
     const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
     const mailOptions = {
@@ -256,7 +272,7 @@ router.delete('/deletePublication/:id', async (req, res) => {
             subject: "Se ha eliminado tu publicacion",
             html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Tu publicacion ha sido eliminada.\n Puedes crear nuevas publicaciones en <a href="http://localhost:3000/">Atechnas</a>.\n Atechnas Team </p>`
         }
-        if(eliminado){
+        if (eliminado) {
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     console.log(`error al enviar correo: ${error} `);
@@ -267,7 +283,7 @@ router.delete('/deletePublication/:id', async (req, res) => {
             await eliminado.destroy();
             res.status(200).send('publicacion eliminada')
 
-        }else{
+        } else {
             res.status(400).send('no se encontro publicacion')
         }
     } catch (error) {
