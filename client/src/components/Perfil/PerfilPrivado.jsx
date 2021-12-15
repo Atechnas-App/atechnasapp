@@ -24,62 +24,72 @@ console.log(detail )
 console.log(detail.categories, "Hay categorias?")
 
     return (
-        <div className="perfil-container">
-            <Nav />
-            <h1>SOBRE MI</h1>
+      <div className="perfil-container">
+        <Nav />
+        <h1>SOBRE MI</h1>
+        <hr className="hr-perfil-verde"></hr>
+        <div className="datos-perfil">
+          <div className="foto-perfil">
+            <div className="foto-de-perfil">
+              <img
+                className="foto-de-perfil"
+                src={detail.profilePicture}
+                alt="img not found"
+              ></img>
+              {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
+            </div>
+            <div>
+              <form className="boton-container">
+                <Link to={`/perfil/editarPerfil/${fullId}`}>
+                  <button className="boton-perfil">Editar Perfil</button>
+                </Link>
+                <button>
+                  <a
+                    href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://https://atechnas-app.vercel.app/api/authMPrealizado`}
+                  >
+                    AUTORIZAR MERCADOPAGO
+                  </a>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="descripcion-perfil">
+            <h1 className="nombre-completo-perfil">
+              {detail.name} {detail.lastName}
+            </h1>
+            <hr className="hr-perfil-violeta"></hr>
+            <div className="contenedor-idiomas">
+              {detail.languages?.map((e) => {
+                return <h4 className="idiomas-perfil">{e.languages}</h4>;
+              })}
+            </div>
+            <p className="descripcion-texto">{detail.description}</p>
+            <a href={detail.portfolio}>
+              <button cursor="pointer" className="boton-perfil">
+                Portfolio
+              </button>
+            </a>
+            <h2>Skills</h2>
+            <hr className="hr-perfil-violeta"></hr>
+            <div className="keyword-container">
+              {detail.technologies
+                ? detail.technologies.map((e) => {
+                    return <h3 className="keyword">{e.technology}</h3>;
+                  })
+                : "Sin keywords"}
+            </div>
+          </div>
+        </div>
+        <div className="trabajos-perfil">
+          <div>
+            <h1>MIS TRABAJOS</h1>
             <hr className="hr-perfil-verde"></hr>
-            <div className="datos-perfil">
-                <div className="foto-perfil">
-                    <div className="foto-de-perfil">
-                        <img className="foto-de-perfil" src={detail.profilePicture} alt="img not found"></img>
-                        {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
-                    </div>
-                    <div>
-                        <form className="boton-container">
-                            <Link to={`/perfil/editarPerfil/${fullId}`}>
-                                <button className="boton-perfil">Editar Perfil</button>
-                            </Link>
-                            <button>
-                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
-                                AUTORIZAR MERCADOPAGO
-                            </a>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div className="descripcion-perfil">
-                    <h1 className="nombre-completo-perfil">{detail.name} {detail.lastName}</h1>
-                    <hr className="hr-perfil-violeta"></hr>
-                    <div className="contenedor-idiomas">
-                        {detail.languages?.map((e) => {
-                            return (
-                                <h4 className="idiomas-perfil">{e.languages}</h4>
-                            )
-                        })}
-                    </div>
-                    <p className="descripcion-texto">{detail.description}</p>
-                    <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
-                    </a>
-                    <h2>Skills</h2>
-                    <hr className="hr-perfil-violeta"></hr>
-                    <div className="keyword-container">
-                        {detail.technologies ? detail.technologies.map((e) => {
-                            return <h3 className="keyword">{e.technology}</h3>
-                        }) : "Sin keywords"}
-                    </div>
-                </div>
-            </div>
-            <div className="trabajos-perfil">
-                <div>
-                    <h1>MIS TRABAJOS</h1>
-                    <hr className="hr-perfil-verde"></hr>
-                </div>
-                <div>
-                    <CardTrabajosPrivado id={fullId}/>
-                </div>
-            </div>
-            {/* <div className="comentarios-perfil">
+          </div>
+          <div>
+            <CardTrabajosPrivado id={fullId} />
+          </div>
+        </div>
+        {/* <div className="comentarios-perfil">
             <div>
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>
@@ -88,6 +98,6 @@ console.log(detail.categories, "Hay categorias?")
                     <CardComentario/>
                 </div>
             </div> */}
-        </div>
-    )
+      </div>
+    );
 }
