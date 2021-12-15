@@ -101,7 +101,6 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
 
 router.put('/removePublication/:userid/:idPublication', async (req, res) => {
     const { userid, idPublication } = req.params
-    const { text } = req.body
     const busquedauser = await User.findOne({ where: { id: userid } })
     const validaPublication = await Publication.findOne({ where: { id: idPublication } })
     const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
@@ -142,6 +141,43 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
     const resultado = await Publication.findOne({ where: { id: idPublication }, include: { all: true } });
     res.status(200).send(resultado)
 });
+
+router.put('/aceptPublication/:userid/:idPublication', async (req, res) => {
+    const { userid, idPublication } = req.params
+    const busquedauser = await User.findOne({ where: { id: userid } })
+    const validaPublication = await Publication.findOne({ where: { id: idPublication } })
+    const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
+    const mailOptionsDelete = {
+        from: "Atechnas",
+        to: busquedauser.email,
+        subject: `${usercreador.name}, aceptó Trabajar contigo`,
+        html: `<h1>Hola ${busquedauser.name}, </h1> \n<p><b>${usercreador.name}</b> accedió a trabajar contigo en <b> ${validaPublication.title}</b>, en el siguiente link podrás realizar el pago: </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
+    }
+    if (validaPublication) {
+
+        if (validaPublication.createdBy !== busquedauser.id) {
+            transporter.sendMail(mailOptionsCreate, (error, info) => {
+                if (error) {
+                    console.log(`error al enviar correo: ${error} `);
+                } else {
+                    console.log(`correo enviado correctamente a : ${usercreador.email}`);
+                }
+            })
+            transporter.sendMail(mailOptionsDelete, (error, info) => {
+                if (error) {
+                    console.log(`error al enviar correo: ${error} `);
+                } else {
+                    console.log(`correo enviado correctamente a : ${busquedauser.email}`);
+                }
+            })
+        }
+    } else {
+        res.status(404).send('esta publicacion no esta disponible')
+    }
+    const resultado = await Publication.findOne({ where: { id: idPublication }, include: { all: true } });
+    res.status(200).send(resultado)
+});
+
 
 
 router.put('/modPublication/:publicationid', async (req, res) => {
