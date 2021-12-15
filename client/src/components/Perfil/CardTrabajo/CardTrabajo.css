@@ -5,6 +5,7 @@
     transition: all 1s linear;
     transform-style: preserve-3d;
    
+   
 }
 
 .front,
@@ -18,13 +19,15 @@
 }
 
 .front{
-    background: linear-gradient(#9225d7, #52be84);
+    backdrop-filter: blur(4px);
     z-index: 2;
     backface-visibility: hidden;
+   
+    
 }
 
 .back{
-    background: linear-gradient(#f8da61, #ff5acd);
+    background: linear-gradient(#52be84, #5aee67);
     z-index: 1;
     transform: rotateY(180deg);
     display: flex; 
@@ -55,9 +58,20 @@
 
 .img-cardpost{
     width: 350px;
-    height: 80px;
+    height: 175px;
     background-image: url('https://th.bing.com/th/id/OIP.345yCLH1wzUp7dsN9edPQAHaD4?pid=ImgDet&rs=1');
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px;
+}
+
+.info-cardpost{
+    background: rgba(0, 0, 0, 0.486);
+    backdrop-filter: blur(6px);
+    position: relative;
+    z-index: 3;
+    top: -90px;
+    
+    
+
 }
 
 .boton-cardpost{
@@ -81,7 +95,8 @@
 
 .cards-trabajos{
     display: flex;
-    
+    flex-wrap: wrap;
+    padding: 1em;
     
 }
 

@@ -21,8 +21,7 @@ let fullId = props.match.params.id
 useEffect(() => {
     dispatch(getDetails(fullId, id1))
 }, [dispatch]);
-console.log(detail )
-console.log(detail.categories, "Hay categorias?")
+
 
 function review (e){
     e.preventDefault()
@@ -47,6 +46,8 @@ function onSubmit (e){
     return(
         <div className="perfil-container">
             <Nav/>
+        <div className='container-info-perfil'> 
+            
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
@@ -68,7 +69,7 @@ function onSubmit (e){
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
+                    <button cursor="pointer" className="boton-portfolio">PORTFOLIO</button>
                     </a>
                     <h2>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
@@ -103,6 +104,7 @@ function onSubmit (e){
                     <CardComentario id={fullId}/>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

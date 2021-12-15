@@ -15,7 +15,7 @@ export default function CardTrabajo(id){
     console.log(id, "Jobs")
 
     return (
-        <div>
+        <div className='cards-trabajos'>
             
         {jobs.map((j)=>{
             return(
@@ -24,13 +24,16 @@ export default function CardTrabajo(id){
                 <div class="front">
                     <div className="img-cardpost">
                     </div>
-                    <h1 className='titulo-card'>{j.title}</h1>
-                    <p className='precio-card'>$ {j.price}</p>
+                    <div className='info-cardpost'>
+                        <h1 className='titulo-card'>{j.title}</h1>
+                        <p className='precio-card'>$ {j.price}</p>
+                    </div>
                 </div>
                 <div class="back">
                     <Link to={'/trabajos/detalle/'+ j.id}>
                         <button className="boton-cardpost"> Más detalles </button>
                     </Link>
+                
                 </div>
             </div>
         </div>)})}

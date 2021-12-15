@@ -30,6 +30,7 @@ const router = Router();
 
 
 router.use('/api', bulkCreate)
+router.use('/api', review)
 router.use('/api', getJobs)
 router.use('/api', review)
 router.use('/api', getTestimonial)
