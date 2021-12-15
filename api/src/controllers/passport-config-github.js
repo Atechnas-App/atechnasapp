@@ -17,23 +17,18 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-   
-  const usergithub = await User.findOne({ 
-    where: {
-      email: _json.email
-    }
-  })
-
-    {
-  info
-  info.id = usergithub.dataValues.id
-  info.name = usergithub.dataValues.name 
-  info.profilePicture = usergithub.dataValues.profilePicture 
-}
-  console.log(usergithub.dataValues)
-    try{
-      let user = await User.findOrCreate({
+  
+      const usergithub = await User.findOne({
         where: {
+          email: _json.email
+        }
+      })
+      if(usergithub){
+        info.id = usergithub?.dataValues?.id
+        info.name = usergithub?.dataValues?.name
+        info.profilePicture = usergithub?.dataValues?.profilePicture
+      } else {
+        const user = await User.create({
           name: !_json.name ? _json.login : _json.name,
           lastName: '',
           email: _json.email ? _json.email : 'ejemplo@mail.com',
@@ -41,18 +36,18 @@ passport.use(new GithubStrategy({
           profilePicture: _json.avatar_url,
           portfolio: _json.url,
           description: _json.bio
-        }
-      })
-      done(null, user)
-    }
-    catch(err){
-      done(err)
-    }
-    // user.addCategory(['Recruiter'])
-    /* console.log(info) */
+        })  
+        info.id = user?.dataValues?.id
+        info.name = user?.dataValues?.name
+        info.profilePicture = user?.dataValues?.profilePicture
+      } 
+    done(null, info)
   }
-));
+  
+))
 
+ 
+    
 passport.serializeUser((user, done) => { done(null, user) })
 passport.deserializeUser((user, done) => { done(null, user) })
 
