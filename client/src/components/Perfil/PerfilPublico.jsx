@@ -28,7 +28,7 @@ function review (e){
 
 }
 
-function onSubmit (e, fullId){
+function onSubmit (e){
     e.preventDefault()
     dispatch(postReview(fullId, reviewUser))
     setReview({

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function CardComentario(id){
-    console.log("review 12 ",id)
+    
 
     const dispatch = useDispatch();
     const userReviews = useSelector((state)=> state.rootReducer.reviews)

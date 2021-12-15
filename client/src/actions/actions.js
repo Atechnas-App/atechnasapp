@@ -333,9 +333,9 @@ export function getDetails(id) {
    }
  }
 
- export function postReview(userId, payload ) {
+ export function postReview(userId, payload) {
   return async function(){
-    console.log("review echa", payload,userId )
+    console.log("review echa", payload,userId)
     const newReview = await axios.post("http://localhost:3001/api/review/"+ userId, payload )
     
     return newReview
@@ -344,7 +344,6 @@ export function getDetails(id) {
 
 export function getReview(id){
   return async function(dispatch){
-    console.log("soy review",id)
     const review = await axios("http://localhost:3001/api/getUserReview/"+id)
     return dispatch({
       type: GET_REVIEWS,
