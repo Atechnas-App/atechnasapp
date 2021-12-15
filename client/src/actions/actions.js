@@ -369,9 +369,7 @@ export function getDetails(id) {
 
  export function postReview(userId, payload ) {
   return async function(){
-    console.log("review echa", payload,userId )
     const newReview = await axios.post("/api/review/"+ userId, payload )
-    
     return newReview
   }
 }

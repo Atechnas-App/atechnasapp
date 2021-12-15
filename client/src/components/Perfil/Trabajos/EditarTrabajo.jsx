@@ -40,12 +40,12 @@ const loadImg = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -54,7 +54,7 @@ const loadImg = async (files) => {
     );
     const res_1 = await res.json();
 console.log(res_1, "RES")
-    {Swal.close()}
+    Swal.close()
     return setEditedJob((prev) => ({
       ...prev,
       image: [...prev.image,res_1.secure_url]
@@ -212,32 +212,25 @@ console.log(res_1, "RES")
               value={editedJob.title}
             />
           </div>
-           <div className="images">
-                <div className="foto-perfil-container">
-                <label  className='label-edit-work'>Imagenes</label>
-                
-             {editedJob?.image? editedJob?.image?.map((img,i) => {
-               return (<div>
-                <input
+          <input
                   type="file"
                   name="image"
                   id="fotoPerfil"
                    style={{ display: "none" }}
-                  onChange={(e) => loadImg(e.target.files[i])}
+                  onChange={(e) => loadImg(e.target.files[0])}
                 />
+           <div className="images">
+                <div className="foto-perfil-container">
+                <label  className='label-edit-work'>Imagenes</label>
+                <hr className="hr-perfil-verde"></hr>
+             {editedJob?.image? editedJob?.image?.map((img,i) => {
+               return (<div>
                 <img
                   src={img}
                   alt="img not found"
                   className="img-edit-perfil"
                 ></img>
-              <button
-                className="boton-perfil"
-                type="submit"
-                onClick={handleImageClick}
-                cursor="pointer"
-              >
-                Subir
-              </button>
+              <button type="button" onClick={() => handleDelete(img)}>Eliminar</button>
                </div>
              )}):
              <div>
@@ -246,22 +239,23 @@ console.log(res_1, "RES")
              name="image"
              id="fotoPerfil"
               style={{ display: "none" }}
-             onChange={(e) => loadImg(e.target.files)}
+             onChange={(e) => loadImg(e.target.files[0])}
            />
            <img
              src=""
              alt="img not found"
              className="img-edit-perfil"
            ></img>
-         <button
-           className="boton-perfil"
-           type="submit"
-           onClick={handleImageClick}
-           cursor="pointer"
-         >
-           Subir
-         </button>
               </div>}
+              <button
+                className="boton-perfil"
+                type="submit"
+                onClick={handleImageClick}
+                cursor="pointer"
+              >
+                Subir
+              </button>
+             </div>
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -335,7 +329,6 @@ console.log(res_1, "RES")
                   Subir
                 </button>
                 </div> */}
-              </div>
               <div className="desc">
                 <label className='label-edit-work'>Descripción</label>
                 <textarea
@@ -362,7 +355,7 @@ console.log(res_1, "RES")
                   </div>
                   <div>
                   <label>Estado: </label>
-                  <select onChange={onInputSelect} className="input-edit">
+                <select onChange={onInputSelect} className="input-edit">
                   <option selected disabled>Selecciona una opción:</option>
                   <option value="Activo" className='option-edit-work'>Activo</option>
                   <option value="Pausado" className='option-edit-work'>Pausado</option>

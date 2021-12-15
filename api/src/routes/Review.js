@@ -20,7 +20,7 @@ router.post('/review/:userId', async (req, res, next) => {
                 coments: coments,
                 userId: userId,
                 title: title,
-                qualification: parseInt(qualification),
+                qualification: qualification,
                 }
                 
         )
