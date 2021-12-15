@@ -1,0 +1,30 @@
+.publicaciones-admin-container{
+    margin: 1em;
+}
+
+.publicaiones-admin{
+    width: 20em;
+}
+
+.card-publicacion-admin{
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+    margin-top: 2em;
+    padding: 1em;
+    min-width: 18em;
+    max-width: 20em;
+}
+
+.boton-perfil-admin{
+    background: #52be843d;
+    border: solid 2px #52be84;
+    color: #52be84;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.582);
+    box-shadow: 1px 1px 3px black;
+}
+
+.boton-perfil-admin:hover{
+    background: linear-gradient(#52be84, #5bdd66) ;
+    color: white;
+    
+}

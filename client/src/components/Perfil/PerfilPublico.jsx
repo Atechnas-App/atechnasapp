@@ -1,8 +1,8 @@
 import "./Perfil.css"
-import React from "react"
+import React, { useState } from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import { getDetails } from "../../actions/actions";
+import { getDetails, postReview } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
@@ -11,6 +11,7 @@ import CardComentario from "./CardComentario/CardComentario"
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
+const [reviewUser, setReview] = useState({title:"", qualification:"", coments:""});
 const {id} = JSON.parse(localStorage.getItem("user")); 
 const id1 = localStorage.getItem('idgit')
 console.log(id1)
@@ -22,6 +23,26 @@ useEffect(() => {
 }, [dispatch]);
 
 
+function review (e){
+    e.preventDefault()
+    setReview({
+        ...reviewUser,
+        [e.target.name]: e.target.value,
+       })
+
+}
+
+function onSubmit (e){
+    e.preventDefault()
+    dispatch(postReview(fullId, reviewUser))
+    setReview({
+
+        title:"", qualification:"", coments:""
+        
+       })
+       alert("review creado")
+
+}
     return(
         <div className="perfil-container">
             <Nav/>
@@ -73,6 +94,12 @@ useEffect(() => {
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>
                 </div>
+                <form onSubmit={e => onSubmit(e)}>
+                    <input type="text" value={reviewUser.title} name="title" placeholder="Titulo" onChange={e => review(e)}/>
+                    <input type="text" value={reviewUser.coments} name="coments" placeholder="Comentario" onChange={e => review(e)}/>
+                    <input type="number" value={reviewUser.qualification} name="qualification" placeholder="calificacion" onChange={e => review(e)}/>
+                    <button type="submit">Enviar</button>
+                </form>
                 <div>
                     <CardComentario id={fullId}/>
                 </div>

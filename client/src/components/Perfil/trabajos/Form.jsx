@@ -17,7 +17,7 @@ const history = useHistory()
         image:[],
         description:'',
         price:'',
-        paused:false
+        state:"Activo"
     })
 console.log(formulary)
 //uno
@@ -183,7 +183,7 @@ const loadImg2 = async (files) => {
                image: [],
                description: '',
                price:'',
-               paused: false
+               state: 'Activo'
            })
            }
           })

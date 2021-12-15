@@ -23,7 +23,7 @@ export default function EditarTrabajo(props){
         image: detailJobs?.image,
         description: detailJobs?.description,
         price: detailJobs?.price,
-        paused: detailJobs?.paused,
+        state: detailJobs?.state,
     })
 console.log(detailJobs, "DETAILS JOBS!")
 //uno
@@ -361,12 +361,12 @@ console.log(res_1, "RES")
                     </span>
                   </div>
                   <div>
-                  <label>Pausado: </label>
+                  <label>Estado: </label>
                   <select onChange={onInputSelect} className="input-edit">
-                    <option selected disabled>Selecciona una opción:</option>
-                    <option value="true" className='option-edit-work'>True</option>
-                    <option value="false" className='option-edit-work'>False</option>
-                  </select>
+                  <option selected disabled>Selecciona una opción:</option>
+                  <option value="Activo" className='option-edit-work'>Activo</option>
+                  <option value="Pausado" className='option-edit-work'>Pausado</option>
+                </select>
                 </div>
                 </div>
                 <button type="submit" className='boton-perfil'>

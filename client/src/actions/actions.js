@@ -2,8 +2,7 @@
 import axios from 'axios';
 
 import { types, GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, DETAIL_JOB, 
-  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS,
-  GET_REVIEWS} from "../actions/types";
+  GET_TECHNOLOGIES, FILTER, GET_CATEGORIES, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, GET_ALL_JOBS, GET_REVIEWS, GET_ALL_REVIEWS} from "../actions/types";
 
 // import { fileUpload } from '../assets/cloudinary/Cloudinary';
 import { firebase, googleAuthProvider } from "../components/firebase/firebase-config";
@@ -282,11 +281,21 @@ export function getDetails(id) {
 
  export function editProfile(id, payload){
       return async function(){
+        console.log(id, "id EDIT PROFILE")
     const editedProfile = await axios.put(`/api/profile/` + id, payload)
       return editedProfile
    }
  }
 
+ export function getAllJobs(){
+   return async function(dispatch){
+     const allJobs = await axios.get(`/api/Publications`)
+      return dispatch({
+        type: GET_ALL_JOBS,
+        payload: allJobs.data
+      })
+   }
+ }
  export function getJobs(id) {
    return async function(dispatch){
      console.log(id.id,"id jobs")
@@ -327,6 +336,13 @@ export function getDetails(id) {
    }
  }
 
+ export function deleteJob(id){
+   return async function(){
+     const deletedJob = await axios.delete(`/api/deletePublication/${id}`)
+     return deletedJob
+   }
+ }
+
  export function getTestimonials(){
    return async function(dispatch){
      const testimonials = await axios(`/api/testimonial/`)
@@ -350,9 +366,11 @@ export function getDetails(id) {
      return test
    }
  }
- export function postReview(payload) {
+
+ export function postReview(userId, payload ) {
   return async function(){
-    const newReview = await axios.post(`http://localhost:3001/api/review/`+payload ) 
+    console.log("review echa", payload,userId )
+    const newReview = await axios.post("/api/review/"+ userId, payload )
     
     return newReview
   }
@@ -361,10 +379,27 @@ export function getDetails(id) {
 export function getReview(id){
   return async function(dispatch){
     console.log("soy review",id)
-    const review = await axios("http://localhost:3001/api/getUserReview/"+id)
+    const review = await axios("/api/getUserReview/"+id)
     return dispatch({
       type: GET_REVIEWS,
       payload: review.data
+    })
+  }
+}
+
+export function deleteReview(id){
+  return async function(){
+    const deletedReview = await axios.delete("/api/deleteReview/"+id)
+    return deletedReview
+  }
+}
+
+export function getAllReviews(){
+  return async function(dispatch){
+    const allReviews = await axios.get('/api/getReview')
+    return dispatch({
+      type: GET_ALL_REVIEWS,
+      payload: allReviews.data
     })
   }
 }

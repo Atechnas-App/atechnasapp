@@ -20,7 +20,7 @@ router.post('/review/:userId', async (req, res, next) => {
                 coments: coments,
                 userId: userId,
                 title: title,
-                qualification: qualification,
+                qualification: parseInt(qualification),
                 }
                 
         )
@@ -60,7 +60,7 @@ router.get("/getReview", async (req, res, next) => {
     try {
         const reviewEliminado = await Review.findOne({
             where:{
-                id
+                id: id
             }        
         })
         const reviewElim = await reviewEliminado.destroy();

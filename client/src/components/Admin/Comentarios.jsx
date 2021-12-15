@@ -1,29 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { getUser} from '../../actions/actions';
+import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteReview, getAllReviews } from '../../actions/actions';
 
 export default function Comentarios(){
+
     const dispatch = useDispatch()
-    const history = useHistory()
-    const users = useSelector((state)=> state.rootReducer.users)
-    const [comentarios, setComentarios] = useState({
-        
-    })
-
+    const comentarios = useSelector((state)=> state.rootReducer.allReviews)
+    
     useEffect(() => {
-        dispatch(getUser())
+        dispatch(getAllReviews())
     },[dispatch])
-
-
+    
+    function onDelete(e,id){
+        e.preventDefault()
+        dispatch(deleteReview(id))
+        alert("¡Comentario eliminado!")
+    }
 
     return(
         <div>
+            <h1>Comentarios</h1>
+            <hr className='hr-perfil-violeta'></hr>
             <div>
-                <h1>Empresa</h1>
-                <p>Comentario</p> 
+                {
+                    comentarios && comentarios.map(c => {
+                        return (
+                            <div>
+                            <h2>{c.title}</h2>
+                            <h2>{c.coments}</h2>
+                            <h2>{c.qualification}</h2>
+                            <button onClick={e => onDelete(e, c.id)}>Eliminar</button>
+                            </div>
+                        )
+                    })
+                }
             </div>
-            <button>Eliminar</button>
         </div>
     )
 }
