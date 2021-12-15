@@ -20,8 +20,7 @@ let fullId = props.match.params.id
 useEffect(() => {
     dispatch(getDetails(fullId, id1))
 }, [dispatch]);
-console.log(detail )
-console.log(detail.categories, "Hay categorias?")
+
 
     return(
         <div className="perfil-container">
@@ -73,7 +72,7 @@ console.log(detail.categories, "Hay categorias?")
                     <hr className="hr-perfil-verde"></hr>
                 </div>
                 <div>
-                    <CardComentario/>
+                    <CardComentario id={fullId}/>
                 </div>
             </div>
         </div>
