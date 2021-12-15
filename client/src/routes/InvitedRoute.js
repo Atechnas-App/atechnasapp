@@ -18,6 +18,7 @@ import Terms from '../components/Footer/terminosCondiciones'
 import Testimonials from '../components/Admin/Testimonials';
 import ControlPanel from '../components/Admin/ControlPanel';
 import Publications from '../components/Admin/Publications';
+import LoginAdmin from '../components/Admin/Login';
 
 
 export const InvitedRoute = () => {
@@ -39,6 +40,7 @@ export const InvitedRoute = () => {
       <Route exact path="/Admin/testimonios" component={Testimonials}/>
       <Route exact path="/Admin/menu" component={ControlPanel}/>
       <Route exact path="/Admin/publicaciones" component={Publications}/>
+      <Route exact path="/Admin/login" component={LoginAdmin}/>
 
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 
