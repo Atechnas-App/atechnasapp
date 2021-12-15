@@ -9,9 +9,10 @@
 }
 
 .upper-footer-container{
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    margin: 1em auto;
+    padding: 1em;
     
 }
 
@@ -70,19 +71,25 @@
 
 .socialmedia-logo{
     margin: 0em 1em 0em 1em;
+
 }
 
 .logo-henry{
-    width: 40%;
+    width: 25%;
     margin: 1em;
 }
 
 .logo-ycombinator{
-    width: 15%;
+    width: 25%;
     margin: 1em;
 }
 
 .socialmedia{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
+}
+
+.box-Footer{
+    /* min-width: 500px; */
+
 }

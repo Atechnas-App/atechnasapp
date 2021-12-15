@@ -151,3 +151,54 @@
     height: 1.5px;
     background: rgba(255, 255, 255, 0.418);
 }
+
+.form-comentarios{
+    width: 95%;
+    background:rgba(73, 73, 73, 0.541);
+    backdrop-filter: blur(3px);
+    padding: 1em;
+    margin: 0em auto;
+    margin-top: 2em;
+    border-radius: 10px;
+}
+
+.block-coment{
+    display: block;
+}
+
+.input-coment{
+    margin: 1em 0em;
+    font-size: 1em ;
+    border-style: none;
+    padding: 0.5em;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.479);
+    color: white;
+}
+
+::placeholder { color: white; }
+
+.text-coment {
+    width: 95%;
+    margin-bottom: 1em;
+    background: rgba(255, 255, 255, 0.479);
+    border-radius: 10px;
+    padding: 0.5em;
+   
+}
+
+.submit-coment{
+    border-style: none;
+    font-weight: bold;
+    padding: 0.5em;
+    color: white;
+    border: solid 1px white;
+    background: transparent;
+    border-radius: 10px;
+    margin-left: 0.1em;
+}
+
+.submit-coment:hover{
+    background: white;
+    color: rgb(80, 80, 80);
+}

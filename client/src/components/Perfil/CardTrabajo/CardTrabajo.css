@@ -4,7 +4,7 @@
     position: relative;
     transition: all 1s linear;
     transform-style: preserve-3d;
-   
+    
    
 }
 
@@ -27,11 +27,24 @@
 }
 
 .back{
-    background: linear-gradient(#52be84, #5aee67);
+    background: url('https://th.bing.com/th/id/OIP.345yCLH1wzUp7dsN9edPQAHaD4?pid=ImgDet&rs=1');
     z-index: 1;
     transform: rotateY(180deg);
     display: flex; 
     justify-content: center;
+
+}
+
+.back-ground{
+    background: rgba(0, 0, 0, 0.589); 
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
 }
 
 .container:hover .card{
@@ -85,6 +98,7 @@
     font-weight: bold;
     font-size: 1em;
     cursor: pointer;
+    box-shadow: 0px 1px 3px black;
 }
 
 .boton-cardpost:active{

@@ -30,10 +30,11 @@ export default function CardTrabajo(id){
                     </div>
                 </div>
                 <div class="back">
-                    <Link to={'/trabajos/detalle/'+ j.id}>
-                        <button className="boton-cardpost"> Más detalles </button>
-                    </Link>
-                
+                    <div className='back-ground'>
+                        <Link to={'/trabajos/detalle/'+ j.id}>
+                            <button className="boton-cardpost"> Más detalles </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>)})}
