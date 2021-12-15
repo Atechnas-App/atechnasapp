@@ -45,7 +45,7 @@ console.log(detail.categories, "Hay categorias?")
                 </Link>
                 <button>
                   <a
-                    href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://https://atechnas-app.vercel.app/api/authMPrealizado`}
+                    href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=https://atechnas-api.herokuapp.com/api/authMPrealizado`}
                   >
                     AUTORIZAR MERCADOPAGO
                   </a>
