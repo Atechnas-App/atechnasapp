@@ -16,8 +16,7 @@ import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
 import Terms from "../components/Footer/terminosCondiciones";
 export const InvitedRoute = () => {
   
-  const local = JSON.parse(localStorage.getItem("user"))?
-  JSON.parse(localStorage.getItem("user")) : localStorage.getItem("idgit");
+  const local = JSON.parse(localStorage.getItem("user"))
   // const isAdmin = localStorage.getItem("isAdmin");
 
   return (
@@ -38,15 +37,15 @@ export const InvitedRoute = () => {
 
 
         {/* RUTAS USUARIOS */}
-        {!local?.id ? local.id : local.idgit && <Redirect from="/perfil/:id" to="/login" />}
-        {local?.id ? local.id : local.idgit && <Route exact path="/perfil/:id" component={PerfilPublico} />}
+        {!local?.id && <Redirect from="/perfil/:id" to="/login" />}
+        {local?.id  && <Route exact path="/perfil/:id" component={PerfilPublico} />}
         {local?.id && <Route exact path="/miPerfil/:id" component={PerfilPrivado} />}
 
         {local?.id  && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
-        {!local?.id? local.id : local.idgit && <Route exact path="/login" component={LoginadnRegister} />}
-        {local?.id? local.id : local.idgit && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
-        {local?.id ? local.id : local.idgit&& ( <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />)}
-        {local?.id? local.id : local.idgit && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
+        {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
+        {local?.id && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
+        {local?.id && ( <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />)}
+        {local?.id && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
   
       </Switch>
     );

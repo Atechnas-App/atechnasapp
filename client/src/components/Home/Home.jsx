@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGithubUserInfo, getUser } from "../../actions/actions";
 /* import { Link } from "react-router-dom"; */
 
-const {email} = localStorage.getItem("user");
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -26,11 +25,6 @@ export default function Home(){
 useEffect(() => {
     dispatch(getGithubUserInfo());       
 }, [dispatch]);
-
-
-
-
-/* localStorage.setItem("user", JSON.stringify({email})); */
 
 
     const search = useSelector((state)=> state.rootReducer.search)

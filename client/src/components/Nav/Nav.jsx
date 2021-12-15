@@ -16,7 +16,7 @@ export default function Nav(props) {
   }
 
 
-const id1 = localStorage.getItem("idgit");
+
   const user = JSON.parse(localStorage.getItem("user"));
  
    let name = user.name;
@@ -57,12 +57,12 @@ const id1 = localStorage.getItem("idgit");
 <li>{name}
 <ul>
 <li>
-    <Link to={"/perfil/" + id ? id : id1}>
+    <Link to={"/perfil/" + id}>
       <button style={{ textDecoration: "none" }}>Perfil</button>
     </Link>
   </li>
   <li>
-    <Link to={`/perfil/edit/${id ? id : id1}`}>
+    <Link to={`/perfil/edit/${id}`}>
       <button>Editar Perfil</button>
     </Link>
   </li>
