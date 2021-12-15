@@ -20,13 +20,14 @@ console.log(id, "id editar trabajo")
 useEffect(() => {
     dispatch(getDetails(fullId, id, id1))
 }, [dispatch]);
-console.log(detail )
+console.log('DETALLE', detail )
 console.log(detail.categories, "Hay categorias?")
 
     return (
         <div className="perfil-container">
             <Nav />
-            <h1>SOBRE MI</h1>
+        <div className='container-info-perfil'> 
+            <h1 className='titulo-linea'>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
                 <div className="foto-perfil">
@@ -35,12 +36,14 @@ console.log(detail.categories, "Hay categorias?")
                         {/* <div>{detail.categories?detail.categories[0].category:"Usuario sin categoria"}{detail.qualification}</div> */}
                     </div>
                     <div>
+                        
                         <form className="boton-container">
                             <Link to={`/perfil/editarPerfil/${fullId}`}>
-                                <button className="boton-perfil">Editar Perfil</button>
+                                <button className="manu-boton-perfil">EDITAR PERFIL</button>
                             </Link>
-                            <button>
-                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}>
+                            <button className='manu-boton-perfil'> 
+                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=http://localhost:3001/api/authMPrealizado`}
+                            className='a-boton-mp'>
                                 AUTORIZAR MERCADOPAGO
                             </a>
                             </button>
@@ -59,9 +62,10 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
+                        <button cursor="pointer" className="boton-portfolio">PORTFOLIO</button>
                     </a>
-                    <h2>Skills</h2>
+                    <hr className='hr-white'/>
+                    <h2 className='titulo-linea'>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
                     <div className="keyword-container">
                         {detail.technologies ? detail.technologies.map((e) => {
@@ -69,10 +73,11 @@ console.log(detail.categories, "Hay categorias?")
                         }) : "Sin keywords"}
                     </div>
                 </div>
+                
             </div>
             <div className="trabajos-perfil">
                 <div>
-                    <h1>MIS TRABAJOS</h1>
+                    <h1 className='titulo-linea'>MIS TRABAJOS</h1>
                     <hr className="hr-perfil-verde"></hr>
                 </div>
                 <div>
@@ -88,6 +93,7 @@ console.log(detail.categories, "Hay categorias?")
                     <CardComentario/>
                 </div>
             </div> */}
+        </div> 
         </div>
     )
 }

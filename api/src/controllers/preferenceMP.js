@@ -24,9 +24,9 @@ router.post("/create_preference", async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:3000",
-			"failure": "http://localhost:3000",
-			"pending": "http://localhost:3000"
+			"success": `${process.env.URL_FRONT}`,
+			"failure": `${process.env.URL_FRONT}`,
+			"pending": `${process.env.URL_FRONT}`
 		},
 		auto_return: "approved",
 		marketplace_fee : 5

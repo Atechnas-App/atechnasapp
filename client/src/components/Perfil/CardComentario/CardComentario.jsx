@@ -10,7 +10,7 @@ export default function CardComentario(id){
     const userReviews = useSelector((state)=> state.rootReducer.reviews)
     useEffect(() => {
         dispatch(getReview(id.id))
-    },[dispatch])
+    },[dispatch, id.id])
 
     return(
         <div className="comentario-container">

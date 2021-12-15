@@ -22,10 +22,10 @@ export default function Home(){
 
     return(
         <div className='containerHome'> 
-            <div className='ajustarHome'> 
                 <ScrollUpButton/>
-                <Nav/>
-                <Carousel heightMode="first" enableKeyboardControls="true" autoplay="true">
+                <Nav className='nav-delante'/>
+            <div className='ajustarHome'> 
+                <Carousel heightMode="first" enableKeyboardControls="true" autoplay="true" >
                     <img src={Carrucel1} />
                     <img src={Carrucel2} />
                     <img src={Carrucel3} />

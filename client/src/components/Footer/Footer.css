@@ -1,18 +1,25 @@
 .main-footer-container{
     display: flex;
     flex-direction: column;
+    background:black;
+    border-radius: 0em 0em 1em 1em;
+    padding: 1em;
+    font-size: 0.7em;
+
 }
 
 .upper-footer-container{
     display: flex;
-    justify-content: space-between;
-    margin: 1em;
+    justify-content: space-around;
+    margin: 1em auto;
+    
 }
 
 .down-footer-container{
     display: flex;
     justify-content: space-between;
     margin: 1em;
+    margin-bottom: 0em;
     border-top: solid rgba(255, 255, 255, 0.5) 1px;
 }
 
@@ -41,6 +48,8 @@
 
 .upper-footer-container-center{
     width: 33.3%;
+    
+    
 }
 .upper-footer-container-right{
     width: 33.3%;

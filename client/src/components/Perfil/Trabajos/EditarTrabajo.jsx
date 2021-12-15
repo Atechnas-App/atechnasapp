@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { editJob, getDetailJob} from '../../../actions/actions'
 import Nav from '../../Nav/Nav'
-import "./form.css"
+import "./EditarTrabajo.css"
 
 export default function EditarTrabajo(props){
     const dispatch = useDispatch()
@@ -14,7 +14,7 @@ export default function EditarTrabajo(props){
     
     useEffect(()=>{
         dispatch(getDetailJob(id))
-      },[dispatch,id, detailJobs])
+      },[dispatch,id])
 
    console.log(id, "id editar trabajo")
    console.log(detailJobs.image, "detalle trabajo")
@@ -23,7 +23,7 @@ export default function EditarTrabajo(props){
         image: detailJobs?.image,
         description: detailJobs?.description,
         price: detailJobs?.price,
-        paused: detailJobs?.paused,
+        state: detailJobs?.state,
     })
 console.log(detailJobs, "DETAILS JOBS!")
 //uno
@@ -40,12 +40,12 @@ const loadImg = async (files) => {
     body: formData,
   };
   try {
-{Swal.fire({
+Swal.fire({
     title: 'Cargando imagen',
     onBeforeOpen: () => {
         Swal.showLoading();
         }
-    })}
+    })
 
 
     const res = await fetch(
@@ -54,7 +54,7 @@ const loadImg = async (files) => {
     );
     const res_1 = await res.json();
 console.log(res_1, "RES")
-    {Swal.close()}
+    Swal.close()
     return setEditedJob((prev) => ({
       ...prev,
       image: [...prev.image,res_1.secure_url]
@@ -200,18 +200,19 @@ console.log(res_1, "RES")
 
     return (<div>
       <Nav/>
-      <div className="container">
+      <div className="container-edit">
         <form onSubmit={e => onSubmitEditTrabajo(e)}>
-          <div>
-            <label>Titulo</label>
+          <div className='titulo-edit'>
+            <label className='label-edit-work'>Titulo</label> <br/>
             <input
+              className="input-edit"
               type="text"
               name="title"
               onChange={e => onInputChange(e)}
               value={editedJob.title}
             />
           </div>
-                <input
+          <input
                   type="file"
                   name="image"
                   id="fotoPerfil"
@@ -220,7 +221,7 @@ console.log(res_1, "RES")
                 />
            <div className="images">
                 <div className="foto-perfil-container">
-                <label className="input-label">Imagenes</label>
+                <label  className='label-edit-work'>Imagenes</label>
                 <hr className="hr-perfil-verde"></hr>
              {editedJob?.image? editedJob?.image?.map((img,i) => {
                return (<div>
@@ -254,6 +255,7 @@ console.log(res_1, "RES")
               >
                 Subir
               </button>
+             </div>
              </div>
              {/*  <div className="foto-perfil-container">
                 <label className="input-label">Foto de perfil</label>
@@ -327,38 +329,40 @@ console.log(res_1, "RES")
                   Subir
                 </button>
                 </div> */}
-              </div>
               <div className="desc">
-                <label>Descripcion</label>
+                <label className='label-edit-work'>Descripción</label>
                 <textarea
-                className="descripcion"
+                className="input-edit"
                   name="description"
                   onChange={onInputChange}
                   value={editedJob.description}
                 />
                 </div>
-                <div>
-                <label>Precio</label>
-                <span className="currencyinput">
-                  $      
-                  <input
-                    className="currencyinputPrice"
-                    type="number"
-                    name="price"
-                    value={editedJob.price}
-                    onChange={onInputChange}
-                  />
-                </span>
-                <div>
-                <label>Pausado: </label>
-                <select onChange={onInputSelect}>
+                <div className='flex-edit'>
+                  <div>
+                    <label>Precio: </label>
+                    <span >
+                           
+                      <input
+                        className="input-edit"
+                        placeholder="$"
+                        type="number"
+                        name="price"
+                        value={editedJob.price}
+                        onChange={onInputChange}
+                      />
+                    </span>
+                  </div>
+                  <div>
+                  <label>Estado: </label>
+                <select onChange={onInputSelect} className="input-edit">
                   <option selected disabled>Selecciona una opción:</option>
-                  <option value="true">True</option>
-                  <option value="false">False</option>
+                  <option value="Activo" className='option-edit-work'>Activo</option>
+                  <option value="Pausado" className='option-edit-work'>Pausado</option>
                 </select>
                 </div>
                 </div>
-                <button type="submit">
+                <button type="submit" className='boton-perfil'>
                   Guardar
                 </button>
         </form>

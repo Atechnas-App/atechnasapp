@@ -1,5 +1,9 @@
 import "./Perfil.css"
+<<<<<<< HEAD
 import React, {useState} from "react"
+=======
+import React, { useState } from "react"
+>>>>>>> 845d3495f997f601da812a03fc91daa0e6d8ca5c
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import { getDetails, postReview } from "../../actions/actions";
@@ -45,9 +49,31 @@ useEffect(() => {
 }, [dispatch]);
 
 
+function review (e){
+    e.preventDefault()
+    setReview({
+        ...reviewUser,
+        [e.target.name]: e.target.value,
+       })
+
+}
+
+function onSubmit (e){
+    e.preventDefault()
+    dispatch(postReview(fullId, reviewUser))
+    setReview({
+
+        title:"", qualification:"", coments:""
+        
+       })
+       alert("review creado")
+
+}
     return(
         <div className="perfil-container">
             <Nav/>
+        <div className='container-info-perfil'> 
+            
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
@@ -69,7 +95,7 @@ useEffect(() => {
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
+                    <button cursor="pointer" className="boton-portfolio">PORTFOLIO</button>
                     </a>
                     <h2>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
@@ -105,6 +131,7 @@ useEffect(() => {
                     <CardComentario id={fullId}/>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

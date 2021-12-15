@@ -1,11 +1,16 @@
 .containerNav{
     display: flex;
     justify-content: space-between;
-    padding: 1em;
+    padding: 1em 2em;
+   
+    background: rgba(0, 0, 0, 0.212);
+    backdrop-filter: blur(8px);
+    border-bottom: solid 1px #9325d769;
+    border-top: solid 1px #52be84;
     
 }
 
-.nav{
+.containerNav{
   margin-bottom: 1em;
 }
 
@@ -25,6 +30,7 @@
 .nombreLogo{
     font-size: 2.5em;
     animation-name: atechnas;
+    margin: 0.1em;
     animation-iteration-count: infinite;
     animation-duration: 2s;
     color: white;
@@ -62,33 +68,82 @@
 
 ul{
   list-style: none;
+  transition: ease 1s;
+}
+
+
+
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+ 
+ 
   
 }
 
 
-.nav li Link{
-background-color: #000;
-color: #fff;
-text-decoration: none;
-padding: 10px 15px;
-display: block;
-}
-.nav li Link:hover{
-  background-color: #434343;
-   
-}
-.nav >li{
-  float: left;
-
-}
-
-.nav li ul{ 
+.dropdown-content {
   display: none;
-  position: relative;
-  min-width: 140px;
+  background: #ffffff57;
+  backdrop-filter: blur(3px);
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  position: absolute;
+  right: 0.2em;
+  border-radius: 1em;
 }
 
-.nav li:hover > ul{
-  display: contents;
-  transition: ease 0.3s;
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 12px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+
+.dropdown-content a:hover {background: #ddd;
+                            color: black;
+                            border-radius: 1em;}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  
+}
+
+
+/* .dropdown:hover .dropbtn {background: #3e8e41;} */
+
+.cursor{
+  cursor: pointer;
+}
+
+.imgUser{
+  border-radius: 50%;
+  
+}
+
+.img-border{
+  border-radius: 50%;
+  padding: 0.2em;
+  border: solid 1px white;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.3em;
+}
+
+.flex-searchbar{
+  display:flex;
+  
 }

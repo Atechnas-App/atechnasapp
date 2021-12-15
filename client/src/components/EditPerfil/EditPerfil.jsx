@@ -164,7 +164,7 @@ export default function EditPerfil(props) {
   return (
     <div className="edit-perfil-container">
       <Nav />
-      
+    <div className='container-info-edit-perfil'>
       <h1 className='h1-edit'>PERFIL</h1>
       <hr className="hr-perfil-violeta"></hr>
       <div className="form-container">
@@ -325,6 +325,7 @@ export default function EditPerfil(props) {
                             value={e.languages}
                             key={e.languages}
                             name="languages"
+                            className='option-edit'
                           >
                             {e.languages}
                           </option>
@@ -432,6 +433,7 @@ export default function EditPerfil(props) {
           </form>
         </div>
         
+      </div>
       </div>
     </div>
   );
