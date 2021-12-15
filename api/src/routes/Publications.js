@@ -73,6 +73,7 @@ router.post('/newPublication/:userid', async (req, res) => {
 
 router.put('/addPublication/:userid/:idPublication', async (req, res) => {
     const { userid, idPublication } = req.params
+    const { text } = req.body
     const busquedauser = await User.findOne({ where: { id: userid } })
     const validaPublication = await Publication.findOne({ where: { id: idPublication } })
     const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
@@ -80,7 +81,7 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Alguien quiere trabajar contigo",
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento  </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>`
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento  </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>\n\n ${text}`,
     }
     if (validaPublication) {
         transporter.sendMail(mailOptions, (error, info) => {
@@ -100,6 +101,7 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
 
 router.put('/removePublication/:userid/:idPublication', async (req, res) => {
     const { userid, idPublication } = req.params
+    const { text } = req.body
     const busquedauser = await User.findOne({ where: { id: userid } })
     const validaPublication = await Publication.findOne({ where: { id: idPublication } })
     const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
@@ -107,7 +109,7 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Has decidido no trabajar con " + busquedauser.name,
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a>`
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a> \n\n ${text}`
     }
     const mailOptionsDelete = {
         from: "Atechnas",
