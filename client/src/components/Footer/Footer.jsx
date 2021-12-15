@@ -11,7 +11,7 @@ export default function Footer(){
     return (
         <div className="main-footer-container">
             <div className="upper-footer-container">
-                <div className="upper-footer-container-left">
+                <div className="upper-footer-container-left box-footer">
                     <h1 className="footer-title">Más información</h1>
                     <hr className="hrPresentationFooter"></hr>
                     <Link to="/sobreNosotros" >
@@ -27,7 +27,7 @@ export default function Footer(){
                         <h3 className="h-text">Terminos y Condiciones</h3>
                     </Link>
                 </div>
-                <div className="upper-footer-container-center">
+                <div className="upper-footer-container-center box-footer">
                     
                     <h1 className="footer-title">Contactanos</h1>
                     
@@ -37,7 +37,7 @@ export default function Footer(){
                         <h3 className="h-text">atechnasapp@gmail.com</h3>
                     </a>
                 </div>
-                <div className="upper-footer-container-right">
+                <div className="upper-footer-container-right box-footer">
                     <h1 className="footer-title">Empresas que nos apoyan</h1>
                     <hr className="hrPresentationFooter"></hr>
                     <a href="https://www.soyhenry.com/" target="_blank">
