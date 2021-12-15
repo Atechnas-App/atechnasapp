@@ -1,8 +1,8 @@
 import "./Perfil.css"
-import React from "react"
+import React, {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import { getDetails } from "../../actions/actions";
+import { getDetails, postReview } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 import { Link } from "react-router-dom";
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
@@ -11,11 +11,31 @@ import CardComentario from "./CardComentario/CardComentario"
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
+const [reviewUser, setReview] = useState({title:"", qualification:"", coments:""});
 const {id} = JSON.parse(localStorage.getItem("user")); 
 const id1 = localStorage.getItem('idgit')
-console.log(id1)
+
 
 let fullId = props.match.params.id
+
+function review (e){
+    e.preventDefault()
+    setReview({
+        ...reviewUser,
+        [e.target.name]: e.target.value,
+       })
+
+}
+
+function coments (e){
+    e.preventDefault()
+    dispatch(postReview(reviewUser, fullId))
+    setReview({
+        title:"", qualification:"", coments:""
+        
+       })
+
+}
 
 useEffect(() => {
     dispatch(getDetails(fullId, id1))
@@ -70,7 +90,14 @@ useEffect(() => {
             <div>
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>
+                    
                 </div>
+                <form onSubmit={coments}>
+                    <input type="text" name="titulo" placeholder="Titulo" onChange={review}/>
+                    <input type="text" name="comentario" placeholder="Comentario" onChange={review}/>
+                    <input type="number" name="calificacion" placeholder="calificacion" onChange={review}/>
+                    <button onSubmit={coments}type="submit">Enviar</button>
+                </form>
                 <div>
                     <CardComentario id={fullId}/>
                 </div>

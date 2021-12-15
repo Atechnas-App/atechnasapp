@@ -19,7 +19,7 @@ const history = useHistory()
         price:'',
         paused:false
     })
-console.log(formulary)
+
 //uno
 const loadImg = async (files) => {
   const reader = new FileReader();
