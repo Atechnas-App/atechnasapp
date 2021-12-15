@@ -281,6 +281,7 @@ export function getDetails(id) {
 
  export function editProfile(id, payload){
       return async function(){
+        console.log(id, "id EDIT PROFILE")
     const editedProfile = await axios.put(`/api/profile/` + id, payload)
       return editedProfile
    }
