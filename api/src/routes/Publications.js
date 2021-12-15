@@ -80,7 +80,10 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Alguien quiere trabajar contigo",
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento  </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>`
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name}
+        le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion,
+        indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento
+        </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>`
     }
     if (validaPublication) {
         transporter.sendMail(mailOptions, (error, info) => {
