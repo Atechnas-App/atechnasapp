@@ -108,7 +108,6 @@ export function getGithubUserInfo() {
     const githubUserInfo = await axios(
       "http://localhost:3001/api/login/success"
     );
-    console.log("action",githubUserInfo)
     localStorage.setItem("user", JSON.stringify(githubUserInfo.data.user));
 
   

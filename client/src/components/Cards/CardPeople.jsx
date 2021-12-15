@@ -3,7 +3,7 @@ import './CardPeople.css'
 //Card de cada uno 
 export default function CardPeople({profilePicture,lastName, name, technology,qualification, id, categories}){
     
-    localStorage.setItem('idgit', id)
+    /* localStorage.setItem('idgit', id) */
     /* localStorage.setItem("name", name)
     localStorage.setItem("photo", profilePicture) */
     return(

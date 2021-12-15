@@ -17,11 +17,20 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-{
+   
+  const usergithub = await User.findOne({ 
+    where: {
+      email: _json.email
+    }
+  })
+
+    {
   info
-  info.email = _json.email
+  info.id = usergithub.dataValues.id
+  info.name = usergithub.dataValues.name 
+  info.profilePicture = usergithub.dataValues.profilePicture 
 }
-    /* console.log(_json) */
+  console.log(usergithub.dataValues)
     try{
       let user = await User.findOrCreate({
         where: {

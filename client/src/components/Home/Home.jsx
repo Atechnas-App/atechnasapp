@@ -24,12 +24,14 @@ export default function Home(){
     const dispatch = useDispatch();
     
 useEffect(() => {
-    dispatch(getGithubUserInfo());
+    dispatch(getGithubUserInfo());       
+}, [dispatch]);
 
-}, [dispatch]);
-useEffect(() => {
-    dispatch(getUser(email))
-}, [dispatch]);
+
+
+
+/* localStorage.setItem("user", JSON.stringify({email})); */
+
 
     const search = useSelector((state)=> state.rootReducer.search)
 
