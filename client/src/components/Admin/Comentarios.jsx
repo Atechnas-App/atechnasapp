@@ -21,6 +21,7 @@ export default function Comentarios(){
     return(
         <div>
             <h1>Comentarios</h1>
+            <hr className='hr-perfil-violeta'></hr>
             <div>
                 {
                     comentarios && comentarios.map(c => {

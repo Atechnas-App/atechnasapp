@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteTestimonial, getTestimonials, postTestimonial } from '../../actions/actions';
+import "./Testimonials.css"
 
 
 export default function Testimonials(){
@@ -47,36 +48,57 @@ export default function Testimonials(){
     }
     console.log(testimonials[0]?.id)
     return (
-        <div>
+        <div className='testimonio-container-admin'>
+            <div className='crear-testimonio-container'>
+            <h1>Crear Testimonio</h1>
+            <hr className='hr-perfil-violeta'></hr>
+            <form onSubmit={(e) => onSubmit(e)}>
+                <div className='input-label-testimonio'>
+                    <label className="label-testimonio" to="name">Nombre: </label>
+                    <hr className="hr-perfil-verde"></hr>
+                    <input className="input-testimonio" type="text" name="name" onChange={(e) => onHandleChange(e)}value={newTestimonial.name}/>
+                </div>
+                <div className='input-label-testimonio'>
+                    <label className="label-testimonio" to="company">Compania: </label>
+                    <hr className="hr-perfil-verde"></hr>
+                    <input className="input-testimonio" type="text" name="company" onChange={(e) => onHandleChange(e)}value={newTestimonial.company}/>
+                </div>
+                <div className='input-label-testimonio'>
+                    <label className="label-testimonio" to="details">Detalles: </label>
+                    <hr className="hr-perfil-verde"></hr>
+                    <textarea className="input-testimonio" type="text" name="details" onChange={(e) => onHandleChange(e)}value={newTestimonial.details}/>
+                </div>
+                <div className='input-label-testimonio'>
+                    <label className="label-testimonio" to="image">Foto de perfil: </label>
+                    <hr className="hr-perfil-verde"></hr>
+                    <input className="input-testimonio" type="text" name="image" onChange={(e) => onHandleChange(e)}value={newTestimonial.image}/>
+                </div>
+                <div>
+                    <button className='button-testimonio-admin' type="submit">Guardar</button>
+                </div>
+            </form>
+            </div>
+            <div className='crear-testimonio-container'>
             <h1>Testimonios</h1>
+            <hr className='hr-perfil-violeta'></hr>
+            <div className='testimonio-creado-container'>
             {
                 testimonials?.map(testimonial => {
-                    return(<div>
+                    return(
+                    <div className='testimonio-creado'>
                         <div>
                             <h3>{testimonial.name}</h3>
                             <h3>{testimonial.company}</h3>
                             <p>{testimonial.details}</p>
                         </div>
                         <div>
-                            <button type="button" onClick={e => onDelete(e,testimonial.id)}>X</button>
+                            <button className='boton-perfil-admin' type="button" onClick={e => onDelete(e,testimonial.id)}>Eliminar</button>
                         </div>
                     </div>
                     )
                 })
             }
-            <div>
-            <h2>Crear Testimonio</h2>
-            <form onSubmit={(e) => onSubmit(e)}>
-                <label to="name">Nombre:</label>
-                <input type="text" name="name" onChange={(e) => onHandleChange(e)}value={newTestimonial.name}/>
-                <label to="company">Compania:</label>
-                <input type="text" name="company" onChange={(e) => onHandleChange(e)}value={newTestimonial.company}/>
-                <label to="details">Detalles:</label>
-                <input type="text" name="details" onChange={(e) => onHandleChange(e)}value={newTestimonial.details}/>
-                <label to="image">Foto de perfil:</label>
-                <input type="text" name="image" onChange={(e) => onHandleChange(e)}value={newTestimonial.image}/>
-                <button type="submit">Guardar</button>
-            </form>
+            </div>
             </div>
             
         </div>
