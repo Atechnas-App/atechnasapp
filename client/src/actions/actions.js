@@ -300,7 +300,7 @@ export function getDetails(id) {
    return async function(dispatch){
      console.log(id.id,"id jobs")
      const getJobs = await axios(`/api/PublicationsUser/`+id.id);
-     console.log(getJobs.data, "getjobs")
+     console.log(getJobs, "getjobs")
      return dispatch({
        type: GET_JOBS,
        payload: getJobs.data

@@ -15,6 +15,23 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+router.get('/PublicationsUser/:userid', async (req, res) => {
+    try {
+        const { userid } = req.params
+        const publications = await Publication.findAll({
+            where: {
+                createdBy: userid
+            },
+            include: {
+                all: true
+            }
+        })
+        res.status(200).send(publications)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.post('/newPublication/:userid', async (req, res) => {
     try {
         const { userid } = req.params
