@@ -5,10 +5,6 @@ export default function EstadoUsario({profilePicture, name, lastName, status}){
         <div>
             <img src={profilePicture} alt="img not found"></img>
             <h3>{name} {lastName}</h3>
-            <form>
-                <label>Estado</label>
-                <select></select>
-            </form>
         </div>
     )
 }
