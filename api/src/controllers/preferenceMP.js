@@ -2,18 +2,20 @@ require("dotenv").config();
 const express = require('express')
 const router = express.Router();
 const mercadopago = require('mercadopago')
-const { User } = require('../db')
-const axios = require('axios')
+const { User, Payments } = require('../db')
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+};
 
 
 
 router.post("/create_preference", async (req, res) => {
-    const prestador = await User.findByPk(req.query.id, { raw: true})
+	const prestador = await User.findByPk(req.query.id, { raw: true })
 	console.log(req.query.id)
-    mercadopago.configure({
-        access_token: prestador.access_token,
-    });
-    const {quantity, price, description} = req.body
+	mercadopago.configure({
+		access_token: prestador.access_token,
+	});
+	const { quantity, price, description } = req.body
 
 	let preference = {
 		items: [
@@ -24,12 +26,12 @@ router.post("/create_preference", async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": `${process.env.URL_FRONT}`,
-			"failure": `${process.env.URL_FRONT}`,
-			"pending": `${process.env.URL_FRONT}`
+			"success": "http://localhost:3001/api/feedback",
+			"failure": "http://localhost:3001/api/feedback",
+			"pending": "http://localhost:3001/api/feedback"
 		},
 		auto_return: "approved",
-		marketplace_fee : 5
+		marketplace_fee: 5
 	};
 	await mercadopago.preferences.create(preference)
 		.then(function (response) {
@@ -39,12 +41,27 @@ router.post("/create_preference", async (req, res) => {
 		});
 });
 
-router.get('/feedback', function(req, res) {
-	res.json({
-		Payment: req.query.payment_id,
-		Status: req.query.status,
-		MerchantOrder: req.query.merchant_order_id
-	});
+router.get('/feedback', async function (req, res) {
+	const { payment_id, status, payment_type, merchant_order_id, preference_id, site_id, processing_mode, merchant_account_id } = req.query
+	try {
+		await Payments.findOrCreate({
+			where: {
+				payment_id: payment_id,
+				status: status,
+				payment_type: payment_type,
+				merchant_order_id: merchant_order_id,
+				preference_id: preference_id,
+				site_id: site_id,
+				processing_mode: processing_mode,
+				merchant_account_id: merchant_account_id
+			}
+		})
+	}
+	catch (err) {
+		console.log(err)
+	}
+
+	res.redirect(process.env.URL_FRONT)
 });
 
 module.exports = router

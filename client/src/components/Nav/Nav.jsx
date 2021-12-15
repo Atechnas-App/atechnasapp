@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails, logoutAll } from "../../actions/actions";
 
+
 export default function Nav(props) {
   /* let fullId = props?.match?.params?.id; */
   const detail = useSelector((state) => state.rootReducer.details);
@@ -38,6 +39,7 @@ export default function Nav(props) {
       <Link to="/">
         <h1 className="nombreLogo">ATECHNAS</h1>
       </Link>
+      <div className='flex-searchbar'>
       <SearchBar></SearchBar>
 
       {!name ?(
@@ -74,7 +76,34 @@ export default function Nav(props) {
 </li>              
           </ul>
           </div>
+
+//         <div className='div-nav'>
+//         <img
+//               className="imgUser"
+//               src={photo ? photo : photo1}
+//               alt="imagen usuario"
+//               width="100vw"
+//               heigth="100vh"
+//             />
+//         <ul className="ul-nav">
+// <li>{name ? name : name1}
+// <ul>
+// <li>
+//     <Link to={"/miPerfil/" + id}>
+//       <button style={{ textDecoration: "none" }}>Perfil</button>
+//     </Link>
+//   </li>
+//   <li>
+//     <button onClick={handleLogout}>cerrar sesion</button>
+//   </li>
+// </ul>
+
+// </li>              
+//           </ul>
+//           </div>
       )}
+    </div>
+   
     </div>
   );
 }

@@ -18,7 +18,7 @@ export const InvitedRoute = () => {
   
   const local = JSON.parse(localStorage.getItem("user"))
   // const isAdmin = localStorage.getItem("isAdmin");
-
+  // const githubUser = JSON.parse(localStorage.getItem("idgit"))
   return (
     <Switch>
       {/* RUTAS PUBLICAS */}
@@ -31,7 +31,10 @@ export const InvitedRoute = () => {
       <Route exact path="/contactanos" component={Contactanos}/>
       <Route exact path="/terms" component={Terms}/>
       <Route exact path='/contactanos' component={Contactanos}/>
-
+      <Route exact path="/Admin/testimonios" component={Testimonials}/>
+      <Route exact path="/Admin/menu" component={ControlPanel}/>
+      <Route exact path="/Admin/publicaciones" component={Publications}/>
+      <Route exact path="/Admin/login" component={LoginAdmin}/>
 
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
 

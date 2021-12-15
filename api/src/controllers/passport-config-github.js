@@ -1,4 +1,6 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+};
 const GithubStrategy = require('passport-github2').Strategy
 const passport = require('passport')
 const { Router } = require("express");

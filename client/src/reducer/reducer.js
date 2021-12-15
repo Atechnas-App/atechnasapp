@@ -7,6 +7,7 @@ const initialState = {
     users:[],
     search:[],
     categories:[],
+    reviews:[],
     // filteredUsers:[],
     technologie:[],
     details:[],
@@ -19,7 +20,9 @@ const initialState = {
     jobs: [],
     testimonials:[],
     detailJob:[],
-    authMP: []
+    authMP: [],
+    allJobs: [],
+    allReviews: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -124,6 +127,24 @@ export default function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         detailJob: action.payload
+                    }
+
+                case GET_ALL_JOBS:
+                    return{
+                        ...state,
+                        allJobs: action.payload
+                    }
+
+                case GET_REVIEWS:
+                    return {
+                        ...state,
+                        reviews: action.payload
+                    }
+
+                case GET_ALL_REVIEWS:
+                    return {
+                        ...state,
+                        allReviews: action.payload
                     }
 
                 default:

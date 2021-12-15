@@ -1,8 +1,8 @@
 import "./Perfil.css"
-import React from "react"
+import React, { useState } from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import { getDetails } from "../../actions/actions";
+import { getDetails, postReview } from "../../actions/actions";
 import Nav from "../Nav/Nav"
 
 import CardTrabajo from "./CardTrabajo/CardTrabajo"
@@ -11,21 +11,40 @@ import CardComentario from "./CardComentario/CardComentario"
 export default function Perfil(props){
 const dispatch = useDispatch()
 const detail = useSelector((state) => state.rootReducer.details)
-/* const {id} = JSON.parse(localStorage.getItem("user")) */; 
-const id1 = localStorage.getItem('idgit')
-console.log(id1)
+const {id} = JSON.parse(localStorage.getItem("user")); 
+
 
 let fullId = props.match.params.id
 
 useEffect(() => {
-    dispatch(getDetails(fullId, id1))
-}, [dispatch, fullId, id1]);
-console.log(detail )
-console.log(detail.categories, "Hay categorias?")
+    dispatch(getDetails(fullId, id))
+}, [dispatch, fullId, id]);
 
+function review (e){
+    e.preventDefault()
+    setReview({
+        ...reviewUser,
+        [e.target.name]: e.target.value,
+       })
+
+}
+
+function onSubmit (e){
+    e.preventDefault()
+    dispatch(postReview(fullId, reviewUser))
+    setReview({
+
+        title:"", qualification:"", coments:""
+        
+       })
+       alert("review creado")
+
+}
     return(
         <div className="perfil-container">
             <Nav/>
+        <div className='container-info-perfil'> 
+            
             <h1>SOBRE MI</h1>
             <hr className="hr-perfil-verde"></hr>
             <div className="datos-perfil">
@@ -47,7 +66,7 @@ console.log(detail.categories, "Hay categorias?")
                     </div>
                     <p className="descripcion-texto">{detail.description}</p>
                     <a href={detail.portfolio}>
-                        <button cursor="pointer" className="boton-perfil">Portfolio</button>
+                    <button cursor="pointer" className="boton-portfolio">PORTFOLIO</button>
                     </a>
                     <h2>Skills</h2>
                     <hr className="hr-perfil-violeta"></hr>
@@ -72,10 +91,17 @@ console.log(detail.categories, "Hay categorias?")
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>
                 </div>
+                <form onSubmit={e => onSubmit(e)}>
+                    <input type="text" value={reviewUser.title} name="title" placeholder="Titulo" onChange={e => review(e)}/>
+                    <input type="text" value={reviewUser.coments} name="coments" placeholder="Comentario" onChange={e => review(e)}/>
+                    <input type="number" value={reviewUser.qualification} name="qualification" placeholder="calificacion" onChange={e => review(e)}/>
+                    <button type="submit">Enviar</button>
+                </form>
                 <div>
-                    <CardComentario/>
+                    <CardComentario id={fullId}/>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
