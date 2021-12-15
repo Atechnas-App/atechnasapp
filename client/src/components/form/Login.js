@@ -52,7 +52,7 @@ const {auth,msgError1} = useSelector((state) => state.logued);
     }
   }
   const handleGithubLogin = () => {
-    window.open('https://atechnas-api.herokuapp.com/api/github', '_self') // si funciona deployado seria un golazo
+    window.open('https://atechnas-api.herokuapp.com/api/github'/* , '_self' */) // si funciona deployado seria un golazo
     // dispatch(getGithubUserInfo())
   }
 
