@@ -1,11 +1,27 @@
 import "./CardComentario.css"
+import { getReview } from '../../../actions/actions'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function CardComentario(){
+export default function CardComentario(id){
+    console.log("review 12 ",id)
+
+    const dispatch = useDispatch();
+    const userReviews = useSelector((state)=> state.rootReducer.reviews)
+    useEffect(() => {
+        dispatch(getReview(id.id))
+    },[dispatch])
+
     return(
         <div className="comentario-container">
-            <h2 className="comentario-usuario">Usuario</h2>
-            <h3 className="comentario-empresa">Empresa</h3>
-            <p className="comentario-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor placeat saepe omnis culpa eos aliquid sapiente exercitationem, ut aperiam atque sequi error facilis vitae, iste debitis, sint hic repellat. Aperiam?</p>
+            
+            <div>
+                {userReviews && userReviews?.map(e =>{
+                    return (<div>
+                    <p className="comentario-usuario">{e.title}</p>
+                    <p className="comentario-empresa">{e.qualification}</p>
+                    <p className="comentario-text">{e.coments}</p> </div>)})}
+            </div>
         </div>
     )
 }

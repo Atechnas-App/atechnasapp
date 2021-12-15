@@ -1,5 +1,5 @@
 
-import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, DETAIL_JOB, GET_ALL_JOBS} from "../actions/types";
+import { GET_USER, SEARCH, CATEGORY_FILTER, DEVELOPER, DESIGN, MARKETING, GET_TECHNOLOGIES, FILTER, TECHNOLOGY_FILTER, GET_CATEGORIES, POST_USER, GET_DETAILS, GET_LANGUAGES, GET_JOBS, GET_TESTIMONIALS, DETAIL_JOB, GET_ALL_JOBS, GET_REVIEWS} from "../actions/types";
 
 
 
@@ -7,6 +7,7 @@ const initialState = {
     users:[],
     search:[],
     categories:[],
+    reviews:[],
     // filteredUsers:[],
     technologie:[],
     details:[],
@@ -131,6 +132,12 @@ export default function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         allJobs: action.payload
+                    }
+
+                case GET_REVIEWS:
+                    return {
+                        ...state,
+                        reviews: action.payload
                     }
 
                 default:

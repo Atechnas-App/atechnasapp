@@ -15,6 +15,7 @@ export const DESIGN = 'DESIGN'
 export const MARKETING = 'MARKETING'
 export const DETAIL_JOB = 'DETAIL_JOB'
 export const GET_ALL_JOBS = 'GET_ALL_JOBS'
+export const GET_REVIEWS = 'GET_REVIEWS'
 
 
 
