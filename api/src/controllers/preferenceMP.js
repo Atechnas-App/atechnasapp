@@ -2,18 +2,20 @@ const express = require('express')
 const router = express.Router();
 const mercadopago = require('mercadopago')
 const { User, Payments } = require('../db')
-const axios = require('axios')
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+};
 
 
 
 
 router.post("/create_preference", async (req, res) => {
-    const prestador = await User.findByPk(req.query.id, { raw: true})
+	const prestador = await User.findByPk(req.query.id, { raw: true })
 	console.log(req.query.id)
-    mercadopago.configure({
-        access_token: prestador.access_token,
-    });
-    const {quantity, price, description} = req.body
+	mercadopago.configure({
+		access_token: prestador.access_token,
+	});
+	const { quantity, price, description } = req.body
 
 	let preference = {
 		items: [
@@ -55,11 +57,11 @@ router.get('/feedback', async function (req, res) {
 			}
 		})
 	}
-	catch(err){
+	catch (err) {
 		console.log(err)
 	}
 
-	res.redirect('http://localhost:3000')
+	res.redirect(process.env.URL_FRONT)
 });
 
 module.exports = router

@@ -1,4 +1,6 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+};
 const GithubStrategy = require('passport-github2').Strategy
 const passport = require('passport')
 const { Router } = require("express");
@@ -16,7 +18,6 @@ passport.use(new GithubStrategy({
   async function (accessToken, refreshToken, profile, done) {
     // done(null, profile)
     const { _json } = profile
-    console.log(_json)
     try{
       let user = await User.findOrCreate({
         where: {
