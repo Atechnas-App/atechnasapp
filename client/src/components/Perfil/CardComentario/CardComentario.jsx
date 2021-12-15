@@ -8,7 +8,6 @@ export default function CardComentario(id){
 
     const dispatch = useDispatch();
     const userReviews = useSelector((state)=> state.rootReducer.reviews)
-    console.log("review 2 ",userReviews)
     useEffect(() => {
         dispatch(getReview(id.id))
     },[dispatch])

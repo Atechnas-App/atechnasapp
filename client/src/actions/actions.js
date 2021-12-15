@@ -302,14 +302,12 @@ export function getDetails(id) {
  export function postJobs(id, payload) {
    return async function(){
      const newJob = await axios.post(`http://localhost:3001/api/newPublication/` + id , payload ) 
-     console.log(payload, "actions");
      return newJob
    }
  }
 
  export function getDetailJob(id){
    return async function(dispatch){
-     console.log(id, "ID GET DETALLE DEL TRABAJO")
      const detailJob = await axios.get("http://localhost:3001/api/Publications/"+id)
      return dispatch({
       type: DETAIL_JOB,
@@ -320,8 +318,6 @@ export function getDetails(id) {
 
  export function editJob(id, payload){
    return async function(){
-     console.log(id, "EDIT JOB ID")
-     console.log(payload, "EDIT JOB PAYLOAD")
      const editedJob = await axios.put("http://localhost:3001/api/modPublication/"+ id,payload)
      return editedJob
    }
@@ -337,9 +333,10 @@ export function getDetails(id) {
    }
  }
 
- export function postReview(payload, userId) {
+ export function postReview(userId, payload ) {
   return async function(){
-    const newReview = await axios.post(`http://localhost:3001/api/review/`+ userId, payload )
+    console.log("review echa", payload,userId )
+    const newReview = await axios.post("http://localhost:3001/api/review/"+ userId, payload )
     
     return newReview
   }

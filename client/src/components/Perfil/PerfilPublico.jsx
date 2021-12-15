@@ -17,6 +17,7 @@ const id1 = localStorage.getItem('idgit')
 
 
 let fullId = props.match.params.id
+console.log("soy id de review",fullId)
 
 function review (e){
     e.preventDefault()
@@ -27,13 +28,15 @@ function review (e){
 
 }
 
-function coments (e){
+function onSubmit (e, fullId){
     e.preventDefault()
-    dispatch(postReview(reviewUser, fullId))
+    dispatch(postReview(fullId, reviewUser))
     setReview({
+
         title:"", qualification:"", coments:""
         
        })
+       alert("review creado")
 
 }
 
@@ -92,11 +95,11 @@ useEffect(() => {
                     <hr className="hr-perfil-verde"></hr>
                     
                 </div>
-                <form onSubmit={coments}>
-                    <input type="text" name="titulo" placeholder="Titulo" onChange={review}/>
-                    <input type="text" name="comentario" placeholder="Comentario" onChange={review}/>
-                    <input type="number" name="calificacion" placeholder="calificacion" onChange={review}/>
-                    <button onSubmit={coments}type="submit">Enviar</button>
+                <form onSubmit={e => onSubmit(e)}>
+                    <input type="text" value={reviewUser.title} name="title" placeholder="Titulo" onChange={e => review(e)}/>
+                    <input type="text" value={reviewUser.coments} name="coments" placeholder="Comentario" onChange={e => review(e)}/>
+                    <input type="number" value={reviewUser.qualification} name="qualification" placeholder="calificacion" onChange={e => review(e)}/>
+                    <button type="submit">Enviar</button>
                 </form>
                 <div>
                     <CardComentario id={fullId}/>
