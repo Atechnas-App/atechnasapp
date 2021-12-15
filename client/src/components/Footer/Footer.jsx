@@ -29,7 +29,7 @@ export default function Footer(){
                 </div>
                 <div className="upper-footer-container-center">
                     
-                        <h1 className="footer-title">Contactanos</h1>
+                    <h1 className="footer-title">Contactanos</h1>
                     
                     <hr className="hrPresentationFooter"></hr>
                     <h3 className="h-text">0800-888-Atechnas</h3>

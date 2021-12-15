@@ -1,5 +1,6 @@
 import './Contactanos.css'
-import foto from '../../assets/img/github-10-xxl.png'
+import foto from '../../assets/img/github.png'
+import linkedin from '../../assets/img/linkedin.png'
 import Nav from '../Nav/Nav'
 
 
@@ -17,9 +18,9 @@ export default function Contactanos(){
                         width='150px'
                         height='150px'
                         className='img-contactanos'/> 
-                        <div className='block'>
-                            <a href='https://github.com/VictoriaBozzola' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                            <a href='https://www.linkedin.com/in/maria-victoria-bozzola/' target='_blank'>LinkedIn</a>
+                        <div className='links-contactanos'>
+                            <a href='https://github.com/VictoriaBozzola' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                            <a href='https://www.linkedin.com/in/maria-victoria-bozzola/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                         </div>
                         
                     
@@ -32,9 +33,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/> 
-                    <div>
-                        <a href='https://github.com/gongoody' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/godoygonzalo/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/gongoody' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/godoygonzalo/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
                 <div className="card-contactanos">
@@ -45,9 +46,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/>
-                    <div>
-                        <a href='https://github.com/olarteandres' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/andres-e-olarte/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/olarteandres' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/andres-e-olarte/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div> 
                 </div>
                 <div className="card-contactanos">
@@ -58,9 +59,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/> 
-                    <div>
-                        <a href='https://github.com/NatiMaiparsi' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/natalia-maiparsi/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/NatiMaiparsi' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/natalia-maiparsi/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
                 <div className="card-contactanos">
@@ -72,9 +73,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/>
-                    <div>
-                        <a href='https://github.com/LukeMatias' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/lucasmatiasba/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/LukeMatias' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/lucasmatiasba/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
                 <div className="card-contactanos">
@@ -85,9 +86,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/> 
-                    <div>
-                        <a href='https://github.com/tomasignacioc' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/tomascontreras-fsd/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/tomasignacioc' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/tomascontreras-fsd/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
                 <div className="card-contactanos">
@@ -98,9 +99,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/> 
-                    <div>
-                        <a href='https://github.com/Erick-Rangel' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/erick-rangel-desarrollador-frontend/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/Erick-Rangel' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/erick-rangel-desarrollador-frontend/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
                 <div className="card-contactanos">
@@ -111,9 +112,9 @@ export default function Contactanos(){
                     width='150px'
                     height='150px'
                     className='img-contactanos'/> 
-                    <div>
-                        <a href='https://github.com/wdalvarezc' target='_blank'><img src={foto} width='70px' height='70px'/></a>
-                        <a href='https://www.linkedin.com/in/williamdavidalvarez/' target='_blank'>LinkedIn</a>
+                    <div className='links-contactanos'>
+                        <a href='https://github.com/wdalvarezc' target='_blank' className='a-contactanos'><img src={foto} width='50px' height='50px'/></a>
+                        <a href='https://www.linkedin.com/in/williamdavidalvarez/' target='_blank' className='a-contactanos'><img src={linkedin} width='50px' height='50px'/></a>
                     </div>
                 </div>
             </div>

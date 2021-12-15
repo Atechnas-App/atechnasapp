@@ -17,7 +17,7 @@ const history = useHistory()
         image:[],
         description:'',
         price:'',
-        paused:false
+        state:"Activo"
     })
 console.log(formulary)
 //uno
@@ -183,7 +183,7 @@ const loadImg2 = async (files) => {
                image: [],
                description: '',
                price:'',
-               paused: false
+               state: 'Activo'
            })
            }
           })
@@ -206,13 +206,14 @@ const loadImg2 = async (files) => {
     return (
       <div className='form-conatiner-trabajo'>
       <Nav/>
-      <div className="container">
+      <div className="container-crear">
         <form onSubmit={onSubmitTrabajos}>
           <div className="title">
-            <h1 className='h1-titulo-trabajo'>Título del trabajo</h1>
-            <hr className='hr-perfil-verde'></hr>
-            <input className="inputTitle" type="text" name="title" onChange={onInputChange} value={formulary.title}/>
+            <label className='label-edit-work'>Título del trabajo</label>
+            
+            <input className="input-edit" type="text" name="title" onChange={onInputChange} value={formulary.title}/>
           </div>
+          <label className='label-edit-work img-form'>Imagenes</label>
             <div className="images">
               <div className="foto-perfil-container">
                 <input type="file" name="image" id="fotoPerfil" style={{ display: "none" }} onChange={(e) => loadImg(e.target.files[0])}/>
@@ -237,25 +238,24 @@ const loadImg2 = async (files) => {
               </div>
             </div>
             <div className="descripcion-container">
-              <h1 className='h1-descripcion-trabajo'>Descripcion del trabajo</h1>
-              <hr className='hr-perfil-verde'></hr>
-              <textarea className="descripcion-trabajo" name="description" onChange={onInputChange} value={formulary.description}/>
+            <label  className='label-edit-work'>Descripción</label>
+              
+              <textarea className="input-edit" name="description" onChange={onInputChange} value={formulary.description}/>
             </div>
             <div>
-              <h1 className='h1-descripcion-trabajo'>Precio</h1>
-              <hr className='hr-perfil-verde'></hr>
-              <span className="currencyinput">$</span>
-              <input className="precio-trabajo-edit" min="0" type="number" name="price" value={formulary.price} onChange={onInputChange}/>
+            <label  className='label-edit-work'>Precio</label>
+              
+              <input placeholder='$'  className="input-edit precio-form" min="0" type="number" name="price" value={formulary.price} onChange={onInputChange}/>
             </div>
             <div className="botons">
-              <button type="submit" className="boton-perfil" onClick={onSubmitTrabajos}>
-                Guardar
-              </button>
               <Link to={"/perfil/edit/"+ id}>
                 <button className="boton-perfil" type="submit">
                   Regresar
                 </button>
               </Link>
+              <button type="submit" className="boton-perfil" onClick={onSubmitTrabajos}>
+                Guardar
+              </button>
             </div>
         </form>
       </div>

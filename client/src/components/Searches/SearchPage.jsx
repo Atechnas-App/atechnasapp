@@ -1,9 +1,10 @@
-import React from "react";
+import React, {Suspense, lazy} from "react";
 import Filtros from "./Filtros/Filtros";
 import Nav from "../Nav/Nav";
 import './SearchPage.css';
 import { useSelector} from 'react-redux';
-import Renderizado from './Renderizado/Renderizado'
+import Loading from '../Loading/Loading'
+const Renderizado = lazy(()=> import('./Renderizado/Renderizado'))
 
 
 export default function SearchPage(){
@@ -14,17 +15,17 @@ export default function SearchPage(){
     
     return(
         <div className='container-searchpage'>
-            <div className='components-searchpage'>
                 <div className="nav-container">
                     <Nav/>
                 </div>
+            <div className='components-searchpage'>
                 <div className="container-all">
                     <div className='container-filtro'>
                         <Filtros  className='fixed-filters'/>
                     </div>
-                    
-                <Renderizado/>
-                
+                    <Suspense fallback={<Loading/>}>
+                        <Renderizado/>
+                    </Suspense>
 
                 </div>
                 

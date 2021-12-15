@@ -6,7 +6,7 @@ import "./form.css"
 
 export const LoginadnRegister = () => {
     return (
-      <div className='ajustarHome Antechna'>
+      <div className='Antechna'>
         <Nav/>
         <div className='container-login'>
           

@@ -25,11 +25,11 @@ export default function SearchBar(){
     
     return(
 
-        <div>
+ 
             <form className='fromSearch' onSubmit={(e)=>{onSubmit(e)}}>
                 <input type='text' placeholder='Buscar por nombre, categoria, tecnologias...' value={search} name='buscador' onChange={(e)=>{handdleInput(e)}} className='inputSearch'></input>   
             </form>
             
-        </div>
+    
     )
 }

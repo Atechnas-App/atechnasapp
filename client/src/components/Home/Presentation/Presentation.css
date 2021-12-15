@@ -33,11 +33,12 @@
 .h3PResentation{
     font-size: 2em;
     margin: 0.2em;
+    
 }
 
 .hrPresentation{
-    height: 0.2em;
-    background: #9225d7;
+    height: 5px;
+    background: linear-gradient(to right, #9225d7, #511cb4);
     border-style: none;
     width: 10%;
     margin: 0.5em;

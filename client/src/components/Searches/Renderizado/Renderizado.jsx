@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch} from 'react-redux';
 import CardPeople from '../../Cards/CardPeople';
-import Paginado from '../Paginado/Paginado'
+import Paginado from '../Paginado/Paginado';
+import Loading from '../../Loading/Loading'
 
 export default function Renderizado(){
     const searching = useSelector((state)=> state.rootReducer.search);
@@ -33,6 +34,7 @@ export default function Renderizado(){
             paginado={paginado} actualPage={actualPage}/>
             <div className='container-cards'>
                         {   
+                            
 
                             totalCardsPage?.map((e) => {
                                 
@@ -47,6 +49,7 @@ export default function Renderizado(){
                                 categories={e.categories}
                                 />
                             })
+                            
                             
                             
                         }
