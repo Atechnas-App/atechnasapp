@@ -13,7 +13,7 @@ import EditPerfil from "../components/EditPerfil/EditPerfil";
 import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
 import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo";
 import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
-
+import Terms from "../components/Footer/terminosCondiciones";
 export const InvitedRoute = () => {
   
   const local = JSON.parse(localStorage.getItem("user"))?

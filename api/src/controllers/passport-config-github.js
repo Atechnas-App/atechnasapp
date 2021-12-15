@@ -19,8 +19,7 @@ passport.use(new GithubStrategy({
     const { _json } = profile
 {
   info
-  info.name = _json.name? _json.name : _json.login
-  info.profilePicture = _json.avatar_url
+  info.email = _json.email
 }
     /* console.log(_json) */
     try{
