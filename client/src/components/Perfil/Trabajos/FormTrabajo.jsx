@@ -36,6 +36,7 @@ const loadImg = async (files) => {
   try {
 Swal.fire({
     title: 'Cargando imagen',
+    allowOutsideClick: false,
     onBeforeOpen: () => {
         Swal.showLoading();
         }
@@ -75,6 +76,7 @@ const loadImg1 = async (files) => {
   try {
 Swal.fire({
     title: 'Cargando imagen',
+    allowOutsideClick: false,
     onBeforeOpen: () => {
         Swal.showLoading();
         }
@@ -113,6 +115,7 @@ const loadImg2 = async (files) => {
   try {
 Swal.fire({
     title: 'Cargando imagen',
+    allowOutsideClick: false,
     onBeforeOpen: () => {
         Swal.showLoading();
         }

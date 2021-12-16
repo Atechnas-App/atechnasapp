@@ -42,6 +42,7 @@ const loadImg = async (files) => {
   try {
 Swal.fire({
     title: 'Cargando imagen',
+    allowOutsideClick: false,
     onBeforeOpen: () => {
         Swal.showLoading();
         }
