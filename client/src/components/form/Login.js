@@ -5,7 +5,7 @@ import {
   postLogin,
   removeError1,
   setError1,
-  startGoogleLogin,
+/*   startGoogleLogin, */
 /*   getGithubUserInfo */
 } from "../../actions/actions";
 import validator from 'validator'
@@ -45,12 +45,12 @@ const {auth,msgError1} = useSelector((state) => state.logued);
       }
   }
 
-  const handleGoogleLogin = () => {
+ /*  const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
     if (auth === true) {
       window.location.replace('/')
     }
-  }
+  } */
   
   const handleGithubLogin = () => {
 

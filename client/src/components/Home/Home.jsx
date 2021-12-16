@@ -15,7 +15,7 @@ import Carrucel1 from "../../assets/img/Carrucel.jpg"
 import Carrucel2 from "../../assets/img/Carrucel2.jpg"
 import Carrucel3 from "../../assets/img/Carrucel3.jpg"
 import { useDispatch, useSelector } from "react-redux";
-import { getGithubUserInfo, getUser } from "../../actions/actions";
+import { getGithubUserInfo } from "../../actions/actions";
 /* import { Link } from "react-router-dom"; */
 
 
@@ -27,7 +27,7 @@ useEffect(() => {
 }, [dispatch]);
 
 
-    const search = useSelector((state)=> state.rootReducer.search)
+   /*  const search = useSelector((state)=> state.rootReducer.search) */
 
     return(
         <div className='containerHome'> 

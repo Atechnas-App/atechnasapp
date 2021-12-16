@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { CompleteRegister } from '../components/form/CompleteRegister';
+/* import { CompleteRegister } from '../components/form/CompleteRegister'; */
 import { LoginadnRegister } from '../components/form/LoginadnRegister';
 import Home from '../components/Home/Home';
 import SearchPage from '../components/Searches/SearchPage';

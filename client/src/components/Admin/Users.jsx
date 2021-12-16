@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+/* import { useHistory } from 'react-router-dom'; */
 import { getUser, editProfile} from '../../actions/actions';
 import EstadoUsario from './Cards/EstadoUsuario';
 import "./Users.css"
@@ -8,7 +8,7 @@ import "./Users.css"
 
 export default function Users(){
     const dispatch = useDispatch()
-    const history = useHistory()
+   /*  const history = useHistory() */
     const users = useSelector((state)=> state.rootReducer.users)
     const [stateUsers, setStateUsers] = useState({
         status: "",

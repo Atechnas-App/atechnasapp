@@ -1,6 +1,6 @@
 import './Contactanos.css'
 import foto from '../../assets/img/github.png'
-import linkedin from '../../assets/img/linkedin.png'
+/* import linkedin from '../../assets/img/linkedin.png' */
 import Nav from '../Nav/Nav'
 
 

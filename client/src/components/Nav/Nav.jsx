@@ -3,13 +3,13 @@ import SearchBar from "../SearchBar/SearchBar";
 // import foto from "../../assets/img/Persona1.png";
 import "./Nav.css";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,/*  useSelector  */} from "react-redux";
 import { getDetails, logoutAll } from "../../actions/actions";
 
 
 export default function Nav(props) {
   /* let fullId = props?.match?.params?.id; */
-  const detail = useSelector((state) => state.rootReducer.details);
+  /* const detail = useSelector((state) => state.rootReducer.details); */
   const history = useHistory();
   const dispatch = useDispatch();
   if (!localStorage.getItem("user")) {
@@ -59,9 +59,9 @@ export default function Nav(props) {
             </div>
             <div class="dropdown-content">
               <Link to={"/miPerfil/" + id}>
-                <a>Perfil</a>
+                <i>Perfil</i>
               </Link>
-              <a onClick={handleLogout} className='cursor'>Cerrar sesion</a>
+              <i onClick={handleLogout} className='cursor'>Cerrar sesion</i>
               
             </div>
           </div>

@@ -3,7 +3,7 @@ import React, {useState, /* useEffect */} from 'react';
 import { useSelector,/*  useDispatch */} from 'react-redux';
 import CardPeople from '../../Cards/CardPeople';
 import Paginado from '../Paginado/Paginado';
-import Loading from '../../Loading/Loading'
+/* import Loading from '../../Loading/Loading' */
 
 export default function Renderizado(){
     const searching = useSelector((state)=> state.rootReducer.search);
