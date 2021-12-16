@@ -92,11 +92,11 @@ function onSubmit (e){
                     <h1>COMENTARIOS</h1>
                     <hr className="hr-perfil-verde"></hr>
                 </div>
-                <form onSubmit={e => onSubmit(e)}>
-                    <input type="text" value={reviewUser.title} name="title" placeholder="Titulo" onChange={e => review(e)}/>
-                    <input type="text" value={reviewUser.coments} name="coments" placeholder="Comentario" onChange={e => review(e)}/>
-                    <input type="number" value={reviewUser.qualification} name="qualification" placeholder="calificacion" onChange={e => review(e)}/>
-                    <button type="submit">Enviar</button>
+                <form onSubmit={e => onSubmit(e)} className='form-comentarios'>
+                    <input className='input-coment block-coment' type="text" value={reviewUser.title} name="title" placeholder="Titulo" onChange={e => review(e)}/>
+                    <input className='input-coment block-coment' type="number" min='0' max='5' value={reviewUser.qualification} name="qualification" placeholder="Calificacion" onChange={e => review(e)}/>
+                    <textarea className='text-coment block-coment' value={reviewUser.coments} name="coments" placeholder="Comentario" onChange={e => review(e)}/>
+                    <button type="submit" className='submit-coment'>Enviar</button>
                 </form>
                 <div>
                     <CardComentario id={fullId}/>

@@ -28,7 +28,7 @@ export default function Testimonial(){
                     <h3>{e.company}</h3>
                     <p>{e.details}</p> </div>)})}
                
-                <div className='testimonial-people'>
+                {/* <div className='testimonial-people'>
                     <img className='testimonial-people-img' src={Persona2} alt='img not found'/>
                     <h3>Robert Gonzales</h3>
                     <h3>Full Stack Dev en OurGlasses</h3>
@@ -39,7 +39,7 @@ export default function Testimonial(){
                     <h3>Charles Rodriguez</h3>
                     <h3>Lider UX/UI en Google</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse numquam officiis natus nihil voluptatibus eaque itaque perferendis nostrum modi fuga magnam, inventore optio dolor reprehenderit reiciendis recusandae deserunt corporis assumenda!</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )

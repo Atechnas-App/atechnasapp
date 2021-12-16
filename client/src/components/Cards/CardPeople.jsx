@@ -20,7 +20,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
                 </div>
                 <div className="container-tecnologias">
                 {technology?.map((e) => {
-                    return (<h3 className="tecnologias-text">| {e.technology} |</h3>)
+                    return (<p className="tecnologias-text">| {e.technology} |</p>)
                     })
                 }
                 </div>

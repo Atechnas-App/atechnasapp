@@ -1,24 +1,26 @@
-import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-/* import { CompleteRegister } from "../components/form/CompleteRegister"; */
-import { LoginadnRegister } from "../components/form/LoginadnRegister";
-import Home from "../components/Home/Home";
-import SearchPage from "../components/Searches/SearchPage";
-import PerfilPrivado from "../components/Perfil/PerfilPrivado";
-import PerfilPublico from "../components/Perfil/PerfilPublico";
-import EditPerfil from "../components/EditPerfil/EditPerfil";
-import DetallesTrabajo from "../components/Perfil/Trabajos/DetallesTrabajo";
-import FormTrabajo  from "../components/Perfil/Trabajos/FormTrabajo";
-import EditarTrabajo from "../components/Perfil/Trabajos/EditarTrabajo";
-import Error404 from "../components/Error404/Error404";
-import Contactanos from "../components/Footer/Contactanos";
-import SobreNosotros from "../components/Footer/sobreNosotros";
-import PregResp from "../components/Footer/pregResp";
-import Terms from "../components/Footer/terminosCondiciones";
-import Testimonials from "../components/Admin/Testimonials";
-import ControlPanel from "../components/Admin/ControlPanel";
-import Publications from "../components/Admin/Publications";
-import LoginAdmin from "../components/Admin/Login";
+import React from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { CompleteRegister } from '../components/form/CompleteRegister';
+import { LoginadnRegister } from '../components/form/LoginadnRegister';
+import Home from '../components/Home/Home';
+import SearchPage from '../components/Searches/SearchPage';
+import PerfilPrivado from "../components/Perfil/PerfilPrivado"
+import PerfilPublico from "../components/Perfil/PerfilPublico"
+import EditPerfil from '../components/EditPerfil/EditPerfil';
+import DetallesTrabajo from '../components/Perfil/Trabajos/DetallesTrabajo';
+import FormTrabajo from "../components/Perfil/Trabajos/FormTrabajo";
+import EditarTrabajo from '../components/Perfil/Trabajos/EditarTrabajo';
+import Error404 from '../components/Error404/Error404'
+import Contactanos from '../components/Footer/Contactanos'
+import SobreNosotros from '../components/Footer/sobreNosotros'
+import PregResp from '../components/Footer/pregResp'
+import Terms from '../components/Footer/terminosCondiciones'
+import Testimonials from '../components/Admin/Testimonials';
+import ControlPanel from '../components/Admin/ControlPanel';
+import Publications from '../components/Admin/Publications';
+import LoginAdmin from '../components/Admin/Login';
+import DetallesTrabajoContactar from '../components/Perfil/Trabajos/DetallesTrabajoContactar'
+import RespuestaTrabajo from '../components/Perfil/Trabajos/RespuestaTrabajo'
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
@@ -41,37 +43,24 @@ export const InvitedRoute = () => {
       <Route exact path="/Admin/publicaciones" component={Publications} />
       <Route exact path="/Admin/login" component={LoginAdmin} />
       {/* <Route path="/results?searcher=" component={SearchPage} /> */}
-      {/* RUTAS USUARIOS */}
-      {!local?.id && <Redirect exact from="/perfil/:id" to="/login" />}
-      {!local?.id && <Redirect from="/miPerfil/:id" to="/error" />}
-      {!local?.id && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
-      {!local?.id && <Redirect from="/trabajos/detalle/:id" to="/error" />}
-      {!local?.id && <Redirect from="/perfil/crearTrabajos/:id" to="/error" />}
-      {!local?.id && <Redirect from="/perfil/editarTrabajos/:id" to="/error" />}
-      {!local?.id && <Route exact path="/login" component={LoginadnRegister} />}
-      {local?.id && (
-        <Route exact path="/perfil/:id" component={PerfilPublico} />
-      )}
-      {local?.id && (
-        <Route exact path="/miPerfil/:id" component={PerfilPrivado} />
-      )}
-      {local?.id && (
-        <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil} />
-      )}
-      {local?.id && (
-        <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo} />
-      )}
-      {local?.id && (
-        <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />
-      )}
-      {local?.id && (
-        <Route
-          exact
-          path="/perfil/editarTrabajos/:id"
-          component={EditarTrabajo}
-        />
-      )}{" "}
-      {/* agregar /:name/ */}
-    </Switch>
-  );
-};
+
+
+        {/* RUTAS USUARIOS */}
+        {(!local?.id ) && <Redirect exact from="/perfil/:id" to="/login" />}
+        {(!local?.id ) && <Redirect from="/miPerfil/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/editarPerfil/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/trabajos/detalle/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/crearTrabajos/:id" to="/error" />}
+        {(!local?.id ) && <Redirect from="/perfil/editarTrabajos/:id" to="/error" />}
+        {(!local?.id ) && <Route exact path="/login" component={LoginadnRegister} />}
+        {(local?.id) && <Route exact path="/perfil/:id" component={PerfilPublico} />}
+        {(local?.id) && <Route exact path="/miPerfil/:id" component={PerfilPrivado} />}
+        {(local?.id) && <Route exact path="/perfil/editarPerfil/:id" component={EditPerfil}/>}
+        {(local?.id) && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
+        {(local?.id) && <Route exact path="/perfil/crearTrabajos/:id" component={FormTrabajo} />}
+        {(local?.id) && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
+        {<Route exact path="/trabajos/contactar/:id" component={DetallesTrabajoContactar}/>}
+        {<Route exact path="/trabajo/respuesta/:userid/:idPublication" component={RespuestaTrabajo}/>}
+      </Switch>
+    );
+}

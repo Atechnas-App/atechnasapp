@@ -47,34 +47,23 @@ export default function Nav(props) {
           <h3>Ingresar / Registrarse</h3>
         </Link>
       ) : (
-        <div>
-        <img
-              className="imgUser"
-              src={photo}
-              alt="imagen usuario"
-              width="100vw"
-              heigth="100vh"
-            />
-        <ul className="nav">
-<li>{name}
-<ul>
-<li>
-    <Link to={"/perfil/" + id}>
-      <button style={{ textDecoration: "none" }}>Perfil</button>
-    </Link>
-  </li>
-  <li>
-    <Link to={`/perfil/edit/${id}`}>
-      <button>Editar Perfil</button>
-    </Link>
-  </li>
-  <li>
-    <button onClick={handleLogout}>cerrar sesion</button>
-  </li>
-</ul>
-
-</li>              
-          </ul>
+          <div class="dropdown">
+            <div className='img-border'>
+              <img
+                className="imgUser"
+                src={photo ? photo : photo1}
+                alt="imagen usuario"
+                width="50px"
+                heigth="50px"
+              />
+            </div>
+            <div class="dropdown-content">
+              <Link to={"/miPerfil/" + id}>
+                <a>Perfil</a>
+              </Link>
+              <a onClick={handleLogout} className='cursor'>Cerrar sesion</a>
+              
+            </div>
           </div>
 
 //         <div className='div-nav'>

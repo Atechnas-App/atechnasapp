@@ -31,10 +31,11 @@ export default function CardTrabajo(id){
                     </div>
                 </div>
                 <div class="back">
-                    <Link to={`/perfil/editarTrabajos/${j.id}`}>
-                        <button className="boton-cardpost"> Editar </button>
-                    </Link>
-                    
+                    <div className='back-ground'>
+                        <Link to={`/perfil/editarTrabajos/${j.id}`}>
+                            <button className="boton-cardpost"> Editar </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>)})}
