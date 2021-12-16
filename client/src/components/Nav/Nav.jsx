@@ -51,7 +51,7 @@ export default function Nav(props) {
             <div className='img-border'>
               <img
                 className="imgUser"
-                src={photo ? photo : photo1}
+                src={photo}
                 alt="imagen usuario"
                 width="50px"
                 heigth="50px"
