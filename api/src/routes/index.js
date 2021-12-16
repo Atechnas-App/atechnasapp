@@ -21,7 +21,7 @@ const { login, register } = require('./postUser')
 const githubLog = require('../controllers/passport-config-github')
 const authMP = require('../controllers/authMP')
 const create_preference = require('../controllers/preferenceMP')
-
+const review = require ("../routes/Review")
  
 const router = Router();
 
@@ -30,7 +30,9 @@ const router = Router();
 
 
 router.use('/api', bulkCreate)
+router.use('/api', review)
 router.use('/api', getJobs)
+router.use('/api', review)
 router.use('/api', getTestimonial)
 router.use('/api', newTestimonial)
 router.use('/api', getLanguages)

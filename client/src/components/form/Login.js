@@ -51,9 +51,15 @@ const {auth,msgError1} = useSelector((state) => state.logued);
       window.location.replace('/')
     }
   }
+  
   const handleGithubLogin = () => {
+
+    window.open('http://localhost:3001/api/github', '_self') // si funciona deployado seria un golazo
+    /* dispatch(getGithubUserInfo()) */
+/* 
     window.open('https://atechnas-api.herokuapp.com/api/github', '_self') // si funciona deployado seria un golazo
     // dispatch(getGithubUserInfo())
+ */
   }
 
   const ifFormIsValid = () => {
@@ -105,24 +111,7 @@ const {auth,msgError1} = useSelector((state) => state.logued);
         )}
 
         <p />
-        <button
-          className="google-btn"
-          onClick={handleGoogleLogin}
-        /* disabled={loading} */
-        >
-          <div className="google-icon-wrapper">
-            <img
-              className="google-icon"
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-              alt="google button"
-            />
-          </div>
-          <p className="btn-text">
-            <b>Entrar con Google</b>
-          </p>
-          <p />
-
-        </button>
+    
         <button
           className="github-btn"
           onClick={handleGithubLogin}

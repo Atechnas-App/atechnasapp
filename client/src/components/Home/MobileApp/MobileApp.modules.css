@@ -59,11 +59,12 @@
 }
 
 .hrPresentationGreen {
-    height: 0.2em;
-    background: #52be84;
+    background: linear-gradient(to right, #52be84, #5aee67);
+    height: 5px;
     border-style: none;
     width: 10%;
     margin-top: 0.5em;
+    
 }
 
 .app-description-title{
@@ -71,6 +72,8 @@
     font-size:26px;
     margin-bottom: 0.5em;
     text-transform: uppercase;
+    text-align: left;
+    align-items: left;
 }
 
 .app-description-description{

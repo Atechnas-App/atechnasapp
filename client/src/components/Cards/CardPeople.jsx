@@ -3,7 +3,9 @@ import './CardPeople.css'
 //Card de cada uno 
 export default function CardPeople({profilePicture,lastName, name, technology,qualification, id, categories}){
     
-    localStorage.setItem('idgit', id)
+    /* localStorage.setItem('idgit', id) */
+    /* localStorage.setItem("name", name)
+    localStorage.setItem("photo", profilePicture) */
     return(
         <div className= 'contenedorCard border-card btn btn-white btn-bottom-animation-1 btn-animation-1'>
             <div>
@@ -18,7 +20,7 @@ export default function CardPeople({profilePicture,lastName, name, technology,qu
                 </div>
                 <div className="container-tecnologias">
                 {technology?.map((e) => {
-                    return (<h3 className="tecnologias-text">| {e.technology} |</h3>)
+                    return (<p className="tecnologias-text">| {e.technology} |</p>)
                     })
                 }
                 </div>

@@ -1,8 +1,15 @@
-.perfil-container{
+/* .perfil-container{
     min-width: 1250px;
     max-width: 1350px;
     margin: 0em auto;
     padding: 1em;
+} */
+
+.container-info-perfil{
+    min-width: 1250px;
+    max-width: 1350px;
+    margin: 0em auto;
+    padding: 0em 2em;
 }
 
 .datos-perfil{
@@ -12,36 +19,36 @@
 
 .foto-perfil{
     width: 25%;
-    padding: 1em 2em;
+    margin: 1em 2em;
+    border-radius: 1em;
+    min-width: 240px;
+    max-width: 240px;
+    text-align: center;
+   
 }
+
 .foto-de-perfil{
     min-width: 240px;
     min-height: 240px;
     max-width: 240px;
     max-width: 240px;
-    border-radius: 1em;
+    border-radius: 1em 1em 0em 0em;
+    margin-bottom: 0.1em;
     
 }
 
-.boton-perfil{
-    border-style: none;
-    background: #54be84;
-    color: #ffffff;
-    padding: 0.5em 0.5em;
-    font-weight: bold;
-    border-radius: 10px;
-    font-size: 1em;
-    margin: 1em 0.5em;
-}
+
 
 .boton-container{
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    justify-content: space-around; */
 }
 
 .nombre-completo-perfil{
     font-size: 40px;
     text-transform: uppercase;
+    margin-top: 0.2em ;
+    margin-bottom: 0;
 }
 
 .hr-perfil-violeta{
@@ -74,8 +81,10 @@
 }
 .descripcion-texto{
     font-size: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
+    background: linear-gradient(rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(2px);
+     border: solid 1px rgba(255, 255, 255, 0.247);
+    border-radius: 0em 1em 1em 1em;
     min-height: 8em ;
     max-height: 8em ;
     padding: 1em;
@@ -101,4 +110,95 @@
     padding: 0.2em 0.5em;
     background-color: black;
 
+}
+
+.manu-boton-perfil{
+    border-style: none;
+    background: linear-gradient(#52be84, #65e261);
+    color: white;
+    width: 100%;
+    text-shadow: 1px 1px 0.5px rgba(0, 0, 0, 0.377);
+    padding: 1em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.a-boton-mp{
+    color: white;
+    font-weight: bold;
+}
+
+.boton-portfolio{
+    border-style: none;
+    background: linear-gradient(#52be84, #59c755);
+    color: white;
+    border-radius: 1em;
+    text-shadow: 1px 1px 0.5px rgba(0, 0, 0, 0.486);
+    padding: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+
+}
+
+.titulo-linea{
+    margin-bottom: 0em;
+}
+
+.hr-white{
+    border-style: none;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.418);
+}
+
+.form-comentarios{
+    width: 95%;
+    background:rgba(73, 73, 73, 0.541);
+    backdrop-filter: blur(3px);
+    padding: 1em;
+    margin: 0em auto;
+    margin-top: 2em;
+    border-radius: 10px;
+}
+
+.block-coment{
+    display: block;
+}
+
+.input-coment{
+    margin: 1em 0em;
+    font-size: 1em ;
+    border-style: none;
+    padding: 0.5em;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.479);
+    color: white;
+}
+
+::placeholder { color: white; }
+
+.text-coment {
+    width: 95%;
+    margin-bottom: 1em;
+    background: rgba(255, 255, 255, 0.479);
+    border-radius: 10px;
+    padding: 0.5em;
+   
+}
+
+.submit-coment{
+    border-style: none;
+    font-weight: bold;
+    padding: 0.5em;
+    color: white;
+    border: solid 1px white;
+    background: transparent;
+    border-radius: 10px;
+    margin-left: 0.1em;
+}
+
+.submit-coment:hover{
+    background: white;
+    color: rgb(80, 80, 80);
 }

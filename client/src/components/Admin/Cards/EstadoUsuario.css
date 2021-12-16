@@ -1,0 +1,13 @@
+.estado-usuario-container{
+    width: 12em;
+}
+
+.foto-perfil-estado{
+    margin: 0em 1em 0em 1em;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.estado-usuario-nombre{
+    text-align: center;
+}

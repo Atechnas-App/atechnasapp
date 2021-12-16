@@ -1,5 +1,6 @@
 import './Contactanos.css'
-import foto from '../../assets/img/github-10-xxl.png'
+import foto from '../../assets/img/github.png'
+import linkedin from '../../assets/img/linkedin.png'
 import Nav from '../Nav/Nav'
 
 
@@ -75,7 +76,7 @@ export default function Contactanos(){
                     <div>
                         <a href='https://github.com/LukeMatias' target='_blank' rel="noreferrer"><img src={foto} width='70px' height='70px' alt=""/></a>
                         <a href='https://www.linkedin.com/in/lucasmatiasba/' target='_blank' rel="noreferrer">LinkedIn</a>
-                    </div>
+                    </div> rel="noreferrer"
                 </div>
                 <div className="card-contactanos">
                     <h1 className='h1-contactanos'>Tomas Conteras</h1>

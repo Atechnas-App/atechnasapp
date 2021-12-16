@@ -1,0 +1,68 @@
+.input-label-testimonio{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-testimonio{
+    width: 80%;
+    padding: 0.5em;
+    border-radius: 0em 0.5em 0.5em 0.5em;
+    font-size: 1em;
+}
+
+.label-testimonio{
+    font-size: x-large;
+}
+
+.crear-testimonio-container{
+    margin: 1em;
+    width: 30%;
+}
+
+.testimonio-container-admin{
+    display: flex;
+}
+
+.button-testimonio-admin{
+    border-style: none;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius:0.5em;
+    border: solid 2px #9225d7;
+    color:#9225d7;
+    filter: opacity(2);
+    font-weight: bold;
+    background: #9325d73d;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.596);
+    box-shadow: 1px 1px 2px black;
+    width: 50%;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.testimonio-creado-container{
+    display: flex;
+}
+
+.boton-perfil-admin{
+    background: #52be843d;
+    border: solid 2px #52be84;
+    color: #52be84;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.582);
+    box-shadow: 1px 1px 3px black;
+}
+
+.boton-perfil-admin:hover{
+    background: linear-gradient(#52be84, #5bdd66) ;
+    color: white;
+    
+}
+
+.testimonio-creado{
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+    margin: 1em;
+    padding: 1em;
+    min-width: 12em;
+    max-width: 15em;
+}
