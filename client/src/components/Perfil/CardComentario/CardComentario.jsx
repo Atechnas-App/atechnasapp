@@ -17,10 +17,12 @@ export default function CardComentario(id){
             
             <div>
                 {userReviews && userReviews?.map(e =>{
-                    return (<div>
+                    return (
+                    <div className='div-container-comentario'>
                     <p className="comentario-usuario">{e.title}</p>
-                    <p className="comentario-empresa">{e.qualification}</p>
-                    <p className="comentario-text">{e.coments}</p> </div>)})}
+                    <p className="comentario-calificacion">{"★".repeat(e.qualification)} {e.qualification}</p>
+                    <p className="comentario-text">{e.coments}</p> 
+                    </div>)})}
             </div>
         </div>
     )

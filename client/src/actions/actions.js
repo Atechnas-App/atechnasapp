@@ -370,7 +370,6 @@ export function getDetails(id) {
  export function postReview(userId, payload ) {
   return async function(){
     const newReview = await axios.post("/api/review/"+ userId, payload )
-
     return newReview
   }
 }

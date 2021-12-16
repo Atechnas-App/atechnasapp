@@ -81,10 +81,14 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Alguien quiere trabajar contigo",
+<<<<<<< HEAD
         html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name}
         le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion,
         indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento
         </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>`
+=======
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento  </p>\n <a href="http://localhost:3000/trabajo/respuesta/${userid}/${idPublication}">Confirma el trabajo</a>\n\n <p>${text}</p>`,
+>>>>>>> 811b9f0050fff711514cb118ac153d9604759ad7
     }
     if (validaPublication) {
         transporter.sendMail(mailOptions, (error, info) => {
@@ -111,7 +115,7 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Has decidido no trabajar con " + busquedauser.name,
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a> \n\n ${text}`
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a>`
     }
     const mailOptionsDelete = {
         from: "Atechnas",
@@ -147,33 +151,49 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
 
 router.put('/aceptPublication/:userid/:idPublication', async (req, res) => {
     const { userid, idPublication } = req.params
-    const busquedauser = await User.findOne({ where: { id: userid } })
-    const validaPublication = await Publication.findOne({ where: { id: idPublication } })
-    const usercreador = await User.findOne({ where: { id: validaPublication.createdBy } })
-    const mailOptionsDelete = {
-        from: "Atechnas",
-        to: busquedauser.email,
-        subject: `${usercreador.name}, aceptó Trabajar contigo`,
-        html: `<h1>Hola ${busquedauser.name}, </h1> \n<p><b>${usercreador.name}</b> accedió a trabajar contigo en <b> ${validaPublication.title}</b>, en el siguiente link podrás realizar el pago: </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
-    }
-    if (validaPublication) {
+    const validaPublication = await Publication.findOne({ where: { id: idPublication }, include: { all: true } })
+    const usercreador = await User.findOne({ where: { id: userid } });
 
-        if (validaPublication.createdBy !== busquedauser.id) {
-            transporter.sendMail(mailOptionsCreate, (error, info) => {
-                if (error) {
-                    console.log(`error al enviar correo: ${error} `);
-                } else {
-                    console.log(`correo enviado correctamente a : ${usercreador.email}`);
+    if (validaPublication && userid === validaPublication.createdBy) {
+
+        validaPublication.users.map((e) => {
+            if (e.id === validaPublication.createdBy) {
+                const mailOptions = {
+                    from: "Atechnas",
+                    to: e.email,
+                    subject: `es hora de empezar`,
+                    html: `<h1>Hola ${e.name}, </h1> \n<p>has aceptado trabajar en <b>${validaPublication.title}</b> es hora de ponerte manos a la obra.`
                 }
-            })
-            transporter.sendMail(mailOptionsDelete, (error, info) => {
-                if (error) {
-                    console.log(`error al enviar correo: ${error} `);
-                } else {
-                    console.log(`correo enviado correctamente a : ${busquedauser.email}`);
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(`error al enviar correo: ${error} `);
+                    } else {
+                        console.log(`correo enviado correctamente a : ${usercreador.email}`);
+                    }
+                })
+            } else {
+
+                const mailOptions = {
+                    from: "Atechnas",
+                    to: e.email,
+                    subject: `${usercreador.name}, aceptó Trabajar contigo`,
+                    html: `<h1>Hola , </h1> \n<p><b>${usercreador.name}</b> accedió a trabajar contigo en <b> ${validaPublication.title}</b>, en el siguiente link podrás realizar el pago: </p>\n <a href="http://localhost:3000/trabajos/detalle/${idPublication}">Link de pago</a>`
                 }
-            })
-        }
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(`error al enviar correo: ${error} `);
+                    } else {
+                        console.log(`correo enviado correctamente a : ${usercreador.email}`);
+                    }
+                })
+            }
+        })
+        await validaPublication.update(
+            {
+                state:'EnProceso'
+            }
+        )
+
     } else {
         res.status(404).send('esta publicacion no esta disponible')
     }

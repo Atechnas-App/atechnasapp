@@ -128,10 +128,12 @@
 .container-tecnologias{
     display: flex;
     text-transform: uppercase;
+    min-width: 24em;
 }
 
 .tecnologias-text{
     font-weight: normal;
+    
 }
 
 .categorias-text{

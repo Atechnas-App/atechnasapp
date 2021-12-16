@@ -61,7 +61,7 @@ export default function Nav(props) {
               <Link to={"/miPerfil/" + id}>
                 <a>Perfil</a>
               </Link>
-              <a onClick={handleLogout} className='cursor'>cerrar sesion</a>
+              <a onClick={handleLogout} className='cursor'>Cerrar sesion</a>
               
             </div>
           </div>

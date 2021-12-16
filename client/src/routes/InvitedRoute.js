@@ -19,7 +19,8 @@ import Testimonials from '../components/Admin/Testimonials';
 import ControlPanel from '../components/Admin/ControlPanel';
 import Publications from '../components/Admin/Publications';
 import LoginAdmin from '../components/Admin/Login';
-
+import DetallesTrabajoContactar from '../components/Perfil/Trabajos/DetallesTrabajoContactar'
+import RespuestaTrabajo from '../components/Perfil/Trabajos/RespuestaTrabajo'
 
 export const InvitedRoute = () => {
   const local = JSON.parse(localStorage.getItem("user"));
@@ -59,7 +60,8 @@ export const InvitedRoute = () => {
         {(local?.id) && <Route exact path="/trabajos/detalle/:id" component={DetallesTrabajo}/>}
         {(local?.id) && <Route exact path="/perfil/crearTrabajos/:id" component={Form} />}
         {(local?.id) && <Route exact path="/perfil/editarTrabajos/:id" component={EditarTrabajo} />} {/* agregar /:name/ */ }
-        
+        {<Route exact path="/trabajos/contactar/:id" component={DetallesTrabajoContactar}/>}
+        {<Route exact path="/trabajo/respuesta/:userid/:idPublication" component={RespuestaTrabajo}/>}
       </Switch>
     );
 }
