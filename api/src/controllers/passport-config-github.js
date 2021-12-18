@@ -58,10 +58,13 @@ passport.deserializeUser((user, done) => { done(null, user) })
 
 router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
 
-router.get('/github/callback', passport.authenticate('github', {
-  successRedirect: GITHUB_CLIENT_URL,
-  failureRedirect: GITHUB_CLIENT_URL + '/login'
-}))
+router.get(
+  "https://atechnas-api.herokuapp.com/api/github/callback/github/callback",
+  passport.authenticate("github", {
+    successRedirect: GITHUB_CLIENT_URL,
+    failureRedirect: GITHUB_CLIENT_URL + "/login",
+  })
+);
 
 router.get('/login/success', (req, res) => {
   /* const name = info.name? info.name : 'ejemplo' */
