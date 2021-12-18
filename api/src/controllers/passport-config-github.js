@@ -10,7 +10,7 @@ const { User, Category } = require('../db');
 
 const router = Router();
 const info = {};
-
+ 
 passport.use(
   new GithubStrategy(
     {
