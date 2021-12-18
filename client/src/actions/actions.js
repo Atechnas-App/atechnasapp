@@ -106,7 +106,7 @@ export function getGithubUserInfo() {
   return async function(dispatch){
 
     const githubUserInfo = await axios(
-      "http://localhost:3001/api/login/success"
+      "https://atechnas-api.herokuapp.com/api/login/success"
     );
     localStorage.setItem("user", JSON.stringify(githubUserInfo.data.user));
 
