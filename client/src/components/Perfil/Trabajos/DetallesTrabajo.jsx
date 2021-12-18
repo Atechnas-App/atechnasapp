@@ -24,7 +24,7 @@ export default function DetallesTrabajo(props){
             .catch(err => console.log(err))
 
     }, [job.createdBy ,job.price, job.title])
-    console.log(job, "detalle del trabajo")
+    /* console.log(job, "detalle del trabajo") */
 
     return(
         <div className="detalle-trabajo-contenedor">

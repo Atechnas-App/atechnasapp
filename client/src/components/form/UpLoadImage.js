@@ -7,7 +7,7 @@ export const UpLoadImage = () => {
   const dispatch = useDispatch();
 
   const photo = localStorage.getItem("profileImage");
-  console.log(photo);
+ /*  console.log(photo); */
   const { setInput } = useState(() => {
     if (photo) {
       return photo;

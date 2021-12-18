@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 router.post("/create_preference", async (req, res) => {
 	const prestador = await User.findByPk(req.query.id, { raw: true })
-	console.log(req.query.id)
+	
 	mercadopago.configure({
 		access_token: prestador.access_token,
 	});

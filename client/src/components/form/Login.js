@@ -30,7 +30,7 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
 
   const { email, password } = formValues
   const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
-  console.log(loginErrorMessage, 'loginErrorMessage')
+ /*  console.log(loginErrorMessage, 'loginErrorMessage') */
 
 
 

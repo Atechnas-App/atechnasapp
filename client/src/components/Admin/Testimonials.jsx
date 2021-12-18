@@ -32,7 +32,7 @@ export default function Testimonials(){
         })
         alert("¡Testimonio creado!")
     }
-    console.log(newTestimonial,"testimonial")
+    /* console.log(newTestimonial,"testimonial") */
     function onHandleChange(e){
         e.preventDefault()
         setNewTestimonial({
@@ -46,7 +46,7 @@ export default function Testimonials(){
         alert("¡Testimonio eliminado!")
         history.push("/Admin/testimonios")
     }
-    console.log(testimonials[0]?.id)
+    /* console.log(testimonials[0]?.id) */
     return (
         <div className='testimonio-container-admin'>
             <div className='crear-testimonio-container'>

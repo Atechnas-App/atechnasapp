@@ -18,7 +18,7 @@ router.put("/profile/:id", async (req, res, next) => {
       location,
       status,
     } = req.body;
-    console.log(req.body);
+    /* console.log(req.body); */
     const user = await User.findOne({
       where: { id: id },
       include: [

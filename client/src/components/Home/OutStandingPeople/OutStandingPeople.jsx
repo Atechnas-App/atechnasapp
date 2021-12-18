@@ -12,7 +12,7 @@ export const OutStandingPeople = () => {
     const dis = useSelector((state)=> state.rootReducer.design)
     const mar = useSelector((state)=> state.rootReducer.marketing)
     
-    console.log("LOCAL DEV", dev)
+   /*  console.log("LOCAL DEV", dev) */
     
     useEffect(() => {           
         dispatch(getDevelopers()); 

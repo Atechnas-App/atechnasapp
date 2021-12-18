@@ -85,7 +85,7 @@ export default function EditPerfil(props) {
   };
 
   function onHandleChange(e) {
-    console.log(e);
+    /* console.log(e); */
     e.preventDefault();
     setEditedProfile({
       ...editedProfile,
@@ -100,7 +100,7 @@ export default function EditPerfil(props) {
         ...editedProfile,
       })
     );
-    console.log(editedProfile, "Editado");
+    /* console.log(editedProfile, "Editado"); */
     Swal.fire(
       "PERFIL ACTUALIZADO",
       "Los cambios se guardaron correctamente",

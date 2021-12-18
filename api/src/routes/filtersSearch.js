@@ -21,7 +21,7 @@ router.get("/filterSearch", async (req, res, next) => {
   try {
     const { searchValues } = req.query;
     const arrayValues = searchValues.split("-");
-    console.log("soy un array", arrayValues);
+   /*  console.log("soy un array", arrayValues); */
 
     const resultsQuery = await User.findAndCountAll({
       where: {

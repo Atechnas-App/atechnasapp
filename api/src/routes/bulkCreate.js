@@ -26,7 +26,7 @@ router.post('/bulkcreateUsers', async (req, res, next) => {
         //     languages,
         //     technology,
         // } = req.body;
-        console.log(req.body)
+        
         const newUser = await User.bulkCreate(req.body)
         let categoriesDb = await Category.findAll({
             where: { category : req.body.category},
@@ -44,7 +44,7 @@ router.post('/bulkcreateUsers', async (req, res, next) => {
         newUser.addLanguage(languagesDb);
         newUser.addTechnology(technologyDb);
         // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
-        console.log(newUser.map(c => c.toJSON()))
+       /*  console.log(newUser.map(c => c.toJSON())) */
 
         res.status(200).send('usuario creado')
     }
@@ -58,7 +58,7 @@ router.post('/bulkcreateTechnology', async (req, res, next) => {
     try {
        
         const newTechnology = await Technology.bulkCreate(req.body)
-        console.log(newTechnology.map(c => c.toJSON()))
+        /* console.log(newTechnology.map(c => c.toJSON())) */
         res.status(200).send('technologies en db')
     }
     catch (error) {
@@ -85,7 +85,7 @@ router.post('/bulkcreateLanguages', async (req, res, next) => {
     try {
     //    const {category} = await req.body
         const newLanguage = await Language.bulkCreate(req.body)
-        console.log(newLanguage.map(c => c.toJSON()))
+        /* console.log(newLanguage.map(c => c.toJSON())) */
         res.status(200).send('Languages en db')
     }
     catch (error) {

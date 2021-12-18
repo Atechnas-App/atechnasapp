@@ -29,7 +29,7 @@ const register = router.post(
   checkNotAuthenticated,
   async (req, res, next) => {
     try {
-      console.log(req.body);
+     /*  console.log(req.body); */
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const {
         name,
@@ -64,7 +64,7 @@ const register = router.post(
       newUser.addCategory(categories);
       // newUser.addLanguage(languagesDb);
       // newUser.addTechnology(technologyDb);
-      console.log("creado", newUser.toJSON());
+      /* console.log("creado", newUser.toJSON()); */
       // acá se puede hacer un res.redirect a la siguiente parte del formulario donde vamos a seguir agregando campos
       res.status(200).send("usuario creadoo");
     } catch (error) {

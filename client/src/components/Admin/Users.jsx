@@ -18,7 +18,7 @@ export default function Users(){
         dispatch(getUser())
     },[dispatch])
     
-    console.log(users, "Usuarios")
+   /*  console.log(users, "Usuarios") */
 
 function onHandleSelect(e){
     e.preventDefault()

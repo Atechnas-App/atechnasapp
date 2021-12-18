@@ -49,7 +49,7 @@ export function getCategories() {
 export function getDevelopers() {
   return async function(dispatch){
     const bestof = await axios(`/api/bestDevelopers`);
-    console.log('ACTION DEV', bestof.data)
+   /*  console.log('ACTION DEV', bestof.data) */
     dispatch({
       type: DEVELOPER,
       payload: bestof.data
@@ -86,7 +86,7 @@ export function postLogin(payload){
     const user = await axios.post(`/api/login`, payload) 
     localStorage.setItem("user", JSON.stringify(user.data)) //guarda la info del back en localstorage
     loglocal()
-    console.log(user.data)
+    /* console.log(user.data) */
     if(user.data.id){
 dispatch({
       type: types.login,
@@ -132,7 +132,7 @@ export function Search(payload) {
 export function Filter(payload) {
     return async function(dispatch){
         const category = await axios(`/api/filterSearch?searchValues=`+payload)
-        console.log('INFO FILTER', category.data)
+        /* console.log('INFO FILTER', category.data) */
         dispatch({
             type: FILTER,
             payload: category.data
@@ -154,7 +154,7 @@ export function Filter(payload) {
 export function getTechnologies(payload) {
   return async function(dispatch){
       const tech = await axios(`/api/getTechnologies`)
-      console.log('ACTION TECH', tech.data)
+      /* console.log('ACTION TECH', tech.data) */
       dispatch({
           type: GET_TECHNOLOGIES,
           payload: tech.data
@@ -286,7 +286,7 @@ export function getDetails(id) {
 
  export function editProfile(id, payload){
       return async function(){
-        console.log(id, "id EDIT PROFILE")
+      /*   console.log(id, "id EDIT PROFILE") */
     const editedProfile = await axios.put(`/api/profile/` + id, payload)
       return editedProfile
    }
@@ -303,9 +303,9 @@ export function getDetails(id) {
  }
  export function getJobs(id) {
    return async function(dispatch){
-     console.log(id.id,"id jobs")
+     /* console.log(id.id,"id jobs") */
      const getJobs = await axios(`/api/PublicationsUser/`+id.id);
-     console.log(getJobs, "getjobs")
+     /* console.log(getJobs, "getjobs") */
      return dispatch({
        type: GET_JOBS,
        payload: getJobs.data
@@ -316,14 +316,14 @@ export function getDetails(id) {
  export function postJobs(id, payload) {
    return async function(){
      const newJob = await axios.post(`/api/newPublication/` + id , payload ) 
-     console.log(payload, "actions");
+    /*  console.log(payload, "actions"); */
      return newJob
    }
  }
 
  export function getDetailJob(id){
    return async function(dispatch){
-     console.log(id, "ID GET DETALLE DEL TRABAJO")
+    /*  console.log(id, "ID GET DETALLE DEL TRABAJO") */
      const detailJob = await axios.get(`/api/Publications/`+id)
      return dispatch({
       type: DETAIL_JOB,
@@ -334,8 +334,8 @@ export function getDetails(id) {
 
  export function editJob(id, payload){
    return async function(){
-     console.log(id, "EDIT JOB ID")
-     console.log(payload, "EDIT JOB PAYLOAD")
+     /* console.log(id, "EDIT JOB ID")
+     console.log(payload, "EDIT JOB PAYLOAD") */
      const editedJob = await axios.put(`/api/modPublication/`+ id,payload)
      return editedJob
    }
@@ -381,7 +381,7 @@ export function getDetails(id) {
 
 export function getReview(id){
   return async function(dispatch){
-    console.log("soy review",id)
+    /* console.log("soy review",id) */
     const review = await axios("/api/getUserReview/"+id)
     return dispatch({
       type: GET_REVIEWS,

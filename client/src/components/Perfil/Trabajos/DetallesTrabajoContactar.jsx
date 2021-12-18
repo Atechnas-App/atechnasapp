@@ -14,7 +14,7 @@ export default function DetallesTrabajo(props){
     const job = useSelector(state=>state.rootReducer.detailJob)
     const id = props.match.params.id
     const local = JSON.parse(localStorage.getItem("user"));
-    console.log(local.id)
+    /* console.log(local.id) */
     useEffect(()=>{
         dispatch(getDetailJob(id))
     },[dispatch,id])

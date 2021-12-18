@@ -21,7 +21,7 @@ export default function Renderizado(){
     const totalCardsPage = searching?.slice(indexFirst, indexLast);
     const length = searching?.length;
 
-    console.log(searching, 'SOY EL SEARCHING 06/12')
+    /* console.log(searching, 'SOY EL SEARCHING 06/12') */
 
     const paginado = (pageNumber) => {
         setActualPage(pageNumber);

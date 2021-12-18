@@ -19,7 +19,7 @@ const history = useHistory()
         price:'',
         state:"Activo"
     })
-console.log(formulary)
+/* console.log(formulary) */
 //uno
 const loadImg = async (files) => {
   const reader = new FileReader();

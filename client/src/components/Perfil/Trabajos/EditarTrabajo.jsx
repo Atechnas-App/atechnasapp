@@ -16,8 +16,8 @@ export default function EditarTrabajo(props){
         dispatch(getDetailJob(id))
       },[dispatch,id])
 
-   console.log(id, "id editar trabajo")
-   console.log(detailJobs.image, "detalle trabajo")
+   /* console.log(id, "id editar trabajo") */
+   /* console.log(detailJobs.image, "detalle trabajo") */
     const [editedJob, setEditedJob] = useState({
         title: detailJobs?.title,
         image: detailJobs?.image,
@@ -25,7 +25,7 @@ export default function EditarTrabajo(props){
         price: detailJobs?.price,
         state: detailJobs?.state,
     })
-console.log(detailJobs, "DETAILS JOBS!")
+/* console.log(detailJobs, "DETAILS JOBS!") */
 //uno
 const loadImg = async (files) => {
   const reader = new FileReader();
@@ -184,7 +184,7 @@ console.log(res_1, "RES")
         dispatch(editJob(id,{
             ...editedJob
         }))
-        console.log("trabajo editado", editedJob)
+        /* console.log("trabajo editado", editedJob) */
         Swal.fire('TRABAJO ACTUALIZADO',
         "Los cambios se guardaron correctamente",
         "success");

@@ -21,7 +21,7 @@ router.get("/filterByCategory", async (req, res, next) => {
     //
     const { categories } = req.query;
     const cat = categories.split("-");
-    console.log("soy un array", cat);
+    /* console.log("soy un array", cat); */
     const filteredByCategory = await User.findAll({
       where: {
         "$categories.category$": cat,

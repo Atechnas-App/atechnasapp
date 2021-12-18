@@ -72,9 +72,9 @@ router.get('/login/success', (req, res) => {
       message: 'successful',
       user: info
     })
-    /* console.log(info) */
+  
   }
-  console.log('REQ USER DEL LOGIN SUCCESS',req.user)
+ 
 })
 
 module.exports = router
