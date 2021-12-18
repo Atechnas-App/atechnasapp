@@ -1,12 +1,13 @@
 import Nav from './Navbar/Nav'
 import "./Login.css"
+import { Link } from 'react-router-dom'
 
-export default function LoginAdmin(){
+export default function LoginAdmin() {
     return (
         <div>
-            <Nav/>
+            <Nav />
             <div className='login-admin-container'>
-            <h1 className='titulo-login-admin'>LOGIN ADMIN</h1>
+                <h1 className='titulo-login-admin'>LOGIN ADMIN</h1>
                 <form>
                     <div className='label-input-login-admin'>
                         <label>Usuario</label>
@@ -16,7 +17,10 @@ export default function LoginAdmin(){
                         <label>Contraseña</label>
                         <input type="password"></input>
                     </div>
-                    <button className='button-login-admin'>Ingresar</button>
+                    <Link to='/admin/menu'>
+                        <button className='button-login-admin'>Ingresar</button>
+                    </Link>
+
                 </form>
             </div>
         </div>

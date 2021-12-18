@@ -12,6 +12,9 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: MAIL,
         pass: PASSMAIL
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -81,14 +84,10 @@ router.put('/addPublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Alguien quiere trabajar contigo",
-<<<<<<< HEAD
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name}
-        le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion,
-        indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento
-        </p>\n <a href="http://localhost:3000/">Confirma el trabajo</a>`
-=======
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar con el o informale el motivo por el cual no puedes en este momento  </p>\n <a href="http://localhost:3000/trabajo/respuesta/${userid}/${idPublication}">Confirma el trabajo</a>\n\n <p>${text}</p>`,
->>>>>>> 811b9f0050fff711514cb118ac153d9604759ad7
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>A ${busquedauser.name} le interesa trabajar contigo en <b> 
+        ${validaPublication.title}</b>, y se encuentra a la espera de tu aprobacion, indicale que puedes trabajar 
+        con el o informale el motivo por el cual no puedes en este momento  
+        </p>\n <a href="http://localhost:3000/trabajo/respuesta/${userid}/${idPublication}">Confirma el trabajo</a>\n\n <p>${text}</p>`,
     }
     if (validaPublication) {
         transporter.sendMail(mailOptions, (error, info) => {
@@ -115,13 +114,17 @@ router.put('/removePublication/:userid/:idPublication', async (req, res) => {
         from: "Atechnas",
         to: usercreador.email,
         subject: "Has decidido no trabajar con " + busquedauser.name,
-        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a>`
+        html: `<h1>Hola ${usercreador.name}, </h1> \n<p>Has decidido no trabajar en este momento con  
+        <b>${busquedauser.name}</b> en <b> ${validaPublication.title}</b>, esperamos que en un futuro puedan trabajar juntos, 
+        puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${busquedauser.name}</a>`
     }
     const mailOptionsDelete = {
         from: "Atechnas",
         to: busquedauser.email,
         subject: `${usercreador.name}, no puede Trabajar contigo`,
-        html: `<h1>Hola ${busquedauser.name}, </h1> \n<p><b>${usercreador.name}</b> no puede trabajar contigo en estos momentos en <b> ${validaPublication.title}</b>, pero esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
+        html: `<h1>Hola ${busquedauser.name}, </h1> \n<p><b>${usercreador.name}</b> no puede trabajar contigo en estos momentos en 
+        <b> ${validaPublication.title}</b>, pero esperamos que en un futuro puedan trabajar juntos, puedes ver sus publicaciones en: 
+        </p>\n <a href="http://localhost:3000/">${usercreador.name}</a>`
     }
     if (validaPublication) {
 

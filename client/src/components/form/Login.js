@@ -105,10 +105,9 @@ const {auth,msgError1} = useSelector((state) => state.logued);
         )}
 
         <p />
-        <button
+        {/* <button
           className="google-btn"
           onClick={handleGoogleLogin}
-        /* disabled={loading} */
         >
           <div className="google-icon-wrapper">
             <img
@@ -122,7 +121,7 @@ const {auth,msgError1} = useSelector((state) => state.logued);
           </p>
           <p />
 
-        </button>
+        </button> */}
         <button
           className="github-btn"
           onClick={handleGithubLogin}
