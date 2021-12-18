@@ -17,7 +17,7 @@ passport.use(
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL:
-        "https://atechnas-api.herokuapp.com/api/github/callback",
+        "/api/github/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
       // done(null, profile)
