@@ -11,42 +11,45 @@ const { User, Category } = require('../db');
 const router = Router();
 const info = {};
 
-passport.use(new GithubStrategy({
-  clientID: GITHUB_CLIENT_ID,
-  clientSecret: GITHUB_CLIENT_SECRET,
-  callbackURL: "/api/github/callback"
-},
-  async function (accessToken, refreshToken, profile, done) {
-    // done(null, profile)
-    const { _json } = profile
-  
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
+      callbackURL:
+        "https://atechnas-api.herokuapp.com/api/github/callback",
+    },
+    async function (accessToken, refreshToken, profile, done) {
+      // done(null, profile)
+      const { _json } = profile;
+
       const usergithub = await User.findOne({
         where: {
-          email: _json.email
-        }
-      })
-      if(usergithub){
-        info.id = usergithub?.dataValues?.id
-        info.name = usergithub?.dataValues?.name
-        info.profilePicture = usergithub?.dataValues?.profilePicture
+          email: _json.email,
+        },
+      });
+      if (usergithub) {
+        info.id = usergithub?.dataValues?.id;
+        info.name = usergithub?.dataValues?.name;
+        info.profilePicture = usergithub?.dataValues?.profilePicture;
       } else {
         const user = await User.create({
           name: !_json.name ? _json.login : _json.name,
-          lastName: '',
-          email: _json.email ? _json.email : 'ejemplo@mail.com',
+          lastName: "",
+          email: _json.email ? _json.email : "ejemplo@mail.com",
           password: _json.node_id,
           profilePicture: _json.avatar_url,
           portfolio: _json.url,
-          description: _json.bio
-        })  
-        info.id = user?.dataValues?.id
-        info.name = user?.dataValues?.name
-        info.profilePicture = user?.dataValues?.profilePicture
-      } 
-    done(null, info)
-  }
-  
-))
+          description: _json.bio,
+        });
+        info.id = user?.dataValues?.id;
+        info.name = user?.dataValues?.name;
+        info.profilePicture = user?.dataValues?.profilePicture;
+      }
+      done(null, info);
+    }
+  )
+);
 
  
     
