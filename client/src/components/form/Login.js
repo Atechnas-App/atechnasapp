@@ -30,7 +30,7 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
 
   const { email, password } = formValues
   const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
- /*  console.log(loginErrorMessage, 'loginErrorMessage') */
+ console.log(loginErrorMessage, 'loginErrorMessage')
 
 
 
@@ -71,6 +71,16 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
       dispatch(setError1("La contraseña no puede estar vacia"));
       return false;
     }
+    else if
+      (loginErrorMessage === 'Usuario no existe'){
+      dispatch(setError1("Usuario no existe"))
+      return false;
+    } else if (loginErrorMessage === 'Contraseña incorrecta'){
+      dispatch(setError1("Contraseña incorrecta"))
+      return false;
+    }
+
+    
     dispatch(removeError1());
     return true;
 
