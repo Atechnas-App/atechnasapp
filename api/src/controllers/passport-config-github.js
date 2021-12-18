@@ -38,7 +38,7 @@ passport.use(
           email: _json.email ? _json.email : "ejemplo@mail.com",
           password: _json.node_id,
           profilePicture: _json.avatar_url,
-          portfolio: _json.url,
+          portfolio: _json.html_url,
           description: _json.bio,
         });
         info.id = user?.dataValues?.id;
