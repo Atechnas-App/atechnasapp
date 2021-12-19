@@ -39,7 +39,9 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-        if (localStorage.getItem("user", "id")) {
+        if (localStorage.getItem('user')==={}) {
+          history.push('/login')
+        }else{
           history.push('/')
         }
       }
