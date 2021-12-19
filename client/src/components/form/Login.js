@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
   postLogin,
@@ -10,6 +10,7 @@ import {
 } from "../../actions/actions";
 import validator from 'validator'
 import "./form.css"
+import Swal from 'sweetalert2'
 import githubIcon from '../../assets/img/github-10-xxl.png'
 import { useHistory } from 'react-router-dom'
 
@@ -75,10 +76,20 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     }
     else if
       (loginErrorMessage === 'Usuario no existe'){
-      dispatch(setError1("Usuario no existe"))
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Usuario no existe',
+})
+
       return false;
     } else if (loginErrorMessage === 'Contraseña incorrecta'){
-      dispatch(setError1("Contraseña incorrecta"))
+      Swal.fire({
+        title: 'Contraseña incorrecta',
+        text: 'La contraseña es incorrecta',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      })
       return false;
     }
 
