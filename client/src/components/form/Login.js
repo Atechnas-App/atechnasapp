@@ -39,7 +39,7 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-        if (localStorage.getItem('user')==={}) {
+        if (localStorage.getItem('user')==="correo incorrecto"||"contraseña incorrecta") {
           history.push('/login')
         }else{
           history.push('/')
