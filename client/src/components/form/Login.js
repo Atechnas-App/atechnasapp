@@ -45,8 +45,8 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
           "contraseña incorrecta"
         ) {
           history.push("/login");
-        } else {
-          history.push("/");
+        } else if(localStorage.getItem("user") === "id"){
+                    history.push("/");
         }
       }
   }
