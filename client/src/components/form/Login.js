@@ -40,10 +40,13 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-        if (localStorage.getItem('user')==="correo incorrecto"||"contraseña incorrecta") {
-          history.push('/login')
-        }else{
-          history.push('/')
+        if (
+          localStorage.getItem("user") === "No existe usuario con ese email" ||
+          "contraseña incorrecta"
+        ) {
+          history.push("/login");
+        } else {
+          history.push("/");
         }
       }
   }
@@ -74,22 +77,21 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
       dispatch(setError1("La contraseña no puede estar vacia"));
       return false;
     }
-    else if
-      (loginErrorMessage === 'Usuario no existe'){
-Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Usuario no existe',
-})
+    else if (loginErrorMessage === "No existe usuario con ese email") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: { loginErrorMessage },
+      });
 
       return false;
-    } else if (loginErrorMessage === 'Contraseña incorrecta'){
+    } else if (loginErrorMessage === "Contraseña incorrecta") {
       Swal.fire({
-        title: 'Contraseña incorrecta',
-        text: 'La contraseña es incorrecta',
-        icon: 'error',
-        confirmButtonText: 'Aceptar'
-      })
+        title: "Contraseña incorrecta",
+        text: { loginErrorMessage },
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
       return false;
     }
 
