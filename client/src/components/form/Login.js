@@ -41,11 +41,11 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-       if(localStorage.getItem("user") === id){
-          history.push("/");
-        } else {
-          history.push("/login")
-      }
+       if (localStorage.getItem("user" === id)) {
+         history.push("/");
+       } else {
+         history.push("/login");
+       }
     }
   }
 
