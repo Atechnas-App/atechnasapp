@@ -41,14 +41,12 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-        if (localStorage.getItem("user") === "No existe usuario con ese email" ||
-          "contraseña incorrecta"
-        ) {
-          history.push("/login");
-        } else if(localStorage.getItem("user") === id){
-                    history.push("/");
-        }
+       if(localStorage.getItem("user") === id){
+          history.push("/");
+        } else {
+          history.push("/login")
       }
+    }
   }
 
  /*  const handleGoogleLogin = () => {
