@@ -31,7 +31,8 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
 
   const { email, password } = formValues
   const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
- console.log(loginErrorMessage, 'loginErrorMessage')
+ 
+  const {id} = JSON.parse(localStorage.getItem('user'))
 
 
 
@@ -40,13 +41,12 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
     // if (!typeof loginErrorMessage === 'string')
       if (ifFormIsValid()) {
         dispatch(postLogin(formValues));
-        if (
-          localStorage.getItem("user") === "No existe usuario con ese email" ||
+        if (localStorage.getItem("user") === "No existe usuario con ese email" ||
           "contraseña incorrecta"
         ) {
-          history.push("/login");
-        } else if(localStorage.getItem("user") === "id"){
-                    history.push("/");
+          history.push("/");
+        } else if(localStorage.getItem("user") === id){
+                    history.push("/login");
         }
       }
   }
