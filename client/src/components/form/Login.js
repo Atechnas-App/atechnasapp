@@ -44,9 +44,9 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
         if (localStorage.getItem("user") === "No existe usuario con ese email" ||
           "contraseña incorrecta"
         ) {
-          history.push("/");
+          history.push("/login");
         } else if(localStorage.getItem("user") === id){
-                    history.push("/login");
+                    history.push("/");
         }
       }
   }
