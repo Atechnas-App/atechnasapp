@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { /* shallowEqual, */ useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import {
   postLogin,
@@ -32,7 +32,7 @@ const {/* auth, */msgError1} = useSelector((state) => state.logued);
   const { email, password } = formValues
   const loginErrorMessage = JSON.parse(localStorage.getItem('user'))
  
-  const {id} = JSON.parse(localStorage.getItem('user'))
+  /* const {id} = JSON.parse(localStorage.getItem('user')) */
 
 
 
