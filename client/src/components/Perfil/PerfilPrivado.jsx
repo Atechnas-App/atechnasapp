@@ -40,7 +40,7 @@ useEffect(() => {
                                 <button className="manu-boton-perfil">EDITAR PERFIL</button>
                             </Link>
                             <button className='manu-boton-perfil'> 
-                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=${process.env.URL_BACK}/api/authMPrealizado`}
+                            <a href={`https://auth.mercadopago.com.ar/authorization?client_id=7374106022144969&response_type=code&platform_id=mp&state=${id}&redirect_uri=https://atechnas-api.herokuapp.com/api/authMPrealizado`}
                             className='a-boton-mp'>
                                 AUTORIZAR MERCADOPAGO
                             </a>
